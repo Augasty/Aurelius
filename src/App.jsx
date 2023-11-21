@@ -1,14 +1,13 @@
 import Navbar from "./components/layout/Navbar"
 import './App.css'
-import Dashboard from "./components/dashboard/Dashboard"
-import fakeProjects from './components/fakeProjects'
+import Routing from "./routing/Routing"
 
 function App() {
 
   return (
     <>
       <Navbar/>
-      <Dashboard projects={fakeProjects}/>
+      <Routing/>
     </>
   )
 }

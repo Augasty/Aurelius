@@ -6,7 +6,8 @@ import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 
 const Navbar = ({auth,profile}) => {
-  const links = auth?.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;
+  // const links = auth?.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;
+  const links =  <SignedInLinks profile={profile} />
   return (
     <nav className="nav-wrapper">
       <div className="container">
