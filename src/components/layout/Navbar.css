@@ -1,0 +1,87 @@
+/* Navbar.css */
+
+.nav-wrapper {
+    background-color: #424242; /* Grey darken-3 equivalent color */
+    padding: 1rem;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .brand-logo {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .brand-logo:hover {
+    color: #eeeeee;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+  }
+  
+  .nav-link {
+    margin-right: 1rem;
+  }
+  
+  .nav-link a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-link a:hover {
+    color: #eeeeee;
+  }
+  
+
+  /* SignedInLinks.css */
+
+.right {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: white
+}
+
+.right li {
+  margin-left: 10px;
+}
+
+.right li:first-child {
+  margin-left: 0;
+}
+
+.right a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.btn-floating {
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #e91e63;
+  color: #fff;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.pink {
+  background-color: #e91e63;
+}
+
+.lighten-1 {
+  filter: brightness(90%);
+}
