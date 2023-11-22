@@ -1,26 +1,44 @@
 // ProjectDetails.js
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from "react";
 
-import { useParams } from 'react-router-dom';
-import { fetchProjectData } from './singleProjectIdentifier.js';
-import './ProjectDetails.css'
+import { useParams } from "react-router-dom";
+import { fetchProjectData } from "./singleProjectIdentifier.js";
+import "./ProjectDetails.css";
+import { useDispatch, useSelector } from "react-redux";
+
+
+
+const useSingleProject = (projectId) => {
+  const projects = useSelector((state) => state.projects);
+  console.log(projects,projectId.id)
+
+  const findASingleProject = () => {
+    for (const proj of projects) {
+      if (proj.id == projectId.id) {
+        return proj;
+      }
+    }
+    return null;
+  };
+
+  return findASingleProject();
+};
 const ProjectDetails = () => {
-//   const { auth, match } = props; 
+  //   const { auth, match } = props;
+  const projectId = useParams();
 
-// fetch the project to fetch from parameter,
-// and fetch the auth with redux-toolkit
 
-  const projectId = useParams()
-  const [project, setProject] = useState(null);
+
+  // const [project,setProject] = useState(useSelector(state => getProjectById(state, projectId)))
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
+  const project = useSingleProject(projectId)
+  // use async when firebase is implemented
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       try {
-        const projectData = await fetchProjectData(2);
-        setProject(projectData);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -31,14 +49,14 @@ const ProjectDetails = () => {
     fetchData();
   }, [projectId]);
 
-//   if (!auth.uid) return <Redirect to='/signin' />;
+  //   if (!auth.uid) return <Redirect to='/signin' />;
 
   if (loading) {
     return <div className="container center">Loading project...</div>;
   }
 
   if (error) {
-    return <div className="container center">{error}</div>;
+    return <div className="container center">{error}x</div>;
   }
 
   if (project) {

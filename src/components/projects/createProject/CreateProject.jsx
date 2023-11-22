@@ -2,15 +2,18 @@ import { useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { Navigate , useNavigate} from 'react-router-dom';
 import './CreateProject.module.css'; // Import your custom CSS file
-
+import { addProject } from '../ProjectSlice';
+import { useDispatch } from 'react-redux';
+import { v4 as uuid } from "uuid";
 
 const CreateProject = () => {
   const [project, setProject] = useState({
+    id: uuid(),
     title: '',
     content: '',
   });
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const auth = useSelector((state) => state.firebase.auth);
   const history = useNavigate();
 
@@ -23,7 +26,7 @@ const CreateProject = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(createProject(project));
+    dispatch(addProject(project));
 
     history('/');
   };
