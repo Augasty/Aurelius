@@ -1,18 +1,46 @@
 /* eslint-disable react/prop-types */
 
-import { Link } from 'react-router-dom';
-import './Navbar.css'; // Import your CSS file
-import SignedInLinks from './SignedInLinks';
-import SignedOutLinks from './SignedOutLinks';
+import { Link, NavLink } from "react-router-dom";
+import "./Navbar.css"; // Import your CSS file
 
-const Navbar = ({auth,profile}) => {
-  // const links = auth?.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;
-  const links =  <SignedInLinks profile={profile} />
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase";
+import { signInWithGoogle } from "../auth/singInWithGoogle";
+
+const Navbar = () => {
+  const [user] = useAuthState(auth);
+  const curuser = auth.currentUser;
+
   return (
     <nav className="nav-wrapper">
       <div className="container">
-        <Link to='/' className="brand-logo">Planify</Link>
-        {links}
+        <Link to="/" className="brand-logo">
+          Planify
+        </Link>
+        <div>
+          <ul className="right">
+            {user ? (
+              <>
+                <li>
+                  <NavLink to="/create">New Project</NavLink>
+                </li>
+                <li>
+                  <a onClick={() => {}}>Log Out</a>
+                </li>
+              </>
+            ) : (
+              <li onClick={signInWithGoogle}>Login with google</li>
+            )}
+            <li>
+              <NavLink
+                to="/"
+                className="btn btn-floating pink lighten-1 message"
+              >
+                <img src={curuser?.photoURL} />
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
