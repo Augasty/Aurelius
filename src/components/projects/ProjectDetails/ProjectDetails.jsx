@@ -1,29 +1,14 @@
 // ProjectDetails.js
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect,  useState } from "react";
 
 import { useParams } from "react-router-dom";
-import { fetchProjectData } from "./singleProjectIdentifier.js";
 import "./ProjectDetails.css";
-import { useDispatch, useSelector } from "react-redux";
+import fakeProjects from "../../fakeProjects.js";
 
 
 
-const useSingleProject = (projectId) => {
-  const projects = useSelector((state) => state.projects);
-  console.log(projects,projectId.id)
 
-  const findASingleProject = () => {
-    for (const proj of projects) {
-      if (proj.id == projectId.id) {
-        return proj;
-      }
-    }
-    return null;
-  };
-
-  return findASingleProject();
-};
 const ProjectDetails = () => {
   //   const { auth, match } = props;
   const projectId = useParams();
@@ -34,7 +19,7 @@ const ProjectDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  const project = useSingleProject(projectId)
+  const project = fakeProjects[0]
   // use async when firebase is implemented
   useEffect(() => {
     const fetchData = () => {
