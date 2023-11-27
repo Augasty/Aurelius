@@ -15,13 +15,13 @@ const Dashboard = () => {
       try {
         const projectCollection = collection(db, 'projects');
         const projectSnapshot = await getDocs(projectCollection);
-        console.log(projectSnapshot)
+        // console.log(projectSnapshot)
+
         const projectsData = projectSnapshot.docs.map((doc) => ({
           id: doc.id,
           title: doc.data().title,
           content: doc.data().content,
-          authorFirstName: doc.data().authorFirstName,
-          authorLastName: doc.data().authorLastName,
+          authorName: doc.data().authorName,
           createdAt: doc.data().createdAt
         }));
         setProjects(projectsData);

@@ -1,63 +1,62 @@
-// ProjectDetails.js
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { useEffect,  useState } from "react";
-
-import { useParams } from "react-router-dom";
-import "./ProjectDetails.css";
-import fakeProjects from "../../fakeProjects.js";
-
-
-
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../../firebase.js'; // Assuming you have a separate file for Firebase initialization
+import ProjectCard from './ProjectCard.jsx';
 
 const ProjectDetails = () => {
-  //   const { auth, match } = props;
-  const projectId = useParams();
-
-
-
-  // const [project,setProject] = useState(useSelector(state => getProjectById(state, projectId)))
+  const projectId  = useParams();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  
-  const project = fakeProjects[0]
-  // use async when firebase is implemented
+  const [project, setProject] = useState(null);
+
   useEffect(() => {
-    const fetchData = () => {
+    const fetchProjectById = async (projectId) => {
       try {
+        const docRef = doc(db, 'projects', projectId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          console.log(docSnap.data())
+          const projectData = {
+            id: docSnap.id,
+            title: docSnap.data().title,
+            content: docSnap.data().content,
+            authorName: docSnap.data().authorName,
+            createdAt: docSnap.data().createdAt
+ 
+          };
+          setProject(projectData);
+        } else {
+          console.log('No such document!');
+        }
+
         setLoading(false);
       } catch (error) {
-        setError(error.message);
+        console.error('Error getting document:', error);
         setLoading(false);
       }
     };
 
-    fetchData();
+    fetchProjectById(projectId.id);
   }, [projectId]);
-
-  //   if (!auth.uid) return <Redirect to='/signin' />;
 
   if (loading) {
     return <div className="container center">Loading project...</div>;
   }
 
-  if (error) {
-    return <div className="container center">{error}x</div>;
-  }
-
   if (project) {
-    return (
-      <div className="container section project-details">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className="card-title">{project.title}</span>
-            <p>{project.content}</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <ProjectCard 
+    
+        title={project.title}
+        content={project.content}
+        authorName={project.authorName}
+        createdAt={project.createdAt}
+    />
   }
+  
 
-  return null;
+  return <div className="container center">Project not found.</div>;
 };
 
 export default ProjectDetails;

@@ -16,7 +16,7 @@ const Navbar = () => {
     <nav className="nav-wrapper">
       <div className="container">
         <Link to="/" className="brand-logo">
-          Planify
+          Planeto
         </Link>
         <div>
           <ul className="right">
