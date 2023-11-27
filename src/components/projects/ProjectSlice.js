@@ -1,17 +1,15 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import fakeProjects from '../fakeProjects'
+import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = [
-    ...fakeProjects
-]
+import { db } from '../../firebase';
+
 
 
 const projectsSlice = createSlice({
     name: 'projects',
-    initialState,
+    initialState:[],
     reducers: {
-      getAllProjects: (state) => {
-        return state;
+      getAllProjects: (state,action) => {
+        return action.payload;
       },
       addProject: (state, action) => {
         const newProject = action.payload; 
@@ -26,6 +24,24 @@ const projectsSlice = createSlice({
       },
     },
   });
+
+  // Async action to fetch projects from Firestore
+export const fetchAllProjects = async (dispatch) => {
+  try {
+    const projectsCollection = await db.collection('projects').get()
+    const projects = projectsCollection.docs.map((doc) => ({
+      id: doc.id,
+      title: doc.title,
+      content: doc.content,
+      authorFirstName: doc.authorFirstName,
+      authorLastName: doc.authorLastName,
+      createdAt: doc.createdAt
+    }));
+    dispatch(getAllProjects(projects));
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+  }
+};
 
 export const { getAllProjects, addProject, getProjectById } = projectsSlice.actions;
 export default projectsSlice.reducer;

@@ -5,7 +5,8 @@ import "./Navbar.css"; // Import your CSS file
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
-import { signInWithGoogle } from "../auth/singInWithGoogle";
+import { signInWithGoogle } from "../../utils/singInWithGoogle";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
@@ -25,18 +26,17 @@ const Navbar = () => {
                   <NavLink to="/create">New Project</NavLink>
                 </li>
                 <li>
-                  <a onClick={() => {}}>Log Out</a>
+                  <a onClick={() => signOut(auth)}>Log Out</a>
                 </li>
               </>
             ) : (
-              <li onClick={signInWithGoogle}>Login with google</li>
+              <li onClick={signInWithGoogle} className="login">
+                Login with Google
+              </li>
             )}
             <li>
-              <NavLink
-                to="/"
-                className="btn btn-floating pink lighten-1 message"
-              >
-                <img src={curuser?.photoURL} />
+              <NavLink to="/" className="btn-floating pink lighten-1 message">
+                <img src={curuser?.photoURL} alt="User" />
               </NavLink>
             </li>
           </ul>

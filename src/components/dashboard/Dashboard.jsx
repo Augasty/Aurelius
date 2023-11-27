@@ -2,25 +2,44 @@
 import ProjectList from "../projects/ProjectList";
 import Notifications from "./Notifications";
 import "./Dashboard.css";
-import { getAllProjects } from "../projects/ProjectSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 
+// import fakeProjects from '../fakeProjects'
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 const Dashboard = () => {
-  //   if (!auth.uid) return <Redirect to='/signin' />;
-  const dispatch = useDispatch();
-  const projects = useSelector((state) => state.projects);
-
+  const [projects, setProjects] = useState([]);
+  // const projects = fakeProjects
   useEffect(() => {
-    // Fetch all projects when the component mounts
-    dispatch(getAllProjects());
-  }, [dispatch]);
-  // console.log(projects);
+    const fetchData = async () => {
+      try {
+        const projectCollection = collection(db, 'projects');
+        const projectSnapshot = await getDocs(projectCollection);
+        console.log(projectSnapshot)
+        const projectsData = projectSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          title: doc.data().title,
+          content: doc.data().content,
+          authorFirstName: doc.data().authorFirstName,
+          authorLastName: doc.data().authorLastName,
+          createdAt: doc.data().createdAt
+        }));
+        setProjects(projectsData);
+      } catch (error) {
+        console.error('Error fetching data from Firebase:', error);
+      }
+    };
+
+    fetchData();
+
+  }, [db])
+  
+
   return (
     <div className="dashboard container">
       <div className="row">
         <div className="col s12 m6">
-          <ProjectList projects={projects} />
+          <ProjectList projects={projects} key={projects.id}/>
         </div>
         <div className="col s12 m5 offset-m1">
           {/* <Notifications notifications={notifications} /> */}
