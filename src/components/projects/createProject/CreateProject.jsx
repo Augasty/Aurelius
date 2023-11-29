@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import {  useNavigate} from 'react-router-dom';
 import './CreateProject.module.css'; // Import your custom CSS file
+import { useDispatch } from 'react-redux';
 
 import { v4 as uuid } from "uuid";
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
@@ -17,10 +18,12 @@ const CreateProject = () => {
   const [user] = useAuthState(auth);
   const curuser = auth.currentUser;
 
+
   useEffect(() => {
 
     console.log(curuser?.displayName)
   }, [curuser])
+
   const history = useNavigate();
 
   const handleChange = (e) => {
@@ -32,6 +35,7 @@ const CreateProject = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+
     try{
 
       const docRef = await addDoc(collection(db,"projects"),{
@@ -44,6 +48,7 @@ const CreateProject = () => {
     }catch(e){
       console.error(e)
     }
+
 
     history('/');
   };
