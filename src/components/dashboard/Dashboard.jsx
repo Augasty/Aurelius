@@ -5,7 +5,7 @@ import "./Dashboard.css";
 
 // import fakeProjects from '../fakeProjects'
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
 const Dashboard = () => {
   const [projects, setProjects] = useState([]);
@@ -35,6 +35,20 @@ const Dashboard = () => {
   }, [db])
   
 
+
+  // useEffect(() => {
+  //   const collec = collection(db, 'projects');
+  //   const unsub = onSnapshot(collec, (querySnapshot) => {
+  //     querySnapshot.docChanges().forEach((change) => {
+  //       if (change.type === 'added') {
+  //         const title = change.doc.data().title;
+  //         console.log(`New project created: ${title}`);
+  //       }
+  //     });
+  //   });
+  
+  //   return () => unsub();
+  // }, []);
   return (
     <div className="dashboard container">
       <div className="row">
@@ -42,7 +56,7 @@ const Dashboard = () => {
           <ProjectList projects={projects} key={projects.id}/>
         </div>
         <div className="col s12 m5 offset-m1">
-          {/* <Notifications notifications={notifications} /> */}
+          <Notifications/>
         </div>
       </div>
     </div>
