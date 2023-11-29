@@ -42,7 +42,7 @@ const Dashboard = () => {
           <ProjectList projects={projects} key={projects.id}/>
         </div>
         <div className="col s12 m5 offset-m1">
-          {/* <Notifications notifications={notifications} /> */}
+          <Notifications/>
         </div>
       </div>
     </div>
