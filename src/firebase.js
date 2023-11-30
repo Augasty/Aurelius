@@ -2,15 +2,17 @@ import { initializeApp } from "firebase/app";
 import { getAuth  } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+// src/firebaseConfig.js
 const firebaseConfig = {
-    apiKey: "AIzaSyAXKngTUpO91T6ujhF4CbYoU6XSAzHRWAs",
-    authDomain: "planify-b7864.firebaseapp.com",
-    projectId: "planify-b7864",
-    storageBucket: "planify-b7864.appspot.com",
-    messagingSenderId: "771217012034",
-    appId: "1:771217012034:web:906c1caba4b39423bb84db",
-    measurementId: "G-2227P60HJF"
-};
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  };
+  
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
