@@ -6,9 +6,12 @@ import "./Dashboard.css";
 // import fakeProjects from '../fakeProjects'
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase";
+import { auth, db } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 const Dashboard = () => {
   const [projects, setProjects] = useState([]);
+
+  const [user] = useAuthState(auth);
   // const projects = fakeProjects
   useEffect(() => {
     const fetchData = async () => {
@@ -30,9 +33,12 @@ const Dashboard = () => {
       }
     };
 
-    fetchData();
+    if(user){
+      fetchData();
+      console.log('called')
+    }
 
-  }, [db])
+  }, [db,user])
   
 
   return (

@@ -1,96 +1,99 @@
-/* Navbar.css */
-
-.nav-wrapper {
-  background-color: #424242;
-  padding: 1rem;
+:root {
+  --font-color: #f0f0f0;
+  --background-color: #161616;
+  --theme-color: #1653e1;
 }
 
-.container {
+/* Overall navigation styling */
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  background-color: var(--background-color);
+  color: var(--font-color);
 }
 
-.brand-logo {
-  color: white;
+/* Styling for the navigation container */
+nav > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align everything to the right */
+  width: 100%;
+}
+
+/* Styling for the "Planetask" link on the left */
+nav > div > a {
   text-decoration: none;
+  color: var(--font-color);
   font-size: 1.5rem;
   font-weight: bold;
+  margin-right: auto; /* Push "Planetask" to the left */
 }
 
-.brand-logo:hover {
-  color: #eee;
-}
-
-.nav-links {
+/* Styling for the user-related section on the right */
+nav > div > div {
   display: flex;
-  list-style: none;
+  align-items: center;
 }
 
-.nav-link {
-  margin-right: 1rem;
-}
-
-.nav-link a {
-  color: white;
-  text-decoration: none;
-}
-
-.nav-link a:hover {
-  color: #eee;
-}
-
-/* SignedInLinks.css */
-
-.right {
+/* Styling for the list items */
+nav ul {
   list-style: none;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  color: white;
+  margin: 0;
+  padding: 0;
 }
 
-.right li {
-  margin-left: 10px;
+/* Styling for the dropdown */
+#dropdown {
+  background-color: var(--theme-color);
+  color: var(--font-color);
+  padding: 5px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
 }
 
-.right li:first-child {
-  margin-left: 0;
-}
-
-.right a {
-  cursor: pointer;
-  text-decoration: none;
-  color: #fff;
-}
-
-.btn-floating {
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: #e91e63;
-  color: #fff;
-  text-align: center;
-  font-size: 1rem;
-}
-
-.pink {
-  background-color: #e91e63;
-}
-
-.lighten-1 {
-  filter: brightness(90%);
-}
-
-.message img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
+/* Styling for the login button */
 .login {
   cursor: pointer;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--theme-color);
+  color: var(--font-color);
+}
+
+/* Styling for the profile image */
+.profile img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px; /* Adjusted to push the image to the right */
+}
+
+/* Styling for the logout link */
+nav a {
+  text-decoration: none;
+  color: var(--font-color);
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Styling for the dropdown options */
+#dropdown option {
+  background-color: white;
+  color: black;
+}
+
+/* Styling for the New Project link */
+nav li {
+  margin-right: 10px;
+}
+
+/* Styling for the navigation links */
+nav a:hover {
+  text-decoration: underline;
 }
