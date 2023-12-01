@@ -34,7 +34,7 @@ const CreateGroup = () => {
       // Reference to the 'taskList' subcollection
       // dummy task is used, need to remember to skip it
       const taskListRef = collection(groupDocRef, "taskList");
-      await addDoc(taskListRef, {});
+      await addDoc(taskListRef, {dummy:true});
 
       // add group in the user with email augasty@gmail.com
       updateDoc(doc(db, "users", user.email),{groups:arrayUnion(groupDocRef)})
