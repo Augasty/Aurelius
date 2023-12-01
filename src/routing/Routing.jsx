@@ -5,6 +5,7 @@ import ProjectDetails from "../components/projects/ProjectDetails/ProjectDetails
 import CreateProject from "../components/projects/createProject/CreateProject";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import CreateGroup from "../components/layout/groups/CreateGroup";
 const Routing = () => {
   const [user] = useAuthState(auth);
   return (
@@ -16,7 +17,8 @@ const Routing = () => {
           path="/project/:id"
           element={user ? <ProjectDetails /> : <></>}
         />
-        <Route path="/create" element={user ? <CreateProject /> : <></>} />
+        <Route path="/create-project" element={user ? <CreateProject /> : <></>} />
+        <Route path="/create-group" element={user ? <CreateGroup /> : <></>} />
       </Routes>
     </div>
   );

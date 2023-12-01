@@ -35,7 +35,7 @@ const Dashboard = () => {
 
     if(user){
       fetchData();
-      console.log('called')
+      // console.log('called')
     }
 
   }, [db,user])
@@ -48,7 +48,7 @@ const Dashboard = () => {
           <ProjectList projects={projects} key={projects.id}/>
         </div>
         <div className="col s12 m5 offset-m1">
-          <Notifications/>
+          {/* <Notifications/> */}
         </div>
       </div>
     </div>

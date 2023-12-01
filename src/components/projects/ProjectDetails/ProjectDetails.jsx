@@ -17,7 +17,7 @@ const ProjectDetails = () => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          console.log(docSnap.data())
+          // console.log(docSnap.data())
           const projectData = {
             id: docSnap.id,
             title: docSnap.data().title,
