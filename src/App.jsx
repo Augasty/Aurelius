@@ -14,7 +14,6 @@ function App() {
   // }, [user])
   return (
     <>
-    <Navbar/>
     <Routing/>
     </>
   )

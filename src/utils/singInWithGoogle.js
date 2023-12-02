@@ -14,15 +14,12 @@ export const signInWithGoogle = async () => {
     const userRef = doc(db,'users', userEmail);
     const userSnapshot = await getDoc(userRef);
 
-    if (userSnapshot.exists()) {
-      console.log('old',result.user.email)
-    }else{
-
+    if (!userSnapshot.exists()) {
       console.log('new');
       const userData = {
         email: userEmail,
-        groups:{}
-        // Add other user properties as needed
+        groups:{},
+        groupCount:0
       };
       await setDoc(doc(db,'users',userEmail), userData);
     }

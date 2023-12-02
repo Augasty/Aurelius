@@ -1,58 +1,70 @@
 import { doc, getDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { auth, db } from "../../../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect} from "react";
+import { db } from "../../../firebase";
 
-const DropDown = ({setGroup,group}) => {
+
+const DropDown = ({group,setGroupsObject,groupsObject,usermail}) => {
+
+
+  // fetch the group from the user    
+  useEffect(() => { 
+  async function fetchData(){
+
+
+    try {
+      const userRef = doc(db, 'users', usermail);
+      const userSnapshot = await getDoc(userRef);
+      // console.log(userSnapshot.data().groups)
+      // console.log(usermail)
+    
+    if (userSnapshot.exists()) {
+      const userGroupsObjects = userSnapshot.data().groups
+      setGroupsObject({
+        ...userGroupsObjects
+      })
+
+    }
+  } catch (error) {
+    console.error('Error fetching data from Firebase:', error);
+  }
+}
+
+      fetchData();
+  }, [db]);
+  
+
+
+
+
+
 
   // Handler function to update the selected value
   const handleSelectChange = (event) => {
     event.preventDefault();
-    setGroup(event.target.value);
+    // setGroup(event.target.value);
   };
 
+  const groupKeys = Object.keys(groupsObject)
+  console.log(groupsObject,group)
 
 
-//will work on it after authentication is fixed
-  const [listOfGroups, setListOfGroups] = useState([])
-  // console.log(listOfGroups)
-  const [user] = useAuthState(auth);
 
-  useEffect(() => {
-    async function fetchData(userId){
-      try {
-        const userRef = doc(db, 'users', userId);
-        const userSnapshot = await getDoc(userRef);
-  
-        if (userSnapshot.exists()) {
-          const userData = {
-            id: userSnapshot.id,
-            groupIds: userSnapshot.data().groupIds || {},
-          };
-  
-          // If you want to store user data in localGroups
-          const localGroups = userData.groupIds;
-          setListOfGroups(...localGroups)  
-        }
-      } catch (error) {
-        console.error('Error fetching data from Firebase:', error);
-      }
-    };
-  
-    if (user) {
-      fetchData(user.uid);
-    }
-  }, [db,user]);
-  
+
+
+
+
+
   return (
+    <>
     <div>
       <select id="dropdown" value={group || ''} onChange={handleSelectChange}>
         {/* Add your dropdown options here */}
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+        {groupKeys.map(title=> {return <option value={groupsObject[title]} key={title}>{groupsObject[title]}</option>})}
       </select>
     </div>
+
+
+    </>
   );
 };
 

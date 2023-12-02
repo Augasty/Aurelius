@@ -7,6 +7,7 @@ import {
   arrayUnion,
   collection,
   doc,
+  increment,
   serverTimestamp,
   setDoc,
   updateDoc,
@@ -15,10 +16,9 @@ import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 // only show it if authenticated
-const CreateGroup = () => {
-  const [group, setGroup] = useState(null);
+const CreateGroup = ({setGroup,groupsObject,setGroupsObject}) => {
+  const [groupName, setGroupName] = useState(null);
   const [user] = useAuthState(auth);
-  const curuser = auth.currentUser;
 
   const history = useNavigate();
 
@@ -26,19 +26,24 @@ const CreateGroup = () => {
     e.preventDefault();
     try {
       const groupDocRef = await addDoc(collection(db, "groups"), {
-        title: group,
+        title: groupName,
         memberEmails: [user.email],
         createdAt: serverTimestamp(),
       });
 
-      // Reference to the 'taskList' subcollection
       // dummy task is used, need to remember to skip it
       const taskListRef = collection(groupDocRef, "taskList");
       await addDoc(taskListRef, {dummy:true});
-
       // add group in the user with email augasty@gmail.com
-      updateDoc(doc(db, "users", user.email),{groups:arrayUnion(groupDocRef)})
-      
+      updateDoc(doc(db, "users", user.email),{
+        [`groups.${groupDocRef.id}`]: groupName
+      })
+
+      setGroup(groupName)
+      setGroupsObject({
+        ...groupsObject,
+        [groupDocRef.id]:groupName
+      })
     } catch (e) {
       console.error(e);
     }
@@ -56,7 +61,7 @@ const CreateGroup = () => {
           <input
             type="text"
             id="name"
-            onChange={(e) => setGroup(e.target.value)}
+            onChange={(e) => setGroupName(e.target.value)}
           />
         </div>
         <div className="input-field">
