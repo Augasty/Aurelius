@@ -1,17 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import {
-  addDoc,
-  arrayUnion,
-  collection,
-  doc,
-  increment,
-  serverTimestamp,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+  addDoc,  collection,doc,  serverTimestamp,updateDoc} from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 

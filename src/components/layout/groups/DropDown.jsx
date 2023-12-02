@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect} from "react";
 import { db } from "../../../firebase";
@@ -30,7 +31,7 @@ const DropDown = ({group,setGroupsObject,groupsObject,usermail}) => {
 }
 
       fetchData();
-  }, [db]);
+  }, [setGroupsObject, usermail]);
   
 
 
