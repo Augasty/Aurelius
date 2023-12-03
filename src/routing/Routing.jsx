@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 const Routing = () => {
   const [user] = useAuthState(auth);
 
-  
+  const redux_groups = useSelector((state) => state.groups);
 
 
 
@@ -29,15 +29,21 @@ const Routing = () => {
   const [group, setGroup] = useState(null);
 
   // DROPDOWN COMPONENT
-  const [groupsObject, setGroupsObject] = useState({})
-  useEffect(() => {
 
-    const storedValue = JSON.parse(localStorage.getItem(curuser?.uid));
-    setGroup(storedValue);
-  }, [curuser]);
   // useEffect to update localStorage whenever the state changes
   // works both, when group is changed or new group is created
   // don't touch the current group code
+  useEffect(() => {
+    const storedValue = JSON.parse(localStorage.getItem(curuser?.uid));
+
+    // if there is nothing in localstorage, even after logging in
+    // see if anything is present in redux_store, and fetch the first item
+    if(!storedValue && curuser && redux_groups){
+      const firstPair = Object.entries(redux_groups)[0];
+      console.log('emptie',storedValue,firstPair)
+    }
+    setGroup(storedValue);
+  }, [curuser,redux_groups]);
   useEffect(() => {
     localStorage.setItem(curuser?.uid, JSON.stringify(group));
 
@@ -46,7 +52,7 @@ const Routing = () => {
 
   return (
     <div>
-    <Navbar group={group} setGroup={setGroup} setGroupsObject={setGroupsObject} groupsObject={groupsObject}/>
+    <Navbar group={group} setGroup={setGroup}/>
       <Routes>
         <Route path="/" element={<Dashboard projects={fakeProjects} />} />
 
@@ -55,9 +61,7 @@ const Routing = () => {
           element={curuser ? <ProjectDetails /> : <></>}
         />
         <Route path="/create-project" element={user ? <CreateProject /> : <></>} />
-        <Route path="/create-group" element={user ? <CreateGroup setGroup={setGroup} 
-        groupsObject={groupsObject}
-        setGroupsObject={setGroupsObject}/> : <></>} />
+        <Route path="/create-group" element={user ? <CreateGroup setGroup={setGroup}/> : <></>} />
       </Routes>
     </div>
   );

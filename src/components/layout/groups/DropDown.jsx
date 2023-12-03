@@ -1,49 +1,15 @@
 /* eslint-disable react/prop-types */
-import { doc, getDoc } from "firebase/firestore";
-import { useEffect, useState} from "react";
-import { auth, db } from "../../../firebase";
-import { useDispatch, useSelector } from "react-redux";
+
+import {  useSelector } from "react-redux";
 
 
-const DropDown = ({group,setGroup,setGroupsObject,groupsObject,usermail}) => {
+const DropDown = ({group,setGroup}) => {
 
   const redux_groups = useSelector((state) => state.groups);
-  console.log('redux groups=>',redux_groups)  //[8j8Hr6n40ebVA1XyR5aQ,awdad]
-  console.log('prop drilling groups',groupsObject)
+  // console.log('redux groups=>',redux_groups)  //[8j8Hr6n40ebVA1XyR5aQ,awdad]
 
 
 
-
-  const dispatch = useDispatch();
-
-
-    // fetch the group from the user    
-    useEffect(() => { 
-      async function fetchData(){
-    
-    
-        try {
-          const userRef = doc(db, 'users', usermail);
-          const userSnapshot = await getDoc(userRef);
-          // console.log(userSnapshot.data().groups)
-          // console.log(usermail)
-        
-        if (userSnapshot.exists()) {
-          const userGroupsObjects = userSnapshot.data().groups
-          setGroupsObject({
-            ...userGroupsObjects
-          })
-        }
-      } catch (error) {
-        console.error('Error fetching data from Firebase:', error);
-      }
-    }
-    
-          fetchData();
-      }, [dispatch, setGroupsObject, usermail]);
-      
-    
-    
     
     
     
@@ -69,7 +35,7 @@ const DropDown = ({group,setGroup,setGroupsObject,groupsObject,usermail}) => {
     <div>
       <select id="dropdown" value={group?group:''} onChange={handleSelectChange}>
         {/* Add your dropdown options here */}
-        {groupKeys.map(idref=> {return <option value={`${idref},${groupsObject[idref]}`} key={idref}>{`${groupsObject[idref]}`}</option>})}
+        {groupKeys.map(idref=> {return <option value={`${idref},${redux_groups[idref]}`} key={idref}>{`${redux_groups[idref]}`}</option>})}
       </select>
     </div>
 

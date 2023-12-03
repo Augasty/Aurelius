@@ -11,11 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setGroupsFromFireBase } from "./groupSlice";
 
 // only show it if authenticated
-const CreateGroup = ({setGroup,groupsObject,setGroupsObject}) => {
+const CreateGroup = ({setGroup}) => {
   const [groupName, setGroupName] = useState(null);
   const [user] = useAuthState(auth);
   const redux_groups = useSelector((state) => state.groups);
-
+  const curuser = auth.currentUser;
 
 
   const dispatch = useDispatch();
@@ -42,17 +42,15 @@ const CreateGroup = ({setGroup,groupsObject,setGroupsObject}) => {
 
       // set it as the current group
       setGroup([groupDocRef.id,groupName])
-      setGroupsObject({
-        ...groupsObject,
-        [groupDocRef.id]:groupName
-      })
-
 
       // add the new data in redux storage
       dispatch(setGroupsFromFireBase({
         ...redux_groups,
         [groupDocRef.id]:groupName}
         ))
+
+      // add it in the localstorage
+      localStorage.setItem(curuser?.uid, JSON.stringify(`${groupDocRef.id},${groupName}`))
     } catch (e) {
       console.error(e);
     }

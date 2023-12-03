@@ -11,7 +11,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { setGroupsFromFireBase } from "./groups/groupSlice";
 import { useDispatch } from "react-redux";
 
-const Navbar = ({ group,setGroup, setGroupsObject, groupsObject }) => {
+const Navbar = ({ group,setGroup}) => {
   const curuser = auth.currentUser;
 
 
@@ -67,9 +67,6 @@ const Navbar = ({ group,setGroup, setGroupsObject, groupsObject }) => {
                   <DropDown
                     group={group}
                     setGroup={setGroup}
-                    setGroupsObject={setGroupsObject}
-                    groupsObject={groupsObject}
-                    usermail={curuser.email}
                   />
                 )}
                 <li>
