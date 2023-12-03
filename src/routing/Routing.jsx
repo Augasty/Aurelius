@@ -9,6 +9,7 @@ import CreateGroup from "../components/layout/groups/CreateGroup";
 import Navbar from "../components/layout/Navbar";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import AddMemberInGroup from "../components/layout/groups/addMemberInGroup";
 const Routing = () => {
   const [user] = useAuthState(auth);
 
@@ -40,10 +41,15 @@ const Routing = () => {
     // see if anything is present in redux_store, and fetch the first item
     if(!storedValue && curuser && redux_groups){
       const firstPair = Object.entries(redux_groups)[0];
-      console.log('emptie',storedValue,firstPair)
+      const firstPairString = firstPair?.join(',');
+      localStorage.setItem(curuser?.uid, JSON.stringify(firstPairString));
+      // console.log('value from firabse fetched and stored in localstorage',storedValue,firstPair)
     }
     setGroup(storedValue);
   }, [curuser,redux_groups]);
+
+
+
   useEffect(() => {
     localStorage.setItem(curuser?.uid, JSON.stringify(group));
 
@@ -62,6 +68,7 @@ const Routing = () => {
         />
         <Route path="/create-project" element={user ? <CreateProject /> : <></>} />
         <Route path="/create-group" element={user ? <CreateGroup setGroup={setGroup}/> : <></>} />
+        <Route path="/add-member" element={group ?<AddMemberInGroup group={group}/>:<></>}/>
       </Routes>
     </div>
   );

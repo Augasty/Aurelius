@@ -23,13 +23,9 @@ const Navbar = ({ group,setGroup}) => {
     // fetch the group from the user    
     useEffect(() => { 
       async function fetchData(){
-    
-    
         try {
           const userRef = doc(db, 'users', curuser?.email);
           const userSnapshot = await getDoc(userRef);
-          // console.log(userSnapshot.data().groups)
-          // console.log(usermail)
         
         if (userSnapshot.exists()) {
           const userGroupsObjects = userSnapshot.data().groups
@@ -59,7 +55,9 @@ const Navbar = ({ group,setGroup}) => {
                 <li>
                   <NavLink to="/create-project">New Project</NavLink>
                 </li>
-
+{group &&                 <li>
+                  <NavLink to="/add-member">Add Member in {group.split(',')[1]}</NavLink>
+                </li>}
                 <li>
                   <NavLink to="/create-group">New Group</NavLink>
                 </li>
