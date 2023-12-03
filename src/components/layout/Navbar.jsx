@@ -7,7 +7,7 @@ import { signInWithGoogle } from "../../utils/singInWithGoogle";
 import { signOut } from "firebase/auth";
 import DropDown from "./groups/DropDown";
 
-const Navbar = ({ group, setGroupsObject, groupsObject }) => {
+const Navbar = ({ group,setGroup, setGroupsObject, groupsObject }) => {
   const curuser = auth.currentUser;
   return (
     <nav>
@@ -27,6 +27,7 @@ const Navbar = ({ group, setGroupsObject, groupsObject }) => {
                 {curuser.email && (
                   <DropDown
                     group={group}
+                    setGroup={setGroup}
                     setGroupsObject={setGroupsObject}
                     groupsObject={groupsObject}
                     usermail={curuser.email}

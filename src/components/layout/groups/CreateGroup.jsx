@@ -32,7 +32,8 @@ const CreateGroup = ({setGroup,groupsObject,setGroupsObject}) => {
         [`groups.${groupDocRef.id}`]: groupName
       })
 
-      setGroup(groupName)
+      // groupId:groupName
+      setGroup([groupDocRef.id,groupName])
       setGroupsObject({
         ...groupsObject,
         [groupDocRef.id]:groupName
