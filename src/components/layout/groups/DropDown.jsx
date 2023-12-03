@@ -2,11 +2,14 @@
 import { doc, getDoc } from "firebase/firestore";
 import { useEffect} from "react";
 import { db } from "../../../firebase";
+import { useDispatch } from "react-redux";
+import { setGroupsWhileLoggingIn } from "./groupSlice";
 
 
-const DropDown = ({group,setGroupsObject,groupsObject,usermail}) => {
+const DropDown = ({group,setGroup,setGroupsObject,groupsObject,usermail}) => {
 
 
+  const dispatch = useDispatch();
   // fetch the group from the user    
   useEffect(() => { 
   async function fetchData(){
@@ -23,6 +26,10 @@ const DropDown = ({group,setGroupsObject,groupsObject,usermail}) => {
       setGroupsObject({
         ...userGroupsObjects
       })
+
+      dispatch(setGroupsWhileLoggingIn({
+          ...userGroupsObjects
+      }))
 
     }
   } catch (error) {
@@ -42,7 +49,7 @@ const DropDown = ({group,setGroupsObject,groupsObject,usermail}) => {
   // Handler function to update the selected value
   const handleSelectChange = (event) => {
     event.preventDefault();
-    // setGroup(event.target.value);
+    setGroup(event.target.value);
   };
 
   const groupKeys = Object.keys(groupsObject)

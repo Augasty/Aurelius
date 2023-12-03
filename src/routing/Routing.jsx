@@ -8,12 +8,16 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import CreateGroup from "../components/layout/groups/CreateGroup";
 import Navbar from "../components/layout/Navbar";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 const Routing = () => {
   const [user] = useAuthState(auth);
   // keep the groups here
   const curuser = auth.currentUser;
   
-  
+  const mygroups = useSelector((state) => state);
+  console.log(mygroups)
+
+
   const [group, setGroup] = useState(null);
 
   // DROPDOWN COMPONENT
