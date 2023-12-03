@@ -35,7 +35,9 @@ const Routing = () => {
     const storedValue = JSON.parse(localStorage.getItem(curuser?.uid));
     setGroup(storedValue);
   }, [curuser]);
-  // useEffect to update localStorage when the state changes
+  // useEffect to update localStorage whenever the state changes
+  // works both, when group is changed or new group is created
+  // don't touch the current group code
   useEffect(() => {
     localStorage.setItem(curuser?.uid, JSON.stringify(group));
 

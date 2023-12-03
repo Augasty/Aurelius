@@ -7,37 +7,52 @@ import {
   addDoc,  collection,doc,  serverTimestamp,updateDoc} from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { setGroupsFromFireBase } from "./groupSlice";
 
 // only show it if authenticated
 const CreateGroup = ({setGroup,groupsObject,setGroupsObject}) => {
   const [groupName, setGroupName] = useState(null);
   const [user] = useAuthState(auth);
+  const redux_groups = useSelector((state) => state.groups);
 
+
+
+  const dispatch = useDispatch();
   const history = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // add group data in groups db in firebase
       const groupDocRef = await addDoc(collection(db, "groups"), {
         title: groupName,
         memberEmails: [user.email],
         createdAt: serverTimestamp(),
       });
-
-      // dummy task is used, need to remember to skip it
+      // adding a dummy data in the tasklist to create the subcollection
       const taskListRef = collection(groupDocRef, "taskList");
       await addDoc(taskListRef, {dummy:true});
-      // add group in the user with email augasty@gmail.com
+      
+
+
+      // add group data in corresponding entry in users db in firebase
       updateDoc(doc(db, "users", user.email),{
         [`groups.${groupDocRef.id}`]: groupName
       })
 
-      // groupId:groupName
+      // set it as the current group
       setGroup([groupDocRef.id,groupName])
       setGroupsObject({
         ...groupsObject,
         [groupDocRef.id]:groupName
       })
+
+
+      // add the new data in redux storage
+      dispatch(setGroupsFromFireBase({
+        ...redux_groups,
+        [groupDocRef.id]:groupName}
+        ))
     } catch (e) {
       console.error(e);
     }

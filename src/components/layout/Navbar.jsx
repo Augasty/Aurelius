@@ -2,13 +2,52 @@
 
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css"; // Import your CSS file
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { signInWithGoogle } from "../../utils/singInWithGoogle";
 import { signOut } from "firebase/auth";
 import DropDown from "./groups/DropDown";
+import { useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { setGroupsFromFireBase } from "./groups/groupSlice";
+import { useDispatch } from "react-redux";
 
 const Navbar = ({ group,setGroup, setGroupsObject, groupsObject }) => {
   const curuser = auth.currentUser;
+
+
+
+
+
+  const dispatch = useDispatch();
+
+    // fetch the group from the user    
+    useEffect(() => { 
+      async function fetchData(){
+    
+    
+        try {
+          const userRef = doc(db, 'users', curuser?.email);
+          const userSnapshot = await getDoc(userRef);
+          // console.log(userSnapshot.data().groups)
+          // console.log(usermail)
+        
+        if (userSnapshot.exists()) {
+          const userGroupsObjects = userSnapshot.data().groups
+
+          dispatch(setGroupsFromFireBase({
+              ...userGroupsObjects
+          }))
+        }
+      } catch (error) {
+        console.warn('Error fetching data from Firebase:', error);
+      }
+    }
+    
+          fetchData();
+      }, [curuser?.email, dispatch]);
+      
+
+
   return (
     <nav>
       <div>

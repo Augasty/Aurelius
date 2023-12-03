@@ -3,14 +3,13 @@ import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState} from "react";
 import { auth, db } from "../../../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { setGroupsWhileLoggingIn } from "./groupSlice";
 
 
 const DropDown = ({group,setGroup,setGroupsObject,groupsObject,usermail}) => {
 
   const redux_groups = useSelector((state) => state.groups);
-  console.log('x',redux_groups)  //[8j8Hr6n40ebVA1XyR5aQ,awdad]
-
+  console.log('redux groups=>',redux_groups)  //[8j8Hr6n40ebVA1XyR5aQ,awdad]
+  console.log('prop drilling groups',groupsObject)
 
 
 
@@ -34,11 +33,6 @@ const DropDown = ({group,setGroup,setGroupsObject,groupsObject,usermail}) => {
           setGroupsObject({
             ...userGroupsObjects
           })
-    
-
-          dispatch(setGroupsWhileLoggingIn({
-              ...userGroupsObjects
-          }))
         }
       } catch (error) {
         console.error('Error fetching data from Firebase:', error);
@@ -58,7 +52,7 @@ const DropDown = ({group,setGroup,setGroupsObject,groupsObject,usermail}) => {
       const handleSelectChange = (event) => {
         event.preventDefault();
         setGroup(event.target.value);
-        console.log(event.target.value)
+        // console.log(event.target.value)
       };
     
       const groupKeys = Object.keys(redux_groups)
