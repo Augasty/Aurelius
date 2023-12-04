@@ -47,9 +47,8 @@ const Navbar = ({ group,setGroup}) => {
 
       // removing localstorage when signing out
       const handlSingOut = () =>{
-        localStorage.removeItem(curuser.uid)
+        // localStorage.removeItem(curuser.uid)
         signOut(auth)
-        console.log(curuser.uid,'works')
       }
 
   return (

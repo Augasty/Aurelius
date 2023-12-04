@@ -10,6 +10,7 @@ import Navbar from "../components/layout/Navbar";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import AddMemberInGroup from "../components/layout/groups/addMemberInGroup";
+import SignedOutNavbar from "../components/layout/SignedOutNavbar";
 const Routing = () => {
   const [user] = useAuthState(auth);
 
@@ -63,9 +64,9 @@ const Routing = () => {
 
   return (
     <div>
-    <Navbar group={group} setGroup={setGroup}/>
+    {user?<Navbar group={group} setGroup={setGroup}/>:<SignedOutNavbar/>}
       <Routes>
-        <Route path="/" element={<Dashboard projects={fakeProjects} />} />
+        <Route path="/" element={user? <Dashboard projects={fakeProjects} />:<></>} />
 
         <Route
           path="/project/:id"
