@@ -4,10 +4,10 @@ import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../../firebase";
 
-const AddMemberInGroup = ({ group }) => {
+const AddMemberInGroup = ({ currentGroup }) => {
   const history = useNavigate();
 
-  if (!group) {
+  if (!currentGroup) {
     history("/");
   }
 
@@ -20,9 +20,9 @@ const AddMemberInGroup = ({ group }) => {
     const userRef = doc(db, "users", userMail);
     const userSnap = await getDoc(userRef);
 
-    if (userSnap.exists() && group) {
-      console.log("its there", group);
-      const [groupId, groupName] = group.split(",");
+    if (userSnap.exists() && currentGroup) {
+      console.log("its there", currentGroup);
+      const [groupId, groupName] = currentGroup.split(",");
 
       // add group data in corresponding entry in users db in firebase
       updateDoc(doc(db, "users", userMail), {

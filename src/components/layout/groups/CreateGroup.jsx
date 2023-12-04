@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setGroupsFromFireBase } from "./groupSlice";
 
 // only show it if authenticated
-const CreateGroup = ({setGroup}) => {
+const CreateGroup = ({setcurrentGroup}) => {
   const [groupName, setGroupName] = useState(null);
   const [user] = useAuthState(auth);
   const redux_groups = useSelector((state) => state.groups);
@@ -41,7 +41,7 @@ const CreateGroup = ({setGroup}) => {
       })
 
       // set it as the current group
-      setGroup([groupDocRef.id,groupName])
+      setcurrentGroup([groupDocRef.id,groupName])
 
       // add the new data in redux storage
       dispatch(setGroupsFromFireBase({

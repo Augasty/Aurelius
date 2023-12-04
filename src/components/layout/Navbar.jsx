@@ -11,45 +11,41 @@ import { doc, getDoc } from "firebase/firestore";
 import { setGroupsFromFireBase } from "./groups/groupSlice";
 import { useDispatch } from "react-redux";
 
-const Navbar = ({ group,setGroup}) => {
+const Navbar = ({ currentGroup, setcurrentGroup }) => {
   const curuser = auth.currentUser;
-
-
-
-
 
   const dispatch = useDispatch();
 
-    // fetch the group from the user    
-    useEffect(() => { 
-      async function fetchData(){
+  // fetch the current group from the user
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const userRef = doc(db, "users", curuser?.email);
+        const userSnapshot = await getDoc(userRef);
 
-        try {
-          const userRef = doc(db, 'users', curuser?.email);
-          const userSnapshot = await getDoc(userRef);
-        
         if (userSnapshot.exists()) {
-          const userGroupsObjects = userSnapshot.data().groups
+          const userGroupsObjects = userSnapshot.data().groups;
 
-          dispatch(setGroupsFromFireBase({
-              ...userGroupsObjects
-          }))
+          dispatch(
+            setGroupsFromFireBase({
+              ...userGroupsObjects,
+            })
+          );
         }
       } catch (error) {
-        console.warn('Error fetching data from Firebase:', error);
+        console.warn("Error fetching data from Firebase:", error);
       }
     }
-    
-          fetchData();
-      }, [curuser?.email, dispatch]);
-      
-    
 
-      // removing localstorage when signing out
-      const handlSingOut = () =>{
-        // localStorage.removeItem(curuser.uid)
-        signOut(auth)
-      }
+    fetchData();
+  }, [curuser?.email, dispatch]);
+
+
+
+  const handlSingOut = () => {
+    // localStorage.removeItem(curuser.uid) //removes localstorage when signing out
+    signOut(auth);
+  };
 
   return (
     <nav>
@@ -62,17 +58,18 @@ const Navbar = ({ group,setGroup}) => {
                 <li>
                   <NavLink to="/create-project">New Project</NavLink>
                 </li>
-{group &&                 <li>
-                  <NavLink to="/add-member">Add Member in {group.split(',')[1]}</NavLink>
-                </li>}
+                {currentGroup && (
+                  <li>
+                    <NavLink to="/add-member">
+                      Add Member in {currentGroup.split(",")[1]}
+                    </NavLink>
+                  </li>
+                )}
                 <li>
                   <NavLink to="/create-group">New Group</NavLink>
                 </li>
                 {curuser.email && (
-                  <DropDown
-                    group={group}
-                    setGroup={setGroup}
-                  />
+                  <DropDown currentGroup={currentGroup} setcurrentGroup={setcurrentGroup} />
                 )}
                 <li>
                   <a onClick={handlSingOut}>Log Out</a>

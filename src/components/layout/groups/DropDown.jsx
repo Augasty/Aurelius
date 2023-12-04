@@ -3,7 +3,7 @@
 import {  useSelector } from "react-redux";
 
 
-const DropDown = ({group,setGroup}) => {
+const DropDown = ({currentGroup,setcurrentGroup}) => {
 
   const redux_groups = useSelector((state) => state.groups);
   // console.log('redux groups=>',redux_groups)  //[8j8Hr6n40ebVA1XyR5aQ,awdad]
@@ -17,7 +17,7 @@ const DropDown = ({group,setGroup}) => {
       // Handler function to update the selected value
       const handleSelectChange = (event) => {
         event.preventDefault();
-        setGroup(event.target.value);
+        setcurrentGroup(event.target.value);
         // console.log(event.target.value)
       };
     
@@ -33,7 +33,7 @@ const DropDown = ({group,setGroup}) => {
   return (
     <>
     <div>
-      <select id="dropdown" value={group?group:''} onChange={handleSelectChange}>
+      <select id="dropdown" value={currentGroup?currentGroup:''} onChange={handleSelectChange}>
         {/* Add your dropdown options here */}
         {groupKeys.map(idref=> {return <option value={`${idref},${redux_groups[idref]}`} key={idref}>{`${redux_groups[idref]}`}</option>})}
       </select>

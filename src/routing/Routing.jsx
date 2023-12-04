@@ -14,7 +14,7 @@ import SignedOutNavbar from "../components/layout/SignedOutNavbar";
 const Routing = () => {
   const [user] = useAuthState(auth);
 
-  const redux_groups = useSelector((state) => state.groups);
+  const user_groups_from_redux = useSelector((state) => state.groups);
 
 
 
@@ -28,22 +28,21 @@ const Routing = () => {
   // keep the groups here
   const curuser = auth.currentUser;
 
-  const [group, setGroup] = useState(null);
+  const [currentGroup, setcurrentGroup] = useState(null);
 
   // DROPDOWN COMPONENT
 
-  // useEffect to update localStorage whenever the state changes
-  // works both, when group is changed or new group is created
+  // useEffect to update localStorage whenever the state changes[when group is changed, or new group is created]
   // don't touch the current group code
   useEffect(() => {
     const storedValue = JSON.parse(localStorage.getItem(curuser?.uid));
 
     // if there is nothing in localstorage, even after logging in
     // see if anything is present in redux_store, and fetch the first item
-    if(!storedValue && curuser && redux_groups){
+    if(!storedValue && curuser && user_groups_from_redux){
       try{
 
-        const firstPair = Object.entries(redux_groups)[0];
+        const firstPair = Object.entries(user_groups_from_redux)[0];
         const firstPairString = firstPair?.join(',');
         localStorage.setItem(curuser?.uid, JSON.stringify(firstPairString));
       }catch(e){
@@ -51,20 +50,20 @@ const Routing = () => {
       }
       // console.log('value from firabse fetched and stored in localstorage',storedValue,firstPair)
     }
-    setGroup(storedValue);
-  }, [curuser,redux_groups]);
+    setcurrentGroup(storedValue);
+  }, [curuser,user_groups_from_redux]);
 
 
 
   useEffect(() => {
-    localStorage.setItem(curuser?.uid, JSON.stringify(group));
+    localStorage.setItem(curuser?.uid, JSON.stringify(currentGroup));
 
-  }, [curuser, group]);
+  }, [curuser, currentGroup]);
 
 
   return (
     <div>
-    {user?<Navbar group={group} setGroup={setGroup}/>:<SignedOutNavbar/>}
+    {user?<Navbar currentGroup={currentGroup} setcurrentGroup={setcurrentGroup}/>:<SignedOutNavbar/>}
       <Routes>
         <Route path="/" element={user? <Dashboard projects={fakeProjects} />:<></>} />
 
@@ -73,8 +72,8 @@ const Routing = () => {
           element={curuser ? <ProjectDetails /> : <></>}
         />
         <Route path="/create-project" element={user ? <CreateProject /> : <></>} />
-        <Route path="/create-group" element={user ? <CreateGroup setGroup={setGroup}/> : <></>} />
-        <Route path="/add-member" element={group ?<AddMemberInGroup group={group}/>:<></>}/>
+        <Route path="/create-group" element={user ? <CreateGroup setcurrentGroup={setcurrentGroup}/> : <></>} />
+        <Route path="/add-member" element={currentGroup ?<AddMemberInGroup currentGroup={currentGroup}/>:<></>}/>
       </Routes>
     </div>
   );
