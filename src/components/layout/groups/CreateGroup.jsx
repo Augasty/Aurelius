@@ -4,19 +4,23 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
-  addDoc,  collection,doc,  serverTimestamp,updateDoc} from "firebase/firestore";
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useDispatch, useSelector } from "react-redux";
-import { setGroupsFromFireBase } from "./groupSlice";
+import { useDispatch } from "react-redux";
+import { addSingleGroup } from "./groupSlice";
 
 // only show it if authenticated
-const CreateGroup = ({setcurrentGroup}) => {
+const CreateGroup = ({ setcurrentGroup }) => {
   const [groupName, setGroupName] = useState(null);
   const [user] = useAuthState(auth);
-  const redux_groups = useSelector((state) => state.groups);
-  const curuser = auth.currentUser;
 
+  const curuser = auth.currentUser;
 
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -31,26 +35,28 @@ const CreateGroup = ({setcurrentGroup}) => {
       });
       // adding a dummy data in the tasklist to create the subcollection
       const taskListRef = collection(groupDocRef, "taskList");
-      await addDoc(taskListRef, {dummy:true});
-      
-
+      await addDoc(taskListRef, { dummy: true });
 
       // add group data in corresponding entry in users db in firebase
-      updateDoc(doc(db, "users", user.email),{
-        [`groups.${groupDocRef.id}`]: groupName
-      })
+      updateDoc(doc(db, "users", user.email), {
+        [`groups.${groupDocRef.id}`]: groupName,
+      });
 
       // set it as the current group
-      setcurrentGroup([groupDocRef.id,groupName])
+      setcurrentGroup([groupDocRef.id, groupName]);
 
       // add the new data in redux storage
-      dispatch(setGroupsFromFireBase({
-        ...redux_groups,
-        [groupDocRef.id]:groupName}
-        ))
+      dispatch(
+        addSingleGroup({
+          [groupDocRef.id]: groupName,
+        })
+      );
 
       // add it in the localstorage
-      localStorage.setItem(curuser?.uid, JSON.stringify(`${groupDocRef.id},${groupName}`))
+      localStorage.setItem(
+        curuser?.uid,
+        JSON.stringify(`${groupDocRef.id},${groupName}`)
+      );
     } catch (e) {
       console.error(e);
     }

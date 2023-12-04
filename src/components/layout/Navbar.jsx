@@ -3,20 +3,21 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css"; // Import your CSS file
 import { auth, db } from "../../firebase";
-import { signInWithGoogle } from "../../utils/singInWithGoogle";
 import { signOut } from "firebase/auth";
 import DropDown from "./groups/DropDown";
-import { useEffect } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { setGroupsFromFireBase } from "./groups/groupSlice";
 import { useDispatch } from "react-redux";
+import topchicken from "../../../assets/topchicken.jpg";
+import { setTasksFromFireBase } from "../projects/taskSlice";
 
 const Navbar = ({ currentGroup, setcurrentGroup }) => {
   const curuser = auth.currentUser;
 
   const dispatch = useDispatch();
 
-  // fetch the current group from the user
+  // fetch the list of groups for  the user
   useEffect(() => {
     async function fetchData() {
       try {
@@ -40,20 +41,74 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
     fetchData();
   }, [curuser?.email, dispatch]);
 
-
-
   const handlSingOut = () => {
     // localStorage.removeItem(curuser.uid) //removes localstorage when signing out
     signOut(auth);
   };
 
+
+
+
+
+
+
+
+
+
+  // fetching the taskList here
+  useEffect(() => {
+    const fetchData = async () => {
+      if(!currentGroup){
+        return
+      }
+      try {
+
+
+        const currentGroupId = currentGroup.split(",")[0];
+        const ProjectsSnapShot = await getDocs(collection(db, "groups", currentGroupId, "taskList"));
+
+        if(!ProjectsSnapShot.empty){
+
+          const projectsData = ProjectsSnapShot.docs.map((doc) => ({
+            id: doc.id,
+            dummy:doc.data().dummy,
+            title: doc.data()?.title,
+            content: doc.data()?.content,
+            authorName: doc.data()?.authorName,
+            createdAt: doc.data()?.createdAt
+          }))
+  
+          const filteredProjectsData = projectsData?.filter((obj) => !obj.dummy)
+  
+          try{
+
+            dispatch(setTasksFromFireBase([
+              ...filteredProjectsData
+            ]))
+          }catch(e){console.warn('error uploading tasks in redux',e)}
+            console.log(filteredProjectsData)
+        }
+
+        
+      } catch (error) {
+        console.error('Error fetching tasks from Firebase:', error);
+      }
+    };
+
+
+      fetchData();
+      // console.log('called')
+
+
+  }, [currentGroup, curuser, dispatch])
+  const [toggle, settoggle] = useState(true);
   return (
     <nav>
       <div>
         <Link to="/">Planetask</Link>
         <div>
           <ul>
-            {curuser ? (
+            {curuser && (
               <>
                 <li>
                   <NavLink to="/create-project">New Project</NavLink>
@@ -69,20 +124,23 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
                   <NavLink to="/create-group">New Group</NavLink>
                 </li>
                 {curuser.email && (
-                  <DropDown currentGroup={currentGroup} setcurrentGroup={setcurrentGroup} />
+                  <DropDown
+                    currentGroup={currentGroup}
+                    setcurrentGroup={setcurrentGroup}
+                  />
                 )}
                 <li>
                   <a onClick={handlSingOut}>Log Out</a>
                 </li>
               </>
-            ) : (
-              <li onClick={signInWithGoogle} className="login">
-                Login with Google
-              </li>
             )}
             <li>
-              <NavLink to="/" className="profile">
-                <img src={curuser?.photoURL} alt="User" />
+              <NavLink
+                to="/"
+                className="profile"
+                onClick={() => settoggle(!toggle)}
+              >
+                <img src={toggle ? curuser?.photoURL : topchicken} alt="user" />
               </NavLink>
             </li>
           </ul>

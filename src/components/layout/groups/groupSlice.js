@@ -8,23 +8,20 @@ const groupSlice = createSlice({
     initialState,
 
     reducers: {
-        // add grou
+        // add group
         setGroupsFromFireBase:(state,action)=>{
             return action.payload
         },
-        getCurrentGroups:{},
-        getAllGroups:{},
-
         // add single group, and make it the current group
         addSingleGroup:(state,action)=>{
             const newGroup = action.payload;
             return {
-                ...state.groups,
-                [newGroup.id]: newGroup.name
+                ...state,
+                ...newGroup
             }
         }
     }
 })
 
-export const {setGroupsFromFireBase, getCurrentGroups, getAllGroups, addSingleGroup} = groupSlice.actions
+export const {setGroupsFromFireBase, addSingleGroup} = groupSlice.actions
 export default groupSlice.reducer

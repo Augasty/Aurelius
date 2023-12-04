@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import moment from 'moment'
 import './ProjectDetails.module.css';

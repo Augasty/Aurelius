@@ -4,13 +4,16 @@ import { Link } from 'react-router-dom';
 import './ProjectList.css';
 
 const ProjectList = ({ projects }) => {
+  const filteredArray = projects.filter((obj) => !obj.dummy);
   return (
     <div className="project-list section">
-      {projects &&
-        projects?.map((project) => (
-          <Link to={'/project/' + project.id} key={project.id} className="project-link">
-            <ProjectSummary key={project.id} project={project} />
-          </Link>
+      { filteredArray&&
+        filteredArray?.map((project) => (
+  <Link to={'/project/' + project.id} key={project.id} className="project-link">
+    <ProjectSummary project={project} />
+  </Link>
+
+
         ))}
     </div>
   );
