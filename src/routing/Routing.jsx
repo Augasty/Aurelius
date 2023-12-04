@@ -40,9 +40,14 @@ const Routing = () => {
     // if there is nothing in localstorage, even after logging in
     // see if anything is present in redux_store, and fetch the first item
     if(!storedValue && curuser && redux_groups){
-      const firstPair = Object.entries(redux_groups)[0];
-      const firstPairString = firstPair?.join(',');
-      localStorage.setItem(curuser?.uid, JSON.stringify(firstPairString));
+      try{
+
+        const firstPair = Object.entries(redux_groups)[0];
+        const firstPairString = firstPair?.join(',');
+        localStorage.setItem(curuser?.uid, JSON.stringify(firstPairString));
+      }catch(e){
+        console.error('error while loading past group',e)
+      }
       // console.log('value from firabse fetched and stored in localstorage',storedValue,firstPair)
     }
     setGroup(storedValue);

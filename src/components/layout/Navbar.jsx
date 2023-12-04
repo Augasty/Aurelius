@@ -23,6 +23,7 @@ const Navbar = ({ group,setGroup}) => {
     // fetch the group from the user    
     useEffect(() => { 
       async function fetchData(){
+
         try {
           const userRef = doc(db, 'users', curuser?.email);
           const userSnapshot = await getDoc(userRef);
@@ -42,7 +43,14 @@ const Navbar = ({ group,setGroup}) => {
           fetchData();
       }, [curuser?.email, dispatch]);
       
+    
 
+      // removing localstorage when signing out
+      const handlSingOut = () =>{
+        localStorage.removeItem(curuser.uid)
+        signOut(auth)
+        console.log(curuser.uid,'works')
+      }
 
   return (
     <nav>
@@ -68,7 +76,7 @@ const Navbar = ({ group,setGroup}) => {
                   />
                 )}
                 <li>
-                  <a onClick={() => signOut(auth)}>Log Out</a>
+                  <a onClick={handlSingOut}>Log Out</a>
                 </li>
               </>
             ) : (
