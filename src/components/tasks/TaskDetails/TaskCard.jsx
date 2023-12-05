@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 
 import moment from 'moment'
-import './ProjectDetails.module.css';
+import './TaskDetails.module.css';
 
-const ProjectCard = ({ title, content, authorName, createdAt }) => {
+const TaskCard = ({ title, content, authorName, createdAt }) => {
   return (
     <div className="project-card">
       <h2 className="project-title">{title}</h2>
@@ -16,4 +16,4 @@ const ProjectCard = ({ title, content, authorName, createdAt }) => {
   );
 };
 
-export default ProjectCard;
+export default TaskCard;

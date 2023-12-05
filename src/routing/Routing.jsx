@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Route, Routes } from "react-router";
 import Dashboard from "../components/dashboard/Dashboard";
-import fakeProjects from "../components/fakeProjects";
-import ProjectDetails from "../components/projects/ProjectDetails/ProjectDetails";
-import CreateProject from "../components/projects/createProject/CreateProject";
+import TaskDetails from "../components/tasks/TaskDetails/TaskDetails"
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import CreateGroup from "../components/layout/groups/CreateGroup";
@@ -14,6 +12,7 @@ import AddMemberInGroup from "../components/layout/groups/addMemberInGroup";
 import SignedOutNavbar from "../components/layout/SignedOutNavbar";
 
 import { ErrorBoundary } from "react-error-boundary"
+import CreateTask from "../components/tasks/createTask/CreateTask";
 
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => (
@@ -104,9 +103,9 @@ const Routing = () => {
 
         <Route
           path="/project/:id"
-          element={curuser ? <ProjectDetails /> : <></>}
+          element={curuser ? <TaskDetails /> : <></>}
         />
-        <Route path="/create-project" element={user && currentGroup ? <CreateProject currentGroup={currentGroup}/> : <></>} />
+        <Route path="/create-project" element={user && currentGroup ? <CreateTask currentGroup={currentGroup}/> : <></>} />
         <Route path="/create-group" element={user ? <CreateGroup setcurrentGroup={setcurrentGroup}/> : <></>} />
         <Route path="/add-member" element={currentGroup ?<AddMemberInGroup currentGroup={currentGroup}/>:<></>}/>
       </Routes>

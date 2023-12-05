@@ -31,6 +31,7 @@ const CreateGroup = ({ setcurrentGroup }) => {
       const groupDocRef = await addDoc(collection(db, "groups"), {
         title: groupName,
         memberEmails: [user.email],
+        createdBy: user.email, //passing the creator of the group, who will also act as the admin
         createdAt: serverTimestamp(),
       });
       // adding a dummy data in the tasklist to create the subcollection

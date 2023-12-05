@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../firebase.js'; // Assuming you have a separate file for Firebase initialization
-import ProjectCard from './ProjectCard.jsx';
+import TaskCard from './TaskCard.jsx';
 
-const ProjectDetails = () => {
+const TaskDetails = () => {
   const projectId  = useParams();
   const [loading, setLoading] = useState(true);
   const [project, setProject] = useState(null);
@@ -46,7 +46,7 @@ const ProjectDetails = () => {
   }
 
   if (project) {
-    return <ProjectCard 
+    return <TaskCard
     
         title={project.title}
         content={project.content}
@@ -59,4 +59,4 @@ const ProjectDetails = () => {
   return <div className="container center">Project not found.</div>;
 };
 
-export default ProjectDetails;
+export default TaskDetails

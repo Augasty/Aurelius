@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import groupReducer from '../components/layout/groups/groupSlice'
-import taskReducer from '../components/projects/taskSlice'
+import taskReducer from '../components/tasks/taskSlice'
 
 const store = configureStore({
     reducer:{

@@ -10,14 +10,14 @@ import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { setGroupsFromFireBase } from "./groups/groupSlice";
 import { useDispatch } from "react-redux";
 import topchicken from "../../../assets/topchicken.jpg";
-import { setTasksFromFireBase } from "../projects/taskSlice";
+import { setTasksFromFireBase } from "../tasks/taskSlice";
 
 const Navbar = ({ currentGroup, setcurrentGroup }) => {
   const curuser = auth.currentUser;
 
   const dispatch = useDispatch();
 
-  // fetch the list of groups for  the user
+  // fetch the list of groups for the user
   useEffect(() => {
     async function fetchData() {
       try {
@@ -55,7 +55,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
 
 
 
-  // fetching the taskList here
+  // fetching the taskList of the current group here
   useEffect(() => {
     const fetchData = async () => {
       if(!currentGroup){
