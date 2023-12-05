@@ -22,14 +22,14 @@ const TaskSummary = ({ task}) => {
 
 
 
-
+  console.log(task)
 
 
   return (
     <div className="card z-depth-0 project-summary">
       <div className="card-content grey-text text-darken-3">
         <span className="card-title">{task.title}</span>
-        <p>Posted by {task.authorName}</p>
+        <p>Posted by {task.authorDetails}</p>
         <p className="grey-text">{formattedDate}</p>
       </div>
     </div>

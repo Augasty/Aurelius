@@ -19,8 +19,19 @@ const TaskDetails = () => {
   
 
 
-  return(
-<div>crap</div>
+
+    return (
+      <div className="task-details">
+        <h2>{currentTask.title}</h2>
+        <p><strong>Content:</strong> {currentTask.content}</p>
+        <p><strong>Author:</strong> {currentTask?.authorDetails}</p>
+        <p><strong>Created At:</strong> {currentTask.createdAt}</p>
+        <p><strong>Assigned To:</strong> {currentTask.assignedTo}</p>
+        <p><strong>Priority:</strong> {currentTask.priority}</p>
+        <p><strong>Task Status:</strong> {currentTask.taskStatus}</p>
+        <p><strong>Locked:</strong> {currentTask.locked ? 'Yes' : 'No'}</p>
+        <p><strong>Dummy:</strong> {currentTask.dummy ? 'Yes' : 'No'}</p>
+      </div>
   )}
 
 export default TaskDetails

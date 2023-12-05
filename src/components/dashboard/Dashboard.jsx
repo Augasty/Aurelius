@@ -6,7 +6,8 @@ import TaskList from "../tasks/taskList";
 import "./Dashboard.css";
 
 import { useSelector } from "react-redux";
-const Dashboard = () => {
+import Notifications from "./Notifications";
+const Dashboard = ({currentGroup}) => {
 
   const reduxTasks = useSelector((state) => state.tasks); // Updated variable name
 
@@ -17,7 +18,8 @@ const Dashboard = () => {
           <TaskList tasks={reduxTasks} /> {/* Updated component name and prop name */}
         </div>
         <div className="col s12 m5 offset-m1">
-          {/* <Notifications/> */}
+          {/* <Notifications currentGroup={currentGroup}/> */}
+
         </div>
       </div>
     </div>

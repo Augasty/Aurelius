@@ -1,40 +1,38 @@
-import { collection, onSnapshot } from 'firebase/firestore';
-import { useEffect, useState } from 'react'
+/* eslint-disable react/prop-types */
+import { collection, getDocs, onSnapshot } from 'firebase/firestore';
+import { useEffect } from 'react'
 import { db } from '../../firebase';
 
-const Notifications = () => {
-  // useEffect(()=>{
-  //   const collec = collection(db, 'projects');
-  //   const unsub = onSnapshot(collec,qss=>{
-  //     const proj = []
-  //     qss.forEach(doc=>{
-  //       proj.push(doc.data().title)
-  //     })
-  //     console.log(proj)
-  //   })
-  //   return ()=> unsub()
-  // })
+const Notifications = ({currentGroup}) => {
 
-  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
   useEffect(() => {
-    const collec = collection(db, 'projects');
-    const unsub = onSnapshot(collec, (querySnapshot) => {
-      querySnapshot.docChanges().forEach((change) => {
-        if (change.type === 'added' && initialLoadComplete) {
-          const title = change.doc.data().title;
-          console.log(`New project created: ${title}`);
-        }
+    const triggerData = async ()=>{
+
+      const currentGroupId = currentGroup.split(",")[0];
+      const tasksSnapShot = await getDocs(collection(db, "groups", currentGroupId, "taskList"));
+  
+      const unsub = onSnapshot(tasksSnapShot, (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // if (change.type === 'added' && initialLoadComplete) {
+          //   const title = change.doc.data().title;
+          //   console.log(`New project created: ${title}`);
+          // }
+          console.log('update triggered')
+
+            const data = doc.data()
+            console.log(doc.id,data)
+
+        });
+  
+
       });
+      
+      unsub();
+    }
 
-      // Set initialLoadComplete to true after the first snapshot
-      if (!initialLoadComplete) {
-        setInitialLoadComplete(true);
-      }
-    });
-
-    return () => unsub();
-  }, [initialLoadComplete]);
+    triggerData()
+  }, [currentGroup]);
 
   return (
     <div>Notifications</div>

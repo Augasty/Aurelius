@@ -67,17 +67,24 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
       try {
 
 
+
         const currentGroupId = currentGroup.split(",")[0];
         const ProjectsSnapShot = await getDocs(collection(db, "groups", currentGroupId, "taskList"));
 
         if(!ProjectsSnapShot.empty){
 
           const projectsData = ProjectsSnapShot.docs.map((doc) => ({
+
+            // assignedTo: [...task.assignedTo],
+            assignedTo: doc.data()?.assignedTo,
+            priority: doc.data()?.priority,
+            taskStatus: doc.data()?.taskStatus,
+            locked: false,
             id: doc.id,
             dummy:doc.data().dummy,
             title: doc.data()?.title,
             content: doc.data()?.content,
-            authorName: doc.data()?.authorName,
+            authorDetails: doc.data()?.authorDetails,
             createdAt: doc.data()?.createdAt
           }))
   
@@ -106,7 +113,10 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
 
 
   }, [currentGroup, curuser, dispatch])
-  const [toggle, settoggle] = useState(true);
+
+
+  // for chicken
+  const [toggleChicken, setToggleChicken] = useState(true);
   
   return (
     <nav className={styles.navbar}>
@@ -141,9 +151,9 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
             <NavLink
               to="/"
               className={`${styles.profile} ${styles.toggle}`}
-              onClick={() => settoggle(!toggle)}
+              onClick={() => setToggleChicken(!toggleChicken)}
             >
-              <img src={toggle ? curuser?.photoURL : topchicken} alt="user" />
+              <img src={toggleChicken ? curuser?.photoURL : topchicken} alt="user" />
             </NavLink>
           </li>
         </ul>

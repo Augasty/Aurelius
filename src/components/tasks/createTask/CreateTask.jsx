@@ -48,7 +48,6 @@ const CreateTask = ({ currentGroup }) => {
       ...task, // Updated variable name
       [e.target.id]: e.target.value,
     });
-    console.log('bleh')
   };
 
   const handleSubmit = async (e) => {
@@ -60,12 +59,12 @@ const CreateTask = ({ currentGroup }) => {
         {
           title: task.title, // Updated variable name
           content: task.content, // Updated variable name
-          authorDetails: [curuser.displayName, curuser.email],
+          authorDetails:curuser.email,
           createdAt: new Date().toISOString(),
           // assignedTo: [...task.assignedTo],
           assignedTo: task.assignedTo,
           priority: task.priority,
-          taskStatus: task.status,
+          taskStatus: task.taskStatus,
           locked: false,
           dummy: false,
         }
@@ -111,7 +110,9 @@ const CreateTask = ({ currentGroup }) => {
           className={`${styles.assignedToSelect}`}
           value={task.assignedTo || ''}
           onChange={handleChange}
+          required
         >
+        <option value="">Select person to assign</option>
           {currentGroupMails.map((mail) => (
             <option value={mail} key={mail}>
               {mail}
@@ -121,19 +122,25 @@ const CreateTask = ({ currentGroup }) => {
   
         <div className={`${styles.inputField}`}>
           <label htmlFor="priority">Priority</label>
-          <select id="priority" className={`${styles.prioritySelect}`} onChange={handleChange}>
+          <select id="priority" className={`${styles.prioritySelect}`} onChange={handleChange} required>
+          <option value="">Select Priority</option>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
           </select>
         </div>
+
+
+
         <div className={`${styles.inputField}`}>
           <label htmlFor="taskStatus">Task Status</label>
           <select
             id="taskStatus"
             className={`${styles.taskStatusSelect}`}
             onChange={handleChange}
+            required
           >
+          <option value="">Select status</option>
             <option value="new">New</option>
             <option value="inProgress">In Progress</option>
             <option value="completed">Completed</option>

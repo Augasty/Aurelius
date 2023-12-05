@@ -11,7 +11,7 @@ const TaskList = ({ tasks }) => { // Updated component name and prop name
       {filteredArray &&
         filteredArray?.map((task) => (
           <Link to={'/task/' + task.id} key={task.id} className="task-link">
-            <TaskSummary key={task.id} task={task} />
+            <TaskSummary task={task} />
           </Link>
         ))}
     </div>
