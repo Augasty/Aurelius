@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { Link, NavLink } from "react-router-dom";
-import "./Navbar.css"; // Import your CSS file
+import styles from "./Navbar.module.css"; // Import your CSS file
 import { auth, db } from "../../firebase";
 import { signOut } from "firebase/auth";
 import DropDown from "./groups/DropDown";
@@ -32,6 +32,9 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
               ...userGroupsObjects,
             })
           );
+        }else{
+          // just in case there is comething in the cache that is not actually in db
+          setcurrentGroup('')
         }
       } catch (error) {
         console.warn("Error fetching data from Firebase:", error);
@@ -39,7 +42,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
     }
 
     fetchData();
-  }, [curuser?.email, dispatch]);
+  }, [curuser?.email, dispatch, setcurrentGroup]);
 
   const handlSingOut = () => {
     // localStorage.removeItem(curuser.uid) //removes localstorage when signing out
@@ -79,14 +82,16 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
           }))
   
           const filteredProjectsData = projectsData?.filter((obj) => !obj.dummy)
+          // console.log(filteredProjectsData)
   
           try{
 
             dispatch(setTasksFromFireBase([
               ...filteredProjectsData
             ]))
-          }catch(e){console.warn('error uploading tasks in redux',e)}
-            console.log(filteredProjectsData)
+          }catch(e){
+            console.warn('error uploading tasks in redux',e)
+          }
         }
 
         
@@ -102,49 +107,46 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
 
   }, [currentGroup, curuser, dispatch])
   const [toggle, settoggle] = useState(true);
+  
   return (
-    <nav>
-      <div>
+    <nav className={styles.navbar}>
+      <div className={styles.logo}>
+        <img  alt="Planetask Logo" />
         <Link to="/">Planetask</Link>
-        <div>
-          <ul>
-            {curuser && (
-              <>
-                <li>
-                  <NavLink to="/create-project">New Project</NavLink>
+      </div>
+      <div>
+        <ul className={styles.navbarList}>
+          {curuser && (
+            <>
+              <li className={styles.navbarListItem}>
+                {currentGroup && <NavLink to="/create-project">New Project</NavLink>}
+              </li>
+              {currentGroup && (
+                <li className={styles.navbarListItem}>
+                  <NavLink to="/add-member">Add Member in {currentGroup.split(",")[1]}</NavLink>
                 </li>
-                {currentGroup && (
-                  <li>
-                    <NavLink to="/add-member">
-                      Add Member in {currentGroup.split(",")[1]}
-                    </NavLink>
-                  </li>
-                )}
-                <li>
-                  <NavLink to="/create-group">New Group</NavLink>
-                </li>
-                {curuser.email && (
-                  <DropDown
-                    currentGroup={currentGroup}
-                    setcurrentGroup={setcurrentGroup}
-                  />
-                )}
-                <li>
-                  <a onClick={handlSingOut}>Log Out</a>
-                </li>
-              </>
-            )}
-            <li>
-              <NavLink
-                to="/"
-                className="profile"
-                onClick={() => settoggle(!toggle)}
-              >
-                <img src={toggle ? curuser?.photoURL : topchicken} alt="user" />
-              </NavLink>
-            </li>
-          </ul>
-        </div>
+              )}
+              <li className={styles.navbarListItem}>
+                <NavLink to="/create-group">New Group</NavLink>
+              </li>
+              {curuser.email && (
+                <DropDown currentGroup={currentGroup} setcurrentGroup={setcurrentGroup} />
+              )}
+              <li className={styles.navbarListItem}>
+                <a onClick={handlSingOut}>Log Out</a>
+              </li>
+            </>
+          )}
+          <li className={styles.navbarListItem}>
+            <NavLink
+              to="/"
+              className={`${styles.profile} ${styles.toggle}`}
+              onClick={() => settoggle(!toggle)}
+            >
+              <img src={toggle ? curuser?.photoURL : topchicken} alt="user" />
+            </NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
   );

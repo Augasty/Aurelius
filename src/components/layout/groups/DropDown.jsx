@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const DropDown = ({currentGroup,setcurrentGroup}) => {
 
   const redux_groups = useSelector((state) => state.groups);
-  console.log('redux groups=>',redux_groups)  //[8j8Hr6n40ebVA1XyR5aQ,awdad]
+  // console.log('redux groups=>',redux_groups)  //[8j8Hr6n40ebVA1XyR5aQ,awdad]
 
   const history = useNavigate();
   const current_path = useLocation().pathname;

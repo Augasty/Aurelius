@@ -1,8 +1,8 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import "./Navbar.css"; // Import your CSS file
 import { signInWithGoogle } from "../../utils/singInWithGoogle";
 import topchicken from "../../../assets/topchicken.jpg"
 
+import styles from "./Navbar.module.css"; // Import your CSS file
 
 const SignedOutNavbar = () => {
 
@@ -16,21 +16,21 @@ const SignedOutNavbar = () => {
 
   }
   return (
-    <nav>
-      <div>
+    <nav className={styles.navbar}>
+      <div className={styles.logo}>
         <Link to="/">Planetask</Link>
-        <div>
-          <ul>
-            <li onClick={handleSignIn} className="login">
-              Login with Google
-            </li>
-            <li>
-              <NavLink to="/" className="profile">
-                <img src={topchicken} alt="User" />
-              </NavLink>
-            </li>
-          </ul>
-        </div>
+      </div>
+      <div>
+        <ul className={styles.navbarList}>
+          <li onClick={handleSignIn} className={styles.navbarListItem}>
+            Login with Google
+          </li>
+          <li className={styles.navbarListItem}>
+            <NavLink to="/" className={`${styles.profile} ${styles.toggle}`}>
+              <img src={topchicken} alt="User" />
+            </NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
   );

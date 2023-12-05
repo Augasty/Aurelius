@@ -76,7 +76,7 @@ const Routing = () => {
       }
       setcurrentGroup(storedValue);
     }catch(e){
-      console.log('cant load groups, so, blank',e)
+      console.log('no groups are present',e)
     }
 
     // if there is nothing in localstorage, even after logging in
@@ -102,7 +102,7 @@ const Routing = () => {
         <Route path="/" element={currentGroup? <Dashboard currentGroup={currentGroup} />:<></>} />
 
         <Route
-          path="/project/:id"
+          path="/task/:id"
           element={curuser ? <TaskDetails /> : <></>}
         />
         <Route path="/create-project" element={user && currentGroup ? <CreateTask currentGroup={currentGroup}/> : <></>} />

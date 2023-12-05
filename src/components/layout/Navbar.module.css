@@ -1,0 +1,52 @@
+/* navbar.module.css */
+
+.navbar {
+  background-color: #4285f4; /* Google blue color */
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  
+}
+
+.logo img {
+  margin-right: 10px;
+  width: 30px; /* Adjust the size as needed */
+  height: 30px; /* Adjust the size as needed */
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.navbarList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbarListItem {
+  margin-right: 10px;
+}
+
+.navbarListItem:last-child {
+  margin-right: 0;
+}
+
+.navbar .profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Add more styles as needed */
