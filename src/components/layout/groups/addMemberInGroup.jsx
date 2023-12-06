@@ -22,12 +22,40 @@ const AddMemberInGroup = ({ currentGroup }) => {
 
     if (userSnap.exists() && currentGroup) {
       console.log("its there", currentGroup);
-      const [groupId, groupName] = currentGroup.split(",");
+      const [groupId, groupName] = currentGroup
 
-      // add group data in corresponding entry in users db in firebase
-      updateDoc(doc(db, "users", userMail), {
-        [`groups.${groupId}`]: groupName,
-      });
+
+
+      const userDocRef = doc(db, "users", userMail);
+      const userDocSnap = await getDoc(userDocRef);
+      const userData = userDocSnap.data();
+      
+      // Check if currentGroup is an empty array
+      if (!userData.currentGroup || userData.currentGroup.length === 0) {
+        await updateDoc(userDocRef, {
+          currentGroup: [groupId, groupName],
+          [`groups.${groupId}`]: groupName,
+        });
+      } else {
+        await updateDoc(userDocRef, {
+          [`groups.${groupId}`]: groupName,
+        });
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       // updating in the groups db
       const groupDocRef = doc(db, "groups", groupId);
@@ -54,7 +82,7 @@ const AddMemberInGroup = ({ currentGroup }) => {
     <div className="container">
       <form className="white" onSubmit={handleSubmit}>
         <div className="input-field">
-          <label htmlFor="title">Create Group</label>
+          <label htmlFor="title">Add member</label>
           <input
             type="text"
             id="name"

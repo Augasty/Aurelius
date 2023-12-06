@@ -38,11 +38,13 @@ const CreateGroup = ({ setcurrentGroup }) => {
       const taskListRef = collection(groupDocRef, "taskList");
       await addDoc(taskListRef, { dummy: true });
 
-      // add group data in corresponding entry in users db in firebase
+
+
+      // add group data & currentgroup in corresponding entry in users db in firebase
       updateDoc(doc(db, "users", user.email), {
         [`groups.${groupDocRef.id}`]: groupName,
+        currentGroup:[groupDocRef.id,groupName]
       });
-
       // set it as the current group
       setcurrentGroup([groupDocRef.id, groupName]);
 

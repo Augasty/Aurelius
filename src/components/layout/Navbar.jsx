@@ -6,7 +6,12 @@ import { auth, db } from "../../firebase";
 import { signOut } from "firebase/auth";
 import DropDown from "./groups/DropDown";
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs
+} from "firebase/firestore";
 import { setGroupsFromFireBase } from "./groups/groupSlice";
 import { useDispatch } from "react-redux";
 import topchicken from "../../../assets/topchicken.jpg";
@@ -17,7 +22,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
 
   const dispatch = useDispatch();
 
-  // fetch the list of groups for the user
+  // fetch the list of groups for the user,
   useEffect(() => {
     async function fetchData() {
       try {
@@ -25,103 +30,94 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
         const userSnapshot = await getDoc(userRef);
 
         if (userSnapshot.exists()) {
-          const userGroupsObjects = userSnapshot.data().groups;
+          const userGroupsObj = userSnapshot.data().groups;
 
           dispatch(
             setGroupsFromFireBase({
-              ...userGroupsObjects,
+              ...userGroupsObj,
             })
           );
-        }else{
+          const curGroupArr = userSnapshot.data().currentGroup;
+
+          setcurrentGroup(curGroupArr);
+          console.log("navbar useeffect used",curGroupArr);
+        } else {
           // just in case there is comething in the cache that is not actually in db
-          setcurrentGroup('')
+          setcurrentGroup("");
         }
       } catch (error) {
         console.warn("Error fetching data from Firebase:", error);
       }
     }
-
+    console.log("fetching groups");
     fetchData();
   }, [curuser?.email, dispatch, setcurrentGroup]);
-
-  const handlSingOut = () => {
-    // localStorage.removeItem(curuser.uid) //removes localstorage when signing out
-    signOut(auth);
-  };
-
-
-
-
-
-
-
 
 
 
   // fetching the taskList of the current group here
   useEffect(() => {
     const fetchData = async () => {
-      if(!currentGroup){
-        return
+      if (currentGroup.length === 0 ) {
+        console.log('no group for this user',currentGroup);
+        return;
       }
+      console.log
       try {
+        const currentGroupId = currentGroup[0];
+        const ProjectsSnapShot = await getDocs(
+          collection(db, "groups", currentGroupId, "taskList")
+        );
 
-
-
-        const currentGroupId = currentGroup.split(",")[0];
-        const ProjectsSnapShot = await getDocs(collection(db, "groups", currentGroupId, "taskList"));
-
-        if(!ProjectsSnapShot.empty){
-
+        if (!ProjectsSnapShot.empty) {
           const projectsData = ProjectsSnapShot.docs.map((doc) => ({
-
-            // assignedTo: [...task.assignedTo],
+            id: doc.id,
+            content: doc.data()?.content,
             assignedTo: doc.data()?.assignedTo,
             priority: doc.data()?.priority,
             taskStatus: doc.data()?.taskStatus,
             locked: false,
-            id: doc.id,
-            dummy:doc.data().dummy,
+            dummy: doc.data().dummy,
             title: doc.data()?.title,
-            content: doc.data()?.content,
             authorDetails: doc.data()?.authorDetails,
-            createdAt: doc.data()?.createdAt
-          }))
-  
-          const filteredProjectsData = projectsData?.filter((obj) => !obj.dummy)
-          // console.log(filteredProjectsData)
-  
-          try{
+            createdAt: doc.data()?.createdAt,
+          }));
 
-            dispatch(setTasksFromFireBase([
-              ...filteredProjectsData
-            ]))
-          }catch(e){
-            console.warn('error uploading tasks in redux',e)
+          const filteredProjectsData = projectsData?.filter(
+            (obj) => !obj.dummy
+          );
+          // console.log(filteredProjectsData)
+
+          try {
+            dispatch(setTasksFromFireBase([...filteredProjectsData]));
+          } catch (e) {
+            console.warn("error uploading tasks in redux", e);
           }
         }
-
-        
       } catch (error) {
-        console.error('Error fetching tasks from Firebase:', error);
+        console.error("Error fetching tasks from Firebase:", error);
       }
     };
 
+    try{
 
       fetchData();
-      // console.log('called')
+    }catch(e){
+
+      console.warn("error in datafetching");
+    }
+  }, [currentGroup, curuser, dispatch]);
 
 
-  }, [currentGroup, curuser, dispatch])
 
 
   // for chicken
   const [toggleChicken, setToggleChicken] = useState(true);
-  
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img  alt="Planetask Logo" />
+        <img alt="Planetask Logo" />
         <Link to="/">Planetask</Link>
       </div>
       <div>
@@ -129,21 +125,28 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
           {curuser && (
             <>
               <li className={styles.navbarListItem}>
-                {currentGroup && <NavLink to="/create-project">New Project</NavLink>}
+                {currentGroup.length !== 0 && (
+                  <NavLink to="/create-task">New Project</NavLink>
+                )}
               </li>
-              {currentGroup && (
+              { currentGroup.length !== 0 && (
                 <li className={styles.navbarListItem}>
-                  <NavLink to="/add-member">Add Member in {currentGroup.split(",")[1]}</NavLink>
+                  <NavLink to="/add-member">
+                    Add Member in {currentGroup[1]}
+                  </NavLink>
                 </li>
               )}
               <li className={styles.navbarListItem}>
                 <NavLink to="/create-group">New Group</NavLink>
               </li>
               {curuser.email && (
-                <DropDown currentGroup={currentGroup} setcurrentGroup={setcurrentGroup} />
+                <DropDown
+                  currentGroup={currentGroup}
+                  setcurrentGroup={setcurrentGroup}
+                />
               )}
               <li className={styles.navbarListItem}>
-                <a onClick={handlSingOut}>Log Out</a>
+                <a onClick={()=>signOut(auth)}>Log Out</a>
               </li>
             </>
           )}
@@ -153,7 +156,10 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
               className={`${styles.profile} ${styles.toggle}`}
               onClick={() => setToggleChicken(!toggleChicken)}
             >
-              <img src={toggleChicken ? curuser?.photoURL : topchicken} alt="user" />
+              <img
+                src={toggleChicken ? curuser?.photoURL : topchicken}
+                alt="user"
+              />
             </NavLink>
           </li>
         </ul>

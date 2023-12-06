@@ -26,7 +26,7 @@ const CreateTask = ({ currentGroup }) => {
     try{
 
       const fetchUsersFromCurrentGroup = async () =>{
-        const groupId = currentGroup.split(",")[0];
+        const groupId = currentGroup[0];
         const groupDocRef = doc(db, "groups", groupId);
         const groupDocSnap = await getDoc(groupDocRef);
   
@@ -53,7 +53,7 @@ const CreateTask = ({ currentGroup }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const currentGroupId = currentGroup.split(",")[0];
+      const currentGroupId = currentGroup[0];
       const docRef = await addDoc(
         collection(db, "groups", currentGroupId, "taskList"),
         {
@@ -70,7 +70,13 @@ const CreateTask = ({ currentGroup }) => {
         }
       );
         
-      dispatch(addSingleTask(task)); // Updated variable name
+
+      // console.log(docRef.id)
+      // this one doesn't have the id yet... we get the id from docRef.id and add it manually
+      dispatch(addSingleTask({
+        id: docRef.id,
+        ...task
+      })); // Updated variable name
       console.log(docRef);
     } catch (e) {
       console.error(e);

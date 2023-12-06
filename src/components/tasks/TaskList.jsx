@@ -2,15 +2,18 @@
 import TaskSummary from './TaskSummary';
 import { Link } from 'react-router-dom';
 import './TaskList.css';
+import { useSelector } from 'react-redux';
 
 
-const TaskList = ({ tasks }) => { // Updated component name and prop name
-  const filteredArray = tasks.filter((obj) => !obj.dummy);
+const TaskList = () => { 
+  
+  const reduxTasks = useSelector((state) => state.tasks);
+  const filteredArray = reduxTasks.filter((obj) => !obj.dummy);
   return (
-    <div className="task-list section"> {/* Updated class name */}
+    <div >
       {filteredArray &&
         filteredArray?.map((task) => (
-          <Link to={'/task/' + task.id} key={task.id} className="task-link">
+          task.id && <Link to={'/task/' + task.id} key={task.id}>
             <TaskSummary task={task} />
           </Link>
         ))}

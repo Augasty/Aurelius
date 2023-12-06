@@ -1,19 +1,18 @@
 /* eslint-disable react/prop-types */
 import { Route, Routes } from "react-router";
 import Dashboard from "../components/dashboard/Dashboard";
-import TaskDetails from "../components/tasks/TaskDetails/TaskDetails"
+import TaskDetails from "../components/tasks/TaskDetails/TaskDetails";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import CreateGroup from "../components/layout/groups/CreateGroup";
 import Navbar from "../components/layout/Navbar";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+
 import AddMemberInGroup from "../components/layout/groups/addMemberInGroup";
 import SignedOutNavbar from "../components/layout/SignedOutNavbar";
 
-import { ErrorBoundary } from "react-error-boundary"
+import { ErrorBoundary } from "react-error-boundary";
 import CreateTask from "../components/tasks/createTask/CreateTask";
-
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => (
   <div>
@@ -23,94 +22,61 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => (
   </div>
 );
 
-
-
-
-
-
-
-
-
-
-
-
-
 const Routing = () => {
   const [user] = useAuthState(auth);
 
-  const user_groups_from_redux = useSelector((state) => state.groups);
-
-
-
-
-
-
-
-
-
-
-  // keep the groups here
   const curuser = auth.currentUser;
 
-  const [currentGroup, setcurrentGroup] = useState('');
-
-  // DROPDOWN COMPONENT
-
-  // useEffect to update localStorage whenever the state changes[when group is changed, or new group is created]
-  // don't touch the current group code
-  useEffect(() => {
-    // this try block is for avoiding error while loading a user with empty grouplist
-    try{
-
-      const storedValue = JSON.parse(localStorage.getItem(curuser?.uid || ''));
-      if(!storedValue && curuser && user_groups_from_redux){
-        try{
-  
-          const firstPair = Object.entries(user_groups_from_redux)[0];
-          const firstPairString = firstPair?.join(',');
-          localStorage.setItem(curuser?.uid, JSON.stringify(firstPairString));
-        }catch(e){
-          console.error('error while loading past group',e)
-        }
-        // console.log('value from firabse fetched and stored in localstorage',storedValue,firstPair)
-      }
-      setcurrentGroup(storedValue);
-    }catch(e){
-      console.log('no groups are present',e)
-    }
-
-    // if there is nothing in localstorage, even after logging in
-    // see if anything is present in redux_store, and fetch the first item
+  const [currentGroup, setcurrentGroup] = useState([]);
 
 
-  }, [curuser,user_groups_from_redux]);
-
-
-
-  useEffect(() => {
-    localStorage.setItem(curuser?.uid, JSON.stringify(currentGroup));
-
-  }, [curuser, currentGroup]);
-
-
+  console.log(currentGroup,currentGroup.length!==0)
   return (
-
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-    <div>
-    {user?<Navbar currentGroup={currentGroup} setcurrentGroup={setcurrentGroup}/>:<SignedOutNavbar/>}
-      <Routes>
-        <Route path="/" element={currentGroup? <Dashboard currentGroup={currentGroup} />:<></>} />
+      <div>
+        {user ? (
+          <Navbar
+            currentGroup={currentGroup}
+            setcurrentGroup={setcurrentGroup}
+          />
+        ) : (
+          <SignedOutNavbar />
+        )}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              currentGroup.length !== 0  ? <Dashboard currentGroup={currentGroup} /> : <></>
+            }
+          />
 
-        <Route
-          path="/task/:id"
-          element={curuser ? <TaskDetails /> : <></>}
-        />
-        <Route path="/create-project" element={user && currentGroup ? <CreateTask currentGroup={currentGroup}/> : <></>} />
-        <Route path="/create-group" element={user ? <CreateGroup setcurrentGroup={setcurrentGroup}/> : <></>} />
-        <Route path="/add-member" element={currentGroup ?<AddMemberInGroup currentGroup={currentGroup}/>:<></>}/>
-      </Routes>
-    </div>
-
+          <Route path="/task/:id" element={curuser ? <TaskDetails /> : <></>} />
+          <Route
+            path="/create-task"
+            element={
+              user && currentGroup.length !== 0 ? 
+                <CreateTask currentGroup={currentGroup} />
+               : <></>
+            }
+          />
+          <Route
+            path="/create-group"
+            element={
+              user ? <CreateGroup setcurrentGroup={setcurrentGroup} /> : <></>
+            }
+          />
+          <Route
+            path="/add-member"
+            element={
+              currentGroup.length !== 0  ? (
+                <AddMemberInGroup currentGroup={currentGroup} />
+              ) : (
+                <></>
+              )
+            }
+          />
+        </Routes>
+      </div>
     </ErrorBoundary>
   );
 };

@@ -1,56 +1,56 @@
 /* eslint-disable react/prop-types */
-import {  useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { doc, updateDoc } from "firebase/firestore";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-
-const DropDown = ({currentGroup,setcurrentGroup}) => {
-
+const DropDown = ({ currentGroup, setcurrentGroup }) => {
+  const [user] = useAuthState(auth);
   const redux_groups = useSelector((state) => state.groups);
   // console.log('redux groups=>',redux_groups)  //[8j8Hr6n40ebVA1XyR5aQ,awdad]
 
   const history = useNavigate();
-  const current_path = useLocation().pathname;
-  const path_that_accepts_group_change = ['/create-project','/add-member','/create-group','/']
-  // useEffect(() => {
-  //   console.log(current_path)
-  // }, [current_path])
-  
-    
-    
-    
-    
-      // Handler function to update the selected value
-      const handleSelectChange = (event) => {
-        event.preventDefault();
-        setcurrentGroup(event.target.value);
-        // console.log(event.target.value)
-        if (!path_that_accepts_group_change.includes(current_path)){
-          console.log('to the hooome')
-          history("/");
-        }
-      };
-    
-      const groupKeys = Object.keys(redux_groups)
 
-    
-  
+  // Handler function to update the selected value
+  const handleSelectChange = (event) => {
+    event.preventDefault();
 
+    //
+    const curGroupArr = event.target.value.split(","); //['EUlldFByPHz7RcidE7z2', 'group2']
+    console.log(curGroupArr);
+    updateDoc(doc(db, "users", user.email), {
+      currentGroup: curGroupArr,
+    });
+    setcurrentGroup(curGroupArr);
 
+    history("/");
+  };
 
+  const groupKeys = Object.keys(redux_groups);
 
-
+  const currentGroupArr = `${currentGroup[0]},${currentGroup[1]}`
   return (
     <>
-    <div>
-      <select id="dropdown" value={currentGroup?currentGroup:''} onChange={handleSelectChange}>
-        {/* Add your dropdown options here */}
-        {groupKeys.map(idref=> {return <option value={`${idref},${redux_groups[idref]}`} key={idref}>{`${redux_groups[idref]}`}</option>})}
-      </select>
-    </div>
-
-
+      <div>
+        <select
+          id="dropdown"
+          value={currentGroupArr ? currentGroupArr : ""}
+          onChange={handleSelectChange}
+        >
+          {/* Add your dropdown options here */}
+          {groupKeys.map((idref) => {
+            return (
+              <option
+                value={`${idref},${redux_groups[idref]}`}
+                key={idref}
+              >{`${redux_groups[idref]}`}</option>
+            );
+          })}
+        </select>
+      </div>
     </>
   );
 };
 
-export default DropDown
+export default DropDown;

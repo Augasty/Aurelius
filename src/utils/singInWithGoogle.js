@@ -19,7 +19,7 @@ export const signInWithGoogle = async () => {
       const userData = {
         email: userEmail,
         groups:{},
-        groupCount:0
+        currentGroup:[]
       };
       await setDoc(doc(db,'users',userEmail), userData);
     }
