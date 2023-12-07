@@ -20,7 +20,6 @@ const CreateGroup = ({ setcurrentGroup }) => {
   const [groupName, setGroupName] = useState(null);
   const [user] = useAuthState(auth);
 
-  const curuser = auth.currentUser;
 
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -31,7 +30,7 @@ const CreateGroup = ({ setcurrentGroup }) => {
       const groupDocRef = await addDoc(collection(db, "groups"), {
         title: groupName,
         memberEmails: [user.email],
-        createdBy: user.email, //passing the creator of the group, who will also act as the admin
+        createdBy: user.email, //passing the creator of the group, who will also act as the admin later
         createdAt: serverTimestamp(),
       });
       // adding a dummy data in the tasklist to create the subcollection
@@ -55,13 +54,8 @@ const CreateGroup = ({ setcurrentGroup }) => {
         })
       );
 
-      // add it in the localstorage
-      localStorage.setItem(
-        curuser?.uid,
-        JSON.stringify(`${groupDocRef.id},${groupName}`)
-      );
     } catch (e) {
-      console.error(e);
+      console.error('error while creating a group',e);
     }
 
     history("/");

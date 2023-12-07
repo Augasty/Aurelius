@@ -30,8 +30,10 @@ const AddMemberInGroup = ({ currentGroup }) => {
       const userDocSnap = await getDoc(userDocRef);
       const userData = userDocSnap.data();
       
-      // Check if currentGroup is an empty array
+      //  if currentGroup is an not an empty array 
       if (!userData.currentGroup || userData.currentGroup.length === 0) {
+
+        // updating that users db
         await updateDoc(userDocRef, {
           currentGroup: [groupId, groupName],
           [`groups.${groupId}`]: groupName,
@@ -41,21 +43,6 @@ const AddMemberInGroup = ({ currentGroup }) => {
           [`groups.${groupId}`]: groupName,
         });
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       // updating in the groups db
       const groupDocRef = doc(db, "groups", groupId);

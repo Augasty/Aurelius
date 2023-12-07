@@ -25,7 +25,7 @@ const TaskDetails = () => {
 
     // if user.mail == createdBy or assignedTo, and locked == false, goto taskchange
     return (
-(!currentTask.locked ? <TaskChange currentTask={currentTask}/>:<TaskView currentTask={currentTask}/>)
+(currentTask.locked ? <TaskChange currentTask={currentTask}/>:<TaskView currentTask={currentTask}/>)
   )}
 
 export default TaskDetails

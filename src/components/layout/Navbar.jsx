@@ -6,12 +6,7 @@ import { auth, db } from "../../firebase";
 import { signOut } from "firebase/auth";
 import DropDown from "./groups/DropDown";
 import { useEffect, useState } from "react";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs
-} from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { setGroupsFromFireBase } from "./groups/groupSlice";
 import { useDispatch } from "react-redux";
 import topchicken from "../../../assets/topchicken.jpg";
@@ -40,7 +35,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
           const curGroupArr = userSnapshot.data().currentGroup;
 
           setcurrentGroup(curGroupArr);
-          console.log("navbar useeffect used",curGroupArr);
+          console.log("navbar useeffect used", curGroupArr);
         } else {
           // just in case there is comething in the cache that is not actually in db
           setcurrentGroup("");
@@ -53,16 +48,14 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
     fetchData();
   }, [curuser?.email, dispatch, setcurrentGroup]);
 
-
-
   // fetching the taskList of the current group here
   useEffect(() => {
     const fetchData = async () => {
-      if (currentGroup.length === 0 ) {
-        console.log('no group for this user',currentGroup);
+      if (currentGroup.length === 0) {
+        console.log("no group for this user", currentGroup);
         return;
       }
-      console.log
+      console.log;
       try {
         const currentGroupId = currentGroup[0];
         const ProjectsSnapShot = await getDocs(
@@ -99,17 +92,12 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
       }
     };
 
-    try{
-
+    try {
       fetchData();
-    }catch(e){
-
+    } catch (e) {
       console.warn("error in datafetching");
     }
   }, [currentGroup, curuser, dispatch]);
-
-
-
 
   // for chicken
   const [toggleChicken, setToggleChicken] = useState(true);
@@ -129,7 +117,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
                   <NavLink to="/create-task">New Project</NavLink>
                 )}
               </li>
-              { currentGroup.length !== 0 && (
+              {currentGroup.length !== 0 && (
                 <li className={styles.navbarListItem}>
                   <NavLink to="/add-member">
                     Add Member in {currentGroup[1]}
@@ -146,7 +134,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
                 />
               )}
               <li className={styles.navbarListItem}>
-                <a onClick={()=>signOut(auth)}>Log Out</a>
+                <a onClick={() => signOut(auth)}>Log Out</a>
               </li>
             </>
           )}

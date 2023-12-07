@@ -18,6 +18,7 @@ const Notifications = ({currentGroup}) => {
       console.log('nothing in noti')
       return;
     }
+    console.log('noti is triggered, and all data is fetched')
     try {
       const currentGroupId = currentGroup[0];
       const ProjectsSnapShot = await getDocs(
