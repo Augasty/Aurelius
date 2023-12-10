@@ -1,0 +1,36 @@
+/* TaskSummary.module.css */
+.taskSummary {
+  margin-bottom: 20px;
+  padding: 15px; /* Increased padding for better spacing */
+  border: 1px solid var(--accent-color);
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  cursor: default;
+  font-family: 'Arial', sans-serif; /* Change the font family */
+}
+
+.taskSummary div {
+  text-align: center;
+}
+
+.taskSummaryTitle {
+  font-size: 1.8rem; /* Increased font size for the title */
+  font-weight: bold;
+  margin-bottom: 12px; /* Adjusted spacing below the heading */
+  text-decoration: none;
+  cursor: default;
+  color: var(--accent-color); /* Changed title color */
+}
+
+.taskSummaryText,
+.taskSummaryTitle + p {
+  text-decoration: none;
+  cursor: default;
+}
+
+.taskSummaryText {
+  margin: 0;
+  color: var(--text-color);
+  font-style: italic; /* Added italic style to the text */
+}

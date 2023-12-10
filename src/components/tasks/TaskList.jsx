@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import TaskSummary from './TaskSummary';
 import { Link } from 'react-router-dom';
-import './TaskList.css';
+import styles from './TaskList.module.css';
 import { useSelector } from 'react-redux';
 
 
@@ -9,14 +9,44 @@ const TaskList = () => {
   
   const reduxTasks = useSelector((state) => state.tasks);
   const filteredArray = reduxTasks.filter((obj) => !obj.dummy);
+
+  console.log(filteredArray)
+  // Separate tasks based on priority
+  const highPriorityTasks = filteredArray.filter(task => task.priority === 'high');
+  const mediumPriorityTasks = filteredArray.filter(task => task.priority === 'medium');
+  const lowPriorityTasks = filteredArray.filter(task => task.priority === 'low');
+
   return (
-    <div >
-      {filteredArray &&
-        filteredArray?.map((task) => (
-          task.id && <Link to={'/task/' + task.id} key={task.id}>
+    <div className={styles.taskList}>
+      {/* High Priority Column */}
+      <div className={styles.taskColumn}>
+        <h2>High Priority</h2>
+        {highPriorityTasks.map((task) => (
+          <Link to={'/task/' + task.id} key={task.id}>
             <TaskSummary task={task} />
           </Link>
         ))}
+      </div>
+
+      {/* Medium Priority Column */}
+      <div className={styles.taskColumn}>
+        <h2>Medium Priority</h2>
+        {mediumPriorityTasks.map((task) => (
+          <Link to={'/task/' + task.id} key={task.id}>
+            <TaskSummary task={task} />
+          </Link>
+        ))}
+      </div>
+
+      {/* Low Priority Column */}
+      <div className={styles.taskColumn}>
+        <h2>Low Priority</h2>
+        {lowPriorityTasks.map((task) => (
+          <Link to={'/task/' + task.id} key={task.id}>
+            <TaskSummary task={task} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

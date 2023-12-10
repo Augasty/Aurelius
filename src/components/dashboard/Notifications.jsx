@@ -5,6 +5,7 @@ import { db } from '../../firebase';
 import { useDispatch } from 'react-redux';
 import { setTasksFromFireBase } from '../tasks/taskSlice';
 
+import styles from "./Dashboard.module.css";
 const Notifications = ({currentGroup}) => {
 
 
@@ -82,7 +83,7 @@ const Notifications = ({currentGroup}) => {
   }, [currentGroup, initialLoadComplete]);
 
   return (
-    <div>Notifications</div>
+    <div className={styles.notifications} >Notifications</div>
   )
 }
 

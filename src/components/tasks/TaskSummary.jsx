@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import moment from 'moment';
-
+import styles from './TaskSummary.module.css'
 
 
 const TaskSummary = ({ task}) => {
@@ -20,12 +20,13 @@ const TaskSummary = ({ task}) => {
   }
 
 
+
   return (
-    <div className="card z-depth-0 project-summary">
-      <div className="card-content grey-text text-darken-3">
-        <span className="card-title">{task.title}</span>
+    <div className={styles.taskSummary}>
+      <div>
+        <h2 className={styles.taskSummaryTitle}>{task.title}</h2>
         <p>Posted by {task.authorDetails}</p>
-        <p className="grey-text">{formattedDate}</p>
+        <p className={styles.taskSummaryText}>{formattedDate}</p>
       </div>
     </div>
   );

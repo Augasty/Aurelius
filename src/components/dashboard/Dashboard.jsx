@@ -3,15 +3,15 @@
 
 // import Notifications from "./Notifications";
 import TaskList from "../tasks/taskList";
-import styles from "./Dashboard.module.css";
 import Notifications from "./Notifications";
+import styles from "./Dashboard.module.css";
 const Dashboard = ({currentGroup}) => {
 
  // Updated variable name
 
   return (
     <div>
-          <TaskList />
+          <TaskList className={styles.dashboard}/>
           {currentGroup.length !== 0 && <Notifications currentGroup={currentGroup}/>}
 
     </div>

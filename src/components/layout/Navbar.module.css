@@ -1,8 +1,8 @@
 /* navbar.module.css */
 
 .navbar {
-  background-color: #4285f4; /* Google blue color */
-  color: #fff;
+  background-color: var(--accent-color); /* Google blue color */
+  color: var(--background-color);
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;

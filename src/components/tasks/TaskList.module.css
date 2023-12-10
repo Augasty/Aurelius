@@ -1,0 +1,24 @@
+
+  /* TaskList.module.css */
+.taskList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskColumn {
+  flex: 1;
+  margin-right: 20px;
+}
+
+
+.taskColumn h2 {
+  text-decoration: none; /* Remove underline from h2 */
+}
+
+.taskColumn a {
+  text-decoration: none; /* Remove underline from links */
+}
+/* You can add more styles based on your requirements */
+
+  /* You can add more styles based on your requirements */
+  

@@ -1,0 +1,17 @@
+/* Dashboard.module.css */
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: var(--background-color);
+  }
+
+.notifications{
+  display: none;
+}
+body{
+  background-color: var(--background-color);
+}
+  /* You can add specific styles for Notifications if needed */
+  

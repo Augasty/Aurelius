@@ -33,7 +33,7 @@ const Routing = () => {
   console.log(currentGroup,currentGroup.length!==0)
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <div>
+      <>
         {user ? (
           <Navbar
             currentGroup={currentGroup}
@@ -76,7 +76,7 @@ const Routing = () => {
             }
           />
         </Routes>
-      </div>
+      </>
     </ErrorBoundary>
   );
 };
