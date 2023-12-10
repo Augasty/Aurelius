@@ -1,8 +1,16 @@
 :root {
     --text-color: #000000;
     --background-color: #ffffff;
-    --primary-color:#d6e1fa;
+    --primary-color:#bbcdf5;
     --secondary-color: #FFFFFF;
     --accent-color: #1c5bef;
+
+    --font-family: 'Roboto', sans-serif; 
   }
 
+
+  /* to remove the margins and stuff on top of the navbar */
+  body {
+    margin: 0;
+    font-family: var(--font-family);
+  }

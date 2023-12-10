@@ -1,30 +1,31 @@
 /* navbar.module.css */
 
 .navbar {
-  background-color: var(--accent-color); /* Google blue color */
-  color: var(--background-color);
-  padding: 10px 20px;
+  background-color: var(--accent-color);  /* Adjust the background color */
+  color: var(--text-color);
+  padding: 15px 20px; /* Adjusted padding for better spacing */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: bold;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  
 }
 
 .logo img {
   margin-right: 10px;
-  width: 30px; /* Adjust the size as needed */
-  height: 30px; /* Adjust the size as needed */
+  width: 40px; /* Adjusted the size for better visibility */
+  height: 40px; /* Adjusted the size for better visibility */
 }
 
 .navbar a {
-  color: #fff;
+  color: var(--background-color); /* Adjusted the link color */
   text-decoration: none;
-  margin-right: 10px;
+  margin-right: 15px; /* Adjusted spacing between links */
+  font-size: 1rem; /* Adjusted font size */
 }
 
 .navbarList {
@@ -36,7 +37,7 @@
 }
 
 .navbarListItem {
-  margin-right: 10px;
+  margin-right: 15px; /* Adjusted spacing between list items */
 }
 
 .navbarListItem:last-child {

@@ -10,8 +10,9 @@
   font-family: 'Arial', sans-serif; /* Change the font family */
 }
 
-.taskSummary div {
+.taskSummary h2 {
   text-align: center;
+  margin: 0;
 }
 
 .taskSummaryTitle {
@@ -27,6 +28,8 @@
 .taskSummaryTitle + p {
   text-decoration: none;
   cursor: default;
+  font-weight: bold;
+  
 }
 
 .taskSummaryText {

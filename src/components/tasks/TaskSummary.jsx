@@ -23,11 +23,9 @@ const TaskSummary = ({ task}) => {
 
   return (
     <div className={styles.taskSummary}>
-      <div>
         <h2 className={styles.taskSummaryTitle}>{task.title}</h2>
         <p>Posted by {task.authorDetails}</p>
         <p className={styles.taskSummaryText}>{formattedDate}</p>
-      </div>
     </div>
   );
 };

@@ -3,12 +3,19 @@ import TaskSummary from './TaskSummary';
 import { Link } from 'react-router-dom';
 import styles from './TaskList.module.css';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 
 const TaskList = () => { 
   
   const reduxTasks = useSelector((state) => state.tasks);
   const filteredArray = reduxTasks.filter((obj) => !obj.dummy);
+
+  useEffect(() => {
+
+    console.log(filteredArray)
+  }, [filteredArray])
+  
 
   console.log(filteredArray)
   // Separate tasks based on priority

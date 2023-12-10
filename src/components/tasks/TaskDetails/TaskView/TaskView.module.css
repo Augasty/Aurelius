@@ -1,0 +1,27 @@
+/* taskDetails.module.css */
+
+.taskDetails {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+  }
+  
+  /* Style the headings and paragraphs */
+  .taskDetailsTitle {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .taskDetailsText {
+    margin: 8px 0;
+  }
+  
+  /* Style the strong tags for emphasis */
+  .taskDetailsStrong {
+    color: #555;
+  }
+  

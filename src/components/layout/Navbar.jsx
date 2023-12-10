@@ -10,6 +10,7 @@ import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { setGroupsFromFireBase } from "./groups/groupSlice";
 import { useDispatch } from "react-redux";
 import topchicken from "../../../assets/topchicken.jpg";
+import controlLogo from "../../../assets/control.png";
 import { setTasksFromFireBase } from "../tasks/taskSlice";
 
 const Navbar = ({ currentGroup, setcurrentGroup }) => {
@@ -35,7 +36,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
           const curGroupArr = userSnapshot.data().currentGroup;
 
           setcurrentGroup(curGroupArr);
-          console.log("navbar useeffect used", curGroupArr);
+          // console.log("navbar useeffect used", curGroupArr);
         } else {
           // just in case there is comething in the cache that is not actually in db
           setcurrentGroup("");
@@ -44,7 +45,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
         console.warn("Error fetching data from Firebase:", error);
       }
     }
-    console.log("fetching groups");
+    // console.log("fetching groups");
     fetchData();
   }, [curuser?.email, dispatch, setcurrentGroup]);
 
@@ -52,10 +53,10 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
   useEffect(() => {
     const fetchData = async () => {
       if (currentGroup.length === 0) {
-        console.log("no group for this user", currentGroup);
+        // console.log("no group for this user", currentGroup);
         return;
       }
-      console.log;
+
       try {
         const currentGroupId = currentGroup[0];
         const ProjectsSnapShot = await getDocs(
@@ -65,15 +66,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
         if (!ProjectsSnapShot.empty) {
           const projectsData = ProjectsSnapShot.docs.map((doc) => ({
             id: doc.id,
-            content: doc.data()?.content,
-            assignedTo: doc.data()?.assignedTo,
-            priority: doc.data()?.priority,
-            taskStatus: doc.data()?.taskStatus,
-            locked: false,
-            dummy: doc.data().dummy,
-            title: doc.data()?.title,
-            authorDetails: doc.data()?.authorDetails,
-            createdAt: doc.data()?.createdAt,
+            ...doc.data()
           }));
 
           const filteredProjectsData = projectsData?.filter(
@@ -105,8 +98,8 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img alt="Planetask Logo" />
-        <Link to="/">Planetask</Link>
+        <img src={controlLogo} />
+        <Link to="/">Control</Link>
       </div>
       <div>
         <ul className={styles.navbarList}>

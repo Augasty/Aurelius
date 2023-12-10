@@ -13,7 +13,7 @@ import SignedOutNavbar from "../components/layout/SignedOutNavbar";
 
 import { ErrorBoundary } from "react-error-boundary";
 import CreateTask from "../components/tasks/createTask/CreateTask";
-
+import Tesct from "../components/Test/Tesct";
 const ErrorFallback = ({ error, resetErrorBoundary }) => (
   <div>
     <h2>Something went wrong:</h2>
@@ -30,7 +30,7 @@ const Routing = () => {
   const [currentGroup, setcurrentGroup] = useState([]);
 
 
-  console.log(currentGroup,currentGroup.length!==0)
+  // console.log(currentGroup,currentGroup.length!==0)
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <>
@@ -50,7 +50,7 @@ const Routing = () => {
             }
           />
 
-          <Route path="/task/:id" element={curuser ? <TaskDetails /> : <></>} />
+          <Route path="/task/:id" element={curuser ? <TaskDetails currentGroup={currentGroup} /> : <></>} />
           <Route
             path="/create-task"
             element={
@@ -63,6 +63,12 @@ const Routing = () => {
             path="/create-group"
             element={
               user ? <CreateGroup setcurrentGroup={setcurrentGroup} /> : <></>
+            }
+          />
+                    <Route
+            path="/abc"
+            element={
+             <Tesct/>
             }
           />
           <Route

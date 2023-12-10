@@ -1,22 +1,31 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
-import TaskView from './TaskView';
-import TaskChange from './TaskChange';
+import TaskView from './TaskView/TaskView';
+import TaskChange from './TaskChange/TaskChange';
+import { auth } from '../../../firebase';
 
-const TaskDetails = () => {
+const TaskDetails = ({currentGroup}) => {
   const curTaskId = useParams();
-  // console.log(curTaskId)
   const reduxTasks = useSelector((state) => state.tasks);
-  // console.log(reduxTasks)
   const [currentTask, setcurrentTask] = useState({})
+
+  const curuser = auth.currentUser;
+
+  const [changePossible, setchangePossible] = useState(false)
 
   useEffect(() => {
     const foundCurrentObj = reduxTasks.find(obj=>obj.id==curTaskId.id)
     setcurrentTask(foundCurrentObj)
 
-  }, [curTaskId, currentTask, reduxTasks])
+    const changePossibleLogic = ( foundCurrentObj?.assignedTo == curuser.email || foundCurrentObj?.authorDetails == curuser.email )
+
+    setchangePossible(changePossibleLogic)
+    // console.log(changePossible,foundCurrentObj,curuser.email)
+
+  }, [changePossible, curTaskId, currentTask, curuser.email, reduxTasks])
   
 
   if(!currentTask){
@@ -25,7 +34,7 @@ const TaskDetails = () => {
 
     // if user.mail == createdBy or assignedTo, and locked == false, goto taskchange
     return (
-(currentTask.locked ? <TaskChange currentTask={currentTask}/>:<TaskView currentTask={currentTask}/>)
+(changePossible ? <TaskChange currentTask={currentTask} currentGroup={currentGroup} />:<TaskView currentTask={currentTask}/>)
   )}
 
 export default TaskDetails

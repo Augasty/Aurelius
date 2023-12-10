@@ -1,0 +1,37 @@
+/* yourComponent.module.css */
+
+.form {
+    /* Add styles for the form container */
+  }
+  
+  .title {
+    /* Add styles for the title */
+  }
+  
+  .label {
+    /* Add styles for labels (common styles for all labels) */
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .input,
+  .textarea,
+  .select {
+    /* Add styles for text input, textarea, and select elements */
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .submitButton {
+    /* Add styles for the submit button */
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Add more styles as needed */
+  

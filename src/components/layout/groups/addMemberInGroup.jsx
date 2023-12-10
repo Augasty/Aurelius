@@ -21,7 +21,7 @@ const AddMemberInGroup = ({ currentGroup }) => {
     const userSnap = await getDoc(userRef);
 
     if (userSnap.exists() && currentGroup) {
-      console.log("its there", currentGroup);
+      // console.log("we can add it, and are adding it", currentGroup);
       const [groupId, groupName] = currentGroup
 
 
