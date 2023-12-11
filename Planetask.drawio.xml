@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2023-12-11T08:15:20.005Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="QR8P1qMTxZHV0T3uKayx" version="22.1.7" type="github">
+  <diagram name="Page-1" id="74e2e168-ea6b-b213-b513-2b3c1d86103e">
+    <mxGraphModel dx="794" dy="412" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="3000" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dICFg0kOAecA5j_oN8LE-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="dICFg0kOAecA5j_oN8LE-40" target="dICFg0kOAecA5j_oN8LE-42" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-40" value="User Login&lt;br style=&quot;border-color: var(--border-color); font-size: 11px;&quot;&gt;&amp;lt;SignedOutNavbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="250" y="160" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-41" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="dICFg0kOAecA5j_oN8LE-42" target="dICFg0kOAecA5j_oN8LE-45" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-42" value="fetching the list of groups, and the currenGroup of the current user from firestore and store them in your redux groupSlice and a currengGroup state respectively.&lt;br style=&quot;font-size: 11px;&quot;&gt;&amp;lt;Navbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="470" y="130" width="220" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-43" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="dICFg0kOAecA5j_oN8LE-44" target="dICFg0kOAecA5j_oN8LE-40" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-44" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;Scenario: Logging in and out&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;rounded=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="40" y="160" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-45" value="User Logout&lt;br style=&quot;border-color: var(--border-color); font-size: 11px;&quot;&gt;&amp;lt;Navbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="830" y="160" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-46" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="dICFg0kOAecA5j_oN8LE-47" target="dICFg0kOAecA5j_oN8LE-48" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-47" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;Scenario: Reloading&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;rounded=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="40" y="330" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-48" value="When reloaded, currentUser becomes null for a moment and then logs in. Which triggers the useEffect which looks for fetching the list of groups, and the currentGroup for the current user from firestore and store them in your redux groupSlice and updates the currentGroup state respectively.&lt;br style=&quot;font-size: 11px;&quot;&gt;&amp;lt;Navbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="230" y="295" width="300" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-49" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="dICFg0kOAecA5j_oN8LE-50" target="dICFg0kOAecA5j_oN8LE-53" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-50" value="currentGroup change triggers the useeffect that fetches the tasks. In &amp;lt;Navbar/&amp;gt;&lt;br style=&quot;font-size: 11px;&quot;&gt;&lt;br style=&quot;font-size: 11px;&quot;&gt;Then the tasks get stored in a redux taskSlice." style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="600" y="310" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-51" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="dICFg0kOAecA5j_oN8LE-48" target="dICFg0kOAecA5j_oN8LE-50" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-53" value="on change of redux taskSlice, TaskList gets rerendered (as it displays data in taskSlice)&lt;br style=&quot;font-size: 11px;&quot;&gt;&amp;lt;TaskList/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="840" y="310" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-61" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="dICFg0kOAecA5j_oN8LE-62" target="dICFg0kOAecA5j_oN8LE-66" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-62" value="&amp;lt;TaskDetail/&amp;gt; fetches the id of the task from the url, and fetches the corresponding task from redux taskSlice." style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1191" y="514" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-63" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="dICFg0kOAecA5j_oN8LE-64" target="dICFg0kOAecA5j_oN8LE-62" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-64" value="each task is a &amp;lt;TaskSummary/&amp;gt; card.&lt;br style=&quot;font-size: 11px;&quot;&gt;They are linked to a &amp;lt;TaskDetail/&amp;gt; component in the &amp;lt;Routes/&amp;gt; component." style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1176" y="335" width="210" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dICFg0kOAecA5j_oN8LE-66" value="&amp;lt;TaskDetail/&amp;gt; passes the data of that task to &amp;lt;TaskView/&amp;gt; or &amp;lt;TaskChange/&amp;gt; depending on the user permission. (whether he is among the author and assigned person)" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1190" y="705" width="180" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#0B4D6A;labelBackgroundColor=none;fontColor=default;strokeWidth=4;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-18" target="Jnso9oNl4Qtxl3vs1byq-79" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-18" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;Scenario: See tasks in the current group&lt;br style=&quot;font-size: 11px;&quot;&gt;&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;rounded=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="223" y="557" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-82" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-79" target="Jnso9oNl4Qtxl3vs1byq-80" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-79" value="User Login&lt;br style=&quot;border-color: var(--border-color); font-size: 11px;&quot;&gt;&amp;lt;SignedOutNavbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="419" y="549" width="172" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-83" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-80" target="Jnso9oNl4Qtxl3vs1byq-81" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-80" value="if currentGroup is not blank, the tasks in the currentGroup will be fetched and stored in the redux taskSlice.&lt;br style=&quot;font-size: 11px;&quot;&gt;&amp;lt;Navbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="629" y="549" width="172" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-86" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-81" target="dICFg0kOAecA5j_oN8LE-64" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-81" value="if currentGroup is not blank, in &amp;lt;TaskList/&amp;gt; the list of tasks in the redux taskSlice will be used to render each tasks.&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="871" y="549" width="172" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-85" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.004;entryY=0.286;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="dICFg0kOAecA5j_oN8LE-53" target="dICFg0kOAecA5j_oN8LE-64" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-87" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-88" target="Jnso9oNl4Qtxl3vs1byq-90" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-88" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;Scenario: Group changing&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;rounded=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="143" y="854" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-89" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-90" target="Jnso9oNl4Qtxl3vs1byq-92" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-90" value="User Login&lt;br style=&quot;border-color: var(--border-color); font-size: 11px;&quot;&gt;&amp;lt;SignedOutNavbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="333" y="854" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-91" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-92" target="Jnso9oNl4Qtxl3vs1byq-94" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-92" value="fetching the list of groups, and the currenGroup of the current user from firestore and store them in your redux groupSlice and a currengGroup state respectively.&lt;br style=&quot;font-size: 11px;&quot;&gt;&amp;lt;Navbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="573" y="824" width="220" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-93" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-94" target="Jnso9oNl4Qtxl3vs1byq-95" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-94" value="In &amp;lt;DropDown/&amp;gt; the dropdown initally shows currrentGroup and the list of the groups present in redux groupSlice. On group change the currentGroup is updated, api call to firebase is made&lt;br style=&quot;font-size: 11px;&quot;&gt;&amp;lt;DropDown/&amp;gt;&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="705" y="1061" width="220" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-95" value="We go back to the homepage whenever group change is triggered, using useNavigate, in the &amp;lt;DropDown/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="414" y="1061" width="220" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-96" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-97" target="Jnso9oNl4Qtxl3vs1byq-99" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-97" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;Scenario: Group Creation&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;rounded=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="131" y="1249" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-98" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-99" target="Jnso9oNl4Qtxl3vs1byq-100" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-99" value="User Login&lt;br style=&quot;border-color: var(--border-color); font-size: 11px;&quot;&gt;&amp;lt;SignedOutNavbar/&amp;gt;, then click &lt;span style=&quot;font-size: 11px;&quot;&gt;create a group &lt;/span&gt;which takes you too &amp;lt;CreateGroup/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="333" y="1241" width="172" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-100" value="on submit -&lt;br style=&quot;font-size: 11px;&quot;&gt;1.&amp;nbsp; add the group in the groups collection in firebase, the current user is given as the value in createdBy and memberEmails properties of the group.&lt;br style=&quot;font-size: 11px;&quot;&gt;2. add a subcollection taskList in the group with a dummy task (it is required to make the call)&lt;br style=&quot;font-size: 11px;&quot;&gt;3. add the group in the currentUsers groups list in firebase.&lt;br style=&quot;font-size: 11px;&quot;&gt;4. add the groupId and groupName in the redux groupSlice.&lt;br style=&quot;font-size: 11px;&quot;&gt;5. set this group as the current group&lt;br style=&quot;font-size: 11px;&quot;&gt;&lt;br style=&quot;font-size: 11px;&quot;&gt;&amp;lt;CreateGroup/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="592" y="1215.5" width="503" height="147" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-109" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-101" target="Jnso9oNl4Qtxl3vs1byq-104" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-101" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;Scenario: Add members in the current group&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;rounded=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="162" y="1408" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-124" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeColor=#0B4D6A;strokeWidth=4;labelBackgroundColor=none;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-102" target="Jnso9oNl4Qtxl3vs1byq-117" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-102" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;Scenario: Create task&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;rounded=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="158" y="1587" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-110" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-104" target="Jnso9oNl4Qtxl3vs1byq-105" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-104" value="User Login&lt;br style=&quot;border-color: var(--border-color); font-size: 11px;&quot;&gt;&amp;lt;SignedOutNavbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="333" y="1400" width="172" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-111" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-105" target="Jnso9oNl4Qtxl3vs1byq-106" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-105" value="if currentGroup is not blank, the &lt;span style=&quot;font-size: 11px;&quot;&gt;Add Member in the Current group&lt;/span&gt;&amp;nbsp;button will be visible.&lt;br style=&quot;font-size: 11px;&quot;&gt;&amp;lt;Navbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="556" y="1400" width="172" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-112" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-106" target="Jnso9oNl4Qtxl3vs1byq-107" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-106" value="if currentGroup is not blank, the &lt;span style=&quot;font-size: 11px;&quot;&gt;Add Member in the Current group&lt;/span&gt;&amp;nbsp;button will be visible.&lt;br style=&quot;font-size: 11px;&quot;&gt;&amp;lt;Navbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="780" y="1400" width="172" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-107" value="on submitting the member to be added in the &amp;lt;addMemberInGroup/&amp;gt;, if the user is not in the db or already in the group, it will display an warning (to be done)&lt;br style=&quot;font-size: 11px;&quot;&gt;&lt;br style=&quot;font-size: 11px;&quot;&gt;Otherwise, it will add the user we inputted, in the groups memberEmails in firestore,&lt;br style=&quot;font-size: 11px;&quot;&gt;And add the group in that users groups list in firestore" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1119" y="1355.25" width="251" height="185.5" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-114" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 24px;&quot;&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt;&lt;u style=&quot;font-size: 24px;&quot;&gt;Sequence Diagram&lt;/u&gt;&lt;br style=&quot;font-size: 24px;&quot;&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#EEEEEE;strokeWidth=4;labelBackgroundColor=none;fontStyle=1;fontSize=24;" parent="1" vertex="1">
+          <mxGeometry x="418.5" y="24" width="543" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-116" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-117" target="Jnso9oNl4Qtxl3vs1byq-118" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-117" value="User Login&lt;br style=&quot;border-color: var(--border-color); font-size: 11px;&quot;&gt;&amp;lt;SignedOutNavbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="343" y="1579" width="172" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-123" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=#0B4D6A;strokeWidth=4;labelBackgroundColor=none;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-118" target="Jnso9oNl4Qtxl3vs1byq-120" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-118" value="if currentGroup is not blank, the &lt;span style=&quot;font-size: 11px;&quot;&gt;Create task&amp;nbsp;&lt;/span&gt;button will be visible.&lt;br style=&quot;font-size: 11px;&quot;&gt;&amp;lt;Navbar/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="566" y="1579" width="172" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-119" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="Jnso9oNl4Qtxl3vs1byq-120" target="Jnso9oNl4Qtxl3vs1byq-121" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-120" value="While creating task, we fetch the current members of that group (to assign to one of them) in &amp;lt;CreateTask/&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="566" y="1746" width="172" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="Jnso9oNl4Qtxl3vs1byq-121" value="onSubmit, we push the task in that groups taskList in firestore, and we also add that data in our redux taskSlice... (honestly, not required, as every update in the current groups tasklist triggers a cloud function inside &amp;lt;Notifications/&amp;gt; that fetches all the tasks in the group to every member in that group)" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="796" y="1702.5" width="213" height="183" as="geometry" />
+        </mxCell>
+        <mxCell id="vxDr_gmK9lxXACdOeJFq-1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=4;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;fontStyle=1;fontSize=11;" parent="1" source="vxDr_gmK9lxXACdOeJFq-2" target="vxDr_gmK9lxXACdOeJFq-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vxDr_gmK9lxXACdOeJFq-2" value="&amp;lt;TaskChange/&amp;gt; has a cloud trigger that focuses on that specific doc, while user A has opened it on &amp;lt;TaskChange/&amp;gt;, if userB updates that same task, the data will get updated on userA&#39;s screen in real time." style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="435" y="2012" width="180" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="vxDr_gmK9lxXACdOeJFq-3" value="onSubmit, it updates that specific doc in firestore. In the &amp;lt;TaskChange/&amp;gt; component.&lt;br style=&quot;font-size: 11px;&quot;&gt;&lt;br style=&quot;font-size: 11px;&quot;&gt;Then it goes back to &amp;lt;Dashboard/&amp;gt;. On loading of this component, &amp;lt;Notifications/&amp;gt; inside it triggers the cloud function and updates the redux taskSlice." style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="197" y="2012" width="180" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="F9QVYLFm3UK13yRkI_L6-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;strokeWidth=4;fontStyle=1;fontSize=11;" parent="1" source="vxDr_gmK9lxXACdOeJFq-4" target="F9QVYLFm3UK13yRkI_L6-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vxDr_gmK9lxXACdOeJFq-4" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;Scenario: Task updating(tobe)&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;rounded=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="618" y="2299" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vxDr_gmK9lxXACdOeJFq-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeColor=#0B4D6A;strokeWidth=4;labelBackgroundColor=none;fontColor=default;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontStyle=1;fontSize=11;" parent="1" source="vxDr_gmK9lxXACdOeJFq-7" target="vxDr_gmK9lxXACdOeJFq-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="329" y="2227" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vxDr_gmK9lxXACdOeJFq-7" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;Scenario: Update data when another user creates/updates a task in the group you are currently using&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;rounded=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="194" y="2293" width="186" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="F9QVYLFm3UK13yRkI_L6-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;strokeWidth=4;fontStyle=1;fontSize=11;" parent="1" source="F9QVYLFm3UK13yRkI_L6-1" target="vxDr_gmK9lxXACdOeJFq-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F9QVYLFm3UK13yRkI_L6-1" value="when a task is clicked by an user, if he has the priviledge, &amp;lt;TaskChange/&amp;gt; will open" style="rounded=1;whiteSpace=wrap;html=1;spacingTop=10;spacingBottom=10;spacing=10;spacingRight=10;spacingLeft=10;strokeWidth=4;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="840" y="2012" width="180" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="F9QVYLFm3UK13yRkI_L6-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.544;entryY=1.002;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;strokeWidth=4;fontStyle=1;fontSize=11;" parent="1" source="vxDr_gmK9lxXACdOeJFq-4" target="F9QVYLFm3UK13yRkI_L6-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F9QVYLFm3UK13yRkI_L6-5" value="changePossibleLogic = ( foundCurrentObj?.assignedTo == curuser.email || foundCurrentObj?.authorDetails == curuser.email )&amp;nbsp;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;labelBackgroundColor=none;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;strokeWidth=4;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="837" y="2301" width="465" height="76" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

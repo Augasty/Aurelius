@@ -61,6 +61,7 @@ const TaskChange = ({ currentGroup, currentTask }) => {
     });
 
     return () => unsub();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGroup, initialLoadComplete]);
 
 
