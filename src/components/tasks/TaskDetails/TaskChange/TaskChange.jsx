@@ -10,12 +10,7 @@ const TaskChange = ({ currentGroup, currentTask }) => {
 
 
   const [formData, setFormData] = useState({
-    title: currentTask.title,
-    content: currentTask.content,
-    createdAt: currentTask.createdAt,
-    assignedTo: currentTask.assignedTo,
-    priority: currentTask.priority,
-    taskStatus: currentTask.taskStatus,
+    ...currentTask
   });
   const history = useNavigate();
 
@@ -93,7 +88,7 @@ const TaskChange = ({ currentGroup, currentTask }) => {
   return (
     <>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <h2 className={styles.title}>{currentTask.title}</h2>
+        <h2 className={styles.title}>{formData.title}</h2>
         <label htmlFor="title" className={styles.label}>
           Task Title
           <input
