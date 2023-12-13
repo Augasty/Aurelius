@@ -66,7 +66,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
         if (!ProjectsSnapShot.empty) {
           const projectsData = ProjectsSnapShot.docs.map((doc) => ({
             id: doc.id,
-            ...doc.data()
+            ...doc.data(),
           }));
 
           const filteredProjectsData = projectsData?.filter(
@@ -107,7 +107,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
             <>
               <li className={styles.navbarListItem}>
                 {currentGroup.length !== 0 && (
-                  <NavLink to="/create-task">New Project</NavLink>
+                  <NavLink to="/create-task">Create a task</NavLink>
                 )}
               </li>
               {currentGroup.length !== 0 && (
@@ -120,6 +120,7 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
               <li className={styles.navbarListItem}>
                 <NavLink to="/create-group">New Group</NavLink>
               </li>
+              <div className={styles.navbarTexts}>Goto a group</div>
               {curuser.email && (
                 <DropDown
                   currentGroup={currentGroup}

@@ -2,6 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { signInWithGoogle } from "../../utils/singInWithGoogle";
 import topchicken from "../../../assets/topchicken.jpg"
 
+import controlLogo from "../../../assets/control.png";
 import styles from "./Navbar.module.css"; // Import your CSS file
 
 const SignedOutNavbar = () => {
@@ -19,7 +20,8 @@ const SignedOutNavbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <Link to="/">Planetask</Link>
+        <img src={controlLogo} />
+        <Link to="/">Control</Link>
       </div>
       <div>
         <ul className={styles.navbarList}>

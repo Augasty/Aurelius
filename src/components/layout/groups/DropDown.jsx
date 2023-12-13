@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import styles from './DropDown.module.css'
 
 const DropDown = ({ currentGroup, setcurrentGroup }) => {
   const [user] = useAuthState(auth);
@@ -32,11 +33,12 @@ const DropDown = ({ currentGroup, setcurrentGroup }) => {
   const currentGroupArr = `${currentGroup[0]},${currentGroup[1]}`
   return (
     <>
-      <div>
+      <div className={styles.dropdownContainer}>
         <select
           id="dropdown"
           value={currentGroupArr ? currentGroupArr : ""}
           onChange={handleSelectChange}
+          className={styles.dropdownSelect}
         >
           {/* Add your dropdown options here */}
           {groupKeys.map((idref) => {
@@ -44,6 +46,7 @@ const DropDown = ({ currentGroup, setcurrentGroup }) => {
               <option
                 value={`${idref},${redux_groups[idref]}`}
                 key={idref}
+                className={styles.dropdownOption}
               >{`${redux_groups[idref]}`}</option>
             );
           })}

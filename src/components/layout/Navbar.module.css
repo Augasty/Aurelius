@@ -26,6 +26,11 @@
   text-decoration: none;
   margin-right: 15px; /* Adjusted spacing between links */
   font-size: 1rem; /* Adjusted font size */
+  cursor: pointer;
+}
+
+.navbarTexts{
+  cursor: default;
 }
 
 .navbarList {

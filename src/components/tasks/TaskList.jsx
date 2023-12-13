@@ -25,7 +25,6 @@ const TaskList = () => {
 
   return (
     <div className={styles.taskList}>
-      {/* High Priority Column */}
       <div className={styles.taskColumn}>
         <h2>High Priority</h2>
         {highPriorityTasks.map((task) => (
@@ -35,7 +34,6 @@ const TaskList = () => {
         ))}
       </div>
 
-      {/* Medium Priority Column */}
       <div className={styles.taskColumn}>
         <h2>Medium Priority</h2>
         {mediumPriorityTasks.map((task) => (
@@ -44,8 +42,6 @@ const TaskList = () => {
           </Link>
         ))}
       </div>
-
-      {/* Low Priority Column */}
       <div className={styles.taskColumn}>
         <h2>Low Priority</h2>
         {lowPriorityTasks.map((task) => (
