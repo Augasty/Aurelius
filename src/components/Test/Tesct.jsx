@@ -1,5 +1,5 @@
-import { addDoc, collection } from "firebase/firestore";
-import React, { useEffect } from "react";
+import { collection } from "firebase/firestore";
+import  { useEffect } from "react";
 import { db } from "../../firebase";
 
 const Tesct = () => {
