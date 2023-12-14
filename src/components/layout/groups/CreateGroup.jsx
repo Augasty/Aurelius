@@ -14,9 +14,11 @@ import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { addSingleGroup } from "./groupSlice";
+import { useGroupAndChatToggleContext } from "../navbar/GroupAndChatToggleContext";
 
 // only show it if authenticated
-const CreateGroup = ({ setcurrentGroup }) => {
+const CreateGroup = () => {
+  const { setcurrentGroup } = useGroupAndChatToggleContext();
   const [groupName, setGroupName] = useState(null);
   const [user] = useAuthState(auth);
 

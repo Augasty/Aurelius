@@ -5,6 +5,10 @@
     align-items: flex-start;
     padding: 20px;
     background-color: var(--background-color);
+    left: 0;
+    height: 100%;
+    width: 80%;
+
   }
 
 .notifications{

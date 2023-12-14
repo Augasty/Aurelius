@@ -6,11 +6,12 @@ import { useDispatch } from "react-redux";
 import { setTasksFromFireBase } from "../tasks/taskSlice";
 
 import styles from "./Dashboard.module.css";
-const Notifications = ({ currentGroup }) => {
+import { useGroupAndChatToggleContext } from "../layout/navbar/GroupAndChatToggleContext";
+const CloudTriggers = () => {
   const dispatch = useDispatch();
   // can't put this useeffect inside Navbar, it gets called before tasklist is rendered
 
-
+  const { currentGroup } = useGroupAndChatToggleContext();
 
 
 
@@ -85,7 +86,7 @@ const Notifications = ({ currentGroup }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGroup, initialLoadComplete]);
 
-  return <div className={styles.notifications}>Notifications</div>;
+  return <div className={styles.notifications}>Cloud Triggers</div>;
 };
 
-export default Notifications;
+export default CloudTriggers;

@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
-
-import Notifications from "./Notifications";
 import styles from "./Dashboard.module.css";
 import TaskList from "../tasks/TaskList";
-const Dashboard = ({currentGroup}) => {
+import { useGroupAndChatToggleContext } from "../layout/navbar/GroupAndChatToggleContext";
+const Dashboard = ({isRightPanelVisible}) => {
 
  // Updated variable name
-
+//  different views will be sorted here, dont remove the currentGroup from the props.
+const { currentGroup, setcurrentGroup } = useGroupAndChatToggleContext();
   return (
-    <div>
+    <div style={{ width: isRightPanelVisible ? '80%' : '100%' }}>
           <TaskList className={styles.dashboard}/>
-          {currentGroup.length !== 0 && <Notifications currentGroup={currentGroup}/>}
+          
 
     </div>
   );

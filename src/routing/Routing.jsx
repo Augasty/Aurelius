@@ -15,8 +15,12 @@ import {
   Navbar,
   SignedOutNavbar,
   TaskDetails,
-  Tesct,
 } from "./LazyLoad";
+
+// need to lazy
+import RightPanel from "../components/chat-system/RightPanel";
+import CloudTriggers from "../components/dashboard/CloudTriggers";
+import { useGroupAndChatToggleContext } from "../components/layout/navbar/GroupAndChatToggleContext";
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => (
   <div>
@@ -28,20 +32,21 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => (
 
 const Routing = () => {
   const [user] = useAuthState(auth);
-
   const curuser = auth.currentUser;
+  const { currentGroup,isRightPanelVisible, toggleRightPanel} = useGroupAndChatToggleContext();
 
-  const [currentGroup, setcurrentGroup] = useState([]);
 
-  // console.log(currentGroup,currentGroup.length!==0)
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <>
+      {currentGroup.length !== 0 && <CloudTriggers/>}
         {user ? (
-          <Navbar
-            currentGroup={currentGroup}
-            setcurrentGroup={setcurrentGroup}
+          <>
+          <Navbar toggleRightPanel={toggleRightPanel} 
           />
+        {isRightPanelVisible && <RightPanel />}
+        </>
         ) : (
           <SignedOutNavbar />
         )}
@@ -50,7 +55,7 @@ const Routing = () => {
             path="/"
             element={
               currentGroup.length !== 0 ? (
-                <Dashboard currentGroup={currentGroup} />
+                <Dashboard isRightPanelVisible={isRightPanelVisible}/>
               ) : (
                 <></>
               )
@@ -60,14 +65,14 @@ const Routing = () => {
           <Route
             path="/task/:id"
             element={
-              curuser ? <TaskDetails currentGroup={currentGroup} /> : <></>
+              curuser ? <TaskDetails /> : <></>
             }
           />
           <Route
             path="/create-task"
             element={
               user && currentGroup.length !== 0 ? (
-                <CreateTask currentGroup={currentGroup} />
+                <CreateTask />
               ) : (
                 <></>
               )
@@ -76,17 +81,14 @@ const Routing = () => {
           <Route
             path="/create-group"
             element={
-              user ? <CreateGroup setcurrentGroup={setcurrentGroup} /> : <></>
+              user ? <CreateGroup /> : <></>
             }
           />
-
-          {/* testing the locking here */}
-          <Route path="/abc" element={<Tesct />} />
           <Route
             path="/add-member"
             element={
               currentGroup.length !== 0 ? (
-                <AddMemberInGroup currentGroup={currentGroup} />
+                <AddMemberInGroup />
               ) : (
                 <></>
               )

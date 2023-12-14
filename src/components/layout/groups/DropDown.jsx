@@ -6,18 +6,16 @@ import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import styles from './DropDown.module.css'
 
-const DropDown = ({ currentGroup, setcurrentGroup }) => {
+import { useGroupAndChatToggleContext } from "../navbar/GroupAndChatToggleContext";
+const DropDown = () => {
+  const { currentGroup, setcurrentGroup } = useGroupAndChatToggleContext();
   const [user] = useAuthState(auth);
   const redux_groups = useSelector((state) => state.groups);
-  // console.log('redux groups=>',redux_groups)  //[8j8Hr6n40ebVA1XyR5aQ,awdad]
-
   const history = useNavigate();
 
   // Handler function to update the selected value
   const handleSelectChange = (event) => {
     event.preventDefault();
-
-    //
     const curGroupArr = event.target.value.split(","); //['EUlldFByPHz7RcidE7z2', 'group2']
     console.log(curGroupArr);
     updateDoc(doc(db, "users", user.email), {

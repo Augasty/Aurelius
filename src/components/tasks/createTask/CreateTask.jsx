@@ -6,11 +6,12 @@ import styles from "./styles.module.css"; // Update your custom CSS file name
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addSingleTask } from "../taskSlice";
+import { useGroupAndChatToggleContext } from "../../layout/navbar/GroupAndChatToggleContext";
 // import MultiSelect from "./MultiSelect";
 
-const CreateTask = ({ currentGroup }) => {
+const CreateTask = () => {
+
+  const { currentGroup } = useGroupAndChatToggleContext();
   const [task, setTask] = useState({
     openToAll:false
   }); // Updated variable name
@@ -18,7 +19,6 @@ const CreateTask = ({ currentGroup }) => {
 
   const curuser = auth.currentUser;
   const history = useNavigate();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     try {
@@ -53,14 +53,13 @@ const CreateTask = ({ currentGroup }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(
+      await addDoc(
         collection(db, "groups", currentGroup[0], "taskList"),
         {
           title: task.title, // Updated variable name
           content: task.content, // Updated variable name
           authorDetails: curuser.email,
           createdAt: new Date().toISOString(),
-          // assignedTo: [...task.assignedTo],
           openToAll:task.openToAll,
           assignedTo: task.assignedTo,
           priority: task.priority,
@@ -69,15 +68,8 @@ const CreateTask = ({ currentGroup }) => {
         }
       );
 
-      // console.log(docRef.id)
-      // this one doesn't have the id yet... we get the id from docRef.id and add it manually
-      dispatch(
-        addSingleTask({
-          id: docRef.id,
-          ...task,
-        })
-      )
-      console.log('task created',task);
+
+      // console.log('task created',task);
     } catch (e) {
       console.error(e);
     }

@@ -1,0 +1,10 @@
+.rightPanel {
+    position: fixed;
+    top: 15%;
+    right: 0;
+    height: 100%;
+    width: 20%;
+    background-color: #fd079f; /* Set your desired background color */
+    padding: 20px;
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for separation */
+  }

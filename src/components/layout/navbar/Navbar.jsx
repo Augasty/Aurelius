@@ -2,22 +2,23 @@
 
 import { Link, NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css"; // Import your CSS file
-import { auth, db } from "../../firebase";
+import { auth, db } from "../../../firebase";
 import { signOut } from "firebase/auth";
-import DropDown from "./groups/DropDown";
+import DropDown from "../groups/DropDown";
 import { useEffect, useState } from "react";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { setGroupsFromFireBase } from "./groups/groupSlice";
+import { setGroupsFromFireBase } from "../groups/groupSlice";
 import { useDispatch } from "react-redux";
-import topchicken from "../../../assets/topchicken.jpg";
-import controlLogo from "../../../assets/control.png";
-import { setTasksFromFireBase } from "../tasks/taskSlice";
+import topchicken from "../../../../assets/topchicken.jpg";
+import controlLogo from "../../../../assets/control.png";
+import { setTasksFromFireBase } from "../../tasks/taskSlice";
+import { useGroupAndChatToggleContext} from "./GroupAndChatToggleContext";
 
-const Navbar = ({ currentGroup, setcurrentGroup }) => {
+const Navbar = () => {
   const curuser = auth.currentUser;
 
   const dispatch = useDispatch();
-
+  const { currentGroup, setcurrentGroup, toggleRightPanel } = useGroupAndChatToggleContext();
   // fetch the list of groups for the user,
   useEffect(() => {
     async function fetchData() {
@@ -117,6 +118,10 @@ const Navbar = ({ currentGroup, setcurrentGroup }) => {
                   </NavLink>
                 </li>
               )}
+
+              <li onClick={toggleRightPanel} className={styles.navbarListItem}>
+        Toggle Right Panel
+      </li>
               <li className={styles.navbarListItem}>
                 <NavLink to="/create-group">New Group</NavLink>
               </li>
