@@ -1,0 +1,152 @@
+
+  main {
+    padding: 10px;
+    height: 40vh;
+    margin: 10vh 0 10vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen and (max-width: 400px) {
+    main {
+      height: 50vh;
+    }
+  }
+  .main .message {
+    background-color: #4285F4; /* Google Blue */
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 4px;
+    max-width: 60%; /* Adjust as needed */
+  }
+  
+  /* Style for the message sender's name */
+  .main .message .sender {
+    font-weight: bold;
+  }
+  
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: inherit;
+    margin-left: 30px;
+    margin-right: 5px;
+    margin-bottom : 10px;
+  }
+  
+  button {
+    background-color: #4285F4; /* Google Blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-left: 5px;
+    margin-right: 20px;
+    margin-bottom : 10px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0c3b6a; /* Slightly darker blue on hover */
+  }
+  
+  .message {
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .sent {
+    flex-direction: row-reverse;
+  }
+  .message {
+    margin: 10px;
+    clear: both;
+  }
+  
+  .message img {
+    width: 40px; /* Adjust the size of the image */
+    height: 40px; /* Adjust the size of the image */
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .message p {
+    background-color: #4285F4; /* Google Blue */
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 60%; /* Adjust as needed */
+    word-wrap: break-word;
+  }
+  
+  /* .message.sent {
+    justify-content: flex-end;
+  } */
+  
+  .message.sent p {
+    background-color: #E1E3E6; /* Light gray for sender's messages */
+    color: #000;
+  }
+  
+  .message.sent img {
+    margin-right: 0;
+    margin-left: 10px; /* Add some space between the message and the image */
+  }
+
+
+
+  
+.message {
+  display: flex;
+  align-items: center;
+}
+
+
+.sent {
+  flex-direction: row-reverse;
+}
+.message {
+  margin: 10px;
+  clear: both;
+}
+
+.message img {
+  width: 40px; /* Adjust the size of the image */
+  height: 40px; /* Adjust the size of the image */
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.message p {
+  background-color: #4285F4; /* Google Blue */
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  max-width: 60%; /* Adjust as needed */
+  word-wrap: break-word;
+}
+
+
+
+.message.sent p {
+  background-color: #E1E3E6; /* Light gray for sender's messages */
+  color: #000;
+}
+
+.message.sent img {
+  margin-right: 0;
+  margin-left: 10px; /* Add some space between the message and the image */
+}
