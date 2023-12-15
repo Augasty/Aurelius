@@ -77,8 +77,6 @@ const CreateTask = () => {
     history("/");
   };
 
-  // if (!auth.uid) return <Navigate to='/signin' />;
-
   return (
     <div className={styles.container}>
       <form

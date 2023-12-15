@@ -19,7 +19,7 @@ import { useGroupAndChatToggleContext } from "../navbar/GroupAndChatToggleContex
 // when a group is created, need to create a doc in ‘texts’ collection with the same ID.
 // only show it if authenticated
 const CreateGroup = () => {
-  const { setcurrentGroup } = useGroupAndChatToggleContext();
+  const { setcurrentGroup,toggleRightPanel,isRightPanelVisible } = useGroupAndChatToggleContext();
   const [groupName, setGroupName] = useState(null);
   const [user] = useAuthState(auth);
 
@@ -49,6 +49,12 @@ const CreateGroup = () => {
       });
       // set it as the current group
       setcurrentGroup([groupDocRef.id, groupName]);
+
+
+      // close the chat if it is open
+      if( isRightPanelVisible){
+        toggleRightPanel(false)
+      }
 
       // add the new data in redux storage
       dispatch(

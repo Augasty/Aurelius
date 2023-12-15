@@ -18,8 +18,7 @@ const Navbar = () => {
   const curuser = auth.currentUser;
 
   const dispatch = useDispatch();
-  const { currentGroup, setcurrentGroup, toggleRightPanel } =
-    useGroupAndChatToggleContext();
+  const { currentGroup, setcurrentGroup, isRightPanelVisible,toggleRightPanel } =  useGroupAndChatToggleContext();
   // fetch the list of groups for the user,
   useEffect(() => {
     async function fetchData() {
@@ -125,7 +124,7 @@ const Navbar = () => {
                   onClick={toggleRightPanel}
                   className={styles.navbarListItem}
                 >
-                  Open Chat
+                  {isRightPanelVisible?'Close':'Open'} Chat
                 </li>
               )}
               <li className={styles.navbarListItem}>

@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 import TaskView from './TaskView/TaskView';
 import TaskChange from './TaskChange/TaskChange';
 import { auth } from '../../../firebase';
-import { useGroupContext } from '../../layout/navbar/GroupContext';
+import { useGroupAndChatToggleContext } from '../../layout/navbar/GroupAndChatToggleContext';
 
 const TaskDetails = () => {
-  const { currentGroup, setcurrentGroup } = useGroupContext();
+  const { currentGroup } = useGroupAndChatToggleContext();
   const curTaskId = useParams();
   const reduxTasks = useSelector((state) => state.tasks);
   const [currentTask, setcurrentTask] = useState({})

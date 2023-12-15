@@ -29,65 +29,38 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => (
 const Routing = () => {
   const [user] = useAuthState(auth);
   const curuser = auth.currentUser;
-  const { currentGroup,isRightPanelVisible} = useGroupAndChatToggleContext();
-
-
+  const { currentGroup, isRightPanelVisible } = useGroupAndChatToggleContext();
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <>
-      {currentGroup.length !== 0 && <CloudTriggers/>}
+        {currentGroup.length !== 0 && <CloudTriggers />}
         {user ? (
           <>
-          <Navbar/>
-        {isRightPanelVisible && <RightPanel />}
-        </>
+            <Navbar />
+            {isRightPanelVisible && <RightPanel />}
+          </>
         ) : (
           <SignedOutNavbar />
         )}
         <Routes>
           <Route
             path="/"
-            element={
-              currentGroup.length !== 0 ? (
-                <Dashboard/>
-              ) : (
-                <></>
-              )
-            }
+            element={currentGroup.length !== 0 ? <Dashboard /> : <></>}
           />
 
-          <Route
-            path="/task/:id"
-            element={
-              curuser ? <TaskDetails /> : <></>
-            }
-          />
+          <Route path="/task/:id" element={curuser ? <TaskDetails /> : <></>} />
           <Route
             path="/create-task"
-            element={
-              user && currentGroup.length !== 0 ? (
-                <CreateTask />
-              ) : (
-                <></>
-              )
-            }
+            element={user && currentGroup.length !== 0 ? <CreateTask /> : <></>}
           />
           <Route
             path="/create-group"
-            element={
-              user ? <CreateGroup /> : <></>
-            }
+            element={user ? <CreateGroup /> : <></>}
           />
           <Route
             path="/add-member"
-            element={
-              currentGroup.length !== 0 ? (
-                <AddMemberInGroup />
-              ) : (
-                <></>
-              )
-            }
+            element={currentGroup.length !== 0 ? <AddMemberInGroup /> : <></>}
           />
         </Routes>
       </>

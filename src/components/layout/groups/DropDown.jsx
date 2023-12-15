@@ -8,7 +8,7 @@ import styles from './DropDown.module.css'
 
 import { useGroupAndChatToggleContext } from "../navbar/GroupAndChatToggleContext";
 const DropDown = () => {
-  const { currentGroup, setcurrentGroup } = useGroupAndChatToggleContext();
+  const { currentGroup, setcurrentGroup , isRightPanelVisible,toggleRightPanel} = useGroupAndChatToggleContext();
   const [user] = useAuthState(auth);
   const redux_groups = useSelector((state) => state.groups);
   const history = useNavigate();
@@ -22,6 +22,10 @@ const DropDown = () => {
       currentGroup: curGroupArr,
     });
     setcurrentGroup(curGroupArr);
+
+    if( isRightPanelVisible){
+      toggleRightPanel(false)
+    }
 
     history("/");
   };

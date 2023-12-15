@@ -13,18 +13,11 @@ const CloudTriggers = () => {
 
   const { currentGroup } = useGroupAndChatToggleContext();
 
-
-
-
-
-
-
-  
   const fetchData = async () => {
     if (!currentGroup || currentGroup.length === 0) {
       return;
     }
-    console.log("noti is triggered, and all data is fetched");
+    // console.log("noti is triggered, and all data is fetched");
     try {
       const ProjectsSnapShot = await getDocs(
         collection(db, "groups", currentGroup[0], "taskList")
@@ -56,34 +49,15 @@ const CloudTriggers = () => {
   useEffect(() => {
     const currentGroupId = currentGroup[0];
     const tasksRef = collection(db, "groups", currentGroupId, "taskList");
-    const unsub = onSnapshot(tasksRef, (snapshot) => {
-      // console.log('times useeffect called')
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === "added") {
-            console.log("New task");
-        }
-        if (change.type === "modified") {
-            console.log("Modified task ");
-        }
-        if (change.type === "removed") {
-            console.log("Removed task");
-        }
-      });
-    
-
-      // we are calling the doc everytime someone adds or changes any doc
-      // as a failsafe, we are also adding the doc locally in our redux anytime a doc is created by me[the current user]
-      // although it gets updated anyways
+    const unsub = onSnapshot(tasksRef, () => {
       fetchData();
-
-      // Set initialLoadComplete to true after the first snapshot
       if (!initialLoadComplete) {
         setInitialLoadComplete(true);
       }
     });
 
     return () => unsub();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGroup, initialLoadComplete]);
 
   return <div className={styles.notifications}>Cloud Triggers</div>;
