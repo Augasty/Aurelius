@@ -1,11 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Route, Routes } from "react-router";
-
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-
-import { useState } from "react";
-
 import { ErrorBoundary } from "react-error-boundary";
 import {
   AddMemberInGroup,
@@ -33,7 +29,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => (
 const Routing = () => {
   const [user] = useAuthState(auth);
   const curuser = auth.currentUser;
-  const { currentGroup,isRightPanelVisible, toggleRightPanel} = useGroupAndChatToggleContext();
+  const { currentGroup,isRightPanelVisible} = useGroupAndChatToggleContext();
 
 
 
@@ -43,8 +39,7 @@ const Routing = () => {
       {currentGroup.length !== 0 && <CloudTriggers/>}
         {user ? (
           <>
-          <Navbar toggleRightPanel={toggleRightPanel} 
-          />
+          <Navbar/>
         {isRightPanelVisible && <RightPanel />}
         </>
         ) : (
@@ -55,7 +50,7 @@ const Routing = () => {
             path="/"
             element={
               currentGroup.length !== 0 ? (
-                <Dashboard isRightPanelVisible={isRightPanelVisible}/>
+                <Dashboard/>
               ) : (
                 <></>
               )

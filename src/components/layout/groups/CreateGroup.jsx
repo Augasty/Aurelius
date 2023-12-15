@@ -16,12 +16,12 @@ import { useDispatch } from "react-redux";
 import { addSingleGroup } from "./groupSlice";
 import { useGroupAndChatToggleContext } from "../navbar/GroupAndChatToggleContext";
 
+// when a group is created, need to create a doc in ‘texts’ collection with the same ID.
 // only show it if authenticated
 const CreateGroup = () => {
   const { setcurrentGroup } = useGroupAndChatToggleContext();
   const [groupName, setGroupName] = useState(null);
   const [user] = useAuthState(auth);
-
 
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -38,13 +38,14 @@ const CreateGroup = () => {
       // adding a dummy data in the tasklist to create the subcollection
       const taskListRef = collection(groupDocRef, "taskList");
       await addDoc(taskListRef, { dummy: true });
-
-
+      // adding a dummy data in the textlist to create the subcollection
+      const textListRef = collection(groupDocRef, "textList");
+      await addDoc(textListRef, { dummy: true });
 
       // add group data & currentgroup in corresponding entry in users db in firebase
       updateDoc(doc(db, "users", user.email), {
         [`groups.${groupDocRef.id}`]: groupName,
-        currentGroup:[groupDocRef.id,groupName]
+        currentGroup: [groupDocRef.id, groupName],
       });
       // set it as the current group
       setcurrentGroup([groupDocRef.id, groupName]);
@@ -55,9 +56,8 @@ const CreateGroup = () => {
           [groupDocRef.id]: groupName,
         })
       );
-
     } catch (e) {
-      console.error('error while creating a group',e);
+      console.error("error while creating a group", e);
     }
 
     history("/");
@@ -74,6 +74,7 @@ const CreateGroup = () => {
             type="text"
             id="name"
             onChange={(e) => setGroupName(e.target.value)}
+            required
           />
         </div>
         <div className="input-field">

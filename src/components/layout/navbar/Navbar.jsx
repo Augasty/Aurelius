@@ -12,13 +12,14 @@ import { useDispatch } from "react-redux";
 import topchicken from "../../../../assets/topchicken.jpg";
 import controlLogo from "../../../../assets/control.png";
 import { setTasksFromFireBase } from "../../tasks/taskSlice";
-import { useGroupAndChatToggleContext} from "./GroupAndChatToggleContext";
+import { useGroupAndChatToggleContext } from "./GroupAndChatToggleContext";
 
 const Navbar = () => {
   const curuser = auth.currentUser;
 
   const dispatch = useDispatch();
-  const { currentGroup, setcurrentGroup, toggleRightPanel } = useGroupAndChatToggleContext();
+  const { currentGroup, setcurrentGroup, toggleRightPanel } =
+    useGroupAndChatToggleContext();
   // fetch the list of groups for the user,
   useEffect(() => {
     async function fetchData() {
@@ -119,9 +120,14 @@ const Navbar = () => {
                 </li>
               )}
 
-              <li onClick={toggleRightPanel} className={styles.navbarListItem}>
-        Toggle Right Panel
-      </li>
+              {currentGroup.length !== 0 && (
+                <li
+                  onClick={toggleRightPanel}
+                  className={styles.navbarListItem}
+                >
+                  Open Chat
+                </li>
+              )}
               <li className={styles.navbarListItem}>
                 <NavLink to="/create-group">New Group</NavLink>
               </li>
