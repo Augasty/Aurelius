@@ -7,7 +7,7 @@ import { setTasksFromFireBase } from "../tasks/taskSlice";
 
 import styles from "./Dashboard.module.css";
 import { useGroupAndChatToggleContext } from "../layout/navbar/GroupAndChatToggleContext";
-const CloudTextTriggers = () => {
+const CloudTaskTriggers = () => {
   const dispatch = useDispatch();
   // can't put this useeffect inside Navbar, it gets called before tasklist is rendered
 
@@ -63,4 +63,4 @@ const CloudTextTriggers = () => {
   return <div className={styles.notifications}>Cloud Triggers</div>;
 };
 
-export default CloudTextTriggers;
+export default CloudTaskTriggers;

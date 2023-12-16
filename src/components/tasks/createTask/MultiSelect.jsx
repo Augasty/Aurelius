@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const MultiSelect = () => {
   const options = ["Option 1", "Option 2", "Option 3", "Option 4"]; // Replace with your array of options

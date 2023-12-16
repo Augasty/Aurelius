@@ -15,7 +15,7 @@ import {
 
 // need to lazy
 import RightPanel from "../components/chat-system/RightPanel";
-import CloudTextTriggers from "../components/dashboard/CloudTextTriggers";
+import CloudTaskTriggers from "../components/dashboard/CloudTaskTriggers";
 import { useGroupAndChatToggleContext } from "../components/layout/navbar/GroupAndChatToggleContext";
 import CloudGroupTriggers from "../components/dashboard/CloudGroupTriggers";
 
@@ -35,7 +35,7 @@ const Routing = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <>
-        {currentGroup.length !== 0 && <CloudTextTriggers />}
+        {currentGroup.length !== 0 && <CloudTaskTriggers />}
         {user ? (
           <>
           <CloudGroupTriggers/>
