@@ -4,7 +4,6 @@ import styles from './styles.module.css';
 import { v4 as uuidv4 } from "uuid";
 import {
   collection,
-  limit,
   orderBy,
   getDocs,
   addDoc,
@@ -28,7 +27,7 @@ function ChatRoom() {
 
 
 
-  async function fetchTexts(textsRef,no_of_text_to_load) {
+  async function fetchTexts(textsRef) {
     try {
       const textsSnapshot = await getDocs(
         query(textsRef, orderBy("createdAt", "desc"))
@@ -47,13 +46,13 @@ function ChatRoom() {
       console.warn("error fetching texts:", error);
     }
   }
-  // fetch the list of texts in this group
+  // fetch the list of texts in this group whenever someone else adds a text
   useEffect(() => {
     const textsRef = collection(db, "groups", currentGroup[0], "textList");
     dummy.current.scrollIntoView({ behavior: "smooth" });
 
     const unsub = onSnapshot(textsRef, () => {
-      fetchTexts(textsRef,5);
+      fetchTexts(textsRef);
 
       // Set initialLoadComplete to true after the first snapshot
       if (!initialLoadComplete) {
@@ -64,50 +63,7 @@ function ChatRoom() {
     return () => unsub();
   }, [currentGroup, initialLoadComplete]);
 
-  // refetching the data from firebase when the user has scrolled up to the top
-  const [no_of_texts, set_no_of_texts] = useState(5);
 
-  const callAnotherTenTexts = async () => {
-    const textsRef = collection(db, "groups", currentGroup[0], "textList");
-    fetchTexts(textsRef,no_of_texts);
-    console.log('Scrolled to the top of the section',no_of_texts);
-  };
-
-  useEffect(() => {
-    callAnotherTenTexts();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [no_of_texts]);
-
-
-
-  // handling when reached to the top
-  const sectionRef = useRef(null);
-  useEffect(() => {
-    function handleScroll() {
-      const section = sectionRef.current;
-      if (section) {
-        const isAtTop = section.scrollTop === 0;
-        if (isAtTop) {
-          set_no_of_texts((prevNoOfTexts) => prevNoOfTexts + 10);
-        }
-      }
-    }
-    
-    // Attach the scroll event listener when the component mounts
-    const section = sectionRef.current;
-    if (section) {
-      section.addEventListener("scroll", handleScroll);
-      console.log(section)
-      
-    }
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      if (section) {
-        section.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []); // Empty dependency array ensures that this effect runs once on mount
 
   const sendMessage = async (e) => {
     e.preventDefault(); //stops the app from refreashing everytime a text is sent
@@ -131,7 +87,7 @@ function ChatRoom() {
   return (
     <>
       <main className={styles.main}>
-        <div ref={sectionRef} className={styles.messageContainer}>
+        <div className={styles.messageContainer}>
           {messages &&
             messages.toReversed().map((msg) => (
               <ChatMessage key={msg.uniqueId} message={msg} />

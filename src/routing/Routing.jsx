@@ -15,8 +15,9 @@ import {
 
 // need to lazy
 import RightPanel from "../components/chat-system/RightPanel";
-import CloudTriggers from "../components/dashboard/CloudTriggers";
+import CloudTextTriggers from "../components/dashboard/CloudTextTriggers";
 import { useGroupAndChatToggleContext } from "../components/layout/navbar/GroupAndChatToggleContext";
+import CloudGroupTriggers from "../components/dashboard/CloudGroupTriggers";
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => (
   <div>
@@ -34,9 +35,10 @@ const Routing = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <>
-        {currentGroup.length !== 0 && <CloudTriggers />}
+        {currentGroup.length !== 0 && <CloudTextTriggers />}
         {user ? (
           <>
+          <CloudGroupTriggers/>
             <Navbar />
             {isRightPanelVisible && <RightPanel />}
           </>
