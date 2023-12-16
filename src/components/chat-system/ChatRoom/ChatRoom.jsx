@@ -31,7 +31,7 @@ function ChatRoom() {
   async function fetchTexts(textsRef,no_of_text_to_load) {
     try {
       const textsSnapshot = await getDocs(
-        query(textsRef, orderBy("createdAt", "desc"), limit(no_of_text_to_load))
+        query(textsRef, orderBy("createdAt", "desc"))
       );
       console.log("queries texts", textsSnapshot.size);
 
@@ -50,10 +50,10 @@ function ChatRoom() {
   // fetch the list of texts in this group
   useEffect(() => {
     const textsRef = collection(db, "groups", currentGroup[0], "textList");
-
+    dummy.current.scrollIntoView({ behavior: "smooth" });
 
     const unsub = onSnapshot(textsRef, () => {
-      fetchTexts(textsRef,10);
+      fetchTexts(textsRef,5);
 
       // Set initialLoadComplete to true after the first snapshot
       if (!initialLoadComplete) {
@@ -70,11 +70,15 @@ function ChatRoom() {
   const callAnotherTenTexts = async () => {
     const textsRef = collection(db, "groups", currentGroup[0], "textList");
     fetchTexts(textsRef,no_of_texts);
+    console.log('Scrolled to the top of the section',no_of_texts);
   };
 
   useEffect(() => {
     callAnotherTenTexts();
-  }, [currentGroup,no_of_texts]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [no_of_texts]);
+
+
 
   // handling when reached to the top
   const sectionRef = useRef(null);
@@ -88,11 +92,13 @@ function ChatRoom() {
         }
       }
     }
-
+    
     // Attach the scroll event listener when the component mounts
     const section = sectionRef.current;
     if (section) {
       section.addEventListener("scroll", handleScroll);
+      console.log(section)
+      
     }
 
     // Clean up the event listener when the component unmounts

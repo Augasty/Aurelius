@@ -1,45 +1,56 @@
-/* styles.module.css */
-
 .main {
-  padding: 10px;
-  height: 40vh;
-  margin: 10vh 0 10vh;
+  height: 60vh;
   overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-}
-
-@media screen and (max-width: 400px) {
-  .main {
-    height: 50vh;
-  }
+  padding: 16px;
 }
 
 .messageContainer {
-  height: 40vh;
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
 }
 
-@media screen and (max-width: 400px) {
-  .messageContainer {
-    height: 50vh;
-  }
+.form {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
 }
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  margin-left: 10px; /* Adjust margin as needed */
+  margin-right: 5px;
+}
+
+.button {
+  background-color: #4285F4; /* Google Blue */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-left: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0c3b6a; /* Slightly darker blue on hover */
+}
+
+/* ChatMessage.css */
 
 .message {
   display: flex;
   align-items: center;
+  margin: 10px;
 }
 
 .sent {
   flex-direction: row-reverse;
-}
-
-.message {
-  margin: 10px;
-  clear: both;
 }
 
 .message img {
@@ -55,61 +66,10 @@
 }
 
 .message p {
-  background-color: #4285F4;
+  background-color: #4285F4; /* Google Blue */
   color: #fff;
   padding: 8px 12px;
   border-radius: 10px;
-  max-width: 60%;
+  max-width: 60%; /* Adjust as needed */
   word-wrap: break-word;
-}
-
-.sender {
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.message.sent p {
-  background-color: #E1E3E6;
-  color: #000;
-}
-
-.message.sent img {
-  margin-right: 0;
-  margin-left: 10px;
-}
-
-form {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-family: inherit;
-  margin-left: 30px;
-  margin-right: 5px;
-  margin-bottom: 10px;
-}
-
-button {
-  background-color: #4285F4;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  margin-left: 5px;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-family: inherit;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #0c3b6a;
 }
