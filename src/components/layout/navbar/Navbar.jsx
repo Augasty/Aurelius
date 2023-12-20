@@ -36,8 +36,7 @@ const Navbar = () => {
           );
           const curGroupArr = userSnapshot.data().currentGroup;
 
-          setcurrentGroup(curGroupArr);
-          // console.log("navbar useeffect used", curGroupArr);
+          setcurrentGroup(curGroupArr);// console.log("navbar useeffect used", curGroupArr);
         } else {
           // just in case there is comething in the cache that is not actually in db
           setcurrentGroup("");
@@ -96,6 +95,17 @@ const Navbar = () => {
   // for chicken
   const [toggleChicken, setToggleChicken] = useState(true);
 
+
+
+  // handling sign out
+  const handleSignOut = () =>{
+    signOut(auth)
+    dispatch(setTasksFromFireBase([]));
+    setcurrentGroup("");
+    dispatch(
+      setGroupsFromFireBase({})
+    );
+  }
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
@@ -138,7 +148,7 @@ const Navbar = () => {
                 />
               )}
               <li className={styles.navbarListItem}>
-                <a onClick={() => signOut(auth)}>Log Out</a>
+                <a onClick={handleSignOut}>Log Out</a>
               </li>
             </>
           )}

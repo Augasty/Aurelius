@@ -12,9 +12,8 @@ const SignedOutNavbar = () => {
   const history = useNavigate();
   const handleSignIn = () =>{
     signInWithGoogle()
-    console.log('signing in')
-    history('/')
-    // console.log('to the home')
+    // console.log('signing in')
+    history('/')// console.log('to the home')
 
   }
   return (
