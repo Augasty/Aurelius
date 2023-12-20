@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 
 function ChatMessage(props) {
-    const { text, uid, photoURL } = props.message;
+    const { chat, uid, photoURL } = props.message;
     const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
   
     return (
@@ -14,7 +14,7 @@ function ChatMessage(props) {
         <img src={photoURL || topchicken} alt="User" />
         <div className={styles.messageContent}>
           {/* {sender && <span className={styles.sender}>{sender}</span>} */}
-          <p>{text}</p>
+          <p>{chat}</p>
         </div>
       </div>
     );
