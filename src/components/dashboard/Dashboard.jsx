@@ -6,7 +6,6 @@ import { useGroupAndChatToggleContext } from "../layout/navbar/GroupAndChatToggl
 const Dashboard = () => {
 
   const { isRightPanelVisible} = useGroupAndChatToggleContext();
- // Updated variable name
 //  different views will be sorted here, dont remove the currentGroup from the props.
 // const { currentGroup, setcurrentGroup } = useGroupAndChatToggleContext();
   return (
