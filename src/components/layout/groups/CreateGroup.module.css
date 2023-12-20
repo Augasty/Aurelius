@@ -1,0 +1,47 @@
+/* CreateGroup.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--background-color);
+  }
+  
+  .inputField {
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    font-family: var(--font-family);
+  }
+  
+  .btn {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    padding: 12px 20px;
+    border: 5px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    color:var(--accent-color);
+    background-color: var(--secondary-color);
+    border: 5px solid var(--accent-color); 
+  }
+  

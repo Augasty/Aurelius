@@ -63,8 +63,7 @@ const CreateTask = () => {
           openToAll:task.openToAll,
           assignedTo: task.assignedTo,
           priority: task.priority,
-          taskStatus: task.taskStatus,
-          dummy: false,
+          taskStatus: task.taskStatus
         }
       );
 
