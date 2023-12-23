@@ -23,10 +23,6 @@ function ChatRoom() {
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
 
-
-
-
-
   async function fetchTexts(textsRef) {
     try {
       const textsSnapshot = await getDocs(
