@@ -23,16 +23,12 @@ function ChatRoom() {
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
 
-
-
-
-
   async function fetchTexts(textsRef) {
     try {
       const textsSnapshot = await getDocs(
         query(textsRef, orderBy("createdAt", "desc"))
       );
-      console.log("queries texts", textsSnapshot.size);
+      // console.log("queries texts", textsSnapshot.size);
 
       if (!textsSnapshot.empty) {
         const textsData = textsSnapshot.docs.map((doc) => ({
@@ -48,7 +44,7 @@ function ChatRoom() {
   }
   // fetch the list of texts in this group whenever someone else adds a text
   useEffect(() => {
-    const textsRef = collection(db, "groups", currentGroup[0], "textList");
+    const textsRef = collection(db, "groups", currentGroup[0], "chatList");
     dummy.current.scrollIntoView({ behavior: "smooth" });
 
     const unsub = onSnapshot(textsRef, () => {
@@ -70,8 +66,8 @@ function ChatRoom() {
 
     const { uid, photoURL } = auth.currentUser;
 
-    await addDoc(collection(db, "groups", currentGroup[0], "textList"), {
-      text: formValue,
+    await addDoc(collection(db, "groups", currentGroup[0], "chatList"), {
+      chat: formValue,
       createdAt: new Date().toISOString(),
       uid,
       photoURL,

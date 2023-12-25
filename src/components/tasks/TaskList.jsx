@@ -17,7 +17,7 @@ const TaskList = () => {
   // }, [filteredArray])
   
 
-  console.log(filteredArray)
+  // console.log(filteredArray)
   // Separate tasks based on priority
   const highPriorityTasks = filteredArray.filter(task => task.priority === 'high');
   const mediumPriorityTasks = filteredArray.filter(task => task.priority === 'medium');
