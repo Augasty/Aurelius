@@ -31,6 +31,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => (
 const Routing = () => {
   useEffect(() => {
     console.log(auth.currentUser)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.currentUser])
   
   const [user] = useAuthState(auth);
