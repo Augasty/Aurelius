@@ -3,7 +3,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../../firebase";
-import { useGroupAndChatToggleContext } from "../navbar/GroupAndChatToggleContext";
+import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext";
 
 const AddMemberInGroup = () => {
 

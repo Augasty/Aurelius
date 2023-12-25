@@ -15,7 +15,7 @@ import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { addSingleGroup } from "./groupSlice";
-import { useGroupAndChatToggleContext } from "../navbar/GroupAndChatToggleContext";
+import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext";
 
 // when a group is created, need to create a doc in ‘texts’ collection with the same ID.
 // only show it if authenticated
