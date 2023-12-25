@@ -19,8 +19,9 @@ export const signInWithGoogle = async () => {
       try {
         // the password for users in firebase is not the same as the 
         // mail ids password, we made it the same for this user by
-        // using createUserWithEmailAndPassword to set the firebase password manually
-        const result = await signInWithEmailAndPassword(
+        // firsly using createUserWithEmailAndPassword to set the firebase password manually,
+        // and then afterwards using signinwithemailandpasswords
+        await signInWithEmailAndPassword(
           auth,
           email,
           password
@@ -28,7 +29,7 @@ export const signInWithGoogle = async () => {
 
 
       } catch (error) {
-        console.error(error.message);
+        console.error('error in login',error.message);
       }
       return; 
     }

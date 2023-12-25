@@ -10,7 +10,7 @@ import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { setGroupsFromFireBase } from "../groups/groupSlice";
 import { useDispatch } from "react-redux";
 import topchicken from "../../../../assets/topchicken.jpg";
-import controlLogo from "../../../../assets/control.png";
+import bluey from "../../../../assets/bluey.png";
 import { setTasksFromFireBase } from "../../tasks/taskSlice";
 import { useGroupAndChatToggleContext } from "./GroupAndChatToggleContext";
 
@@ -109,8 +109,8 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src={controlLogo} />
-        <Link to="/">Control</Link>
+        <img src={bluey} />
+        <Link to="/">Bluey</Link>
       </div>
       <div>
         <ul className={styles.navbarList}>

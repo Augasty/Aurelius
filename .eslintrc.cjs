@@ -16,10 +16,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-  },
-  
-    "extends": [
-      "plugin:cypress/recommended"
-    ]
+  }
   
 }
