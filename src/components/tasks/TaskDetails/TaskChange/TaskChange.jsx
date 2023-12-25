@@ -72,16 +72,11 @@ const TaskChange = ({ currentGroup, currentTask }) => {
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
-    // console.log({
-    //   ...currentTask,
-    //   ...formData,
-    // });
     e.preventDefault();
     await updateDoc(currentTaskRef, {
       ...currentTask,
       ...formData,
     });
-    // Call the onSubmit prop with the updated formData
     history("/");
   };
 
@@ -124,16 +119,7 @@ const TaskChange = ({ currentGroup, currentTask }) => {
           />
         </label>
 
-        <label htmlFor="assignedTo" className={styles.label}>
-          Assigned To
-          <input
-            type="text"
-            id="assignedTo"
-            value={formData.assignedTo}
-            onChange={handleChange}
-            className={styles.input}
-          />
-        </label>
+
 
         <label htmlFor="priority" className={styles.label}>
           Priority

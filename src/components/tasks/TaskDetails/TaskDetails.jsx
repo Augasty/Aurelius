@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import TaskView from './TaskView/TaskView';
 import TaskChange from './TaskChange/TaskChange';
 import { auth } from '../../../firebase';
-import { useGroupAndChatToggleContext } from '../../layout/navbar/GroupAndChatToggleContext';
+import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext";
 
 const TaskDetails = () => {
   const { currentGroup } = useGroupAndChatToggleContext();
