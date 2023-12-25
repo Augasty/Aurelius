@@ -14,7 +14,6 @@ export const signInWithGoogle = async () => {
       const email = "augastytest@gmail.com";
       const password = "Dijkstra@123";
 
-
       // this try block is purely for letting the testing automation tool bypass login.
       try {
         // the password for users in firebase is not the same as the 
