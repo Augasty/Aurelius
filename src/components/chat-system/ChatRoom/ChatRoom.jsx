@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import send from "../../../../assets/send.png";
 import { auth, db } from "../../../firebase";
-import { useGroupAndChatToggleContext } from "../../layout/navbar/GroupAndChatToggleContext";
+import { useGroupAndChatToggleContext } from  "../../../utils/GroupAndChatToggleContext";
 
 function ChatRoom() {
   const { currentGroup } = useGroupAndChatToggleContext();

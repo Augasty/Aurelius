@@ -1,7 +1,7 @@
 
 import Routing from "./routing/Routing"
 import './App.css'
-import { GroupAndChatToggleProvider } from "./components/layout/navbar/GroupAndChatToggleContext"
+import { GroupAndChatToggleProvider } from "./utils/GroupAndChatToggleContext"
 
 function App() {
 

@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import topchicken from "../../../../assets/topchicken.jpg";
 import bluey from "../../../../assets/bluey.png";
 import { setTasksFromFireBase } from "../../tasks/taskSlice";
-import { useGroupAndChatToggleContext } from "./GroupAndChatToggleContext";
+import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext";
 
 const Navbar = () => {
   const curuser = auth.currentUser;
