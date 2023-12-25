@@ -18,6 +18,7 @@ import RightPanel from "../components/chat-system/RightPanel";
 import CloudTaskTriggers from "../components/dashboard/CloudTaskTriggers";
 import { useGroupAndChatToggleContext } from "../components/layout/navbar/GroupAndChatToggleContext";
 import CloudGroupTriggers from "../components/dashboard/CloudGroupTriggers";
+import { useEffect } from "react";
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => (
   <div>
@@ -28,6 +29,10 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => (
 );
 
 const Routing = () => {
+  useEffect(() => {
+    console.log(auth.currentUser)
+  }, [auth.currentUser])
+  
   const [user] = useAuthState(auth);
   const curuser = auth.currentUser;
   const { currentGroup, isRightPanelVisible } = useGroupAndChatToggleContext();
