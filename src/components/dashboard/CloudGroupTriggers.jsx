@@ -5,7 +5,7 @@ import { auth, db } from "../../firebase";
 import { useDispatch } from "react-redux";
 import { setGroupsFromFireBase } from "../../components/layout/groups/groupSlice" 
 import styles from "./Dashboard.module.css";
-import { useGroupAndChatToggleContext } from "../layout/navbar/GroupAndChatToggleContext";
+import { useGroupAndChatToggleContext } from "../../utils/GroupAndChatToggleContext";
 const CloudGroupTriggers = () => {
     const curuser = auth.currentUser;
     const { currentGroup, setcurrentGroup } =  useGroupAndChatToggleContext();

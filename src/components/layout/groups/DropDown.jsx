@@ -6,7 +6,7 @@ import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import styles from './DropDown.module.css'
 
-import { useGroupAndChatToggleContext } from "../navbar/GroupAndChatToggleContext";
+import { useGroupAndChatToggleContext } from  "../../../utils/GroupAndChatToggleContext";
 const DropDown = () => {
   const { currentGroup, setcurrentGroup , isRightPanelVisible,toggleRightPanel} = useGroupAndChatToggleContext();
   const [user] = useAuthState(auth);

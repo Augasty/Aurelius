@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { setTasksFromFireBase } from "../tasks/taskSlice";
 
 import styles from "./Dashboard.module.css";
-import { useGroupAndChatToggleContext } from "../layout/navbar/GroupAndChatToggleContext";
+import { useGroupAndChatToggleContext } from  "../../utils/GroupAndChatToggleContext";
 const CloudTaskTriggers = () => {
   const dispatch = useDispatch();
   // can't put this useeffect inside Navbar, it gets called before tasklist is rendered
