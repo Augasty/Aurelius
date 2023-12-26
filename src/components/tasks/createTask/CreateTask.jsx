@@ -52,23 +52,19 @@ const CreateTask = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(task)
     try {
       await addDoc(
         collection(db, "groups", currentGroup[0], "taskList"),
         {
-          title: task.title, // Updated variable name
-          content: task.content, // Updated variable name
+          ...task,
           authorDetails: curuser.email,
           createdAt: new Date().toISOString(),
-          openToAll:task.openToAll,
-          assignedTo: task.assignedTo,
-          priority: task.priority,
-          taskStatus: task.taskStatus
         }
       );
 
 
-      // console.log('task created',task);
+      console.log('task created',task);
     } catch (e) {
       console.error(e);
     }
@@ -102,7 +98,7 @@ const CreateTask = () => {
             required
           ></textarea>
         </div>
-
+  
         <select
           id="assignedTo"
           className={`${styles.assignedToSelect}`}
@@ -117,7 +113,7 @@ const CreateTask = () => {
             </option>
           ))}
         </select>
-
+  
         <div className={`${styles.inputField}`}>
           <label htmlFor="priority">Priority</label>
           <select
@@ -132,6 +128,18 @@ const CreateTask = () => {
             <option value="high">High</option>
           </select>
         </div>
+  
+        <div className={`${styles.inputField}`}>
+          <label htmlFor="deadline">Deadline</label>
+          <input
+            type="date"
+            id="deadline"
+            className={`${styles.deadlineInput}`}
+            onChange={handleChange}
+            required
+          />
+        </div>
+  
         <div className={`${styles.inputField}`}>
           <label htmlFor="openToAll">Open to all</label>
           <input
@@ -141,7 +149,7 @@ const CreateTask = () => {
             onChange={handleChange}
           />
         </div>
-
+  
         <div className={`${styles.inputField}`}>
           <label htmlFor="taskStatus">Task Status</label>
           <select
@@ -156,6 +164,7 @@ const CreateTask = () => {
             <option value="completed">Completed</option>
           </select>
         </div>
+  
         <div className={`${styles.inputField}`}>
           <button
             className={`${styles.btn} ${styles.submit} ${styles.createTaskBtn}`}
@@ -167,6 +176,7 @@ const CreateTask = () => {
       </form>
     </div>
   );
+  
 };
 
 export default CreateTask;
