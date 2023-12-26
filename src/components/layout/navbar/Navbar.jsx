@@ -49,6 +49,9 @@ const Navbar = () => {
     fetchData();
   }, [curuser?.email, dispatch, setcurrentGroup]);
 
+
+
+  
   // fetching the taskList of the current group here
   useEffect(() => {
     const fetchData = async () => {

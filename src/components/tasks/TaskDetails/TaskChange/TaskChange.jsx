@@ -14,6 +14,7 @@ const TaskChange = ({ currentGroup, currentTask }) => {
   });
   const history = useNavigate();
 
+  console.log(formData)
 
   const fetchData = async (docId) => {
     if (!currentGroup || currentGroup.length === 0) {
@@ -108,11 +109,11 @@ const TaskChange = ({ currentGroup, currentTask }) => {
         </label>
 
         <label htmlFor="createdAt" className={styles.label}>
-          Created At
+          Deadline
           <input
             type="text"
             id="createdAt"
-            value={formData.createdAt}
+            value={formData.deadline}
             onChange={handleChange}
             readOnly
             className={styles.input}

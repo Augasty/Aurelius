@@ -38,7 +38,8 @@ label {
 .taskContentTextarea,
 .assignedToSelect,
 .prioritySelect,
-.taskStatusSelect {
+.taskStatusSelect,
+.deadlineInput {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -55,38 +56,40 @@ label {
 /* Checkbox styles */
 .checkbox {
   margin-left: 5px;
+  transform: scale(1.5);
 }
 
 /* Button styles */
-.btn {
-  padding: 10px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  color: var(--secondary-color);
-}
-
+.btn,
 .submit {
   background-color: var(--accent-color);
   color: var(--secondary-color);
-  font-weight: bold;
+  padding: 12px 20px;
+  border: 5px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover,
+.submit:hover {
+  color: var(--accent-color);
+  background-color: var(--secondary-color);
+  border: 5px solid var(--accent-color);
 }
 
 /* Additional styling for select dropdowns */
 .assignedToSelect,
 .prioritySelect,
-.taskStatusSelect {
+.taskStatusSelect,
+.deadlineInput {
   appearance: none;
   background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="%231c5bef"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>');
   background-position: right 10px center;
   background-repeat: no-repeat;
   background-size: 15px;
   padding-right: 30px;
-}
-
-/* Checkbox styling */
-.checkbox {
-  transform: scale(1.5);
 }
 
 /* Responsive styling */
@@ -100,8 +103,4 @@ label {
 /* Additional polish */
 .createTaskForm {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.btn:hover {
-  background-color: darken(var(--accent-color), 10%);
 }
