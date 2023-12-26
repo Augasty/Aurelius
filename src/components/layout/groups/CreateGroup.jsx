@@ -8,7 +8,6 @@ import {
   collection,
   doc,
   serverTimestamp,
-  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
@@ -47,7 +46,7 @@ const CreateGroup = () => {
         createdAt: serverTimestamp(),
         isScrum: isScrum,
       });
-      if (!isScrum) {
+
         // adding a dummy data in the tasklist to create the subcollection
         const taskListRef = collection(groupDocRef, "taskList");
         await addDoc(taskListRef, { dummy: true });
@@ -55,13 +54,10 @@ const CreateGroup = () => {
         const chatListRef = collection(groupDocRef, "chatList");
         await addDoc(chatListRef, { dummy: true });
         // make the text Slice an empty array
-      }
       if (isScrum) {
         // inside the collection scrum, create a doc with the same id as the group
-        const storiesData = {
-          dummy: true,
-        };
-        await setDoc(doc(db, "stories", groupDocRef.id), storiesData);
+        const storyListRef = collection(groupDocRef, "storyList");
+        await addDoc(storyListRef, { dummy: true });
       }
 
       // add group data & currentgroup in corresponding entry in users db in firebase
