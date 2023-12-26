@@ -45,7 +45,7 @@ const CloudGroupTriggers = () => {
         const userRef = doc(db, "users", curuser?.email);
 
         const unsub = onSnapshot(userRef, () => {
-          console.log('group added by other user')
+          console.log('group loading initiated')
           fetchGroup();
           if (!initialLoadComplete) {
             setInitialLoadComplete(true);
