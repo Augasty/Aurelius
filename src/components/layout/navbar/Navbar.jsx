@@ -141,9 +141,9 @@ const Navbar = () => {
                 </li>
               )}
               <li className={styles.navbarListItem}>
-                <NavLink to="/create-group">New Group</NavLink>
+                <NavLink to="/create-group">New Board</NavLink>
               </li>
-              <div className={styles.navbarTexts}>Goto a group</div>
+              <div className={styles.navbarTexts}>change board</div>
               {curuser.email && (
                 <DropDown
                   currentGroup={currentGroup}
