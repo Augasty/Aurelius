@@ -47,15 +47,12 @@ const Createboard = () => {
         isScrum: isScrum,
       });
 
-        // adding a dummy data in the tasklist to create the subcollection
+        // adding dummy data to create subcollections
         const taskListRef = collection(boardDocRef, "taskList");
         await addDoc(taskListRef, { dummy: true });
-        // adding a dummy data in the textlist to create the subcollection
         const chatListRef = collection(boardDocRef, "chatList");
         await addDoc(chatListRef, { dummy: true });
-        // make the text Slice an empty array
       if (isScrum) {
-        // inside the collection scrum, create a doc with the same id as the board
         const storyListRef = collection(boardDocRef, "storyList");
         await addDoc(storyListRef, { dummy: true });
       }
