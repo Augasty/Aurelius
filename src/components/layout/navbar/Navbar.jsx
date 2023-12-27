@@ -6,7 +6,7 @@ import { auth, db } from "../../../firebase";
 import { signOut } from "firebase/auth";
 import DropDown from "../groups/DropDown";
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { setGroupsFromFireBase } from "../groups/groupSlice";
 import { useDispatch } from "react-redux";
 import topchicken from "../../../../assets/topchicken.jpg";
@@ -19,37 +19,6 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const { currentGroup, setcurrentGroup, isRightPanelVisible,toggleRightPanel } =  useGroupAndChatToggleContext();
-  // fetch the list of groups for the user,
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const userRef = doc(db, "users", curuser?.email);
-        const userSnapshot = await getDoc(userRef);
-
-        if (userSnapshot.exists()) {
-          const userGroupsObj = userSnapshot.data().groups;
-
-          dispatch(
-            setGroupsFromFireBase({
-              ...userGroupsObj,
-            })
-          );
-          const curGroupArr = userSnapshot.data().currentGroup;
-
-          setcurrentGroup(curGroupArr);// console.log("navbar useeffect used", curGroupArr);
-        } else {
-          // just in case there is comething in the cache that is not actually in db
-          setcurrentGroup("");
-        }
-      } catch (error) {
-        console.warn("Error fetching data from Firebase:", error);
-      }
-    }
-    // console.log("fetching groups");
-    fetchData();
-  }, [curuser?.email, dispatch, setcurrentGroup]);
-
-
 
   
   // fetching the taskList of the current group here

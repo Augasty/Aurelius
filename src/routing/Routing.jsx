@@ -11,10 +11,10 @@ import {
   Navbar,
   SignedOutNavbar,
   TaskDetails,
+  RightPanel
 } from "./LazyLoad";
 
-// need to lazy
-import RightPanel from "../components/chat-system/RightPanel";
+
 import CloudTaskTriggers from "../components/dashboard/CloudTaskTriggers";
 import CloudGroupTriggers from "../components/dashboard/CloudGroupTriggers";
 import { useGroupAndChatToggleContext } from "../utils/GroupAndChatToggleContext";

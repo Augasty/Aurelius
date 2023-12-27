@@ -7,6 +7,7 @@ const CreateGroup = lazy(() => import('../components/layout/groups/CreateGroup')
 const Navbar = lazy(() => import('../components/layout/navbar/Navbar'));
 const Dashboard = lazy(() => import('../components/dashboard/Dashboard'));
 const TaskDetails = lazy(() => import('../components/tasks/TaskDetails/TaskDetails'));
+const RightPanel = lazy(()=>import('../components/chat-system/RightPanel'))
 
 const LazyCreateTask = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
@@ -51,6 +52,11 @@ const LazyTaskDetails = (props) => (
   </Suspense>
 );
 
+const LazyRightPanel = (props) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    < RightPanel{...props} />
+  </Suspense>
+);
 export {
   LazyCreateTask as CreateTask,
   LazyAddMemberInGroup as AddMemberInGroup,
@@ -59,4 +65,5 @@ export {
   LazyNavbar as Navbar,
   LazyDashboard as Dashboard,
   LazyTaskDetails as TaskDetails,
+  LazyRightPanel as RightPanel
 };
