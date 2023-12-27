@@ -1,62 +1,48 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { db } from "../../../../firebase";
-import { collection, doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
+import { auth, db } from "../../../../firebase";
+import { doc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import styles from "./TaskChange.module.css";
 import { useProjectContexts } from "../../../../utils/ProjectContexts";
 
 const TaskChange = ({ currentTask }) => {
   const {currentboard} = useProjectContexts();
-  const currentTaskRef = doc(db,"boards",currentboard[0],"taskList",currentTask.id);
-
-
+  const currentTaskRef = doc(db,"boards",currentboard[0],"taskList",currentTask?.id);
+  const curuser = auth.currentUser;
+  
   const [formData, setFormData] = useState({
     ...currentTask
   });
   const history = useNavigate();
 
-  console.log(formData)
-
-  const fetchData = async (docId) => {
-    if (!currentboard||currentboard.length === 0) {
-      return;
-    }
-    console.log("noti is triggered, and all data is fetched");
-    try {
-      const taskListRef = collection(db, "boards", currentboard[0], "taskList");
-
-      if (docId) {
-        // Fetch a specific document by ID
-        const docSnap = await getDoc(doc(taskListRef, docId));
-
-        if (docSnap.exists()) {
-          setFormData({
-            id: docSnap.id,
-            ...docSnap.data(),
-          })
-
-
-        } else {
-          console.log("Document not found");
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching tasks from Firebase:", error);
-    }
-  };
-  useEffect(() => {
-    const tasksRef = doc(db, "boards", currentboard[0], "taskList", currentTask.id);
-
-    const unsub = onSnapshot(tasksRef, () => {
-      fetchData(currentTask.id);
-
-
+  // Function to log 'hello world' every minute
+  const logHelloWorld = async() => {
+    console.log('hello world');
+    await updateDoc(currentTaskRef, {
+      ...currentTask,
+      ...formData,
+      lockedTill:new Date(new Date().getTime() + 10000).toISOString(),
+      lockedBy: curuser?.email
     });
+  };
 
-    return () => unsub();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentboard]);
+  // useEffect to log 'hello world' on component loading and set up interval
+  useEffect(() => {
+    try{
+
+      logHelloWorld(); // Log on component loading
+  
+      const intervalId = setInterval(logHelloWorld, 10000); // Log every 10sec
+  
+      return () => clearInterval(intervalId); // Clean up interval on component unmount
+    }
+    catch(error){
+      console.warn('error in taskchange',error)
+    }
+  }, []); // Empty dependency array to run the effect only once on component mounting
+
+
 
 
 
@@ -75,6 +61,8 @@ const TaskChange = ({ currentTask }) => {
     await updateDoc(currentTaskRef, {
       ...currentTask,
       ...formData,
+      lockedBy:null,
+      lockedTill:new Date().toISOString(),
     });
     history("/");
   };

@@ -7,7 +7,6 @@ import { signOut } from "firebase/auth";
 import DropDown from "../boards/DropDown";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { setboardsFromFireBase } from "../boards/boardSlice";
 import { useDispatch } from "react-redux";
 import topchicken from "../../../../assets/topchicken.jpg";
 import bluey from "../../../../assets/bluey.png";
@@ -19,7 +18,7 @@ const Navbar = () => {
   const curuser = auth.currentUser;
 
   const dispatch = useDispatch();
-  const { currentboard, setcurrentboard, isRightPanelVisible,toggleRightPanel } =  useProjectContexts();
+  const { currentboard, isRightPanelVisible,toggleRightPanel } =  useProjectContexts();
 
   
   // fetching the taskList of the current board here
@@ -73,11 +72,6 @@ const Navbar = () => {
   // handling sign out
   const handleSignOut = () =>{
     signOut(auth)
-    dispatch(setTasksFromFireBase([]));
-    setcurrentboard("");
-    dispatch(
-      setboardsFromFireBase({})
-    );
   }
   return (
     <nav className={styles.navbar}>

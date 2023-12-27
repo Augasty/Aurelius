@@ -60,6 +60,8 @@ const CreateTask = () => {
           ...task,
           authorDetails: curuser.email,
           createdAt: new Date().toISOString(),
+          lockedBy:null,
+          lockedTill:new Date().toISOString(),
         }
       );
 

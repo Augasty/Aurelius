@@ -21,21 +21,20 @@ const TaskDetails = () => {
     const foundCurrentObj = reduxTasks.find(obj=>obj.id==curTaskId.id)
     setcurrentTask(foundCurrentObj)
 
-    const changePossibleLogic = ( foundCurrentObj?.assignedTo == curuser.email || foundCurrentObj?.authorDetails == curuser.email )
-
+    const changePossibleLogic = (( foundCurrentObj?.assignedTo == curuser.email || foundCurrentObj?.authorDetails == curuser.email  || foundCurrentObj?.openToAll ) && (  foundCurrentObj.lockedTill < new Date().toISOString() || foundCurrentObj?.lockedBy == curuser.email))
     setchangePossible(changePossibleLogic)
-    // console.log(changePossible,foundCurrentObj,curuser.email)
+    
+    console.log('cp',changePossible,foundCurrentObj?.assignedTo == curuser.email,foundCurrentObj?.authorDetails == curuser.email,foundCurrentObj?.openToAll,'&&',foundCurrentObj?.lockedTill < new Date().toISOString(), foundCurrentObj?.lockedBy == curuser?.email)
 
-  }, [changePossible, curTaskId, currentTask, curuser.email, reduxTasks])
+  }, [changePossible, curTaskId, currentTask, curuser?.email, reduxTasks])
   
 
   if(!currentTask){
     return <>loading</>
   }
 
-    // if user.mail == createdBy or assignedTo, and locked == false, goto taskchange
-    return (
-(changePossible ? <TaskChange currentTask={currentTask}/>:<TaskView currentTask={currentTask}/>)
+    return (auth ?
+(changePossible ? <TaskChange currentTask={currentTask}/>:<TaskView currentTask={currentTask}/>):<></>
   )}
 
 export default TaskDetails
