@@ -3,7 +3,7 @@ import { lazy, Suspense } from 'react';
 const CreateTask = lazy(() => import('../components/tasks/createTask/CreateTask'));
 const AddMemberInBoard = lazy(() => import('../components/layout/boards/AddMemberInBoard/AddMemberInBoard'));
 const SignedOutNavbar = lazy(() => import('../components/layout/navbar/SignedOutNavbar'));
-const CreateGroup = lazy(() => import('../components/layout/boards/CreateBoard'));
+const CreateBoard = lazy(() => import('../components/layout/boards/CreateBoard'));
 const Navbar = lazy(() => import('../components/layout/navbar/Navbar'));
 const Dashboard = lazy(() => import('../components/dashboard/Dashboard'));
 const TaskDetails = lazy(() => import('../components/tasks/TaskDetails/TaskDetails'));
@@ -28,9 +28,9 @@ const LazySignedOutNavbar = (props) => (
   </Suspense>
 );
 
-const LazyCreateGroup = (props) => (
+const LazyCreateBoard = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
-    <CreateGroup {...props} />
+    <CreateBoard {...props} />
   </Suspense>
 );
 
@@ -61,7 +61,7 @@ export {
   LazyCreateTask as CreateTask,
   LazyAddMemberInBoard as AddMemberInBoard,
   LazySignedOutNavbar as SignedOutNavbar,
-  LazyCreateGroup as CreateGroup,
+  LazyCreateBoard as CreateBoard,
   LazyNavbar as Navbar,
   LazyDashboard as Dashboard,
   LazyTaskDetails as TaskDetails,

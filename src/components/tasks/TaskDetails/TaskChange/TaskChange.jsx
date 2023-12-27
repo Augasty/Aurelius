@@ -7,8 +7,8 @@ import styles from "./TaskChange.module.css";
 import { useProjectContexts } from "../../../../utils/ProjectContexts";
 
 const TaskChange = ({ currentTask }) => {
-  const {currentBoard} = useProjectContexts();
-  const currentTaskRef = doc(db,"groups",currentBoard[0],"taskList",currentTask.id);
+  const {currentboard} = useProjectContexts();
+  const currentTaskRef = doc(db,"boards",currentboard[0],"taskList",currentTask.id);
 
 
   const [formData, setFormData] = useState({
@@ -19,12 +19,12 @@ const TaskChange = ({ currentTask }) => {
   console.log(formData)
 
   const fetchData = async (docId) => {
-    if (!currentBoard||currentBoard.length === 0) {
+    if (!currentboard||currentboard.length === 0) {
       return;
     }
     console.log("noti is triggered, and all data is fetched");
     try {
-      const taskListRef = collection(db, "groups", currentBoard[0], "taskList");
+      const taskListRef = collection(db, "boards", currentboard[0], "taskList");
 
       if (docId) {
         // Fetch a specific document by ID
@@ -46,7 +46,7 @@ const TaskChange = ({ currentTask }) => {
     }
   };
   useEffect(() => {
-    const tasksRef = doc(db, "groups", currentBoard[0], "taskList", currentTask.id);
+    const tasksRef = doc(db, "boards", currentboard[0], "taskList", currentTask.id);
 
     const unsub = onSnapshot(tasksRef, () => {
       fetchData(currentTask.id);
@@ -56,7 +56,7 @@ const TaskChange = ({ currentTask }) => {
 
     return () => unsub();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentBoard]);
+  }, [currentboard]);
 
 
 

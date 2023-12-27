@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { ErrorBoundary } from "react-error-boundary";
 import {
   AddMemberInBoard,
-  CreateGroup,
+  CreateBoard,
   CreateTask,
   Dashboard,
   Navbar,
@@ -36,12 +36,12 @@ const Routing = () => {
   
   const [user] = useAuthState(auth);
   const curuser = auth.currentUser;
-  const { currentBoard, isRightPanelVisible } = useProjectContexts();
+  const { currentboard, isRightPanelVisible } = useProjectContexts();
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <>
-        {currentBoard.length !== 0 && <CloudTaskTriggers />}
+        {currentboard.length !== 0 && <CloudTaskTriggers />}
         {user ? (
           <>
           <CloudBoardTriggers/>
@@ -54,21 +54,21 @@ const Routing = () => {
         <Routes>
           <Route
             path="/"
-            element={currentBoard.length !== 0 ? <Dashboard /> : <></>}
+            element={currentboard.length !== 0 ? <Dashboard /> : <></>}
           />
 
           <Route path="/task/:id" element={curuser ? <TaskDetails /> : <></>} />
           <Route
             path="/create-task"
-            element={user && currentBoard.length !== 0 ? <CreateTask /> : <></>}
+            element={user && currentboard.length !== 0 ? <CreateTask /> : <></>}
           />
           <Route
-            path="/create-group"
-            element={user ? <CreateGroup /> : <></>}
+            path="/create-board"
+            element={user ? <CreateBoard /> : <></>}
           />
           <Route
             path="/add-member"
-            element={currentBoard.length !== 0 ? <AddMemberInBoard /> : <></>}
+            element={currentboard.length !== 0 ? <AddMemberInBoard /> : <></>}
           />
         </Routes>
       </>

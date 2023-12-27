@@ -9,10 +9,10 @@ import styles from './styles.module.css'
 
 const AddMemberInBoard = () => {
 
-  const { currentBoard } = useProjectContexts();
+  const { currentboard } = useProjectContexts();
   const history = useNavigate();
 
-  if (!currentBoard) {
+  if (!currentboard) {
     history("/");
   }
 
@@ -25,8 +25,8 @@ const AddMemberInBoard = () => {
     const userRef = doc(db, "users", userMail);
     const userSnap = await getDoc(userRef);
 
-    if (userSnap.exists() && currentBoard) {
-      // console.log("we can add it, and are adding it", currentGroup);
+    if (userSnap.exists() && currentboard) {
+      // console.log("we can add it, and are adding it", currentboard);
 
 
 
@@ -35,32 +35,32 @@ const AddMemberInBoard = () => {
       const userDocSnap = await getDoc(userDocRef);
       const userData = userDocSnap.data();
       
-      //  if currentGroup is an not an empty array 
-      if (!userData.currentBoard || userData.currentBoard.length === 0) {
+      await updateDoc(userDocRef, {
+        [`boards.${currentboard[0]}`]: currentboard[1],
+      });
+    
+      //  if currentboard is an not an empty array 
+      if (!userData.currentboard || userData.currentboard.length === 0) {
 
         // updating that users db
         await updateDoc(userDocRef, {
-          currentGroup: [...currentBoard],
+          currentboard: [...currentboard],
         });
       }
-        await updateDoc(userDocRef, {
-          [`groups.${currentBoard[0]}`]: currentBoard[1],
-        });
-      
 
-      // updating in the groups db
-      const groupDocRef = doc(db, "groups", currentBoard[0]);
-      const groupDocSnap = await getDoc(groupDocRef);
+      // updating in the boards db
+      const boardDocRef = doc(db, "boards", currentboard[0]);
+      const boardDocSnap = await getDoc(boardDocRef);
 
-      const groupCurrdata = groupDocSnap.data();
-      const existingMails = [...groupCurrdata.memberEmails];
+      const boardCurrdata = boardDocSnap.data();
+      const existingMails = [...boardCurrdata.memberEmails];
 
       if (existingMails.includes(userMail)){
         console.warn('user already there')
         return
       }
-      await updateDoc(groupDocRef, {
-        memberEmails: [...groupCurrdata.memberEmails, userMail],
+      await updateDoc(boardDocRef, {
+        memberEmails: [...boardCurrdata.memberEmails, userMail],
       });
 
       history("/");
@@ -72,7 +72,7 @@ const AddMemberInBoard = () => {
     <form className={styles.createTaskForm} onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name" className={styles.label}>
-          Add member in {currentBoard[1]}
+          Add member in {currentboard[1]}
         </label>
         <input
           type="text"

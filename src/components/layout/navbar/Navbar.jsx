@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import DropDown from "../boards/DropDown";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { setGroupsFromFireBase } from "../boards/boardSlice";
+import { setboardsFromFireBase } from "../boards/boardSlice";
 import { useDispatch } from "react-redux";
 import topchicken from "../../../../assets/topchicken.jpg";
 import bluey from "../../../../assets/bluey.png";
@@ -19,21 +19,21 @@ const Navbar = () => {
   const curuser = auth.currentUser;
 
   const dispatch = useDispatch();
-  const { currentBoard, setcurrentBoard, isRightPanelVisible,toggleRightPanel } =  useProjectContexts();
+  const { currentboard, setcurrentboard, isRightPanelVisible,toggleRightPanel } =  useProjectContexts();
 
   
-  // fetching the taskList of the current group here
+  // fetching the taskList of the current board here
   useEffect(() => {
     const fetchData = async () => {
-      if (currentBoard.length === 0) {
-        // console.log("no group for this user", currentGroup);
+      if (currentboard.length === 0) {
+        // console.log("no board for this user", currentboard);
         return;
       }
 
       try {
-        const currentGroupId = currentBoard[0];
+        const currentboardId = currentboard[0];
         const ProjectsSnapShot = await getDocs(
-          collection(db, "groups", currentGroupId, "taskList")
+          collection(db, "boards", currentboardId, "taskList")
         );
 
         if (!ProjectsSnapShot.empty) {
@@ -63,7 +63,7 @@ const Navbar = () => {
     } catch (e) {
       console.warn("error in datafetching");
     }
-  }, [currentBoard, curuser, dispatch]);
+  }, [currentboard, curuser, dispatch]);
 
   // for chicken
   const [toggleChicken, setToggleChicken] = useState(true);
@@ -74,9 +74,9 @@ const Navbar = () => {
   const handleSignOut = () =>{
     signOut(auth)
     dispatch(setTasksFromFireBase([]));
-    setcurrentBoard("");
+    setcurrentboard("");
     dispatch(
-      setGroupsFromFireBase({})
+      setboardsFromFireBase({})
     );
   }
   return (
@@ -90,19 +90,19 @@ const Navbar = () => {
           {curuser && (
             <>
               <li className={styles.navbarListItem}>
-                {currentBoard.length !== 0 && (
+                {currentboard.length !== 0 && (
                   <NavLink to="/create-task">Create a task</NavLink>
                 )}
               </li>
-              {currentBoard.length !== 0 && (
+              {currentboard.length !== 0 && (
                 <li className={styles.navbarListItem}>
                   <NavLink to="/add-member">
-                    Add Member in {currentBoard[1]}
+                    Add Member in {currentboard[1]}
                   </NavLink>
                 </li>
               )}
 
-              {currentBoard.length !== 0 && (
+              {currentboard.length !== 0 && (
                 <li
                   onClick={toggleRightPanel}
                   className={styles.navbarListItem}
@@ -111,14 +111,11 @@ const Navbar = () => {
                 </li>
               )}
               <li className={styles.navbarListItem}>
-                <NavLink to="/create-group">New Board</NavLink>
+                <NavLink to="/create-board">New Board</NavLink>
               </li>
               <div className={styles.navbarTexts}>change board</div>
               {curuser.email && (
-                <DropDown
-                  currentGroup={currentBoard}
-                  setcurrentGroup={currentBoard}
-                />
+                <DropDown/>
               )}
               <li className={styles.navbarListItem}>
                 <a onClick={handleSignOut}>Log Out</a>
