@@ -4,9 +4,11 @@ import { db } from "../../../../firebase";
 import { collection, doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import styles from "./TaskChange.module.css";
+import { useProjectContexts } from "../../../../utils/ProjectContexts";
 
-const TaskChange = ({ currentGroup, currentTask }) => {
-  const currentTaskRef = doc(db,"groups",currentGroup[0],"taskList",currentTask.id);
+const TaskChange = ({ currentTask }) => {
+  const {currentBoard} = useProjectContexts();
+  const currentTaskRef = doc(db,"groups",currentBoard[0],"taskList",currentTask.id);
 
 
   const [formData, setFormData] = useState({
@@ -17,12 +19,12 @@ const TaskChange = ({ currentGroup, currentTask }) => {
   console.log(formData)
 
   const fetchData = async (docId) => {
-    if (!currentGroup || currentGroup.length === 0) {
+    if (!currentBoard||currentBoard.length === 0) {
       return;
     }
     console.log("noti is triggered, and all data is fetched");
     try {
-      const taskListRef = collection(db, "groups", currentGroup[0], "taskList");
+      const taskListRef = collection(db, "groups", currentBoard[0], "taskList");
 
       if (docId) {
         // Fetch a specific document by ID
@@ -43,22 +45,18 @@ const TaskChange = ({ currentGroup, currentTask }) => {
       console.error("Error fetching tasks from Firebase:", error);
     }
   };
-  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
   useEffect(() => {
-    const tasksRef = doc(db, "groups", currentGroup[0], "taskList", currentTask.id);
+    const tasksRef = doc(db, "groups", currentBoard[0], "taskList", currentTask.id);
 
     const unsub = onSnapshot(tasksRef, () => {
       fetchData(currentTask.id);
 
-      // Set initialLoadComplete to true after the first snapshot
-      if (!initialLoadComplete) {
-        setInitialLoadComplete(true);
-      }
+
     });
 
     return () => unsub();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentGroup, initialLoadComplete]);
+  }, [currentBoard]);
 
 
 

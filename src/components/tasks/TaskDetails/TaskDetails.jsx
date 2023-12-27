@@ -6,10 +6,9 @@ import { useSelector } from 'react-redux';
 import TaskView from './TaskView/TaskView';
 import TaskChange from './TaskChange/TaskChange';
 import { auth } from '../../../firebase';
-import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext";
 
 const TaskDetails = () => {
-  const { currentGroup } = useGroupAndChatToggleContext();
+
   const curTaskId = useParams();
   const reduxTasks = useSelector((state) => state.tasks);
   const [currentTask, setcurrentTask] = useState({})
@@ -36,7 +35,7 @@ const TaskDetails = () => {
 
     // if user.mail == createdBy or assignedTo, and locked == false, goto taskchange
     return (
-(changePossible ? <TaskChange currentTask={currentTask} currentGroup={currentGroup} />:<TaskView currentTask={currentTask}/>)
+(changePossible ? <TaskChange currentTask={currentTask}/>:<TaskView currentTask={currentTask}/>)
   )}
 
 export default TaskDetails

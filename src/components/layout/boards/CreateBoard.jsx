@@ -14,13 +14,13 @@ import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { addSingleGroup } from "./boardSlice";
-import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext";
+import { useProjectContexts } from "../../../utils/ProjectContexts";
 
 // when a group is created, need to create a doc in ‘texts’ collection with the same ID.
 // only show it if authenticated
 const CreateGroup = () => {
-  const { setcurrentGroup, toggleRightPanel, isRightPanelVisible } =
-    useGroupAndChatToggleContext();
+  const {  setcurrentBoard, toggleRightPanel, isRightPanelVisible } =
+  useProjectContexts();
   const [groupName, setGroupName] = useState(null);
   const [user] = useAuthState(auth);
 
@@ -66,7 +66,7 @@ const CreateGroup = () => {
         currentGroup: [groupDocRef.id, groupName],
       });
       // set it as the current group
-      setcurrentGroup([groupDocRef.id, groupName]);
+      setcurrentBoard([groupDocRef.id, groupName]);
 
       // close the chat if it is open
       if (isRightPanelVisible) {

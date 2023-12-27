@@ -17,7 +17,7 @@ import {
 
 import CloudTaskTriggers from "../utils/CloudTaskTriggers";
 import CloudBoardTriggers from "../utils/CloudBoardTriggers";
-import { useGroupAndChatToggleContext } from "../utils/GroupAndChatToggleContext";
+import { useProjectContexts } from "../utils/ProjectContexts";
 import { useEffect } from "react";
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => (
@@ -36,12 +36,12 @@ const Routing = () => {
   
   const [user] = useAuthState(auth);
   const curuser = auth.currentUser;
-  const { currentGroup, isRightPanelVisible } = useGroupAndChatToggleContext();
+  const { currentBoard, isRightPanelVisible } = useProjectContexts();
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <>
-        {currentGroup.length !== 0 && <CloudTaskTriggers />}
+        {currentBoard.length !== 0 && <CloudTaskTriggers />}
         {user ? (
           <>
           <CloudBoardTriggers/>
@@ -54,13 +54,13 @@ const Routing = () => {
         <Routes>
           <Route
             path="/"
-            element={currentGroup.length !== 0 ? <Dashboard /> : <></>}
+            element={currentBoard.length !== 0 ? <Dashboard /> : <></>}
           />
 
           <Route path="/task/:id" element={curuser ? <TaskDetails /> : <></>} />
           <Route
             path="/create-task"
-            element={user && currentGroup.length !== 0 ? <CreateTask /> : <></>}
+            element={user && currentBoard.length !== 0 ? <CreateTask /> : <></>}
           />
           <Route
             path="/create-group"
@@ -68,7 +68,7 @@ const Routing = () => {
           />
           <Route
             path="/add-member"
-            element={currentGroup.length !== 0 ? <AddMemberInBoard /> : <></>}
+            element={currentBoard.length !== 0 ? <AddMemberInBoard /> : <></>}
           />
         </Routes>
       </>

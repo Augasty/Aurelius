@@ -6,21 +6,21 @@ import { useDispatch } from "react-redux";
 import { setTasksFromFireBase } from "../components/tasks/taskSlice";
 
 import styles from "./styles.module.css";
-import { useGroupAndChatToggleContext } from  "./GroupAndChatToggleContext";
+import { useProjectContexts } from "./ProjectContexts";
 const CloudTaskTriggers = () => {
   const dispatch = useDispatch();
   // can't put this useeffect inside Navbar, it gets called before tasklist is rendered
 
-  const { currentGroup } = useGroupAndChatToggleContext();
+  const { currentBoard } = useProjectContexts();
 
   const fetchData = async () => {
-    if (!currentGroup || currentGroup.length === 0) {
+    if (!currentBoard|| currentBoard.length === 0) {
       return;
     }
     // console.log("noti is triggered, and all data is fetched");
     try {
       const ProjectsSnapShot = await getDocs(
-        collection(db, "groups", currentGroup[0], "taskList")
+        collection(db, "groups", currentBoard[0], "taskList")
       );
 
       if (!ProjectsSnapShot.empty) {
@@ -47,7 +47,7 @@ const CloudTaskTriggers = () => {
 
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
   useEffect(() => {
-    const currentGroupId = currentGroup[0];
+    const currentGroupId = currentBoard[0];
     const tasksRef = collection(db, "groups", currentGroupId, "taskList");
     const unsub = onSnapshot(tasksRef, () => {
       fetchData();
@@ -58,7 +58,7 @@ const CloudTaskTriggers = () => {
 
     return () => unsub();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentGroup, initialLoadComplete]);
+  }, [currentBoard, initialLoadComplete]);
 
   return <div className={styles.triggers}>Cloud Triggers</div>;
 };

@@ -85,7 +85,6 @@ label {
 .taskStatusSelect,
 .deadlineInput {
   appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="%231c5bef"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>');
   background-position: right 10px center;
   background-repeat: no-repeat;
   background-size: 15px;

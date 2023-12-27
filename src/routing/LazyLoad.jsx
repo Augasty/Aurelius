@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 
 const CreateTask = lazy(() => import('../components/tasks/createTask/CreateTask'));
-const AddMemberInBoard = lazy(() => import('../components/layout/boards/AddMemberInBoard'));
+const AddMemberInBoard = lazy(() => import('../components/layout/boards/AddMemberInBoard/AddMemberInBoard'));
 const SignedOutNavbar = lazy(() => import('../components/layout/navbar/SignedOutNavbar'));
 const CreateGroup = lazy(() => import('../components/layout/boards/CreateBoard'));
 const Navbar = lazy(() => import('../components/layout/navbar/Navbar'));

@@ -12,10 +12,10 @@ import {
 } from "firebase/firestore";
 import send from "../../../../assets/send.png";
 import { auth, db } from "../../../firebase";
-import { useGroupAndChatToggleContext } from  "../../../utils/GroupAndChatToggleContext";
+import { useProjectContexts } from "../../../utils/ProjectContexts";
 
 function ChatRoom() {
-  const { currentGroup } = useGroupAndChatToggleContext();
+  const {currentBoard} = useProjectContexts();
 
   const [formValue, setFormValue] = useState("");
   const [messages, setmessages] = useState(null);
@@ -44,7 +44,7 @@ function ChatRoom() {
   }
   // fetch the list of texts in this group whenever someone else adds a text
   useEffect(() => {
-    const textsRef = collection(db, "groups", currentGroup[0], "chatList");
+    const textsRef = collection(db, "groups", currentBoard[0], "chatList");
     dummy.current.scrollIntoView({ behavior: "smooth" });
 
     const unsub = onSnapshot(textsRef, () => {
@@ -57,7 +57,7 @@ function ChatRoom() {
     });
 
     return () => unsub();
-  }, [currentGroup, initialLoadComplete]);
+  }, [currentBoard, initialLoadComplete]);
 
 
 
@@ -66,7 +66,7 @@ function ChatRoom() {
 
     const { uid, photoURL } = auth.currentUser;
 
-    await addDoc(collection(db, "groups", currentGroup[0], "chatList"), {
+    await addDoc(collection(db, "groups", currentBoard[0], "chatList"), {
       chat: formValue,
       createdAt: new Date().toISOString(),
       uid,
