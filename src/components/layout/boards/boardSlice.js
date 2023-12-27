@@ -4,24 +4,24 @@ const initialState = {}
 
 
 const boardSlice = createSlice({
-    name: 'groups',
+    name: 'boards',
     initialState,
 
     reducers: {
-        // add group
-        setGroupsFromFireBase:(state,action)=>{
+        // add board
+        setboardsFromFireBase:(state,action)=>{
             return action.payload
         },
-        // add single group, and make it the current group
-        addSingleGroup:(state,action)=>{
-            const newGroup = action.payload;
+        // add single board, and make it the current board
+        addSingleboard:(state,action)=>{
+            const newboard = action.payload;
             return {
                 ...state,
-                ...newGroup
+                ...newboard
             }
         }
     }
 })
 
-export const {setGroupsFromFireBase, addSingleGroup} = boardSlice.actions
+export const {setboardsFromFireBase, addSingleboard} = boardSlice.actions
 export default boardSlice.reducer

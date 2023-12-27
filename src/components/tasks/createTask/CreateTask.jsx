@@ -11,35 +11,35 @@ import { useProjectContexts } from "../../../utils/ProjectContexts";
 
 const CreateTask = () => {
 
-  const { currentBoard } = useProjectContexts();
+  const { currentboard } = useProjectContexts();
   const [task, setTask] = useState({
     openToAll:false
   }); // Updated variable name
-  const [currentGroupMails, setCurrentGroupMails] = useState([]);
+  const [currentboardMails, setcurrentboardMails] = useState([]);
 
   const curuser = auth.currentUser;
   const history = useNavigate();
 
   useEffect(() => {
     try {
-      const fetchUsersFromCurrentGroup = async () => {
-        const groupId = currentBoard[0];
-        const groupDocRef = doc(db, "groups", groupId);
-        const groupDocSnap = await getDoc(groupDocRef);
+      const fetchUsersFromcurrentboard = async () => {
+        const boardId = currentboard[0];
+        const boardDocRef = doc(db, "boards", boardId);
+        const boardDocSnap = await getDoc(boardDocRef);
 
-        const groupCurrdata = groupDocSnap.data();
-        const existingMails = [...groupCurrdata.memberEmails];
-        setCurrentGroupMails(existingMails);
+        const boardCurrdata = boardDocSnap.data();
+        const existingMails = [...boardCurrdata.memberEmails];
+        setcurrentboardMails(existingMails);
       };
 
-      fetchUsersFromCurrentGroup();
+      fetchUsersFromcurrentboard();
     } catch (e) {
       console.warn(
         "error in fetching existing members while creating a task",
         e
       );
     }
-  }, [currentBoard]);
+  }, [currentboard]);
 
   const handleChange = (e) => {
     setTask({
@@ -55,7 +55,7 @@ const CreateTask = () => {
     console.log(task)
     try {
       await addDoc(
-        collection(db, "groups", currentBoard[0], "taskList"),
+        collection(db, "boards", currentboard[0], "taskList"),
         {
           ...task,
           authorDetails: curuser.email,
@@ -107,7 +107,7 @@ const CreateTask = () => {
           required
         >
           <option value="">Select person to assign</option>
-          {currentGroupMails.map((mail) => (
+          {currentboardMails.map((mail) => (
             <option value={mail} key={mail}>
               {mail}
             </option>

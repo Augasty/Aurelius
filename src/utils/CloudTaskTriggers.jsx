@@ -11,16 +11,16 @@ const CloudTaskTriggers = () => {
   const dispatch = useDispatch();
   // can't put this useeffect inside Navbar, it gets called before tasklist is rendered
 
-  const { currentBoard } = useProjectContexts();
+  const { currentboard } = useProjectContexts();
 
   const fetchData = async () => {
-    if (!currentBoard|| currentBoard.length === 0) {
+    if (!currentboard|| currentboard.length === 0) {
       return;
     }
     // console.log("noti is triggered, and all data is fetched");
     try {
       const ProjectsSnapShot = await getDocs(
-        collection(db, "groups", currentBoard[0], "taskList")
+        collection(db, "boards", currentboard[0], "taskList")
       );
 
       if (!ProjectsSnapShot.empty) {
@@ -47,8 +47,8 @@ const CloudTaskTriggers = () => {
 
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
   useEffect(() => {
-    const currentGroupId = currentBoard[0];
-    const tasksRef = collection(db, "groups", currentGroupId, "taskList");
+    const currentboardId = currentboard[0];
+    const tasksRef = collection(db, "boards", currentboardId, "taskList");
     const unsub = onSnapshot(tasksRef, () => {
       fetchData();
       if (!initialLoadComplete) {
@@ -58,7 +58,7 @@ const CloudTaskTriggers = () => {
 
     return () => unsub();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentBoard, initialLoadComplete]);
+  }, [currentboard, initialLoadComplete]);
 
   return <div className={styles.triggers}>Cloud Triggers</div>;
 };

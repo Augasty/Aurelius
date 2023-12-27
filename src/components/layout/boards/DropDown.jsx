@@ -10,42 +10,43 @@ import { useProjectContexts } from "../../../utils/ProjectContexts";
 
 
 const DropDown = () => {
-  const {currentBoard,setcurrentBoard,isRightPanelVisible,toggleRightPanel} = useProjectContexts();
+  const {currentboard,setcurrentboard,isRightPanelVisible,toggleRightPanel} = useProjectContexts();
   const [user] = useAuthState(auth);
-  const redux_boards = useSelector((state) => state.groups);
+  const redux_boards = useSelector((state) => state.boards);
   const history = useNavigate();
 
   // Handler function to update the selected value
   const handleSelectChange = (event) => {
     event.preventDefault();
-    const curBoardArr = event.target.value.split(","); //['EUlldFByPHz7RcidE7z2', 'group2']
+    const curBoardArr = event.target.value.split(","); //['EUlldFByPHz7RcidE7z2', 'board2']
     console.log(curBoardArr);
     updateDoc(doc(db, "users", user.email), {
-      currentGroup: curBoardArr,
+      currentboard: curBoardArr,
     });
-    setcurrentBoard(curBoardArr);
+    setcurrentboard(curBoardArr);
 
-    if( isRightPanelVisible){
+    // on group change, closing the chat-panel if it is open
+    if(isRightPanelVisible){
       toggleRightPanel(false)
     }
 
     history("/");
   };
 
-  const groupKeys = Object.keys(redux_boards);
+  const boardKeys = Object.keys(redux_boards);
 
-  const currentGroupArr = `${currentBoard[0]},${currentBoard[1]}`
+  const currentboardArr = `${currentboard[0]},${currentboard[1]}`
   return (
     <>
       <div className={styles.dropdownContainer}>
         <select
           id="dropdown"
-          value={currentGroupArr ? currentGroupArr : ""}
+          value={currentboardArr ? currentboardArr : ""}
           onChange={handleSelectChange}
           className={styles.dropdownSelect}
         >
           {/* Add your dropdown options here */}
-          {groupKeys.map((idref) => {
+          {boardKeys.map((idref) => {
             return (
               <option
                 value={`${idref},${redux_boards[idref]}`}

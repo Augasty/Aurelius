@@ -3,7 +3,7 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 import { auth, db } from "../firebase";
 import { useDispatch } from "react-redux";
-import { setGroupsFromFireBase } from "../components/layout/boards/boardSlice";
+import { setboardsFromFireBase } from "../components/layout/boards/boardSlice";
 import styles from "./styles.module.css";
 import { useProjectContexts } from "./ProjectContexts";
 
@@ -11,7 +11,7 @@ import { useProjectContexts } from "./ProjectContexts";
 
 const CloudBoardTriggers = () => {
   const curuser = auth.currentUser;
-  const { currentBoard, setcurrentBoard } =  useProjectContexts();
+  const { currentboard, setcurrentboard } =  useProjectContexts();
   const dispatch = useDispatch();
 
 
@@ -22,17 +22,17 @@ const CloudBoardTriggers = () => {
       const userSnapshot = await getDoc(userRef);
 
       if (userSnapshot.exists()) {
-        const userGroupsObj = userSnapshot.data().groups;
+        const userboardsObj = userSnapshot.data().boards;
 
         dispatch(
-          setGroupsFromFireBase({
-            ...userGroupsObj,
+          setboardsFromFireBase({
+            ...userboardsObj,
           })
         );
-        // if there are no current group, make it the current group
-        if (currentBoard.length == 0) {
-          const curBoardArr = userSnapshot.data().currentGroup;
-          setcurrentBoard(curBoardArr);
+        // if there are no current board, make it the current board
+        if (currentboard.length == 0) {
+          const curBoardArr = userSnapshot.data().currentboard;
+          setcurrentboard(curBoardArr);
         }
       }
     } catch (error) {

@@ -15,7 +15,7 @@ import { auth, db } from "../../../firebase";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 
 function ChatRoom() {
-  const {currentBoard} = useProjectContexts();
+  const {currentboard} = useProjectContexts();
 
   const [formValue, setFormValue] = useState("");
   const [messages, setmessages] = useState(null);
@@ -44,7 +44,7 @@ function ChatRoom() {
   }
   // fetch the list of texts in this group whenever someone else adds a text
   useEffect(() => {
-    const textsRef = collection(db, "groups", currentBoard[0], "chatList");
+    const textsRef = collection(db, "boards", currentboard[0], "chatList");
     dummy.current.scrollIntoView({ behavior: "smooth" });
 
     const unsub = onSnapshot(textsRef, () => {
@@ -57,7 +57,7 @@ function ChatRoom() {
     });
 
     return () => unsub();
-  }, [currentBoard, initialLoadComplete]);
+  }, [currentboard, initialLoadComplete]);
 
 
 
@@ -66,7 +66,7 @@ function ChatRoom() {
 
     const { uid, photoURL } = auth.currentUser;
 
-    await addDoc(collection(db, "groups", currentBoard[0], "chatList"), {
+    await addDoc(collection(db, "boards", currentboard[0], "chatList"), {
       chat: formValue,
       createdAt: new Date().toISOString(),
       uid,

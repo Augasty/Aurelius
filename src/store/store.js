@@ -4,7 +4,7 @@ import taskReducer from '../components/tasks/taskSlice'
 
 const store = configureStore({
     reducer:{
-        groups: boardReducer,
+        boards: boardReducer,
         tasks:taskReducer
     }
 })

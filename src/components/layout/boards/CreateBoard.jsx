@@ -13,15 +13,15 @@ import {
 import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
-import { addSingleGroup } from "./boardSlice";
+import { addSingleboard } from "./boardSlice";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 
-// when a group is created, need to create a doc in ‘texts’ collection with the same ID.
+// when a board is created, need to create a doc in ‘texts’ collection with the same ID.
 // only show it if authenticated
-const CreateGroup = () => {
-  const {  setcurrentBoard, toggleRightPanel, isRightPanelVisible } =
+const Createboard = () => {
+  const {  setcurrentboard, toggleRightPanel, isRightPanelVisible } =
   useProjectContexts();
-  const [groupName, setGroupName] = useState(null);
+  const [boardName, setboardName] = useState(null);
   const [user] = useAuthState(auth);
 
   const dispatch = useDispatch();
@@ -29,44 +29,44 @@ const CreateGroup = () => {
 
   const handleCreate = async (e, isScrum) => {
     e.preventDefault();
-    if (!groupName) {
-      console.warn("group name cant be empty");
+    if (!boardName) {
+      console.warn("board name cant be empty");
       return;
     }
-    if (groupName.trim() == "") {
-      console.warn("group name cant be blank spaces");
+    if (boardName.trim() == "") {
+      console.warn("board name cant be blank spaces");
       return;
     }
     try {
-      // add group data in groups db in firebase
-      const groupDocRef = await addDoc(collection(db, "groups"), {
-        title: groupName,
+      // add board data in boards db in firebase
+      const boardDocRef = await addDoc(collection(db, "boards"), {
+        title: boardName,
         memberEmails: [user.email],
-        createdBy: user.email, //passing the creator of the group, who will also act as the admin later
+        createdBy: user.email, //passing the creator of the board, who will also act as the admin later
         createdAt: serverTimestamp(),
         isScrum: isScrum,
       });
 
         // adding a dummy data in the tasklist to create the subcollection
-        const taskListRef = collection(groupDocRef, "taskList");
+        const taskListRef = collection(boardDocRef, "taskList");
         await addDoc(taskListRef, { dummy: true });
         // adding a dummy data in the textlist to create the subcollection
-        const chatListRef = collection(groupDocRef, "chatList");
+        const chatListRef = collection(boardDocRef, "chatList");
         await addDoc(chatListRef, { dummy: true });
         // make the text Slice an empty array
       if (isScrum) {
-        // inside the collection scrum, create a doc with the same id as the group
-        const storyListRef = collection(groupDocRef, "storyList");
+        // inside the collection scrum, create a doc with the same id as the board
+        const storyListRef = collection(boardDocRef, "storyList");
         await addDoc(storyListRef, { dummy: true });
       }
 
-      // add group data & currentgroup in corresponding entry in users db in firebase
+      // add board data & currentboard in corresponding entry in users db in firebase
       updateDoc(doc(db, "users", user.email), {
-        [`groups.${groupDocRef.id}`]: groupName,
-        currentGroup: [groupDocRef.id, groupName],
+        [`boards.${boardDocRef.id}`]: boardName,
+        currentboard: [boardDocRef.id, boardName],
       });
-      // set it as the current group
-      setcurrentBoard([groupDocRef.id, groupName]);
+      // set it as the current board
+      setcurrentboard([boardDocRef.id, boardName]);
 
       // close the chat if it is open
       if (isRightPanelVisible) {
@@ -75,12 +75,12 @@ const CreateGroup = () => {
 
       // add the new data in redux storage
       dispatch(
-        addSingleGroup({
-          [groupDocRef.id]: groupName,
+        addSingleboard({
+          [boardDocRef.id]: boardName,
         })
       );
     } catch (e) {
-      console.error("error while creating a group", e);
+      console.error("error while creating a board", e);
     }
 
     history("/");
@@ -92,12 +92,12 @@ const CreateGroup = () => {
     <div className={styles.container}>
       <div className={styles.inputField}>
         <label htmlFor="title" className={styles.label}>
-          Create Group
+          Create board
         </label>
         <input
           type="text"
           id="name"
-          onChange={(e) => setGroupName(e.target.value)}
+          onChange={(e) => setboardName(e.target.value)}
           className={styles.input}
           required
         />
@@ -126,4 +126,4 @@ const CreateGroup = () => {
   );
 };
 
-export default CreateGroup;
+export default Createboard;

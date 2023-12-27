@@ -8,7 +8,6 @@ const taskSlice = createSlice({
     initialState,
 
     reducers: {
-        // add group
         setTasksFromFireBase:(state,action)=>{
             return action.payload
         },

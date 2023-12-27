@@ -9,7 +9,7 @@ import { auth, db } from "../firebase"; // Import your Firebase setup
 
 export const signInWithGoogle = async () => {
   try {
-    if (window.location.href == 'http://localhost:5173/') {
+    if (window.location.href == 'http://localhost:5175/') {
 
       const email = "augastytest@gmail.com";
       const password = "Dijkstra@123";
@@ -45,8 +45,8 @@ export const signInWithGoogle = async () => {
       // console.log('new');
       const userData = {
         email: userEmail,
-        groups: {},
-        currentGroup: [],
+        boards: {},
+        currentboard: [],
       };
       await setDoc(doc(db, "users", userEmail), userData);
     }

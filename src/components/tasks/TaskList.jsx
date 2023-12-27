@@ -11,13 +11,6 @@ const TaskList = () => {
   const reduxTasks = useSelector((state) => state.tasks);
   const filteredArray = reduxTasks.filter((obj) => !obj.dummy);
 
-  // useEffect(() => {
-
-  //   console.log(filteredArray)
-  // }, [filteredArray])
-  
-
-  // console.log(filteredArray)
   // Separate tasks based on priority
   const highPriorityTasks = filteredArray.filter(task => task.priority === 'high');
   const mediumPriorityTasks = filteredArray.filter(task => task.priority === 'medium');

@@ -5,15 +5,15 @@ const ProjectContexts = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const ProjectContextsProvider = ({ children }) => {
-  const [currentBoard, setcurrentBoard] = useState([]);
-  const [isCurrentBoardScrum,setisCurrentBoardScrum] = useState(null) 
+  const [currentboard, setcurrentboard] = useState([]);
+  const [iscurrentboardScrum,setiscurrentboardScrum] = useState(null) 
   const [isRightPanelVisible, setIsRightPanelVisible] = useState(false);
 
   const toggleRightPanel = () => {
     setIsRightPanelVisible((prev) => !prev);
   };
   return (
-    <ProjectContexts.Provider value={{ currentBoard, setcurrentBoard,isRightPanelVisible,toggleRightPanel,isCurrentBoardScrum,setisCurrentBoardScrum }}>
+    <ProjectContexts.Provider value={{ currentboard, setcurrentboard,isRightPanelVisible,toggleRightPanel,iscurrentboardScrum,setiscurrentboardScrum }}>
       {children}
     </ProjectContexts.Provider>
   );
