@@ -11,14 +11,12 @@ import {
   Navbar,
   SignedOutNavbar,
   TaskDetails,
-  RightPanel
+  RightPanel,
 } from "./LazyLoad";
-
 
 import CloudTaskTriggers from "../utils/CloudTaskTriggers";
 import CloudBoardTriggers from "../utils/CloudBoardTriggers";
 import { useProjectContexts } from "../utils/ProjectContexts";
-import { useEffect } from "react";
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => (
   <div>
@@ -29,11 +27,6 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => (
 );
 
 const Routing = () => {
-  useEffect(() => {
-    console.log(auth.currentUser)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth.currentUser])
-  
   const [user] = useAuthState(auth);
   const curuser = auth.currentUser;
   const { currentboard, isRightPanelVisible } = useProjectContexts();
@@ -44,7 +37,7 @@ const Routing = () => {
         {currentboard.length !== 0 && <CloudTaskTriggers />}
         {user ? (
           <>
-          <CloudBoardTriggers/>
+            <CloudBoardTriggers />
             <Navbar />
             {isRightPanelVisible && <RightPanel />}
           </>

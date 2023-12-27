@@ -7,14 +7,10 @@ import { setboardsFromFireBase } from "../components/layout/boards/boardSlice";
 import styles from "./styles.module.css";
 import { useProjectContexts } from "./ProjectContexts";
 
-
-
 const CloudBoardTriggers = () => {
   const curuser = auth.currentUser;
-  const { currentboard, setcurrentboard } =  useProjectContexts();
+  const { currentboard, setcurrentboard } = useProjectContexts();
   const dispatch = useDispatch();
-
-
 
   async function fetchBoard() {
     try {
@@ -24,15 +20,11 @@ const CloudBoardTriggers = () => {
       if (userSnapshot.exists()) {
         const userboardsObj = userSnapshot.data().boards;
 
-        dispatch(
-          setboardsFromFireBase({
-            ...userboardsObj,
-          })
-        );
+        dispatch(setboardsFromFireBase({ ...userboardsObj }));
         // if there are no current board, make it the current board
         if (currentboard.length == 0) {
           const curBoardArr = userSnapshot.data().currentboard;
-          // tried adding updateCurrentBoard... here (unnecessary), causes a bug when someone else adds you in a group 
+          // tried adding updateCurrentBoard... here (unnecessary), causes a bug when someone else adds you in a group
           setcurrentboard(curBoardArr);
         }
       }
@@ -53,12 +45,15 @@ const CloudBoardTriggers = () => {
 
         return () => unsub();
       } catch (error) {
-        console.error('error in cloudBoardTriggers while fetching Boards',error)
+        console.error(
+          "error in cloudBoardTriggers while fetching Boards",
+          error
+        );
       }
     };
 
     fetchBoardAndUpdate();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [curuser?.email]);
 
   return <div className={styles.triggers}>Cloud Triggers</div>;
