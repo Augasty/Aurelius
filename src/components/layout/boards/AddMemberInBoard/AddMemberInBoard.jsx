@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../../../firebase";
 import { useProjectContexts } from "../../../../utils/ProjectContexts";
 import styles from './styles.module.css'
+import updateCurrentBoardInFirebase from "../../../../utils/updateCurrentBoardInFirebase";
 
 
 const AddMemberInBoard = () => {
@@ -43,9 +44,10 @@ const AddMemberInBoard = () => {
       if (!userData.currentboard || userData.currentboard.length === 0) {
 
         // updating that users db
-        await updateDoc(userDocRef, {
-          currentboard: [...currentboard],
-        });
+        updateCurrentBoardInFirebase(userMail,currentboard)
+        // await updateDoc(userDocRef, {
+        //   currentboard: [...currentboard],
+        // });
       }
 
       // updating in the boards db

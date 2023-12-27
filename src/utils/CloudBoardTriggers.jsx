@@ -32,6 +32,7 @@ const CloudBoardTriggers = () => {
         // if there are no current board, make it the current board
         if (currentboard.length == 0) {
           const curBoardArr = userSnapshot.data().currentboard;
+          // tried adding updateCurrentBoard... here (unnecessary), causes a bug when someone else adds you in a group 
           setcurrentboard(curBoardArr);
         }
       }

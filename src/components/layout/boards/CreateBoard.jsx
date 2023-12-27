@@ -15,6 +15,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { addSingleboard } from "./boardSlice";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
+import updateCurrentBoardInFirebase from "../../../utils/updateCurrentBoardInFirebase";
 
 // when a board is created, need to create a doc in ‘texts’ collection with the same ID.
 // only show it if authenticated
@@ -60,8 +61,9 @@ const Createboard = () => {
       // add board data & currentboard in corresponding entry in users db in firebase
       updateDoc(doc(db, "users", user.email), {
         [`boards.${boardDocRef.id}`]: boardName,
-        currentboard: [boardDocRef.id, boardName],
+        // currentboard: [boardDocRef.id, boardName],
       });
+      updateCurrentBoardInFirebase(user.email,[boardDocRef.id, boardName])
       // set it as the current board
       setcurrentboard([boardDocRef.id, boardName]);
 

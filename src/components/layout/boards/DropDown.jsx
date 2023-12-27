@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { doc, updateDoc } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { auth, db } from "../../../firebase";
+import { auth } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import styles from './DropDown.module.css'
 import { useProjectContexts } from "../../../utils/ProjectContexts";
+import updateCurrentBoardInFirebase from "../../../utils/updateCurrentBoardInFirebase";
 
 
 
@@ -20,9 +20,10 @@ const DropDown = () => {
     event.preventDefault();
     const curBoardArr = event.target.value.split(","); //['EUlldFByPHz7RcidE7z2', 'board2']
     console.log(curBoardArr);
-    updateDoc(doc(db, "users", user.email), {
-      currentboard: curBoardArr,
-    });
+    // updateDoc(doc(db, "users", user.email), {
+    //   currentboard: curBoardArr,
+    // });
+    updateCurrentBoardInFirebase(user.email,curBoardArr)
     setcurrentboard(curBoardArr);
 
     // on group change, closing the chat-panel if it is open
