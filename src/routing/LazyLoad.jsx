@@ -1,9 +1,9 @@
 import { lazy, Suspense } from 'react';
 
 const CreateTask = lazy(() => import('../components/tasks/createTask/CreateTask'));
-const AddMemberInGroup = lazy(() => import('../components/layout/groups/addMemberInGroup'));
+const AddMemberInBoard = lazy(() => import('../components/layout/boards/AddMemberInBoard'));
 const SignedOutNavbar = lazy(() => import('../components/layout/navbar/SignedOutNavbar'));
-const CreateGroup = lazy(() => import('../components/layout/groups/CreateGroup'));
+const CreateGroup = lazy(() => import('../components/layout/boards/CreateBoard'));
 const Navbar = lazy(() => import('../components/layout/navbar/Navbar'));
 const Dashboard = lazy(() => import('../components/dashboard/Dashboard'));
 const TaskDetails = lazy(() => import('../components/tasks/TaskDetails/TaskDetails'));
@@ -16,9 +16,9 @@ const LazyCreateTask = (props) => (
 );
 
 
-const LazyAddMemberInGroup = (props) => (
+const LazyAddMemberInBoard = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
-    <AddMemberInGroup {...props} />
+    <AddMemberInBoard {...props} />
   </Suspense>
 );
 
@@ -59,7 +59,7 @@ const LazyRightPanel = (props) => (
 );
 export {
   LazyCreateTask as CreateTask,
-  LazyAddMemberInGroup as AddMemberInGroup,
+  LazyAddMemberInBoard as AddMemberInBoard,
   LazySignedOutNavbar as SignedOutNavbar,
   LazyCreateGroup as CreateGroup,
   LazyNavbar as Navbar,

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../../firebase";
 import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext";
 
-const AddMemberInGroup = () => {
+const AddMemberInBoard = () => {
 
   const { currentGroup } = useGroupAndChatToggleContext();
   const history = useNavigate();
@@ -88,4 +88,4 @@ const AddMemberInGroup = () => {
   );
 };
 
-export default AddMemberInGroup;
+export default AddMemberInBoard;

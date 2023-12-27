@@ -4,10 +4,10 @@ import { Link, NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css"; // Import your CSS file
 import { auth, db } from "../../../firebase";
 import { signOut } from "firebase/auth";
-import DropDown from "../groups/DropDown";
+import DropDown from "../boards/DropDown";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { setGroupsFromFireBase } from "../groups/groupSlice";
+import { setGroupsFromFireBase } from "../boards/boardSlice";
 import { useDispatch } from "react-redux";
 import topchicken from "../../../../assets/topchicken.jpg";
 import bluey from "../../../../assets/bluey.png";

@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ErrorBoundary } from "react-error-boundary";
 import {
-  AddMemberInGroup,
+  AddMemberInBoard,
   CreateGroup,
   CreateTask,
   Dashboard,
@@ -15,8 +15,8 @@ import {
 } from "./LazyLoad";
 
 
-import CloudTaskTriggers from "../components/dashboard/CloudTaskTriggers";
-import CloudGroupTriggers from "../components/dashboard/CloudGroupTriggers";
+import CloudTaskTriggers from "../utils/CloudTaskTriggers";
+import CloudBoardTriggers from "../utils/CloudBoardTriggers";
 import { useGroupAndChatToggleContext } from "../utils/GroupAndChatToggleContext";
 import { useEffect } from "react";
 
@@ -44,7 +44,7 @@ const Routing = () => {
         {currentGroup.length !== 0 && <CloudTaskTriggers />}
         {user ? (
           <>
-          <CloudGroupTriggers/>
+          <CloudBoardTriggers/>
             <Navbar />
             {isRightPanelVisible && <RightPanel />}
           </>
@@ -68,7 +68,7 @@ const Routing = () => {
           />
           <Route
             path="/add-member"
-            element={currentGroup.length !== 0 ? <AddMemberInGroup /> : <></>}
+            element={currentGroup.length !== 0 ? <AddMemberInBoard /> : <></>}
           />
         </Routes>
       </>
