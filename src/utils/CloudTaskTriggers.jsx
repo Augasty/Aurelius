@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../../firebase";
+import { db } from "../firebase";
 import { useDispatch } from "react-redux";
-import { setTasksFromFireBase } from "../tasks/taskSlice";
+import { setTasksFromFireBase } from "../components/tasks/taskSlice";
 
-import styles from "./Dashboard.module.css";
-import { useGroupAndChatToggleContext } from  "../../utils/GroupAndChatToggleContext";
+import styles from "./styles.module.css";
+import { useGroupAndChatToggleContext } from  "./GroupAndChatToggleContext";
 const CloudTaskTriggers = () => {
   const dispatch = useDispatch();
   // can't put this useeffect inside Navbar, it gets called before tasklist is rendered
@@ -60,7 +60,7 @@ const CloudTaskTriggers = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGroup, initialLoadComplete]);
 
-  return <div className={styles.notifications}>Cloud Triggers</div>;
+  return <div className={styles.triggers}>Cloud Triggers</div>;
 };
 
 export default CloudTaskTriggers;

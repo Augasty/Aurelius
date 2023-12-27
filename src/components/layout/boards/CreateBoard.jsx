@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
-import styles from "./CreateGroup.module.css";
+import styles from "./CreateBoard.module.css";
 import {
   addDoc,
   collection,
@@ -13,7 +13,7 @@ import {
 import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
-import { addSingleGroup } from "./groupSlice";
+import { addSingleGroup } from "./boardSlice";
 import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext";
 
 // when a group is created, need to create a doc in ‘texts’ collection with the same ID.

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {}
 
 
-const groupSlice = createSlice({
+const boardSlice = createSlice({
     name: 'groups',
     initialState,
 
@@ -23,5 +23,5 @@ const groupSlice = createSlice({
     }
 })
 
-export const {setGroupsFromFireBase, addSingleGroup} = groupSlice.actions
-export default groupSlice.reducer
+export const {setGroupsFromFireBase, addSingleGroup} = boardSlice.actions
+export default boardSlice.reducer
