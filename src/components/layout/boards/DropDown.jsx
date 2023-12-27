@@ -5,23 +5,25 @@ import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import styles from './DropDown.module.css'
+import { useProjectContexts } from "../../../utils/ProjectContexts";
 
-import { useGroupAndChatToggleContext } from  "../../../utils/GroupAndChatToggleContext";
+
+
 const DropDown = () => {
-  const { currentGroup, setcurrentGroup , isRightPanelVisible,toggleRightPanel} = useGroupAndChatToggleContext();
+  const {currentBoard,setcurrentBoard,isRightPanelVisible,toggleRightPanel} = useProjectContexts();
   const [user] = useAuthState(auth);
-  const redux_groups = useSelector((state) => state.groups);
+  const redux_boards = useSelector((state) => state.groups);
   const history = useNavigate();
 
   // Handler function to update the selected value
   const handleSelectChange = (event) => {
     event.preventDefault();
-    const curGroupArr = event.target.value.split(","); //['EUlldFByPHz7RcidE7z2', 'group2']
-    console.log(curGroupArr);
+    const curBoardArr = event.target.value.split(","); //['EUlldFByPHz7RcidE7z2', 'group2']
+    console.log(curBoardArr);
     updateDoc(doc(db, "users", user.email), {
-      currentGroup: curGroupArr,
+      currentGroup: curBoardArr,
     });
-    setcurrentGroup(curGroupArr);
+    setcurrentBoard(curBoardArr);
 
     if( isRightPanelVisible){
       toggleRightPanel(false)
@@ -30,9 +32,9 @@ const DropDown = () => {
     history("/");
   };
 
-  const groupKeys = Object.keys(redux_groups);
+  const groupKeys = Object.keys(redux_boards);
 
-  const currentGroupArr = `${currentGroup[0]},${currentGroup[1]}`
+  const currentGroupArr = `${currentBoard[0]},${currentBoard[1]}`
   return (
     <>
       <div className={styles.dropdownContainer}>
@@ -46,10 +48,10 @@ const DropDown = () => {
           {groupKeys.map((idref) => {
             return (
               <option
-                value={`${idref},${redux_groups[idref]}`}
+                value={`${idref},${redux_boards[idref]}`}
                 key={idref}
                 className={styles.dropdownOption}
-              >{`${redux_groups[idref]}`}</option>
+              >{`${redux_boards[idref]}`}</option>
             );
           })}
         </select>

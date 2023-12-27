@@ -12,25 +12,26 @@ import { useDispatch } from "react-redux";
 import topchicken from "../../../../assets/topchicken.jpg";
 import bluey from "../../../../assets/bluey.png";
 import { setTasksFromFireBase } from "../../tasks/taskSlice";
-import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext";
+import { useProjectContexts } from "../../../utils/ProjectContexts";
+
 
 const Navbar = () => {
   const curuser = auth.currentUser;
 
   const dispatch = useDispatch();
-  const { currentGroup, setcurrentGroup, isRightPanelVisible,toggleRightPanel } =  useGroupAndChatToggleContext();
+  const { currentBoard, setcurrentBoard, isRightPanelVisible,toggleRightPanel } =  useProjectContexts();
 
   
   // fetching the taskList of the current group here
   useEffect(() => {
     const fetchData = async () => {
-      if (currentGroup.length === 0) {
+      if (currentBoard.length === 0) {
         // console.log("no group for this user", currentGroup);
         return;
       }
 
       try {
-        const currentGroupId = currentGroup[0];
+        const currentGroupId = currentBoard[0];
         const ProjectsSnapShot = await getDocs(
           collection(db, "groups", currentGroupId, "taskList")
         );
@@ -62,7 +63,7 @@ const Navbar = () => {
     } catch (e) {
       console.warn("error in datafetching");
     }
-  }, [currentGroup, curuser, dispatch]);
+  }, [currentBoard, curuser, dispatch]);
 
   // for chicken
   const [toggleChicken, setToggleChicken] = useState(true);
@@ -73,7 +74,7 @@ const Navbar = () => {
   const handleSignOut = () =>{
     signOut(auth)
     dispatch(setTasksFromFireBase([]));
-    setcurrentGroup("");
+    setcurrentBoard("");
     dispatch(
       setGroupsFromFireBase({})
     );
@@ -89,19 +90,19 @@ const Navbar = () => {
           {curuser && (
             <>
               <li className={styles.navbarListItem}>
-                {currentGroup.length !== 0 && (
+                {currentBoard.length !== 0 && (
                   <NavLink to="/create-task">Create a task</NavLink>
                 )}
               </li>
-              {currentGroup.length !== 0 && (
+              {currentBoard.length !== 0 && (
                 <li className={styles.navbarListItem}>
                   <NavLink to="/add-member">
-                    Add Member in {currentGroup[1]}
+                    Add Member in {currentBoard[1]}
                   </NavLink>
                 </li>
               )}
 
-              {currentGroup.length !== 0 && (
+              {currentBoard.length !== 0 && (
                 <li
                   onClick={toggleRightPanel}
                   className={styles.navbarListItem}
@@ -115,8 +116,8 @@ const Navbar = () => {
               <div className={styles.navbarTexts}>change board</div>
               {curuser.email && (
                 <DropDown
-                  currentGroup={currentGroup}
-                  setcurrentGroup={setcurrentGroup}
+                  currentGroup={currentBoard}
+                  setcurrentGroup={currentBoard}
                 />
               )}
               <li className={styles.navbarListItem}>

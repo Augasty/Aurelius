@@ -2,15 +2,17 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../../../firebase";
-import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext";
+import { db } from "../../../../firebase";
+import { useProjectContexts } from "../../../../utils/ProjectContexts";
+import styles from './styles.module.css'
+
 
 const AddMemberInBoard = () => {
 
-  const { currentGroup } = useGroupAndChatToggleContext();
+  const { currentBoard } = useProjectContexts();
   const history = useNavigate();
 
-  if (!currentGroup) {
+  if (!currentBoard) {
     history("/");
   }
 
@@ -23,9 +25,9 @@ const AddMemberInBoard = () => {
     const userRef = doc(db, "users", userMail);
     const userSnap = await getDoc(userRef);
 
-    if (userSnap.exists() && currentGroup) {
+    if (userSnap.exists() && currentBoard) {
       // console.log("we can add it, and are adding it", currentGroup);
-      const [groupId, groupName] = currentGroup
+
 
 
 
@@ -34,21 +36,20 @@ const AddMemberInBoard = () => {
       const userData = userDocSnap.data();
       
       //  if currentGroup is an not an empty array 
-      if (!userData.currentGroup || userData.currentGroup.length === 0) {
+      if (!userData.currentBoard || userData.currentBoard.length === 0) {
 
         // updating that users db
         await updateDoc(userDocRef, {
-          currentGroup: [groupId, groupName],
-          [`groups.${groupId}`]: groupName,
-        });
-      } else {
-        await updateDoc(userDocRef, {
-          [`groups.${groupId}`]: groupName,
+          currentGroup: [...currentBoard],
         });
       }
+        await updateDoc(userDocRef, {
+          [`groups.${currentBoard[0]}`]: currentBoard[1],
+        });
+      
 
       // updating in the groups db
-      const groupDocRef = doc(db, "groups", groupId);
+      const groupDocRef = doc(db, "groups", currentBoard[0]);
       const groupDocSnap = await getDoc(groupDocRef);
 
       const groupCurrdata = groupDocSnap.data();
@@ -67,25 +68,28 @@ const AddMemberInBoard = () => {
       console.log("nopes");
     }
   };
-
   return (
-    <div className="container">
-      <form className="white" onSubmit={handleSubmit}>
-        <div className="input-field">
-          <label htmlFor="title">Add member</label>
-          <input
-            type="text"
-            id="name"
-            value={userMail}
-            onChange={(e) => setuserMail(e.target.value)}
-          />
-        </div>
-        <div className="input-field">
-          <button className="btn submit">Create</button>
-        </div>
-      </form>
-    </div>
+    <form className={styles.createTaskForm} onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="name" className={styles.label}>
+          Add member in {currentBoard[1]}
+        </label>
+        <input
+          type="text"
+          id="name"
+          className={styles.inputField}
+          value={userMail}
+          onChange={(e) => setuserMail(e.target.value)}
+        />
+      </div>
+      <div>
+        <button type="submit" className={styles.btn}>
+          Add
+        </button>
+      </div>
+    </form>
   );
+  
 };
 
 export default AddMemberInBoard;

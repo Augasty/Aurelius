@@ -6,12 +6,12 @@ import styles from "./styles.module.css"; // Update your custom CSS file name
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
-import { useGroupAndChatToggleContext } from "../../../utils/GroupAndChatToggleContext"
+import { useProjectContexts } from "../../../utils/ProjectContexts";
 // import MultiSelect from "./MultiSelect";
 
 const CreateTask = () => {
 
-  const { currentGroup } = useGroupAndChatToggleContext();
+  const { currentBoard } = useProjectContexts();
   const [task, setTask] = useState({
     openToAll:false
   }); // Updated variable name
@@ -23,7 +23,7 @@ const CreateTask = () => {
   useEffect(() => {
     try {
       const fetchUsersFromCurrentGroup = async () => {
-        const groupId = currentGroup[0];
+        const groupId = currentBoard[0];
         const groupDocRef = doc(db, "groups", groupId);
         const groupDocSnap = await getDoc(groupDocRef);
 
@@ -39,7 +39,7 @@ const CreateTask = () => {
         e
       );
     }
-  }, [currentGroup]);
+  }, [currentBoard]);
 
   const handleChange = (e) => {
     setTask({
@@ -55,7 +55,7 @@ const CreateTask = () => {
     console.log(task)
     try {
       await addDoc(
-        collection(db, "groups", currentGroup[0], "taskList"),
+        collection(db, "groups", currentBoard[0], "taskList"),
         {
           ...task,
           authorDetails: curuser.email,

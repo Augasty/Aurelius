@@ -5,13 +5,13 @@ import { auth, db } from "../firebase";
 import { useDispatch } from "react-redux";
 import { setGroupsFromFireBase } from "../components/layout/boards/boardSlice";
 import styles from "./styles.module.css";
-import { useGroupAndChatToggleContext } from "./GroupAndChatToggleContext";
+import { useProjectContexts } from "./ProjectContexts";
 
 
 
 const CloudBoardTriggers = () => {
   const curuser = auth.currentUser;
-  const { currentGroup, setcurrentGroup } = useGroupAndChatToggleContext();
+  const { currentBoard, setcurrentBoard } =  useProjectContexts();
   const dispatch = useDispatch();
 
 
@@ -30,9 +30,9 @@ const CloudBoardTriggers = () => {
           })
         );
         // if there are no current group, make it the current group
-        if (currentGroup.length == 0) {
-          const curGroupArr = userSnapshot.data().currentGroup;
-          setcurrentGroup(curGroupArr);
+        if (currentBoard.length == 0) {
+          const curBoardArr = userSnapshot.data().currentGroup;
+          setcurrentBoard(curBoardArr);
         }
       }
     } catch (error) {

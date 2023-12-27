@@ -1,16 +1,16 @@
 
 import Routing from "./routing/Routing"
 import './App.css'
-import { GroupAndChatToggleProvider } from "./utils/GroupAndChatToggleContext"
+import { ProjectContextsProvider } from "./utils/ProjectContexts"
 
 function App() {
 
   return (
     <>
-     <GroupAndChatToggleProvider>
+     <ProjectContextsProvider>
 
     <Routing/>
-     </GroupAndChatToggleProvider>
+     </ProjectContextsProvider>
     </>
   )
 }
