@@ -26,7 +26,7 @@ const TaskDetails = () => {
       const changePossibleLogic = (( foundCurrentObj?.assignedTo == curuser.email || foundCurrentObj?.authorDetails == curuser.email  || foundCurrentObj?.openToAll ) && (  foundCurrentObj.lockedTill < new Date().toISOString() || foundCurrentObj?.lockedBy == curuser.email))
       setchangePossible(changePossibleLogic)
       
-      console.log('cp',changePossible,foundCurrentObj?.assignedTo == curuser.email,foundCurrentObj?.authorDetails == curuser.email,foundCurrentObj?.openToAll,'&&',foundCurrentObj?.lockedTill < new Date().toISOString(), foundCurrentObj?.lockedBy == curuser?.email)
+      console.log(changePossibleLogic)
     }
 
   }, [changePossible, curTaskId, currentTask, curuser?.email, reduxTasks])

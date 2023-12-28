@@ -16,25 +16,22 @@ const TaskChange = ({ currentTask }) => {
   });
   const history = useNavigate();
 
-  // Function to log 'hello world' every minute
   const updateLockedTill = async() => {
-    console.log('hello world');
     await updateDoc(currentTaskRef, {
       ...currentTask,
       ...formData,
-      lockedTill:new Date(new Date().getTime() + 10000).toISOString(),
+      lockedTill:new Date(new Date().getTime() + 22000).toISOString(),
       lockedBy: curuser?.email
     });
   };
 
-  // useEffect to log 'hello world' on component loading and set up interval
   useEffect(() => {
     if(currentboard.lenght !==0){
     try{
 
-      updateLockedTill(); // Log on component loading
+      updateLockedTill(); 
   
-      const intervalId = setInterval(updateLockedTill, 2000); // Log every 10sec
+      const intervalId = setInterval(updateLockedTill, 20000); // Log every 20sec
   
       return () => clearInterval(intervalId); // Clean up interval on component unmount
     }
