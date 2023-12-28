@@ -17,7 +17,7 @@ const TaskChange = ({ currentTask }) => {
   const history = useNavigate();
 
   // Function to log 'hello world' every minute
-  const logHelloWorld = async() => {
+  const updateLockedTill = async() => {
     console.log('hello world');
     await updateDoc(currentTaskRef, {
       ...currentTask,
@@ -29,18 +29,20 @@ const TaskChange = ({ currentTask }) => {
 
   // useEffect to log 'hello world' on component loading and set up interval
   useEffect(() => {
+    if(currentboard.lenght !==0){
     try{
 
-      logHelloWorld(); // Log on component loading
+      updateLockedTill(); // Log on component loading
   
-      const intervalId = setInterval(logHelloWorld, 10000); // Log every 10sec
+      const intervalId = setInterval(updateLockedTill, 2000); // Log every 10sec
   
       return () => clearInterval(intervalId); // Clean up interval on component unmount
     }
     catch(error){
       console.warn('error in taskchange',error)
     }
-  }, []); // Empty dependency array to run the effect only once on component mounting
+  }
+  }, [auth]); // Empty dependency array to run the effect only once on component mounting
 
 
 

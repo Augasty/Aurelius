@@ -9,7 +9,6 @@ import styles from "./styles.module.css";
 import { useProjectContexts } from "./ProjectContexts";
 const CloudTaskTriggers = () => {
   const dispatch = useDispatch();
-  // can't put this useeffect inside Navbar, it gets called before tasklist is rendered
 
   const { currentboard } = useProjectContexts();
 
@@ -17,7 +16,7 @@ const CloudTaskTriggers = () => {
     if (!currentboard|| currentboard.length === 0) {
       return;
     }
-    // console.log("noti is triggered, and all data is fetched");
+    // console.log("all tasks are fetched");
     try {
       const ProjectsSnapShot = await getDocs(
         collection(db, "boards", currentboard[0], "taskList")

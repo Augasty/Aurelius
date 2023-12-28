@@ -17,18 +17,26 @@ import {
 import CloudTaskTriggers from "../utils/CloudTaskTriggers";
 import CloudBoardTriggers from "../utils/CloudBoardTriggers";
 import { useProjectContexts } from "../utils/ProjectContexts";
+import { useEffect } from "react";
 
-const ErrorFallback = ({ error, resetErrorBoundary }) => (
-  <div>
-    <h2>Something went wrong:</h2>
-    <pre>{error.message}</pre>
-    <button onClick={resetErrorBoundary}>Try Again</button>
-  </div>
-);
+const ErrorFallback = ({ error, resetErrorBoundary }) => {
+  // useEffect to trigger resetErrorBoundary once when the component mounts
+  // to avoid the error when we logout from task change screen
+  useEffect(() => {
+    resetErrorBoundary();
+  }, [resetErrorBoundary]);
+
+  return (
+    <div>
+      <h2>Something went wrong:</h2>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try Again</button>
+    </div>
+  );
+};
 
 const Routing = () => {
   const [user] = useAuthState(auth);
-  const curuser = auth.currentUser;
   const { currentboard, isRightPanelVisible } = useProjectContexts();
 
   return (
@@ -50,7 +58,7 @@ const Routing = () => {
             element={currentboard.length !== 0 ? <Dashboard /> : <></>}
           />
 
-          <Route path="/task/:id" element={curuser ? <TaskDetails /> : <></>} />
+          {user ? <Route path="/task/:id" element={<TaskDetails />}/>:<>sdfa</>}
           <Route
             path="/create-task"
             element={user && currentboard.length !== 0 ? <CreateTask /> : <></>}

@@ -18,13 +18,16 @@ const TaskDetails = () => {
   const [changePossible, setchangePossible] = useState(false)
 
   useEffect(() => {
-    const foundCurrentObj = reduxTasks.find(obj=>obj.id==curTaskId.id)
-    setcurrentTask(foundCurrentObj)
+    if (curuser?.email){
 
-    const changePossibleLogic = (( foundCurrentObj?.assignedTo == curuser.email || foundCurrentObj?.authorDetails == curuser.email  || foundCurrentObj?.openToAll ) && (  foundCurrentObj.lockedTill < new Date().toISOString() || foundCurrentObj?.lockedBy == curuser.email))
-    setchangePossible(changePossibleLogic)
-    
-    console.log('cp',changePossible,foundCurrentObj?.assignedTo == curuser.email,foundCurrentObj?.authorDetails == curuser.email,foundCurrentObj?.openToAll,'&&',foundCurrentObj?.lockedTill < new Date().toISOString(), foundCurrentObj?.lockedBy == curuser?.email)
+      const foundCurrentObj = reduxTasks.find(obj=>obj.id==curTaskId.id)
+      setcurrentTask(foundCurrentObj)
+  
+      const changePossibleLogic = (( foundCurrentObj?.assignedTo == curuser.email || foundCurrentObj?.authorDetails == curuser.email  || foundCurrentObj?.openToAll ) && (  foundCurrentObj.lockedTill < new Date().toISOString() || foundCurrentObj?.lockedBy == curuser.email))
+      setchangePossible(changePossibleLogic)
+      
+      console.log('cp',changePossible,foundCurrentObj?.assignedTo == curuser.email,foundCurrentObj?.authorDetails == curuser.email,foundCurrentObj?.openToAll,'&&',foundCurrentObj?.lockedTill < new Date().toISOString(), foundCurrentObj?.lockedBy == curuser?.email)
+    }
 
   }, [changePossible, curTaskId, currentTask, curuser?.email, reduxTasks])
   
