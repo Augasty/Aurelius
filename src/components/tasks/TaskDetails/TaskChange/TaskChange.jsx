@@ -7,43 +7,44 @@ import styles from "./TaskChange.module.css";
 import { useProjectContexts } from "../../../../utils/ProjectContexts";
 
 const TaskChange = ({ currentTask }) => {
-  const {currentboard} = useProjectContexts();
-  const currentTaskRef = doc(db,"boards",currentboard[0],"taskList",currentTask?.id);
+  const { currentboard } = useProjectContexts();
+  const currentTaskRef = doc(
+    db,
+    "boards",
+    currentboard[0],
+    "taskList",
+    currentTask?.id
+  );
   const curuser = auth.currentUser;
-  
+
   const [formData, setFormData] = useState({
-    ...currentTask
+    ...currentTask,
   });
   const history = useNavigate();
 
-  const updateLockedTill = async() => {
+  const updateLockedTill = async () => {
     await updateDoc(currentTaskRef, {
       ...currentTask,
       ...formData,
-      lockedTill:new Date(new Date().getTime() + 22000).toISOString(),
-      lockedBy: curuser?.email
+      lockedTill: new Date(new Date().getTime() + 22000).toISOString(),
+      lockedBy: curuser?.email,
     });
   };
 
   useEffect(() => {
-    if(currentboard.lenght !==0){
-    try{
+    if (currentboard.lenght !== 0) {
+      try {
+        updateLockedTill();
 
-      updateLockedTill(); 
-  
-      const intervalId = setInterval(updateLockedTill, 20000); // Log every 20sec
-  
-      return () => clearInterval(intervalId); // Clean up interval on component unmount
+        const intervalId = setInterval(updateLockedTill, 20000); // Log every 20sec
+
+        return () => clearInterval(intervalId); // Clean up interval on component unmount
+      } catch (error) {
+        console.warn("error in taskchange", error);
+      }
     }
-    catch(error){
-      console.warn('error in taskchange',error)
-    }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth]); // Empty dependency array to run the effect only once on component mounting
-
-
-
-
 
   // Function to handle form changes
   const handleChange = (e) => {
@@ -60,8 +61,8 @@ const TaskChange = ({ currentTask }) => {
     await updateDoc(currentTaskRef, {
       ...currentTask,
       ...formData,
-      lockedBy:null,
-      lockedTill:new Date().toISOString(),
+      lockedBy: null,
+      lockedTill: new Date().toISOString(),
     });
     history("/");
   };
@@ -104,8 +105,6 @@ const TaskChange = ({ currentTask }) => {
             className={styles.input}
           />
         </label>
-
-
 
         <label htmlFor="priority" className={styles.label}>
           Priority
