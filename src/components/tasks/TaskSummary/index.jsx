@@ -36,9 +36,6 @@ const TaskSummary = ({ task}) => {
 
   const isOverDue = task.taskStatus!='Completed' && moment(task.deadline,'YYYY-MM-DD').isBefore(moment(), 'day')
   const taskColorClass = getTaskColorClass(task.taskStatus, isOverDue);
-
-
-console.log(task.deadline)
   return (
     <div className={`${styles.taskSummary} ${taskColorClass}`}>
     <p className={styles.taskStatus}>{task.taskStatus} </p>
