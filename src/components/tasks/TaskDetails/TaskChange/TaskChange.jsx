@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { auth, db } from "../../../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import styles from "./TaskChange.module.css";
+import styles from "../../createTask/styles.module.css";
 import { useProjectContexts } from "../../../../utils/ProjectContexts";
 
 const TaskChange = ({ currentTask }) => {
@@ -68,43 +68,44 @@ const TaskChange = ({ currentTask }) => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <h2 className={styles.title}>{formData.title}</h2>
-        <label htmlFor="title" className={styles.label}>
-          Task Title
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={`${styles.createTaskForm}`}>
+      <h5 className={styles.heading}>Change {formData.title}</h5>
+      <label htmlFor="title">Task Title</label>
+      <div className={styles.inputField}>
           <input
             type="text"
             id="title"
             value={formData.title}
             onChange={handleChange}
             required
-            className={styles.input}
+            className={styles.taskTitleInput}
           />
-        </label>
+          </div>
 
-        <label htmlFor="content" className={styles.label}>
-          Task Content
+
+          <label htmlFor="content">Task Content</label>
+        <div className={styles.inputField}>
           <textarea
             id="content"
             value={formData.content}
             onChange={handleChange}
             required
-            className={styles.textarea}
+            className={`${styles.customTextarea} ${styles.taskContentTextarea}`}
           />
-        </label>
+        </div>
 
-        <label htmlFor="createdAt" className={styles.label}>
-          Deadline
+        <div className={`${styles.inputField}`}>
+          <label htmlFor="deadline">Deadline</label>
           <input
-            type="text"
-            id="createdAt"
-            value={formData.deadline}
+            type="date"
+            id="deadline"
+            className={`${styles.deadlineInput}`}
             onChange={handleChange}
-            readOnly
-            className={styles.input}
+            value={formData.deadline}
+            required
           />
-        </label>
+        </div>
 
         <label htmlFor="priority" className={styles.label}>
           Priority
@@ -112,7 +113,7 @@ const TaskChange = ({ currentTask }) => {
             id="priority"
             value={formData.priority}
             onChange={handleChange}
-            className={styles.select}
+            className={styles.prioritySelect}
           >
             <option value="low">Low</option>
             <option value="medium">Medium</option>
@@ -120,25 +121,31 @@ const TaskChange = ({ currentTask }) => {
           </select>
         </label>
 
-        <label htmlFor="taskStatus" className={styles.label}>
-          Task Status
+
+        <div className={`${styles.inputField}`}>
+          <label htmlFor="taskStatus">Task Status</label>
           <select
             id="taskStatus"
+            className={`${styles.taskStatusSelect}`}
             value={formData.taskStatus}
             onChange={handleChange}
-            className={styles.select}
+            required
           >
-            <option value="new">New</option>
-            <option value="inProgress">In Progress</option>
-            <option value="completed">Completed</option>
+            <option value="Yet To Start">Yet To Start</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
           </select>
-        </label>
+        </div>
 
-        <button type="submit" className={styles.submitButton}>
-          Submit
+        <div className={`${styles.inputField}`}>
+          <button
+            className={`${styles.btn} ${styles.submit} ${styles.createTaskBtn}`}
+            type="submit"
+          >   Submit
         </button>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 

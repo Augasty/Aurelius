@@ -9,6 +9,11 @@
   flex: 1;
   margin-right: 20px;
 }
+.taskColumn > a {
+  
+  display: inline-flex;
+  margin-bottom: 10px; /* Add some space between rows */
+}
 
 
 .taskColumn h2 {

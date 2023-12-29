@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import TaskSummary from './TaskSummary';
+import TaskSummary from '../TaskSummary';
 import { Link } from 'react-router-dom';
 import styles from './TaskList.module.css';
 import { useSelector } from 'react-redux';
