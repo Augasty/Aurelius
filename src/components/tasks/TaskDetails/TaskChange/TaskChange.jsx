@@ -115,9 +115,9 @@ const TaskChange = ({ currentTask }) => {
             onChange={handleChange}
             className={styles.prioritySelect}
           >
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
+            <option value="Low Priority">Low</option>
+            <option value="Medium Priority">Medium</option>
+            <option value="High Priority">High</option>
           </select>
         </label>
 

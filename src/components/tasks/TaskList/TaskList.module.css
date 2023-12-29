@@ -2,12 +2,13 @@
   /* TaskList.module.css */
 .taskList {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .taskColumn {
   flex: 1;
   margin-right: 20px;
+  align-items: center; /* Center children horizontally */
 }
 .taskColumn > a {
   
@@ -18,7 +19,13 @@
 
 .taskColumn h2 {
   text-decoration: none; /* Remove underline from h2 */
-  margin: 30px
+  margin: 0; /* Reset margin to remove any default margin */
+  padding: 10px; /* Add padding for better styling */
+  background-color: #ffffff; /* Add background color */
+  color: #333; /* Set text color */
+  text-align: center;
+  border-radius: 8px; /* Add border-radius for rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add box-shadow for a subtle effect */
 }
 
 .taskColumn a {
