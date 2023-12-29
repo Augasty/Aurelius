@@ -77,7 +77,7 @@ const CreateTask = () => {
   return (
     <div className={styles.container}>
       <form
-        className={`${styles.white} ${styles.createTaskForm}`}
+        className={styles.createTaskForm}
         onSubmit={handleSubmit}
       >
         <h5 className={styles.heading}>Create a New Task</h5>
@@ -86,13 +86,13 @@ const CreateTask = () => {
           <input
             type="text"
             id="title"
-            className={`${styles.taskTitleInput}`}
+            className={styles.taskTitleInput}
             onChange={handleChange}
             required
           />
         </div>
         <label htmlFor="content">Task Content</label>
-        <div className={`${styles.inputField}`}>
+        <div className={styles.inputField}>
           <textarea
             id="content"
             className={`${styles.customTextarea} ${styles.taskContentTextarea}`}
@@ -120,11 +120,11 @@ const CreateTask = () => {
           <label htmlFor="priority">Priority</label>
           <select
             id="priority"
-            className={`${styles.prioritySelect}`}
+            className={styles.prioritySelect}
             onChange={handleChange}
             required
           >
-            <option value="">Select Priority</option>
+            <option value=""> </option>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
@@ -160,10 +160,10 @@ const CreateTask = () => {
             onChange={handleChange}
             required
           >
-            <option value="">Select status</option>
-            <option value="yet to start">Yet to start</option>
-            <option value="inProgress">In Progress</option>
-            <option value="completed">Completed</option>
+            <option value=""></option>
+            <option value="Yet To Start">Yet To Start</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
           </select>
         </div>
   
