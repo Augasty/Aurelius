@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { db } from "../firebase";
 import { useDispatch } from "react-redux";
 import { setTasksFromFireBase } from "../components/tasks/taskSlice";
@@ -12,7 +12,7 @@ const CloudTaskTriggers = () => {
 
   const { currentboard } = useProjectContexts();
 
-  const fetchData = async () => {
+  const fetchData = useMemo(() => async () => {
     if (!currentboard|| currentboard.length === 0) {
       return;
     }
@@ -42,7 +42,7 @@ const CloudTaskTriggers = () => {
     } catch (error) {
       console.error("Error fetching tasks from Firebase:", error);
     }
-  };
+  }, [currentboard, dispatch]);
 
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
   useEffect(() => {
