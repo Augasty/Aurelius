@@ -1,6 +1,7 @@
 /* navbar.module.css */
 
 .navbar {
+  position: sticky;
   background-color: var(--accent-color);  /* Adjust the background color */
   color: var(--text-color);
   padding: 15px 20px; /* Adjusted padding for better spacing */
@@ -31,6 +32,7 @@
 
 .navbarTexts{
   cursor: default;
+  color: var(--background-color);
 }
 
 .navbarList {
@@ -44,6 +46,7 @@
 
 .navbarListItem {
   margin-right: 15px; /* Adjusted spacing between list items */
+  color: var(--background-color);
 }
 
 .navbarListItem:last-child {
