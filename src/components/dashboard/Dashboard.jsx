@@ -1,14 +1,19 @@
-/* eslint-disable react/prop-types */
-import TaskList from "../tasks/TaskList/TaskList";
+import { lazy, Suspense } from "react";
+import { useProjectContexts } from "../../utils/ProjectContexts";
+
+const StoryList = lazy(() => import("../stories/StoryList"));
+const TaskList = lazy(() => import("../tasks/TaskList/TaskList"));
 
 const Dashboard = () => {
+  const { isProjectPlanner } = useProjectContexts();
 
-// we will show <TaskList/> in the dashboard only if current board is a taskTracker.
-// if the current board is a project planner, we will show the stories list
-// when we click on a story, we will show all the tasks inside that story via the <TaskList/>
+  const SelectedComponent = isProjectPlanner ? StoryList : TaskList;
+
   return (
     <div>
-      <TaskList/>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SelectedComponent />
+      </Suspense>
     </div>
   );
 };

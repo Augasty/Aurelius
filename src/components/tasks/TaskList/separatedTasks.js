@@ -6,13 +6,8 @@ export const separateTasksByPriority = (tasksArray,filterType,filterParameters,c
 
         if (createdAtShown) {
             filterTasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-            console.log('sort')
         } else {
             filterTasks.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-        }
-        if (filterType == 'priority' && param == 'Medium Priority'){
-
-            console.log(filterTasks)
         }
 
         separatedTasks.push(filterTasks)

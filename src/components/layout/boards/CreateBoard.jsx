@@ -28,7 +28,7 @@ const Createboard = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
 
-  const handleCreate = async (e, isScrum) => {
+  const handleCreate = async (e, isProjectPlanner) => {
     e.preventDefault();
     if (!boardName) {
       console.warn("board name cant be empty");
@@ -45,7 +45,7 @@ const Createboard = () => {
         memberEmails: [user.email],
         createdBy: user.email, //passing the creator of the board, who will also act as the admin later
         createdAt: serverTimestamp(),
-        isScrum: isScrum,
+        isProjectPlanner: isProjectPlanner,
       });
 
         // adding dummy data to create subcollections
@@ -53,7 +53,7 @@ const Createboard = () => {
         await addDoc(taskListRef, { dummy: true });
         const chatListRef = collection(boardDocRef, "chatList");
         await addDoc(chatListRef, { dummy: true });
-      if (isScrum) {
+      if (isProjectPlanner) {
         const storyListRef = collection(boardDocRef, "storyList");
         await addDoc(storyListRef, { dummy: true });
       }

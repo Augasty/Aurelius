@@ -1,19 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-
 import styles from "./styles.module.css"; // Update your custom CSS file name
-
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
-// import MultiSelect from "./MultiSelect";
+
 
 const CreateTask = () => {
-
   const { currentboard } = useProjectContexts();
   const [task, setTask] = useState({
-    openToAll:false
+    openToAll: false,
   }); // Updated variable name
   const [currentboardMails, setcurrentboardMails] = useState([]);
 
@@ -23,8 +20,8 @@ const CreateTask = () => {
   useEffect(() => {
     try {
       const fetchUsersFromcurrentboard = async () => {
-        const boardId = currentboard[0];
-        const boardDocRef = doc(db, "boards", boardId);
+        
+        const boardDocRef = doc(db, "boards", currentboard[0]);
         const boardDocSnap = await getDoc(boardDocRef);
 
         const boardCurrdata = boardDocSnap.data();
@@ -46,28 +43,25 @@ const CreateTask = () => {
       // Updated variable name
       ...task, // Updated variable name
       [e.target.id]: e.target.value,
-      [e.target.id]: e.target.type === 'checkbox' ? e.target.checked : e.target.value,
+      [e.target.id]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(task)
+    console.log(task);
     try {
-      await addDoc(
-        collection(db, "boards", currentboard[0], "taskList"),
-        {
-          ...task,
-          authorDetails: curuser.email,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-          lockedBy:null,
-          lockedTill:new Date().toISOString(),
-        }
-      );
+      await addDoc(collection(db, "boards", currentboard[0], "taskList"), {
+        ...task,
+        authorDetails: curuser.email,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        lockedBy: null,
+        lockedTill: new Date().toISOString(),
+      });
 
-
-      console.log('task created',task);
+      console.log("task created", task);
     } catch (e) {
       console.error(e);
     }
@@ -77,10 +71,7 @@ const CreateTask = () => {
 
   return (
     <div className={styles.container}>
-      <form
-        className={styles.createTaskForm}
-        onSubmit={handleSubmit}
-      >
+      <form className={styles.createTaskForm} onSubmit={handleSubmit}>
         <h5 className={styles.heading}>Create a New Task</h5>
         <label htmlFor="title">Task Title</label>
         <div className={styles.inputField}>
@@ -101,7 +92,7 @@ const CreateTask = () => {
             required
           ></textarea>
         </div>
-  
+
         <select
           id="assignedTo"
           className={`${styles.assignedToSelect}`}
@@ -116,7 +107,7 @@ const CreateTask = () => {
             </option>
           ))}
         </select>
-  
+
         <div className={`${styles.inputField}`}>
           <label htmlFor="priority">Priority</label>
           <select
@@ -131,7 +122,7 @@ const CreateTask = () => {
             <option value="High Priority">High</option>
           </select>
         </div>
-  
+
         <div className={`${styles.inputField}`}>
           <label htmlFor="deadline">Deadline</label>
           <input
@@ -142,7 +133,7 @@ const CreateTask = () => {
             required
           />
         </div>
-  
+
         <div className={`${styles.inputField}`}>
           <label htmlFor="openToAll">Open to all</label>
           <input
@@ -152,7 +143,7 @@ const CreateTask = () => {
             onChange={handleChange}
           />
         </div>
-  
+
         <div className={`${styles.inputField}`}>
           <label htmlFor="taskStatus">Task Status</label>
           <select
@@ -167,7 +158,7 @@ const CreateTask = () => {
             <option value="Completed">Completed</option>
           </select>
         </div>
-  
+
         <div className={`${styles.inputField}`}>
           <button
             className={`${styles.btn} ${styles.submit} ${styles.createTaskBtn}`}
@@ -179,7 +170,6 @@ const CreateTask = () => {
       </form>
     </div>
   );
-  
 };
 
 export default CreateTask;

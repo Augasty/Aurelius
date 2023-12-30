@@ -49,10 +49,15 @@ const TaskList = () => {
 
   useEffect(() => {
     setseparatedTasks(
-      separateTasksByPriority(filteredArray, filterType, filterParameters,createdAtShown)
+      separateTasksByPriority(
+        filteredArray,
+        filterType,
+        filterParameters,
+        createdAtShown
+      )
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterType, filterParameters,createdAtShown]);
+  }, [filterType, filterParameters, createdAtShown]);
 
   {
     separatedTasks = separateTasksByPriority(

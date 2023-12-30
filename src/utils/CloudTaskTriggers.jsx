@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, onSnapshot } from "firebase/firestore";
 import { useEffect, useMemo, useState } from "react";
 import { db } from "../firebase";
 import { useDispatch } from "react-redux";
@@ -10,7 +10,7 @@ import { useProjectContexts } from "./ProjectContexts";
 const CloudTaskTriggers = () => {
   const dispatch = useDispatch();
 
-  const { currentboard } = useProjectContexts();
+  const { currentboard, setisProjectPlanner } = useProjectContexts();
 
   const fetchData = useMemo(() => async () => {
     if (!currentboard|| currentboard.length === 0) {
@@ -18,9 +18,12 @@ const CloudTaskTriggers = () => {
     }
     // console.log("all tasks are fetched");
     try {
-      const ProjectsSnapShot = await getDocs(
-        collection(db, "boards", currentboard[0], "taskList")
-      );
+      const ProjectsSnapShot = await getDocs(collection(db, "boards", currentboard[0], "taskList"));
+
+
+      const boardDocSnap = await getDoc(doc(db, "boards", currentboard[0]));
+      console.log(boardDocSnap.data().isProjectPlanner)
+      setisProjectPlanner(boardDocSnap.data().isProjectPlanner)
 
       if (!ProjectsSnapShot.empty) {
         const projectsData = ProjectsSnapShot.docs.map((doc) => {

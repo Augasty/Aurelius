@@ -7,7 +7,6 @@ const updateCurrentBoardInFirebase = (userEmail, newCurrentBoard) => {
 
   const updateCurrentBoardAsync = async () => {
     try {
-      console.log('what triggers',userEmail,newCurrentBoard)
       await updateDoc(doc(db, 'users', userEmail), {
         currentboard: newCurrentBoard,
       });
