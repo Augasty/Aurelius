@@ -31,7 +31,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.logo}>
         <img src={bluey} />
-        <Link to="/">bluey</Link>
+        <Link to="/">_bluey</Link>
       </div>
       <div>
         <ul className={styles.navbarList}>
