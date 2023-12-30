@@ -1,15 +1,26 @@
 
   /* TaskList.module.css */
 .taskList {
-  display: flex;
   justify-content: space-around;
+
+  display: flex;
+  position: relative;
+  max-width: 90%;
+  top:10%;
 }
+
+
+.taskListGrid{
+  display: grid 
+
+}
+
 
 .taskColumn {
   flex: 1;
-  margin-right: 20px;
   align-items: center; /* Center children horizontally */
 }
+
 .taskColumn > a {
   
   display: inline-flex;
@@ -17,23 +28,60 @@
 }
 
 
-.taskColumn h2 {
+.columnHeader {
   text-decoration: none; /* Remove underline from h2 */
-  margin: 0; /* Reset margin to remove any default margin */
-  padding: 10px; /* Add padding for better styling */
+  margin: 0 auto;
   background-color: #ffffff; /* Add background color */
   color: #333; /* Set text color */
-  text-align: center;
-  border-radius: 8px; /* Add border-radius for rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Add box-shadow for a subtle effect */
+  width: fit-content;
+
+  border-radius: 4px; /* Smaller border-radius for a cleaner look */
+  font-size: 1.5em; /* Increase font size for a more heading-like appearance */
+  font-weight: bold; /* Make the text bold for emphasis */
+  letter-spacing: 1px; /* Add a small letter-spacing for clarity */
 }
 
 .taskColumn a {
   text-decoration: none; /* Remove underline from links */
 }
 
+.FilterBar{
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 10%;
+  /* height:fit-content; */
+  background-color:var(--accent-color); /* Solid pink color */
+  margin: 4px;
+  border-radius: 10px;
+}
 
-/* You can add more styles based on your requirements */
+.FilterHeaderText {
+  font-size: 14px;
+  color: white;
+  margin: 0;
+  text-align: center; 
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+.FilterButton {
+  padding: 8px;
+  margin: 8px;
+  width: 85%;
+  background-color: #fff; /* White background for buttons */
+  color: var(--accent-color); /* Google blue color for text */
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
 
-  /* You can add more styles based on your requirements */
-  
+}
+
+.FilterButton:hover {
+  background-color: #f5f5f5; /* Light gray background on hover */
+}
+
+.FilterButton:active {
+  background-color: #c2c2c2; /* Light gray background on hover and click */
+}

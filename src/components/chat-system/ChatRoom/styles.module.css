@@ -66,8 +66,8 @@
 }
 
 .message p {
-  background-color: #4285F4; /* Google Blue */
-  color: #fff;
+  background-color: #ffffff; /* Google Blue */
+  color: #000000;
   padding: 8px 12px;
   border-radius: 10px;
   max-width: 60%; /* Adjust as needed */

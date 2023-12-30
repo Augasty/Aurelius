@@ -39,7 +39,7 @@ const CloudBoardTriggers = () => {
         const userRef = doc(db, "users", curuser?.email);
 
         const unsub = onSnapshot(userRef, () => {
-          console.log("Board loading initiated");
+          // console.log("Board loading initiated");
           fetchBoard();
         });
 

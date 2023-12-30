@@ -5,15 +5,13 @@
     margin: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
     font-family: 'Arial', sans-serif;
-    width: 150px;
-    min-width: 150px;
+    width: 120px;
     height: 100px; /* Adjusted max-width to cover the title */
   }
   .taskCompleted {
-    color: #009205; /* Green color for completed tasks */
-    background-color: rgba(76, 175, 80, 0.1); /* 90% transparent green */
+    color: #005d03; /* Green color for completed tasks */
+    background-color: rgba(76, 175, 80, 0.5); /* 90% transparent green */
   }
   
    .taskYetToStart{
@@ -22,8 +20,8 @@
   }
   
   .taskInProgress {
-    color: #a99800; /* Yellow color for tasks yet to start */
-    background-color: rgba(255, 235, 59, 0.1); /* 90% transparent yellow */
+    color: #5c5300; /* Yellow color for tasks yet to start */
+    background-color: rgba(255, 230, 0, 0.5); /* 90% transparent yellow */
   }
   .taskDue {
     color: #c62828; /* Red color for tasks that are due */
@@ -31,7 +29,7 @@
   }
   .taskStatus {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     font-size: 0.8em;
     display: inline
   }
@@ -56,7 +54,7 @@
     right: 0;
     background-color: #c62828; /* Red color for the chip */
     color: #fff; /* White text color for the chip */
-    padding: 1px 4px; /* Adjust padding for height and width */
+    padding: 1px 2px; /* Adjust padding for height and width */
     border-radius: 3px; /* Adjust border-radius for a less rounded appearance */
     font-size: 0.7em; /* Adjust font size as needed */
     position: relative

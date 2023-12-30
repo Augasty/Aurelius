@@ -61,6 +61,7 @@ const TaskChange = ({ currentTask }) => {
     await updateDoc(currentTaskRef, {
       ...currentTask,
       ...formData,
+      updatedAt: new Date().toISOString(),
       lockedBy: null,
       lockedTill: new Date().toISOString(),
     });
