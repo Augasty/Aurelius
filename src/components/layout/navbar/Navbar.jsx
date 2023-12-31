@@ -7,10 +7,11 @@ import { useState } from "react";
 import topchicken from "../../../../assets/topchicken.jpg";
 import bluey from "../../../../assets/bluey.png";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const curuser = auth.currentUser;
-
+  const navigate = useNavigate();
   const {
     currentboard,
     setcurrentboard,
@@ -31,49 +32,60 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src={bluey} />
+        <img src={bluey} onClick={() => navigate('/')} />
         <Link to="/">_bluey</Link>
       </div>
       <div>
         <ul className={styles.navbarList}>
           {curuser && (
             <>
-              <li className={styles.navbarListItem}>
-                {currentboard.length !== 0 && (
-                  <NavLink
-                    to={isProjectPlanner ? "/create-story" : "/create-task"}
-                  >
-                    Create A {isProjectPlanner ? "Story" : "Task"}
-                  </NavLink>
-                )}
-              </li>
+              <div className={styles.liDivItems}>
+                <li className={styles.navbarListItem}>
+                  {currentboard.length !== 0 && (
+                    <NavLink
+                      to={isProjectPlanner ? "/create-story" : "/create-task"}
+                    >
+                      Create A {isProjectPlanner ? "Story" : "Task"}
+                    </NavLink>
+                  )}
+                </li>
+              </div>
+
               {currentboard.length !== 0 && (
                 <>
-                  <li className={styles.navbarListItem}>
-                    <NavLink to="/add-member">
-                      Add Member in {currentboard[1]}
-                    </NavLink>
-                  </li>
-                  <li
-                    onClick={() => setIsRightPanelVisible((prev) => !prev)}
-                    className={styles.navbarListItem}
-                  >
-                    {isRightPanelVisible ? "Close" : "Open"} Chat
-                  </li>
+                  <div className={styles.liDivItems}>
+                    <li className={styles.navbarListItem}>
+                      <NavLink to="/add-member">
+                        Add Member in {currentboard[1]}
+                      </NavLink>
+                    </li>
+                  </div>
+                  <div className={styles.liDivItems}>
+                    <li
+                      onClick={() => setIsRightPanelVisible((prev) => !prev)}
+                      className={styles.navbarListItem}
+                    >
+                      {isRightPanelVisible ? "Close" : "Open"} Chat
+                    </li>
+                  </div>
+
                 </>
               )}
-              <li className={styles.navbarListItem}>
-                <NavLink to="/create-board">New Board</NavLink>
-              </li>
+              <div className={styles.liDivItems}>
+                <li className={styles.navbarListItem}>
+                  <NavLink to="/create-board">New Board</NavLink>
+                </li>
+              </div>
+
 
               {curuser.email && currentboard.length !== 0 && (
                 <>
-                  <div className={styles.navbarTexts}>change board</div>
+                  {/* <div className={styles.navbarTexts}>change board</div> */}
                   <DropDown />
                 </>
               )}
               <li className={styles.navbarListItem}>
-                <a onClick={(e) => handleSignOut(e)}>Log Out</a>
+                <button className={styles.logout} onClick={(e) => handleSignOut(e)}>Log Out</button>
               </li>
             </>
           )}
