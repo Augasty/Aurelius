@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import styles from "./styles.module.css";
 import { useProjectContexts } from "./ProjectContexts";
 import { setStoriesFromFireBase } from "../components/stories/storySlice";
-const CloudstoryTriggers = () => {
+const CloudStoryTriggers = () => {
   const dispatch = useDispatch();
 
   const { currentboard, setisProjectPlanner } = useProjectContexts();
@@ -34,16 +34,16 @@ const CloudstoryTriggers = () => {
         });
 
         const filteredProjectsData = projectsData?.filter((obj) => !obj.dummy);
-        // console.log(filteredProjectsData);
+        console.log(filteredProjectsData);
 
         try {
           dispatch(setStoriesFromFireBase([...filteredProjectsData]));
         } catch (e) {
-          console.warn("error uploading storys in redux", e);
+          console.warn("error uploading stories in redux", e);
         }
       }
     } catch (error) {
-      console.error("Error fetching storys from Firebase:", error);
+      console.error("Error fetching stories from Firebase:", error);
     }
   }, [currentboard, dispatch, setisProjectPlanner]);
 
@@ -62,4 +62,4 @@ const CloudstoryTriggers = () => {
   return <div className={styles.triggers}>Cloud Triggers</div>;
 };
 
-export default CloudstoryTriggers;
+export default CloudStoryTriggers;

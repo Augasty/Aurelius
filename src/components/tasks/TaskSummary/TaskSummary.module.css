@@ -6,8 +6,8 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
-    width: 120px;
-    height: 100px; /* Adjusted max-width to cover the title */
+    width: var(--task-card-width);
+    height:var(--task-card-height)
   }
   .taskCompleted {
     color: #005d03; /* Green color for completed tasks */

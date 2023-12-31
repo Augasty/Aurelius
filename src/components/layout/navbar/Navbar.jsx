@@ -9,6 +9,7 @@ import bluey from "../../../../assets/bluey.png";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import { useNavigate } from "react-router-dom";
 
+
 const Navbar = () => {
   const curuser = auth.currentUser;
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Navbar = () => {
     setcurrentboard,
     isRightPanelVisible,
     setIsRightPanelVisible,
-    isProjectPlanner,
+    isProjectPlanner
   } = useProjectContexts();
 
   // for chicken
@@ -29,10 +30,11 @@ const Navbar = () => {
     signOut(auth);
   };
 
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src={bluey} onClick={() => navigate('/')} />
+        <img src={bluey} onClick={() => navigate("/")} />
         <Link to="/">_bluey</Link>
       </div>
       <div>
@@ -50,7 +52,6 @@ const Navbar = () => {
                   )}
                 </li>
               </div>
-
               {currentboard.length !== 0 && (
                 <>
                   <div className={styles.liDivItems}>
@@ -68,7 +69,6 @@ const Navbar = () => {
                       {isRightPanelVisible ? "Close" : "Open"} Chat
                     </li>
                   </div>
-
                 </>
               )}
               <div className={styles.liDivItems}>
@@ -77,7 +77,6 @@ const Navbar = () => {
                 </li>
               </div>
 
-
               {curuser.email && currentboard.length !== 0 && (
                 <>
                   {/* <div className={styles.navbarTexts}>change board</div> */}
@@ -85,7 +84,12 @@ const Navbar = () => {
                 </>
               )}
               <li className={styles.navbarListItem}>
-                <button className={styles.logout} onClick={(e) => handleSignOut(e)}>Log Out</button>
+                <button
+                  className={styles.logout}
+                  onClick={(e) => handleSignOut(e)}
+                >
+                  Log Out
+                </button>
               </li>
             </>
           )}

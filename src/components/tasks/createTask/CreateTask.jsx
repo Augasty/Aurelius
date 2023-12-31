@@ -6,12 +6,15 @@ import { auth, db } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 
-
 const CreateTask = () => {
-  const { currentboard } = useProjectContexts();
-  const [task, setTask] = useState({
-    openToAll: false,
-  }); // Updated variable name
+  const { currentboard, currentStory } = useProjectContexts();
+
+  const initialTaskObject =
+    currentStory.length > 0
+      ? { openToAll: false, referenceStory: currentStory }
+      : { openToAll: false };
+  const [task, setTask] = useState({ ...initialTaskObject });
+
   const [currentboardMails, setcurrentboardMails] = useState([]);
 
   const curuser = auth.currentUser;
@@ -20,7 +23,6 @@ const CreateTask = () => {
   useEffect(() => {
     try {
       const fetchUsersFromcurrentboard = async () => {
-        
         const boardDocRef = doc(db, "boards", currentboard[0]);
         const boardDocSnap = await getDoc(boardDocRef);
 
@@ -50,7 +52,6 @@ const CreateTask = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(task);
     try {
       await addDoc(collection(db, "boards", currentboard[0], "taskList"), {
         ...task,
@@ -72,7 +73,12 @@ const CreateTask = () => {
   return (
     <div className={styles.container}>
       <form className={styles.createTaskForm} onSubmit={handleSubmit}>
-        <h5 className={styles.heading}>Create a New Task</h5>
+        <h5 className={styles.heading}>
+          Create A
+          {currentStory.length > 0
+            ? ` Task Under The Story: ${currentStory[1]}`
+            : " New Task"}
+        </h5>
         <label htmlFor="title">Task Title</label>
         <div className={styles.inputField}>
           <input

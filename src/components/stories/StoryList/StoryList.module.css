@@ -1,25 +1,20 @@
 
   /* storyList.module.css */
-.storyList {
+.storyColumn {
   justify-content: space-around;
-
+  align-items: center;
   display: flex;
   position: relative;
-  max-width: 90%;
+  flex: 0 0 auto;
+  min-height: 100%;
   top:10%;
+  overflow-x:scroll;
+  padding-right: 50px;
+  left: 0%;
+  
 }
 
 
-.storyListGrid{
-  display: grid 
-
-}
-
-
-.storyColumn {
-  flex: 1;
-  align-items: center; /* Center children horizontally */
-}
 
 .storyColumn > a {
   
@@ -30,7 +25,7 @@
 
 .columnHeader {
   text-decoration: none; /* Remove underline from h2 */
-  margin: 0 auto;
+  /* margin: 0 auto; */
   background-color: #ffffff; /* Add background color */
   color: #333; /* Set text color */
   width: fit-content;

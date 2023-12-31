@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import moment from "moment";
 import styles from "./TaskSummary.module.css";
+import { SmartTime } from "../../../utils/SmartTime";
 
 const getTaskColorClass = (taskStatus) => {
   switch (taskStatus) {
@@ -15,25 +16,11 @@ const getTaskColorClass = (taskStatus) => {
 
 const TaskSummary = ({ task , createdAtShown}) => {
 
-  const displayTimeMoment = moment(createdAtShown ? task.createdAt : task.updatedAt);
-  const isToday = displayTimeMoment.isSame(moment(), "day");
-  const isYesterday = displayTimeMoment.isSame(
-    moment().subtract(1, "day"),
-    "day"
-  );
+  const displayTime = createdAtShown ? task.createdAt : task.updatedAt
 
-  let formattedDate;
+  const formattedDate = SmartTime(displayTime)
 
-  if (isToday) {
-    formattedDate = `Today at ${displayTimeMoment.format("h:mm a")}`;
-  } else if (isYesterday) {
-    formattedDate = `Yesterday at ${displayTimeMoment.format("h:mm a")}`;
-  } else {
-    formattedDate = displayTimeMoment.format("MMMM Do YYYY [at] h:mm a");
-  }
-
-  const isOverDue =
-    task.taskStatus != "Completed" &&
+  const isOverDue = task.taskStatus != "Completed" &&
     moment(task.deadline, "YYYY-MM-DD").isBefore(moment(), "day");
   const taskColorClass = getTaskColorClass(task.taskStatus);
   return (

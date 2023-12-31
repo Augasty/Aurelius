@@ -4,10 +4,8 @@ import styles from "./storyList.module.css";
 import { useSelector } from "react-redux";
 // import { separateStoriesByFilterType } from "./separatedStories";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { auth } from "../../../firebase";
-import StorySummary from "../StorySummary/StorySummary";
-import DummyCard from "./DummyCard";
 import CardContainer from "./CardContainer";
 // import { useEffect } from 'react';
 
@@ -76,76 +74,74 @@ const StoryList = () => {
   };
 
 
-  const dummyCards = Array.from({ length: 10 }, (_, index) => (
-    <DummyCard key={index} />
-  ));
-
   return (
     <div style={{ display: "flex" }}>
-      <div className={styles.FilterBar}>
-        <p className={styles.FilterHeaderText}>Sort By</p>
-        <button
-          className={styles.FilterButton}
-          onClick={() =>
-            handleButtonClick(
-              "priority",
-              [
-                "Not Relevant",
-                "Low Priority",
-                "Medium Priority",
-                "High Priority",
-              ],
-              [false, ""]
-            )
-          }
-        >
-          Priority
-        </button>
-        <button
-          className={styles.FilterButton}
-          onClick={() =>
-            handleButtonClick(
-              "storiestatus",
-              ["Yet To Start", "In Progress", "Completed"],
-              [false, ""]
-            )
-          }
-        >
-          Status
-        </button>
+<div className={styles.FilterBar}>
+<p className={styles.FilterHeaderText}>Sort By</p>
+<button
+  className={styles.FilterButton}
+  onClick={() =>
+    handleButtonClick(
+      "priority",
+      [
+        "Not Relevant",
+        "Low Priority",
+        "Medium Priority",
+        "High Priority",
+      ],
+      [false, ""]
+    )
+  }
+>
+  Priority
+</button>
+<button
+  className={styles.FilterButton}
+  onClick={() =>
+    handleButtonClick(
+      "storiestatus",
+      ["Yet To Start", "In Progress", "Completed"],
+      [false, ""]
+    )
+  }
+>
+  Status
+</button>
 
-        <button className={styles.FilterButton} onClick={() => {}}>
-          Chronogically
-        </button>
+<button className={styles.FilterButton} onClick={() => {}}>
+  Chronogically
+</button>
 
-        <p className={styles.FilterHeaderText}>Display:</p>
-        <button
-          className={styles.FilterButton}
-          onClick={() => setcreatedAtShown(!createdAtShown)}
-        >
-          {createdAtShown ? "Created At" : "Updated At"}
-        </button>
+<p className={styles.FilterHeaderText}>Display:</p>
+<button
+  className={styles.FilterButton}
+  onClick={() => setcreatedAtShown(!createdAtShown)}
+>
+  {createdAtShown ? "Created At" : "Updated At"}
+</button>
 
-        <p className={styles.FilterHeaderText}></p>
-      </div>
+<p className={styles.FilterHeaderText}></p>
+</div>
 
-      {/* <div
+      <div
         className={styles.storyColumn}
-        style={{ width: isRightPanelVisible ? "70%" : "100%" }}
+        style={{ width: isRightPanelVisible ? "75%" : "100%" }}
       >
         {filteredStories.map((story) => (
 
-            <StorySummary key={story.id} story={story} />
+            <CardContainer key={story.id} story={story} createdAtShown={createdAtShown}/>
 
         ))}
-      </div> */}
 
 
-      <CardContainer>
-      {dummyCards}
-    </CardContainer>
+      </div>
     </div>
   );
 };
 
 export default StoryList;
+
+
+
+// buttons, will make it a horizontal ribbon kinda
+{/*  */}

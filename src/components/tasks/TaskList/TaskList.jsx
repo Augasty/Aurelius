@@ -7,12 +7,19 @@ import { separateTasksByPriority } from "./separatedTasks";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import { useEffect, useState } from "react";
 import { auth } from "../../../firebase";
-// import { useEffect } from 'react';
+
 
 const TaskList = () => {
-  const { isRightPanelVisible } = useProjectContexts();
-  const reduxTasks = useSelector((state) => state.tasks);
-  const filteredArray = reduxTasks.filter((obj) => !obj.dummy);
+  const { isRightPanelVisible,currentStory , isProjectPlanner} = useProjectContexts();
+  let reduxTasks = useSelector((state) => state.tasks) || [];
+
+
+  if (isProjectPlanner){
+    reduxTasks = reduxTasks?.filter(
+      (task) => task.referenceStory[0] === currentStory[0]);
+  }
+
+
 
   const curuser = auth.currentUser;
 
@@ -50,7 +57,7 @@ const TaskList = () => {
   useEffect(() => {
     setseparatedTasks(
       separateTasksByPriority(
-        filteredArray,
+        reduxTasks,
         filterType,
         filterParameters,
         createdAtShown
@@ -61,7 +68,7 @@ const TaskList = () => {
 
   {
     separatedTasks = separateTasksByPriority(
-      filteredArray,
+      reduxTasks,
       filterType,
       filterParameters,
       createdAtShown

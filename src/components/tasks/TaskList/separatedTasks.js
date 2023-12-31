@@ -1,4 +1,6 @@
 export const separateTasksByPriority = (tasksArray,filterType,filterParameters,createdAtShown) => {
+
+    
     let separatedTasks = []
 
     for (let param of filterParameters){

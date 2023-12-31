@@ -7,6 +7,10 @@
     --button-color: #EEF5FF;
     --border-color: #0d2a8b;
     --font-family: 'Roboto', sans-serif; 
+
+
+    --task-card-width: 120px;
+    --task-card-height: 100px;
   }
 
 
