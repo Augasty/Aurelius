@@ -1,10 +1,11 @@
 :root {
     --text-color: #000000;
-    --background-color: #ffffff;
+    --background-color: #FBF9F1;
     --primary-color:#bbcdf5;
     --secondary-color: #FFFFFF;
     --accent-color: #4285F4;
-
+    --button-color: #EEF5FF;
+    --border-color: #0d2a8b;
     --font-family: 'Roboto', sans-serif; 
   }
 
