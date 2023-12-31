@@ -10,11 +10,6 @@ const taskSlice = createSlice({
     reducers: {
         setTasksFromFireBase:(state,action)=>{
             return action.payload
-        },
-        // add single task
-        addSingleTask:(state,action)=>{
-            const newTask = action.payload;
-            return [...state, newTask]
         }
     }
 })

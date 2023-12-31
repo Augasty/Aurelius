@@ -16,7 +16,7 @@ const Navbar = () => {
     setcurrentboard,
     isRightPanelVisible,
     setIsRightPanelVisible,
-    isProjectPlanner
+    isProjectPlanner,
   } = useProjectContexts();
 
   // for chicken
@@ -40,7 +40,11 @@ const Navbar = () => {
             <>
               <li className={styles.navbarListItem}>
                 {currentboard.length !== 0 && (
-                  (isProjectPlanner?<>Create a story</>: <NavLink to="/create-task">Create a task</NavLink>)
+                  <NavLink
+                    to={isProjectPlanner ? "/create-story" : "/create-task"}
+                  >
+                    Create A {isProjectPlanner ? "Story" : "Task"}
+                  </NavLink>
                 )}
               </li>
               {currentboard.length !== 0 && (
@@ -51,7 +55,7 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                   <li
-                    onClick={()=>setIsRightPanelVisible(prev=>!prev)}
+                    onClick={() => setIsRightPanelVisible((prev) => !prev)}
                     className={styles.navbarListItem}
                   >
                     {isRightPanelVisible ? "Close" : "Open"} Chat

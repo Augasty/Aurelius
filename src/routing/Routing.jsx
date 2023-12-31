@@ -12,6 +12,7 @@ import {
   SignedOutNavbar,
   TaskDetails,
   RightPanel,
+  CreateStory
 } from "./LazyLoad";
 
 import CloudTaskTriggers from "../utils/CloudTaskTriggers";
@@ -58,10 +59,14 @@ const Routing = () => {
             element={currentboard.length !== 0 ? <Dashboard /> : <></>}
           />
 
-          {user ? <Route path="/task/:id" element={<TaskDetails />}/>:<>sdfa</>}
+          {user ? <Route path="/task/:id" element={<TaskDetails/>}/>:<>Login</>}
           <Route
             path="/create-task"
             element={user && currentboard.length !== 0 ? <CreateTask /> : <></>}
+          />
+                    <Route
+            path="/create-story"
+            element={user && currentboard.length !== 0 ? <CreateStory /> : <></>}
           />
           <Route
             path="/create-board"

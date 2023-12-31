@@ -12,8 +12,6 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useDispatch } from "react-redux";
-import { addSingleboard } from "./boardSlice";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import updateCurrentBoardInFirebase from "../../../utils/updateCurrentBoardInFirebase";
 
@@ -24,8 +22,6 @@ const Createboard = () => {
   useProjectContexts();
   const [boardName, setboardName] = useState(null);
   const [user] = useAuthState(auth);
-
-  const dispatch = useDispatch();
   const history = useNavigate();
 
   const handleCreate = async (e, isProjectPlanner) => {
@@ -72,12 +68,6 @@ const Createboard = () => {
         toggleRightPanel(false);
       }
 
-      // add the new data in redux storage
-      dispatch(
-        addSingleboard({
-          [boardDocRef.id]: boardName,
-        })
-      );
     } catch (e) {
       console.error("error while creating a board", e);
     }

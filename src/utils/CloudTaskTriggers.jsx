@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { collection, doc, getDoc, getDocs, onSnapshot } from "firebase/firestore";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { db } from "../firebase";
 import { useDispatch } from "react-redux";
 import { setTasksFromFireBase } from "../components/tasks/taskSlice";
@@ -16,7 +16,6 @@ const CloudTaskTriggers = () => {
     if (!currentboard|| currentboard.length === 0) {
       return;
     }
-    // console.log("all tasks are fetched");
     try {
       const ProjectsSnapShot = await getDocs(collection(db, "boards", currentboard[0], "taskList"));
 
@@ -45,22 +44,19 @@ const CloudTaskTriggers = () => {
     } catch (error) {
       console.error("Error fetching tasks from Firebase:", error);
     }
-  }, [currentboard, dispatch]);
+  }, [currentboard, dispatch, setisProjectPlanner]);
 
-  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
+
   useEffect(() => {
     const currentboardId = currentboard[0];
     const tasksRef = collection(db, "boards", currentboardId, "taskList");
     const unsub = onSnapshot(tasksRef, () => {
       fetchData();
-      if (!initialLoadComplete) {
-        setInitialLoadComplete(true);
-      }
     });
 
     return () => unsub();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentboard, initialLoadComplete]);
+  }, [currentboard]);
 
   return <div className={styles.triggers}>Cloud Triggers</div>;
 };

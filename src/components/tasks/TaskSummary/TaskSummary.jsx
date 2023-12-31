@@ -41,8 +41,8 @@ const TaskSummary = ({ task , createdAtShown}) => {
       <p className={styles.taskStatus}>{task.taskStatus} </p>
       {isOverDue && <span className={styles.overdueChip}>overdue</span>}
       <p className={styles.taskSummaryTitle}>
-        {task.title.length > 25
-          ? `${task.title.substring(0, 22)}...`
+        {task.title.length > 28
+          ? `${task.title.substring(0, 25)}...`
           : task.title}
       </p>
       <p className={styles.taskSummaryText}>

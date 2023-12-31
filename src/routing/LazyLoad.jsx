@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+const  CreateStory = lazy(()=>import('../components/stories/CreateStory/CreateStory')) 
 
 const CreateTask = lazy(() => import('../components/tasks/createTask/CreateTask'));
 const AddMemberInBoard = lazy(() => import('../components/layout/boards/AddMemberInBoard/AddMemberInBoard'));
@@ -14,7 +15,11 @@ const LazyCreateTask = (props) => (
     <CreateTask {...props} />
   </Suspense>
 );
-
+const LazyCreateStory = (props) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <CreateStory {...props} />
+  </Suspense>
+);
 
 const LazyAddMemberInBoard = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
@@ -58,6 +63,7 @@ const LazyRightPanel = (props) => (
   </Suspense>
 );
 export {
+  LazyCreateStory as CreateStory,
   LazyCreateTask as CreateTask,
   LazyAddMemberInBoard as AddMemberInBoard,
   LazySignedOutNavbar as SignedOutNavbar,
