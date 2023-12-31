@@ -90,7 +90,7 @@ const TaskList = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div className={styles.mainContainer}>
       <div className={styles.FilterBar}>
         <p className={styles.FilterHeaderText}>Sort By</p>
         <button
