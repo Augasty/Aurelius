@@ -1,18 +1,23 @@
 
   /* TaskList.module.css */
+
+.mainContainer{ 
+  display: flex;
+  
+  background-color: var(--background-color);
+}
 .taskList {
   justify-content: space-around;
-
   display: flex;
   position: relative;
   max-width: 90%;
   top:10%;
+  /* padding: 1rem; */
 }
 
 
 .taskListGrid{
-  display: grid 
-
+  display: grid;
 }
 
 
@@ -30,11 +35,9 @@
 
 .columnHeader {
   text-decoration: none; /* Remove underline from h2 */
-  margin: 0 auto;
-  background-color: #ffffff; /* Add background color */
+  margin: 10px auto;
   color: #333; /* Set text color */
   width: fit-content;
-
   border-radius: 4px; /* Smaller border-radius for a cleaner look */
   font-size: 1.5em; /* Increase font size for a more heading-like appearance */
   font-weight: bold; /* Make the text bold for emphasis */
