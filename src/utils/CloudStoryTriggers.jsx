@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 
 import styles from "./styles.module.css";
 import { useProjectContexts } from "./ProjectContexts";
+import { setStoriesFromFireBase } from "../components/stories/storySlice";
 const CloudstoryTriggers = () => {
   const dispatch = useDispatch();
 
@@ -36,7 +37,7 @@ const CloudstoryTriggers = () => {
         // console.log(filteredProjectsData);
 
         try {
-          dispatch(setstorysFromFireBase([...filteredProjectsData]));
+          dispatch(setStoriesFromFireBase([...filteredProjectsData]));
         } catch (e) {
           console.warn("error uploading storys in redux", e);
         }

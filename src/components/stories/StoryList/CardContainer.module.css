@@ -1,0 +1,42 @@
+/* CardContainer.css */
+.container {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.header {
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+}
+  /* DummyCard.css */
+  .dummyCard {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    width: 120px;
+    height: 100px;
+  }
+  
+  .dummyCard h3 {
+    margin: 0;
+  }
+  
+  .dummyCard p {
+    margin: 8px 0;
+  }
+  

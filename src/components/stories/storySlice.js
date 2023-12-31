@@ -1,23 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = []
+const initialState = [];
 
+const storySlice = createSlice({
+  name: "stories",
+  initialState,
 
-const storyslice = createSlice({
-    name: 'stories',
-    initialState,
+  reducers: {
+    setStoriesFromFireBase: (state, action) => {
+      return action.payload;
+    },
+  },
+});
 
-    reducers: {
-        setstoriesFromFireBase:(state,action)=>{
-            return action.payload
-        },
-        // add single story
-        addSinglestory:(state,action)=>{
-            const newstory = action.payload;
-            return [...state, newstory]
-        }
-    }
-})
-
-export const {setstoriesFromFireBase, addSinglestory} = storyslice.actions
-export default storyslice.reducer
+export const { setStoriesFromFireBase } = storySlice.actions;
+export default storySlice.reducer;

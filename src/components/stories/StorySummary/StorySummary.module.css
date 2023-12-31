@@ -62,3 +62,7 @@
     font-size: 0.7em; /* Adjust font size as needed */
     position: relative
   }
+
+  .storyColumn a {
+    text-decoration: none; /* Remove underline from links */
+  }
