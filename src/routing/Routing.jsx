@@ -72,7 +72,7 @@ const Routing = () => {
           )}
 
           {user && isProjectPlanner && (
-            <Route path="/story/task-list" element={<TaskList />} />
+            <Route path="/task-list" element={<TaskList />} />
           ) }
           <Route
             path="/create-task"

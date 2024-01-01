@@ -1,18 +1,16 @@
 /* eslint-disable react/prop-types */
 import styles from "./CardContainer.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useProjectContexts } from "../../../utils/ProjectContexts";
 import TaskSummary from "../../tasks/TaskSummary/TaskSummary";
 import { SmartTime } from "../../../utils/SmartTime";
 import { useSelector } from "react-redux";
 
-const CardContainer = ({ story, createdAtShown }) => {
+const TaskContainerStory = ({ story, createdAtShown }) => {
   const displayTime = createdAtShown ? story.createdAt : story.updatedAt;
 
   const formattedDate = SmartTime(displayTime);
 
   const history = useNavigate();
-  const { setCurrentStory } = useProjectContexts();
 
   const reduxTasks = useSelector((state) => state.tasks);
   const currentStoryTasks = reduxTasks.filter(
@@ -21,13 +19,19 @@ const CardContainer = ({ story, createdAtShown }) => {
   console.log(currentStoryTasks, story);
 
   const CreateTaskWithStory = () => {
-    setCurrentStory([story.id, story.title]);
+    localStorage.setItem(
+      "currentStoryLocalStorage",
+      JSON.stringify([story.id, story.title])
+    );
     history("/create-task");
   };
 
   const GotoTaskListForThisStory = () =>{
-    setCurrentStory([story.id, story.title]);
-    history("/story/task-list");
+    localStorage.setItem(
+      "currentStoryLocalStorage",
+      JSON.stringify([story.id, story.title])
+    );
+    history("/task-list");
   }
   return (
     <div className={styles.header}>
@@ -57,4 +61,4 @@ const CardContainer = ({ story, createdAtShown }) => {
   );
 };
 
-export default CardContainer;
+export default TaskContainerStory;

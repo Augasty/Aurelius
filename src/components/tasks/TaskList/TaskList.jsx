@@ -10,10 +10,11 @@ import { auth } from "../../../firebase";
 
 
 const TaskList = () => {
-  const { isRightPanelVisible,currentStory , isProjectPlanner} = useProjectContexts();
+  const { isRightPanelVisible, isProjectPlanner} = useProjectContexts();
   let reduxTasks = useSelector((state) => state.tasks) || [];
+  const currentStory = JSON.parse(localStorage.getItem("currentStoryLocalStorage"));
 
-
+  console.log(currentStory)
   if (isProjectPlanner){
     reduxTasks = reduxTasks?.filter(
       (task) => task.referenceStory[0] === currentStory[0]);
@@ -174,7 +175,7 @@ const TaskList = () => {
             <h2 className={styles.columnHeader}>
               {isFilteredAndHow[0]
                 ? isFilteredAndHow[1]
-                : filterParameters[idx]}
+                : filterParameters[idx]} {isProjectPlanner && ` under the story ${currentStory[1]}`}
             </h2>
 
             {taskGroups.map((task) => (

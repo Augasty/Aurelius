@@ -7,12 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 
 const CreateTask = () => {
-  const { currentboard, currentStory } = useProjectContexts();
-
-  const initialTaskObject =
-    currentStory.length > 0
-      ? { openToAll: false, referenceStory: currentStory }
-      : { openToAll: false };
+  const { currentboard, isProjectPlanner } = useProjectContexts();
+  const currentStory = JSON.parse(localStorage.getItem("currentStoryLocalStorage"));
+  const initialTaskObject = isProjectPlanner
+    ? { openToAll: false, referenceStory: currentStory }
+    : { openToAll: false };
   const [task, setTask] = useState({ ...initialTaskObject });
 
   const [currentboardMails, setcurrentboardMails] = useState([]);

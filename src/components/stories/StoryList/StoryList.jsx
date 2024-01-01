@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import { useState } from "react";
 import { auth } from "../../../firebase";
-import CardContainer from "./CardContainer";
+import TaskContainerStory from "../TaskContainerStory/TaskContainerStory";
 // import { useEffect } from 'react';
 
 const StoryList = () => {
@@ -129,7 +129,7 @@ const StoryList = () => {
       >
         {filteredStories.map((story) => (
 
-            <CardContainer key={story.id} story={story} createdAtShown={createdAtShown}/>
+            <TaskContainerStory key={story.id} story={story} createdAtShown={createdAtShown}/>
 
         ))}
 
