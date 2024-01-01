@@ -23,7 +23,7 @@ const TaskContainerStory = ({ story, createdAtShown }) => {
       "currentStoryLocalStorage",
       JSON.stringify([story.id, story.title])
     );
-    history("/create-task");
+    history("/story/create-task");
   };
 
   const GotoTaskListForThisStory = () => {
@@ -31,31 +31,31 @@ const TaskContainerStory = ({ story, createdAtShown }) => {
       "currentStoryLocalStorage",
       JSON.stringify([story.id, story.title])
     );
-    history("/task-list");
+    history("/story/task-list");
   };
   return (
-    <div className={styles.header}>
-      <div className={styles.storySummaryTitle}>
-        <p>
-          {story.title.length > 25
-            ? `${story.title.substring(0, 22)}...`
+      <div >
+      <div className={styles.StoryTopPart}>
+        <p className={styles.StoryName}>
+          {story.title.length > 20
+            ? `${story.title.substring(0, 16)}...`
             : story.title}
         </p>
 
         <button
-          className={styles.storyButton}
+          className={styles.StoryButton}
           onClick={() => CreateTaskWithStory()}
         >
           Create Tasks
         </button>
         <button
           onClick={() => GotoTaskListForThisStory()}
-          className={styles.storyButton}
+          className={styles.StoryButton}
         >
           Check Tasks
         </button>
       </div>
-      <div className={styles.cardsContainer}>
+      <div className={styles.CardsContainer}>
         {currentStoryTasks.map((task) => (
           <Link to={"/task/" + task.id} key={task.id}>
             <TaskSummary task={task} createdAtShown={createdAtShown} />

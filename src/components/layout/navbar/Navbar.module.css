@@ -4,7 +4,8 @@
   position: sticky;
   background-color: var(--accent-color);  /* Adjust the background color */
   color: var(--text-color);
-  padding: 15px 20px; /* Adjusted padding for better spacing */
+  padding-left: 20px; /* Adjusted padding for better spacing */
+  padding-right: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;

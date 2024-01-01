@@ -72,10 +72,10 @@ const Routing = () => {
           )}
 
           {user && isProjectPlanner && (
-            <Route path="/task-list" element={<TaskList />} />
+            <Route path="story/task-list" element={<TaskList />} />
           ) }
           <Route
-            path="/create-task"
+            path={isProjectPlanner? "/story/create-task" : "/create-task" }
             element={user && currentboard.length !== 0 ? <CreateTask /> : <></>}
           />
           <Route

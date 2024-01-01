@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ChatMessage from "./ChatMessage";
-import styles from './styles.module.css'; 
+import styles from "./styles.module.css";
 import { v4 as uuidv4 } from "uuid";
 import {
   collection,
@@ -10,18 +10,16 @@ import {
   onSnapshot,
   query,
 } from "firebase/firestore";
-import send from "../../../../assets/send.png";
 import { auth, db } from "../../../firebase";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 
 function ChatRoom() {
-  const {currentboard} = useProjectContexts();
+  const { currentboard } = useProjectContexts();
 
   const [formValue, setFormValue] = useState("");
   const [messages, setmessages] = useState(null);
 
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
-
 
   async function fetchTexts(textsRef) {
     try {
@@ -59,11 +57,8 @@ function ChatRoom() {
     return () => unsub();
   }, [currentboard, initialLoadComplete]);
 
-
-
   const sendMessage = async (e) => {
-    e.preventDefault(); //stops the app from refreashing everytime a text is sent
-
+    e.preventDefault();
     const { uid, photoURL } = auth.currentUser;
 
     await addDoc(collection(db, "boards", currentboard[0], "chatList"), {
@@ -85,13 +80,11 @@ function ChatRoom() {
       <main className={styles.main}>
         <div className={styles.messageContainer}>
           {messages &&
-            messages.toReversed().map((msg) => (
-              <ChatMessage key={msg.uniqueId} message={msg} />
-            ))}
+            messages.toReversed().map((msg) => <ChatMessage key={msg.uniqueId} message={msg} />)}
           <span ref={dummy}></span>
         </div>
       </main>
-  
+
       <form onSubmit={sendMessage} className={styles.form}>
         <input
           value={formValue}
@@ -99,11 +92,9 @@ function ChatRoom() {
           placeholder="Message"
           className={styles.input}
         />
-  
+
         <button type="submit" disabled={!formValue} className={styles.button}>
-        <img src={send} alt="send" style={{
-            width: '30px',  height: '30px'
-        }} />
+          Send
         </button>
       </form>
     </>

@@ -122,9 +122,9 @@ const CreateTask = () => {
             required
           >
             <option value=""> </option>
-            <option value="Low Priority">Low</option>
-            <option value="Medium Priority">Medium</option>
-            <option value="High Priority">High</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
           </select>
         </div>
 
@@ -135,6 +135,7 @@ const CreateTask = () => {
             id="deadline"
             className={`${styles.deadlineInput}`}
             onChange={handleChange}
+            value={new Date().toISOString().split('T')[0]}
             required
           />
         </div>
@@ -158,9 +159,9 @@ const CreateTask = () => {
             required
           >
             <option value=""></option>
-            <option value="Yet To Start">Yet To Start</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Completed">Completed</option>
+            <option value="Pending">Pending</option>
+            <option value="Active">Active</option>
+            <option value="Finished">Finished</option>
           </select>
         </div>
 

@@ -93,6 +93,7 @@ const CreateStory = () => {
             id="deadline"
             className={`${styles.inputField}  ${styles.additionalInputStyles}`}
             onChange={handleChange}
+            value={new Date().toISOString().split('T')[0]}
           />
         </div>
 

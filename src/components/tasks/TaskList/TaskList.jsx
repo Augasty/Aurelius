@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import TaskSummary from "../TaskSummary/TaskSummary";
-import { Link } from "react-router-dom";
+
 import styles from "./TaskList.module.css";
+import filterbarStyles from "../../../sharedStyles/FilterBar.module.css"
+
 import { useSelector } from "react-redux";
 import { separateTasksByPriority } from "./separatedTasks";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
@@ -26,9 +28,9 @@ const TaskList = () => {
 
   const [filterType, setfilterType] = useState("priority");
   const [filterParameters, setfilterParameters] = useState([
-    "Low Priority",
-    "Medium Priority",
-    "High Priority",
+    "Low",
+    "Medium",
+    "High",
   ]);
 
   // if it is filtered, the display is grid, and we put the filter type in this variable and display it
@@ -98,15 +100,16 @@ const TaskList = () => {
   };
 
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.FilterBar}>
-        <p className={styles.FilterHeaderText}>Sort By</p>
+    <div className={filterbarStyles.mainContainer}>
+      <div className={filterbarStyles.FilterBar}>
+      <p className={filterbarStyles.FilterHeaderText}>{isProjectPlanner && `Tasks in ${currentStory[1]}`}</p>
+        <p className={filterbarStyles.FilterHeaderText}>Sort By</p>
         <button
-          className={styles.FilterButton}
+          className={filterbarStyles.FilterButton}
           onClick={() =>
             handleButtonClick(
               "priority",
-              ["Low Priority", "Medium Priority", "High Priority"],
+              ["Low", "Medium", "High"],
               [false, ""]
             )
           }
@@ -114,11 +117,11 @@ const TaskList = () => {
           Priority
         </button>
         <button
-          className={styles.FilterButton}
+          className={filterbarStyles.FilterButton}
           onClick={() =>
             handleButtonClick(
               "taskStatus",
-              ["Yet To Start", "In Progress", "Completed"],
+              ["Pending", "Active", "Finished"],
               [false, ""]
             )
           }
@@ -126,9 +129,9 @@ const TaskList = () => {
           Status
         </button>
 
-        <p className={styles.FilterHeaderText}>Filter Tasks</p>
+        <p className={filterbarStyles.FilterHeaderText}>Filter Tasks</p>
         <button
-          className={styles.FilterButton}
+          className={filterbarStyles.FilterButton}
           onClick={() =>
             handleButtonClick(
               "assignedTo",
@@ -141,7 +144,7 @@ const TaskList = () => {
         </button>
 
         <button
-          className={styles.FilterButton}
+          className={filterbarStyles.FilterButton}
           onClick={() =>
             handleButtonClick(
               "authorDetails",
@@ -153,35 +156,34 @@ const TaskList = () => {
           Assigned By Me
         </button>
 
-        <p className={styles.FilterHeaderText}>Display By:</p>
+        <p className={filterbarStyles.FilterHeaderText}>Display By:</p>
         <button
-          className={styles.FilterButton}
+          className={filterbarStyles.FilterButton}
           onClick={() => setcreatedAtShown(!createdAtShown)}
         >
           {createdAtShown ? "Updated At" : "Created At"}
         </button>
 
-        <p className={styles.FilterHeaderText}></p>
+        <p className={filterbarStyles.FilterHeaderText}></p>
       </div>
 
       <div
         className={`${styles.taskList} ${
           isFilteredAndHow[0] && styles.taskListGrid
         }`}
-        style={{ width: isRightPanelVisible ? "70%" : "100%" }}
+        style={{ width: isRightPanelVisible ? "75%" : "98%" }}
       >
         {separatedTasks.map((taskGroups, idx) => (
           <div className={styles.taskColumn} key={idx}>
             <h2 className={styles.columnHeader}>
               {isFilteredAndHow[0]
                 ? isFilteredAndHow[1]
-                : filterParameters[idx]} {isProjectPlanner && ` under the story ${currentStory[1]}`}
+                : filterParameters[idx]} 
             </h2>
 
             {taskGroups.map((task) => (
-              <Link to={"/task/" + task.id} key={task.id}>
-                <TaskSummary task={task} createdAtShown={createdAtShown} />
-              </Link>
+             
+                <TaskSummary task={task} createdAtShown={createdAtShown} key={task.id}/>
             ))}
           </div>
         ))}

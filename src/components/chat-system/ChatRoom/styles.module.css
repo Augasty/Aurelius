@@ -2,38 +2,45 @@
   height: 60vh;
   overflow-y: scroll;
   padding: 16px;
+  
 }
 
 .messageContainer {
   display: flex;
   flex-direction: column;
+  
 }
 
 .form {
   display: flex;
   align-items: center;
-  margin-top: 16px;
+  border: var(--div-border);
+  position: relative;
+  left: 1vw;
+  top: 2vh;
+  height: 10vh;
+  width: 21vw;
 }
 
 .input {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  left: 80vw;
   font-family: inherit;
-  margin-left: 10px; /* Adjust margin as needed */
-  margin-right: 5px;
+  margin: 0 1vh;
+  height: 5vh;
 }
 
 .button {
-  background-color: #4285F4; /* Google Blue */
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  margin-left: 5px;
+  background-color: var(--background-color);
+  color: #000;
   cursor: pointer;
-  font-family: inherit;
+  border: var(--div-border);
+  border-radius: 1vh;
+  font-weight: bold;
+
+  margin: 0 1vh;
+  height: 5vh;
+  cursor: pointer;
   transition: background-color 0.3s;
 }
 
@@ -47,6 +54,7 @@
   display: flex;
   align-items: center;
   margin: 10px;
+  
 }
 
 .sent {
@@ -63,11 +71,15 @@
 .messageContent {
   display: flex;
   flex-direction: column;
+  
 }
 
 .message p {
   background-color: #ffffff; /* Google Blue */
   color: #000000;
+  border: var(--div-border);
+  border-radius: 1vh;
+  font-weight: bold;
   padding: 8px 12px;
   border-radius: 10px;
   max-width: 60%; /* Adjust as needed */

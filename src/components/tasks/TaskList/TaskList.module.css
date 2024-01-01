@@ -10,9 +10,9 @@
   justify-content: space-around;
   display: flex;
   position: relative;
-  max-width: 90%;
-  top:10%;
-  /* padding: 1rem; */
+  max-width: 100%;
+
+  padding: 1%;
 }
 
 
@@ -22,69 +22,27 @@
 
 
 .taskColumn {
-  flex: 1;
-  align-items: center; /* Center children horizontally */
+  width: 450px;
+  text-align: center; /* Center children horizontally */
 }
 
 .taskColumn > a {
-  
   display: inline-flex;
-  margin-bottom: 10px; /* Add some space between rows */
 }
 
 
 .columnHeader {
   text-decoration: none; /* Remove underline from h2 */
-  margin: 10px auto;
+  margin: auto;
   color: #333; /* Set text color */
   width: fit-content;
   border-radius: 4px; /* Smaller border-radius for a cleaner look */
   font-size: 1.5em; /* Increase font size for a more heading-like appearance */
   font-weight: bold; /* Make the text bold for emphasis */
   letter-spacing: 1px; /* Add a small letter-spacing for clarity */
+  align-self: center;
 }
 
 .taskColumn a {
   text-decoration: none; /* Remove underline from links */
-}
-
-.FilterBar{
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 10%;
-  height:fit-content;
-  background-color:var(--accent-color); /* Solid pink color */
-  margin: 4px;
-  border-radius: 10px;
-}
-
-.FilterHeaderText {
-  font-size: 14px;
-  color: white;
-  margin: 0;
-  text-align: center; 
-  font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 2px;
-}
-.FilterButton {
-  padding: 8px;
-  margin: 8px;
-  width: 85%;
-  background-color: #fff; /* White background for buttons */
-  color: var(--accent-color); /* Google blue color for text */
-  border: none;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-
-}
-
-.FilterButton:hover {
-  background-color: #f5f5f5; /* Light gray background on hover */
-}
-
-.FilterButton:active {
-  background-color: #c2c2c2; /* Light gray background on hover and click */
 }

@@ -1,14 +1,13 @@
 
   /* storyList.module.css */
-.storyColumn {
+.storyList {
   
   align-items: top;
   display: flex;
   position: relative;
   flex: 0 0 auto;
-  min-height: 100%;
-  top:10%;
-  bottom: 100%;
+  min-height: 80vh;
+  top:0%;
   overflow-x:scroll;
   padding-left:  1%;
   padding-right: 1%;
@@ -22,10 +21,10 @@
 
 
 
-.storyColumn > a {
-  
+
+.storyList  a {
+  text-decoration: none; /* Remove underline from links */
   display: inline-flex;
-  margin-bottom: 10px; /* Add some space between rows */
 }
 
 
@@ -42,47 +41,11 @@
   letter-spacing: 1px; /* Add a small letter-spacing for clarity */
 }
 
-.storyColumn a {
-  text-decoration: none; /* Remove underline from links */
-}
 
-.FilterBar{
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 10%;
-  height:fit-content;
-  background-color:var(--accent-color); /* Solid pink color */
-  margin: 4px;
-  border-radius: 10px;
-}
 
-.FilterHeaderText {
-  font-size: 14px;
-  color: white;
-  margin: 0;
-  text-align: center; 
-  font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 2px;
-}
-.FilterButton {
-  padding: 8px;
-  margin: 8px;
-  width: 85%;
-  background-color: #fff; /* White background for buttons */
-  color: var(--accent-color); /* Google blue color for text */
-  border: none;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
 
-}
 
-.FilterButton:hover {
-  background-color: #f5f5f5; /* Light gray background on hover */
-}
 
-.FilterButton:active {
-  background-color: #c2c2c2; /* Light gray background on hover and click */
-}
+
+
+
