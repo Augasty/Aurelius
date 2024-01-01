@@ -1,15 +1,21 @@
 
   /* storyList.module.css */
 .storyColumn {
-  justify-content: space-around;
-  align-items: center;
+  
+  align-items: top;
   display: flex;
   position: relative;
   flex: 0 0 auto;
   min-height: 100%;
   top:10%;
+  bottom: 100%;
   overflow-x:scroll;
-  padding-right: 50px;
+  padding-left:  1%;
+  padding-right: 1%;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+
   left: 0%;
   
 }

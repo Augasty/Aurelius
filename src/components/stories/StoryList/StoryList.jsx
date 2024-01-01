@@ -76,7 +76,7 @@ const StoryList = () => {
 
   return (
     <div style={{ display: "flex" }}>
-<div className={styles.FilterBar}>
+{/* <div className={styles.FilterBar}>
 <p className={styles.FilterHeaderText}>Sort By</p>
 <button
   className={styles.FilterButton}
@@ -121,11 +121,11 @@ const StoryList = () => {
 </button>
 
 <p className={styles.FilterHeaderText}></p>
-</div>
+</div> */}
 
       <div
         className={styles.storyColumn}
-        style={{ width: isRightPanelVisible ? "75%" : "100%" }}
+        style={{ width: isRightPanelVisible ? "73%" : "98%" }}
       >
         {filteredStories.map((story) => (
 

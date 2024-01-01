@@ -26,13 +26,13 @@ const TaskContainerStory = ({ story, createdAtShown }) => {
     history("/create-task");
   };
 
-  const GotoTaskListForThisStory = () =>{
+  const GotoTaskListForThisStory = () => {
     localStorage.setItem(
       "currentStoryLocalStorage",
       JSON.stringify([story.id, story.title])
     );
     history("/task-list");
-  }
+  };
   return (
     <div className={styles.header}>
       <div className={styles.storySummaryTitle}>
@@ -48,7 +48,12 @@ const TaskContainerStory = ({ story, createdAtShown }) => {
         >
           Create Tasks
         </button>
-        <button onClick={()=> GotoTaskListForThisStory()} className={styles.storyButton}>Check Tasks</button>
+        <button
+          onClick={() => GotoTaskListForThisStory()}
+          className={styles.storyButton}
+        >
+          Check Tasks
+        </button>
       </div>
       <div className={styles.cardsContainer}>
         {currentStoryTasks.map((task) => (
