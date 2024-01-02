@@ -2,13 +2,18 @@
 import styles from "./TaskContainerStory.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import TaskSummary from "../../tasks/TaskSummary/TaskSummary";
-import { SmartTime } from "../../../utils/SmartTime";
 import { useSelector } from "react-redux";
 
-const TaskContainerStory = ({ story, createdAtShown }) => {
-  const displayTime = createdAtShown ? story.createdAt : story.updatedAt;
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-based
+  const year = date.getFullYear();
 
-  const formattedDate = SmartTime(displayTime);
+  return `${day}-${month}-${year}`;
+};
+const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
+  const displayTime = formatDate(story[storyDisplayedTime]);
 
   const history = useNavigate();
 
@@ -34,26 +39,34 @@ const TaskContainerStory = ({ story, createdAtShown }) => {
     history("/story/task-list");
   };
   return (
-      <div >
+    <div>
       <div className={styles.StoryTopPart}>
         <p className={styles.StoryName}>
           {story.title.length > 20
             ? `${story.title.substring(0, 16)}...`
             : story.title}
         </p>
+        <div style={{ display: "flex" }}>
+          <div className={styles.StoryDate}>
+            {displayTime == "31-12-9999" ? "N/A" : displayTime}
+          </div>
+          <div className={styles.statusChip}>{story.completionCount}</div>
+        </div>
 
-        <button
-          className={styles.StoryButton}
-          onClick={() => CreateTaskWithStory()}
-        >
-          Create Tasks
-        </button>
-        <button
-          onClick={() => GotoTaskListForThisStory()}
-          className={styles.StoryButton}
-        >
-          Check Tasks
-        </button>
+        <div style={{ display: "flex" }}>
+          <button
+            className={styles.StoryButton}
+            onClick={() => CreateTaskWithStory()}
+          >
+            Add Task
+          </button>
+          <button
+            onClick={() => GotoTaskListForThisStory()}
+            className={styles.StoryButton}
+          >
+            Expand
+          </button>
+        </div>
       </div>
       <div className={styles.CardsContainer}>
         {currentStoryTasks.map((task) => (

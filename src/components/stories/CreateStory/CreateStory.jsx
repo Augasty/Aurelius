@@ -8,7 +8,7 @@ import styles from "../../tasks/createTask/styles.module.css";
 const CreateStory = () => {
   const { currentboard } = useProjectContexts();
   const [story, setstory] = useState({
-    deadline:"9999-12-31"
+    deadline: "9999-12-31",
   });
 
   const curuser = auth.currentUser;
@@ -31,6 +31,7 @@ const CreateStory = () => {
         authorDetails: curuser.email,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
+        completionCount: 0,
       });
 
       console.log("story created", story);
@@ -56,44 +57,15 @@ const CreateStory = () => {
           />
         </div>
 
-        <div className={styles.inputContainer}>
-          <label htmlFor="priority">Priority</label>
-          <select
-            id="priority"
-            className={`${styles.inputField}  ${styles.additionalInputStyles}`}
-            onChange={handleChange}
-            required
-          >
-          <option value=""> </option>
-            <option value="Not Relevant">Not Relevant</option>
-            <option value="Low Priority">Low</option>
-            <option value="Medium Priority">Medium</option>
-            <option value="High Priority">High</option>
-          </select>
-        </div>
-
-
         <div className={`${styles.inputContainer}`}>
-          <label htmlFor="storyStatus">Status</label>
-          <select
-            id="storyStatus"
-            className={`${styles.inputField}  ${styles.additionalInputStyles}`}
-            onChange={handleChange}
-            required
-          >
-          <option value=""></option>
-            <option value="Not Relevant">Not Relevant </option>
-            <option value="Relevant">Relevant</option>
-          </select>
-        </div>
-        <div className={`${styles.inputContainer}`}>
-          <label htmlFor="deadline">Deadline</label>
+          <label htmlFor="deadline">Deadline (optional)</label>
           <input
             type="date"
             id="deadline"
-            className={`${styles.inputField}  ${styles.additionalInputStyles}`}
+            className={`${styles.inputField} ${styles.additionalInputStyles}`}
             onChange={handleChange}
-            value={new Date().toISOString().split('T')[0]}
+            min={new Date().toISOString().split("T")[0]}
+            max="2999-12-31"
           />
         </div>
 

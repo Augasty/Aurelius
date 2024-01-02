@@ -1,13 +1,12 @@
 .rightPanel {
   position: fixed;
-  top: 18vh;
+  top: 18.9vh;
   left: 76vw;
   
-  height: 80vh;
+  height: 79.5vh;
   width: 23vw;
   background-color: var(--accent-color);
   /* google blue*/
 
   border: var(--div-border);
-  border-radius: 5px;
 }

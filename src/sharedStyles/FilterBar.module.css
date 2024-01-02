@@ -3,16 +3,19 @@
 /* the filter bar */
 .FilterBar {
     /* position: sticky; */
+    
     top: 0;
     left: 0;
     width: 99%;
     min-height: 4%;
     background-color: var(--accent-color);
-    margin: 0.5%;
+    margin-top: 3px;
+    margin-left: 3px;
     border-radius: 10px;
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    
+  border: var(--div-border);
   }
   
   .FilterHeaderText {
@@ -22,6 +25,7 @@
     text-align: center;
     font-weight: bold;
     margin-top: 2px;
+    margin-left: 10px;
     margin-bottom: 2px;
   }
   
@@ -34,13 +38,15 @@
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
+    
+  border: var(--div-border);
   }
   
   .FilterButton:hover {
-    background-color: #f5f5f5;
+    background-color: #d1d1d1;
   }
   
   .FilterButton:active {
-    background-color: #c2c2c2;
+    background-color: #777777;
   }
   

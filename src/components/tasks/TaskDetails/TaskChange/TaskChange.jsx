@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { auth, db } from "../../../../firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, increment, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import styles from "../../createTask/styles.module.css";
 import { useProjectContexts } from "../../../../utils/ProjectContexts";
 
 const TaskChange = ({ currentTask }) => {
-  const { currentboard } = useProjectContexts();
+  const { currentboard, isProjectPlanner } = useProjectContexts();
+  const currentStory = JSON.parse(
+    localStorage.getItem("currentStoryLocalStorage")
+  );
+
   const currentTaskRef = doc(
     db,
     "boards",
@@ -17,15 +21,14 @@ const TaskChange = ({ currentTask }) => {
   );
   const curuser = auth.currentUser;
 
-  const [formData, setFormData] = useState({
+  const [updatedCurrentTask, setupdatedCurrentTask] = useState({
     ...currentTask,
   });
   const history = useNavigate();
 
   const updateLockedTill = async () => {
     await updateDoc(currentTaskRef, {
-      ...currentTask,
-      ...formData,
+      ...updatedCurrentTask,
       lockedTill: new Date(new Date().getTime() + 22000).toISOString(),
       lockedBy: curuser?.email,
     });
@@ -44,12 +47,11 @@ const TaskChange = ({ currentTask }) => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth]); // Empty dependency array to run the effect only once on component mounting
+  }, [auth]);
 
-  // Function to handle form changes
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData((prevData) => ({
+    setupdatedCurrentTask((prevData) => ({
       ...prevData,
       [id]: value,
     }));
@@ -59,37 +61,61 @@ const TaskChange = ({ currentTask }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await updateDoc(currentTaskRef, {
-      ...currentTask,
-      ...formData,
+      ...updatedCurrentTask,
       updatedAt: new Date().toISOString(),
       lockedBy: null,
       lockedTill: new Date().toISOString(),
     });
+
+    // updating the completionCount of a story
+    if (
+      isProjectPlanner &&
+      currentTask.taskStatus !== updatedCurrentTask.taskStatus
+    ) {
+      window.alert(`${currentStory[1]}`)
+      const currentStoryRef = doc(
+        db,
+        "boards",
+        currentboard[0],
+        "storyList",
+        currentStory[0]
+      );
+      let incrementCount = 0;
+      if (updatedCurrentTask.taskStatus == "Finished") {
+        incrementCount--;
+      } else if (currentTask.taskStatus == "Finished") {
+        incrementCount++;
+      }
+      await updateDoc(currentStoryRef, {
+        updatedAt: new Date().toISOString(),
+        completionCount: increment(incrementCount),
+      });
+    }
+
     history(-1); //back to the previous screen
   };
 
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={`${styles.createTaskForm}`}>
-      <h5 className={styles.heading}>Change {formData.title}</h5>
-      <label htmlFor="title">Task Title</label>
-      <div className={styles.inputField}>
+        <h5 className={styles.heading}>Change {updatedCurrentTask.title}</h5>
+        <label htmlFor="title">Task Title</label>
+        <div className={styles.inputField}>
           <input
             type="text"
             id="title"
-            value={formData.title}
+            value={updatedCurrentTask.title}
             onChange={handleChange}
             required
             className={styles.taskTitleInput}
           />
-          </div>
+        </div>
 
-
-          <label htmlFor="content">Task Content</label>
+        <label htmlFor="content">Task Content</label>
         <div className={styles.inputField}>
           <textarea
             id="content"
-            value={formData.content}
+            value={updatedCurrentTask.content}
             onChange={handleChange}
             required
             className={`${styles.customTextarea} ${styles.taskContentTextarea}`}
@@ -103,8 +129,9 @@ const TaskChange = ({ currentTask }) => {
             id="deadline"
             className={`${styles.deadlineInput}`}
             onChange={handleChange}
-            value={formData.deadline}
-            required
+            value={updatedCurrentTask.deadline}
+            min={new Date().toISOString().split("T")[0]}
+            max="2999-12-31"
           />
         </div>
 
@@ -112,7 +139,7 @@ const TaskChange = ({ currentTask }) => {
           Priority
           <select
             id="priority"
-            value={formData.priority}
+            value={updatedCurrentTask.priority}
             onChange={handleChange}
             className={styles.prioritySelect}
           >
@@ -122,13 +149,12 @@ const TaskChange = ({ currentTask }) => {
           </select>
         </label>
 
-
         <div className={`${styles.inputField}`}>
           <label htmlFor="taskStatus">Task Status</label>
           <select
             id="taskStatus"
             className={`${styles.taskStatusSelect}`}
-            value={formData.taskStatus}
+            value={updatedCurrentTask.taskStatus}
             onChange={handleChange}
             required
           >
@@ -142,8 +168,10 @@ const TaskChange = ({ currentTask }) => {
           <button
             className={`${styles.btn} ${styles.submit} ${styles.createTaskBtn}`}
             type="submit"
-          >   Submit
-        </button>
+          >
+            {" "}
+            Submit
+          </button>
         </div>
       </form>
     </div>

@@ -1,28 +1,8 @@
 
-.CardsContainer {
-  justify-content: center;
-
-  margin: 5px;
-  margin-top: 0;
-
-  background-color: #989898;
-border: var(--div-border);
-  border-top: 0px;
-
-
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: scroll;
-  height: 61vh;
-  width: 150px;
-}
-
-
 
 
 .StoryTopPart {
   color: var(--text-color);
-  background-color: #989898;
   font-size: 1em;
   position: relative;
   font-weight: bold;
@@ -41,32 +21,87 @@ border: var(--div-border);
 
 .StoryName {
   margin-top: 3px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 
+  font-size: 3vh;
   padding-top: 0;
   padding-bottom: 2px;
   text-align: center;
   
-  border-bottom: var(--div-border);
 
   font-family: var(--font-family);
 }
 
+
+
+
+.StoryDate,
+.StoryButton,
+.statusChip {
+  width: 6vw;
+  margin: 0;
+  
+  background-color: var(--background-color);
+}
+
+.StoryDate{
+  padding: 2px 4px;
+  color: #000;
+  padding-top: 0.5vw ;
+  font-size: 2.3vh;
+  font-weight: bold;
+  
+  border-bottom: var(--background-color);
+}
+
+
+.statusChip {
+  top: 0;
+  right: 0;
+  color: #c62828;
+  padding: 2px 4px;
+  
+  padding-top: 0.5vw ;
+  font-size: 2.3vh;
+  position: relative
+}
+
+
+
 .StoryButton {
-  width: 60px;
-  padding: 5px 10px;
-  margin: 5px;
+  width: 5.5vw;
+  margin: 0.25vw ;
+
+  padding: 2px 4px;
   background-color: var(--background-color);
   color: #000;
   border: var(--div-border);
-  border-radius: 1vh;
   cursor: pointer;
   font-family: var(--font-family);
+  font-size: 2.25vh;
   font-weight: bold;
+  border-radius: 1vh;
 }
 
 .storyButton:hover {
   background-color: var(--primary-color);
 }
 
+
+.CardsContainer {
+  justify-content: center;
+
+  margin: 5px;
+  margin-top: 0;
+
+  background-color: #989898;
+border: var(--div-border);
+
+
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  height: 65vh;
+  width: 150px;
+}
 

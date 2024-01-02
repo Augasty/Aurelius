@@ -1,14 +1,23 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css"; // Update your custom CSS file name
-import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  increment,
+  updateDoc,
+} from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 
 const CreateTask = () => {
   const { currentboard, isProjectPlanner } = useProjectContexts();
-  const currentStory = JSON.parse(localStorage.getItem("currentStoryLocalStorage"));
+  const currentStory = JSON.parse(
+    localStorage.getItem("currentStoryLocalStorage")
+  );
   const initialTaskObject = isProjectPlanner
     ? { openToAll: false, referenceStory: currentStory }
     : { openToAll: false };
@@ -61,7 +70,24 @@ const CreateTask = () => {
         lockedTill: new Date().toISOString(),
       });
 
-      console.log("task created", task);
+      // console.log("task created", task);
+
+
+      // updating the completionCount of a story
+      if (isProjectPlanner) {
+        const currentStoryRef = doc(
+          db,
+          "boards",
+          currentboard[0],
+          "storyList",
+          currentStory[0]
+        );
+        let incrementCount = task.taskStatus !== "Finished" ? 1 : 0;
+        await updateDoc(currentStoryRef, {
+          updatedAt: new Date().toISOString(),
+          completionCount: increment(incrementCount),
+        });
+      }
     } catch (e) {
       console.error(e);
     }
@@ -128,15 +154,15 @@ const CreateTask = () => {
           </select>
         </div>
 
-        <div className={`${styles.inputField}`}>
-          <label htmlFor="deadline">Deadline</label>
+        <div className={`${styles.inputContainer}`}>
+          <label htmlFor="deadline">Deadline (optional)</label>
           <input
             type="date"
             id="deadline"
-            className={`${styles.deadlineInput}`}
+            className={`${styles.inputField} ${styles.additionalInputStyles}`}
             onChange={handleChange}
-            value={new Date().toISOString().split('T')[0]}
-            required
+            min={new Date().toISOString().split("T")[0]}
+            max="2999-12-31"
           />
         </div>
 
