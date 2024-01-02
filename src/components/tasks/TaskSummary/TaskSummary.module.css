@@ -1,47 +1,52 @@
 .taskSummary {
   border: var(--div-border);
     padding: 10px;
-    margin: 10px;
+    margin: 5px;
     border-radius: 8px;
     font-family: 'Arial', sans-serif;
-    width:100px;
-    height:85px;
+    width:110px;
+    height:80px;
     text-align: left;
     color: black;
     
   }
-  .taskCompleted {
+  .Finished {
     background-color: rgb(151, 250, 151); /* 90% transparent green */
   }
   
-   .taskYetToStart{
+   .Pending{
     background-color:  #8fcdff
   }
   
-  .taskInProgress {
+  .Active {
     background-color: #fff477; /* Yellow color for tasks yet to start */
   }
-  .taskOverDue {
-    background-color:  rgb(253, 158, 158)
+  .Overdue {
+    background-color:  rgb(251, 151, 151)
   }
   .taskStatus {
     font-weight: bold;
+    font-size: 2.2vh;
+    color: #363636;
     margin-bottom: 4px;
-    font-size: 0.8em;
     display: inline
   }
   
   .taskSummaryTitle {
-    font-size: 1em;
+    font-size: 2.5vh;
     font-weight:bold;
     margin: 0;
+ 
   }
   
-  .taskSummaryText {
+  .taskSummaryDate {
     margin-top: 5px;
-    font-size: 0.8em;
-    font-weight: 400;
-    white-space: normal; /* Allow text to wrap */
+    font-size: 2.1vh;
+    font-weight: 600;
+    color: #363636;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .overdueChip {
@@ -49,10 +54,10 @@
     right: 0;
     background-color: #c62828; /* Red color for the chip */
     color: #fff; /* White text color for the chip */
-    padding: 1.5px 2px; 
+    padding: 2px 3px; 
     border-radius: 2px; /* Adjust border-radius for a less rounded appearance */
     font-size: 0.7em; /* Adjust font size as needed */
-    position: relative
+    position: relative;
   }
 
   .openButton {

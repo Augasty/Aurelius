@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styles from "./StoryList.module.css";
-import filterbarStyles from "../../../sharedStyles/FilterBar.module.css"
+import filterbarStyles from "../../../sharedStyles/FilterBar.module.css";
 import { useSelector } from "react-redux";
 // import { separateStoriesByFilterType } from "./separatedStories";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
@@ -14,13 +14,13 @@ const StoryList = () => {
 
   const [createdAtShown, setcreatedAtShown] = useState(false);
 
+  const [storyDisplayedTime, setstoryDisplayedTime] = useState("deadline");
 
-  const [storyDisplayedTime, setstoryDisplayedTime] = useState('deadline')
+
 
   return (
     <div style={{ display: "grid" }}>
       <div className={filterbarStyles.FilterBar}>
-
         <p className={filterbarStyles.FilterHeaderText}>Show Task Date By::</p>
         <button
           className={filterbarStyles.FilterButton}
@@ -29,21 +29,42 @@ const StoryList = () => {
           {createdAtShown ? "Created At" : "Updated At"}
         </button>
 
+        <p className={filterbarStyles.FilterHeaderText}>Show Story Date By:</p>
 
-        <p className={filterbarStyles.FilterHeaderText}>Show Story Date By::</p>
-        <button
-          className={filterbarStyles.FilterButton}
-          onClick={() =>{}}
-        >
-          {/* {"Created At" or "Updated At" or "Deadline"} */}
-        </button>
+    <>
+          <button
+            className={`${filterbarStyles.FilterButton} ${
+              storyDisplayedTime === "createdAt" && filterbarStyles.ActiveFilterButton
+            }`}
+            onClick={() => setstoryDisplayedTime("createdAt")}
+          >
+            Created At
+          </button>
+
+          <button
+            className={`${filterbarStyles.FilterButton} ${
+              storyDisplayedTime === "updatedAt" && filterbarStyles.ActiveFilterButton
+            }`}
+            onClick={() => setstoryDisplayedTime("updatedAt")}
+          >
+            Updated At
+          </button>
+
+          <button
+            className={`${filterbarStyles.FilterButton} ${
+              storyDisplayedTime === "deadline" && filterbarStyles.ActiveFilterButton
+            }`}
+            onClick={() => setstoryDisplayedTime("deadline")}
+          >
+            Deadline
+          </button>
+          </>
 
         <p className={filterbarStyles.FilterHeaderText}></p>
 
-        <button
-          className={filterbarStyles.FilterButton}
-          onClick={() =>{}}
-        >Filter Finished Stories</button>
+        <button className={filterbarStyles.FilterButton} onClick={() => {}}>
+          Filter Finished Stories
+        </button>
       </div>
 
       <div

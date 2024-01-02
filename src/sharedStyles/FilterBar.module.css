@@ -9,6 +9,7 @@
     width: 99%;
     min-height: 4%;
     background-color: var(--accent-color);
+    
     margin-top: 3px;
     margin-left: 3px;
     border-radius: 10px;
@@ -33,10 +34,9 @@
     padding: 6px;
     margin: 6px;
     background-color: #fff;
-    color: var(--accent-color);
-    border: none;
+    color: var(--text-color);
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 2px;
     cursor: pointer;
     
   border: var(--div-border);
@@ -46,7 +46,7 @@
     background-color: #d1d1d1;
   }
   
-  .FilterButton:active {
+  .FilterButton:active,.ActiveFilterButton {
     background-color: #777777;
   }
   

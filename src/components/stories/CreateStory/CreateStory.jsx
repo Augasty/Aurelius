@@ -42,6 +42,14 @@ const CreateStory = () => {
     history("/");
   };
 
+
+
+  
+
+const today = new Date();
+const yesterday = new Date(today);
+yesterday.setDate(today.getDate() - 1);
+
   return (
     <div className={styles.container}>
       <form className={styles.createstoryForm} onSubmit={handleSubmit}>
@@ -64,7 +72,7 @@ const CreateStory = () => {
             id="deadline"
             className={`${styles.inputField} ${styles.additionalInputStyles}`}
             onChange={handleChange}
-            min={new Date().toISOString().split("T")[0]}
+            min={yesterday.toISOString().split("T")[0]}
             max="2999-12-31"
           />
         </div>

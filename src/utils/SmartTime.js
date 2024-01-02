@@ -12,7 +12,7 @@ export const  SmartTime =(displayTime) =>{
     } else if (isYesterday) {
       formattedDate = `Yesterday at ${displayTimeMoment.format("h:mm a")}`;
     } else {
-      formattedDate = displayTimeMoment.format("MMMM Do YYYY [at] h:mm a");
+      formattedDate = displayTimeMoment.format("MMM Do YYYY [at] h:mm a");
     }
   
     return formattedDate

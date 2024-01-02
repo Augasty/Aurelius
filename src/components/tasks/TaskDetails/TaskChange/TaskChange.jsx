@@ -72,7 +72,6 @@ const TaskChange = ({ currentTask }) => {
       isProjectPlanner &&
       currentTask.taskStatus !== updatedCurrentTask.taskStatus
     ) {
-      window.alert(`${currentStory[1]}`)
       const currentStoryRef = doc(
         db,
         "boards",

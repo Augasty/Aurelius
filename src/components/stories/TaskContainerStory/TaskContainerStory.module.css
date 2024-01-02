@@ -1,6 +1,3 @@
-
-
-
 .StoryTopPart {
   color: var(--text-color);
   font-size: 1em;
@@ -10,9 +7,9 @@
   align-self: center;
   width: 150px;
   margin: 0px 5px;
-  
-border: var(--div-border);
-  
+
+  border: var(--div-border);
+
   border-bottom: 0px;
 
   padding: 0;
@@ -27,7 +24,7 @@ border: var(--div-border);
   padding-top: 0;
   padding-bottom: 2px;
   text-align: center;
-  
+
 
   font-family: var(--font-family);
 }
@@ -35,43 +32,39 @@ border: var(--div-border);
 
 
 
-.StoryDate,
-.StoryButton,
-.statusChip {
-  width: 6vw;
-  margin: 0;
-  
-  background-color: var(--background-color);
-}
 
-.StoryDate{
+
+.StoryDate {
   padding: 2px 4px;
   color: #000;
-  padding-top: 0.5vw ;
+  padding-top: 0.5vw;
   font-size: 2.3vh;
   font-weight: bold;
-  
+
   border-bottom: var(--background-color);
 }
 
 
-.statusChip {
-  top: 0;
-  right: 0;
-  color: #c62828;
-  padding: 2px 4px;
-  
-  padding-top: 0.5vw ;
-  font-size: 2.3vh;
-  position: relative
+
+.Finished {
+  background-color: rgb(151, 250, 151); /* 90% transparent green */
 }
 
+ .Pending{
+  background-color:  #8fcdff
+}
+
+.Active {
+  background-color: #fff477; /* Yellow color for tasks yet to start */
+}
+.Overdue {
+  background-color:  rgb(251, 151, 151)
+}
 
 
 .StoryButton {
   width: 5.5vw;
-  margin: 0.25vw ;
-
+  margin: 0.25vw;
   padding: 2px 4px;
   background-color: var(--background-color);
   color: #000;
@@ -90,18 +83,13 @@ border: var(--div-border);
 
 .CardsContainer {
   justify-content: center;
-
   margin: 5px;
   margin-top: 0;
-
   background-color: #989898;
-border: var(--div-border);
-
-
+  border: var(--div-border);
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
-  height: 65vh;
+  height: 63vh;
   width: 150px;
 }
-
