@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styles from "./TaskContainerStory.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TaskSummary from "../../tasks/TaskSummary/TaskSummary";
 import { useSelector } from "react-redux";
 
@@ -70,9 +70,9 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
       </div>
       <div className={styles.CardsContainer}>
         {currentStoryTasks.map((task) => (
-          <Link to={"/task/" + task.id} key={task.id}>
-            <TaskSummary task={task} createdAtShown={createdAtShown} />
-          </Link>
+
+            <TaskSummary task={task} createdAtShown={createdAtShown} key={task.id}/>
+
         ))}
       </div>
     </div>
