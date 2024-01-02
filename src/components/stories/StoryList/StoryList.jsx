@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import styles from "./storyList.module.css";
+import styles from "./StoryList.module.css";
 import filterbarStyles from "../../../sharedStyles/FilterBar.module.css"
 import { useSelector } from "react-redux";
 // import { separateStoriesByFilterType } from "./separatedStories";
