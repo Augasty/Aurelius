@@ -2,14 +2,15 @@
 
 .navbar {
   position: sticky;
-  background-color: var(--accent-color);  /* Adjust the background color */
+  background-color: var(--accent-color); /* Keep the accent color consistent */
   color: var(--text-color);
-  padding-left: 20px; /* Adjusted padding for better spacing */
+  padding-left: 20px;
   padding-right: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
+  border-bottom: var(--div-border); /* Add a border consistent with previous styling */
 }
 
 .logo {
@@ -20,19 +21,19 @@
 
 .logo img {
   margin-right: 10px;
-  width: 40px; /* Adjusted the size for better visibility */
-  height: 40px; /* Adjusted the size for better visibility */
+  width: 40px;
+  height: 40px;
 }
 
 .navbar a {
-  color: var(--background-color); /* Adjusted the link color */
+  color: var(--background-color);
   text-decoration: none;
-  margin-right: 15px; /* Adjusted spacing between links */
-  font-size: 1rem; /* Adjusted font size */
+  margin-right: 15px;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-.navbarTexts{
+.navbarTexts {
   cursor: default;
   color: var(--background-color);
 }
@@ -47,7 +48,7 @@
 }
 
 .navbarListItem {
-  margin-right: 15px; /* Adjusted spacing between list items */
+  margin-right: 15px;
   color: var(--background-color);
 }
 
@@ -72,7 +73,7 @@
   transition: background-color 0.3s ease;
 }
 
-.liDivItems:last-child{
+.liDivItems:last-child {
   margin-right: 0;
 }
 
@@ -93,20 +94,22 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-.logout{
+
+.logout {
   background-color: var(--background-color);
   padding: 5px 15px;
-  border: 1px solid var(--accent-color); /* Match the accent color */
+  border: var(--div-border); /* Add a border consistent with previous styling */
   border-radius: 5px;
   transition: border-color 0.3s ease;
   cursor: pointer;
   text-overflow: ellipsis;
-  color: var(--accent-color); 
+  color: var(--accent-color);
   font-weight: bold;
 }
 
-.logout:hover{
+.logout:hover {
   border-color: #0d2a8b;
-  color: #200E3A;
+  color: #200e3a;
 }
+
 /* Add more styles as needed */

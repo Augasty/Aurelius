@@ -34,7 +34,7 @@
 .columnHeader {
   text-decoration: none; /* Remove underline from h2 */
   margin: auto;
-  color: #333; /* Set text color */
+  color: var(--secondary-color); /* Set text color */
   width: fit-content;
   border-radius: 4px; /* Smaller border-radius for a cleaner look */
   font-size: 1.5em; /* Increase font size for a more heading-like appearance */

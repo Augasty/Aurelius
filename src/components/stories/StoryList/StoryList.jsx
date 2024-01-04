@@ -33,7 +33,7 @@ const StoryList = () => {
   const [createdAtShown, setcreatedAtShown] = useState(false);
 
   return (
-    <div style={{ display: "grid" }}>
+    <div className={styles.StoryListContainer}>
       <div className={filterbarStyles.FilterBar}>
         <p className={filterbarStyles.FilterHeaderText}>Task Date:</p>
         <button

@@ -1,17 +1,21 @@
-/* yourComponent.module.css */
+body{
+      
+  background-color: var(--bg-color);
+}
 
 .form {
     /* Add styles for the form container */
   }
   
   .title {
-    /* Add styles for the title */
+    color: var(--secondary-color)
   }
   
   .label {
     /* Add styles for labels (common styles for all labels) */
     display: block;
     margin-bottom: 10px;
+    
   }
   
   .input,
@@ -21,6 +25,7 @@
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
+    
   }
   
   .submitButton {

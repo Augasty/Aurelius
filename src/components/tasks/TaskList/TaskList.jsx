@@ -140,7 +140,7 @@ const TaskList = () => {
             )
           }
         >
-          Assigned To Me
+          For Me
         </button>
 
         <button
@@ -153,7 +153,7 @@ const TaskList = () => {
             )
           }
         >
-          Assigned By Me
+          By Me
         </button>
 
         <p className={filterbarStyles.FilterHeaderText}>Display By:</p>

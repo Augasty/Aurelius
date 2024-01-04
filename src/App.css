@@ -6,9 +6,11 @@
     --accent-color: #4285F4;
     --button-color: #EEF5FF;
     --border-color: #0d2a8b;
-    --font-family: 'Arial', sans-serif; 
+    --font-family: 'Roboto', sans-serif; 
 
     --div-border: 1.5px solid #000;
+    --bg-color: #22334c;
+    
 
   }
 
@@ -17,6 +19,8 @@
   body {
     margin: 0;
     font-family: var(--font-family);
+    
+  background-color: var(--bg-color);
   }
 
 

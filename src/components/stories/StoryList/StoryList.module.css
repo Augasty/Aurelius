@@ -1,7 +1,10 @@
 
   /* storyList.module.css */
+
+  .StoryListContainer{
+  background-color: var(--bg-color);
+  }
 .storyList {
-  
   align-items: top;
   display: flex;
   position: relative;
