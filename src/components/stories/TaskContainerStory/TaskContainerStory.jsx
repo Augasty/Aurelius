@@ -36,7 +36,7 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
   const currentStoryTasks = reduxTasks.filter(
     (task) => task.referenceStory[0] === story.id
   );
-  console.log(currentStoryTasks, story);
+  // console.log(currentStoryTasks, story);
 
   const CreateTaskWithStory = () => {
     localStorage.setItem(

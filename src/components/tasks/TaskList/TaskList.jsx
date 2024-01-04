@@ -16,7 +16,7 @@ const TaskList = () => {
   let reduxTasks = useSelector((state) => state.tasks) || [];
   const currentStory = JSON.parse(localStorage.getItem("currentStoryLocalStorage"));
 
-  console.log(currentStory)
+  // console.log(currentStory)
   if (isProjectPlanner){
     reduxTasks = reduxTasks?.filter(
       (task) => task.referenceStory[0] === currentStory[0]);
@@ -69,7 +69,7 @@ const TaskList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterType, filterParameters, createdAtShown]);
 
-  {
+  
     separatedTasks = separateTasksByPriority(
       reduxTasks,
       filterType,
@@ -77,7 +77,7 @@ const TaskList = () => {
       createdAtShown
     );
     // console.log("manual fetch");
-  }
+  
 
   const handleButtonClick = (
     newFilterType,

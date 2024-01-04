@@ -54,8 +54,8 @@
     right: 0;
     background-color: #c62828; /* Red color for the chip */
     color: #fff; /* White text color for the chip */
-    padding: 2px 3px; 
-    border-radius: 2px; /* Adjust border-radius for a less rounded appearance */
+    padding: 3px 4px; 
+    border-radius: 4px; /* Adjust border-radius for a less rounded appearance */
     font-size: 0.7em; /* Adjust font size as needed */
     position: relative;
   }

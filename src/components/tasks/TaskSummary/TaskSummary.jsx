@@ -17,7 +17,7 @@ const TaskSummary = ({ task, createdAtShown }) => {
     <Link to={"/task/" + task.id} className={styles.LinkStyle}>
       <div
         className={`${styles.taskSummary} ${styles[task.taskStatus]} ${
-          isOverDue && styles.taskOverDue
+          isOverDue && styles.Overdue
         }`}
       >
         <p className={styles.taskStatus}>{task.taskStatus} </p>

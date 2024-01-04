@@ -68,10 +68,7 @@ const TaskChange = ({ currentTask }) => {
     });
 
     // updating the completionCount of a story
-    if (
-      isProjectPlanner &&
-      currentTask.taskStatus !== updatedCurrentTask.taskStatus
-    ) {
+    if (isProjectPlanner) {
       const currentStoryRef = doc(
         db,
         "boards",
@@ -80,9 +77,15 @@ const TaskChange = ({ currentTask }) => {
         currentStory[0]
       );
       let incrementCount = 0;
-      if (updatedCurrentTask.taskStatus == "Finished") {
+      if (
+        updatedCurrentTask.taskStatus == "Finished" &&
+        currentTask.taskStatus !== updatedCurrentTask.taskStatus
+      ) {
         incrementCount--;
-      } else if (currentTask.taskStatus == "Finished") {
+      } else if (
+        currentTask.taskStatus == "Finished" &&
+        currentTask.taskStatus !== updatedCurrentTask.taskStatus
+      ) {
         incrementCount++;
       }
       await updateDoc(currentStoryRef, {
