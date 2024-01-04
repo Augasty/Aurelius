@@ -36,8 +36,9 @@
     background-color: #fff;
     color: var(--text-color);
     font-weight: bold;
-    border-radius: 2px;
+    border-radius: 1vw;
     cursor: pointer;
+    width: 7vw;
     
   border: var(--div-border);
   }
