@@ -100,7 +100,7 @@ const CreateTask = () => {
       <form className={styles.createTaskForm} onSubmit={handleSubmit}>
         <h5 className={styles.heading}>
           Create A
-          {currentStory.length > 0
+          {isProjectPlanner
             ? ` Task Under The Story: ${currentStory[1]}`
             : " New Task"}
         </h5>
