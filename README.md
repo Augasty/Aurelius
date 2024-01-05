@@ -1,29 +1,53 @@
-**_bluey: A planning and productivity tool**
+# **_Bluey: A Planning and Productivity Tool**
 
-**Current features:**
+_Bluey_ is a comprehensive planning and productivity tool designed to streamline collaboration and project management. Whether you're tracking tasks or planning intricate projects, Bluey provides a seamless experience for organizing and executing your work.
 
-1. Users can sign in/out using their Google account.
-2. Users can create boards. Every board is either a **Task Tracker** or a  **Project Planner.**
-3. Users can be part of multiple boards and can navigate between boards from the home screen.
-4. Users can add members (who have already signed up to bluey) to the currently active board.
-5. Users of each board can chat with its members.
-6. **Task Trackers:**
-    1. Users can create tasks, and assign them to anyone in the group. Users can also assign the tasks priority, current status, deadline etc. And also decide whether anyone in the group can edit the task.
-    2. If the task is not open to all, only the assigned person and assigner can edit and update the task, and others can only view it.
-    3. Users can sort the tasks based on various parameters (importance, status, creation time, last updating time and deadline) and also filter the list of tasks based on some parameters (assigned to the user and assigned by the user).
-    4. Each task is color-coded to signify its current status.
-7. **Project Planners:**
-    1. Users can create stories, and inside each story, users can create tasks.
-    2. Within each story, users can create, change and display tasks, inheriting all the existing features of the Task Tracker.
-    3. Users can expand each story and visualise the list of tasks under it.
-    4. Users can also sort and filter the stories list by various parameters.
-    5. Each story is color-coded to signify its current status, and the status of a story is automatically updated according to the status of all the tasks under it.
+## **Current Features:**
 
-**Upcoming features:**
+1. **User Authentication:**
+   - Securely sign in/out using your Google account for a seamless and trusted experience.
 
-1. A notification system.
-2. A comment section for each task.
-3. Chaining tasks (referencing one task in another).
-4. Changing the parent story of a task (with drag and drop).
-5. A note-taker companion.
-6. Uploading media files in the chat.
+2. **Board Management:**
+   - Create boards, each designated as either a **Task Tracker** or a **Project Planner**.
+   - Navigate effortlessly between multiple boards from the home screen.
+
+3. **Member Collaboration:**
+   - Add members who have registered with Bluey to your active board.
+   - Engage in real-time communication with board members through an integrated chat feature.
+
+4. **Task Trackers:**
+   - Create tasks and assign them to any group member.
+   - Set task attributes such as priority, current status, deadline, and edit permissions.
+   - Control task visibility - choose whether tasks are open to all or restricted to the assignee and assigner.
+   - Sort and filter tasks based on various parameters for effective task management.
+   - Color-coded tasks to signify their current status.
+
+5. **Project Planners:**
+   - Create stories and organize tasks within each story.
+   - Utilize all Task Tracker features within each story.
+   - Visualize task lists under each story, with automatic status updates based on task statuses.
+
+## **Upcoming Features:**
+
+1. **Notification System:**
+   - Stay informed with a comprehensive notification system for important updates.
+
+2. **Comment Section:**
+   - Enhance collaboration with a dedicated comment section for each task.
+
+3. **Task Chaining:**
+   - Establish task dependencies by referencing one task in another.
+
+4. **Task Parentage Management:**
+   - Effortlessly change the parent story of a task using drag and drop functionality.
+
+5. **Note-Taker Companion:**
+   - Seamlessly integrate a note-taking companion for additional convenience.
+
+6. **Media File Uploads:**
+   - Share and collaborate with ease by uploading media files directly in the chat.
+
+
+Explore the potential of Bluey, an open-source productivity tool, as it evolves with these exciting upcoming features, ensuring a robust and efficient project management experience.
+
+
