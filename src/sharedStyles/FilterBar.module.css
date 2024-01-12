@@ -17,7 +17,7 @@
   
   .FilterHeaderText {
     font-size: 14px;
-    color: white;
+    color: var(--text-color);
     margin: 0;
     text-align: center;
     font-weight: bold;
@@ -29,8 +29,8 @@
   .FilterButton {
     padding: 6px;
     margin: 6px;
-    background-color: #fff;
-    color: var(--text-color);
+    background-color: var(--button-color);
+
     font-weight: bold;
     border-radius: 1vw;
     cursor: pointer;
@@ -40,10 +40,10 @@
   }
   
   .FilterButton:hover {
-    background-color: #d1d1d1;
+    background-color: var(--button-hover-color)
   }
   
   .FilterButton:active,.ActiveFilterButton {
-    background-color: #777777;
+    background-color:var(--button-active-color)
   }
   

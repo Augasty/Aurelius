@@ -1,4 +1,3 @@
-/* dropdown.module.css */
 
 .dropdownContainer {
     margin-right: 5px;
@@ -7,13 +6,9 @@
   .dropdownSelect {
     text-align: center;
     appearance: none;
-    /* padding: 5px; */
-    border: 1px solid var(--accent-color); /* Match the accent color */
-    border-radius: 5px;
-    /* background-color: #fff; */
-    color: var(--accent-color); /* Match the accent color */
-    cursor: pointer;
-    transition: border-color 0.3s ease;
+    
+    border: var(--div-border);
+    color: var(--secondary-text-color); 
     font-weight: bold;
     background-color: var(--background-color);
     padding: 5px 10px;
@@ -21,12 +16,12 @@
   
   .dropdownSelect:hover {
     border-color: var(--border-color);
-    color: #200E3A;
+    color: var(--secondary-text-color); 
   }
   
   .dropdownOption {
-    background-color: #fff ;
-    color: var(--text-color); /* Match the text color */
+    background-color: var(--background-color);
+    color: var(--secondary-text-color); 
     font-weight: bold;
   }
   

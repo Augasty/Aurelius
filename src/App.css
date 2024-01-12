@@ -1,12 +1,19 @@
 :root {
-    --text-color: #000000;
+    --text-color: #ffffff;
+    --secondary-text-color:#000;
+
+
     --background-color: #FBF9F1;
     --primary-color:#bbcdf5;
     --secondary-color: #FFFFFF;
     --accent-color: #4285F4;
+
+    --border-color: #8b610d;
+    --font-family: "Roboto", sans-serif;
+
     --button-color: #EEF5FF;
-    --border-color: #0d2a8b;
-    --font-family: 'Roboto', sans-serif; 
+    --button-hover-color:#777777;
+    --button-active-color:  #4e4e4e;
 
     --div-border: 1.5px solid #000;
     --bg-color: #22334c;

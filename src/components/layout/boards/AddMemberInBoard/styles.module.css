@@ -1,64 +1,42 @@
-/* Base styles */
-body {
-    font-family: var(--font-family);
-    background-color: var(--background-color);
-    color: var(--text-color);
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  /* Form styles */
-  .createTaskForm {
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 30px;
-  }
-  
-  .label {
-    color: var(--accent-color);
-    margin-bottom: 20px;
-    font-size: 1.5em;
-  }
-  
-  .inputField {
-    width: 100%;
-    padding: 15px;
-    margin-top: 15px;
-    border: 2px solid var(--accent-color);
-    border-radius: 8px;
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.3s ease;
-  }
-  
-  .inputField:focus {
-    border-color: #3498db;
-  }
-  
-  /* Button styles */
-  .btn {
-    background-color: var(--accent-color);
-    color: var(--secondary-color);
-    padding: 15px 20px;
-    border: 5px solid transparent;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: var(--font-family);
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    color: var(--accent-color);
-    background-color: var(--secondary-color);
-    border: 5px solid var(--accent-color);
-  }
-  
+.createTaskForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.createTaskForm label {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.createTaskForm input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  font-family: var(--font-family);
+}
+
+.createTaskForm .inputField {
+  margin-bottom: 20px;
+}
+
+.createTaskForm button {
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  padding: 12px 20px;
+  border: 5px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: background-color 0.3s ease;
+}
+
+.createTaskForm button:hover {
+  color: var(--accent-color);
+  background-color: var(--secondary-color);
+  border: 5px solid var(--accent-color);
+}

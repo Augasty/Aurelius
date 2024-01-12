@@ -19,7 +19,6 @@ function ChatRoom() {
   const [formValue, setFormValue] = useState("");
   const [messages, setmessages] = useState(null);
 
-  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
   async function fetchTexts(textsRef) {
     try {
@@ -48,14 +47,14 @@ function ChatRoom() {
     const unsub = onSnapshot(textsRef, () => {
       fetchTexts(textsRef);
 
-      // Set initialLoadComplete to true after the first snapshot
-      if (!initialLoadComplete) {
-        setInitialLoadComplete(true);
-      }
     });
 
     return () => unsub();
-  }, [currentboard, initialLoadComplete]);
+  }, [currentboard]);
+
+
+  
+  const dummy = useRef();
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -70,10 +69,9 @@ function ChatRoom() {
     });
 
     setFormValue("");
-    dummy.current.scrollIntoView({ behavior: "smooth" });
+    dummy.current.scrollIntoView({ block: "start", inline: "nearest" })
   };
 
-  const dummy = useRef();
 
   return (
     <>
@@ -81,8 +79,8 @@ function ChatRoom() {
         <div className={styles.messageContainer}>
           {messages &&
             messages.toReversed().map((msg) => <ChatMessage key={msg.uniqueId} message={msg} />)}
-          <span ref={dummy}></span>
         </div>
+        <span ref={dummy}></span>
       </main>
 
       <form onSubmit={sendMessage} className={styles.form}>

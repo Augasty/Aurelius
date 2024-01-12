@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: center;
     height: 90vh;
-    background-color: var(--background-color);
   }
   
   .inputField {

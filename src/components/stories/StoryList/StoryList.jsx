@@ -45,7 +45,7 @@ const StoryList = () => {
 
         <p className={filterbarStyles.FilterHeaderText}>Story Date:</p>
         <button
-          className={filterbarStyles.FilterButton }
+          className={filterbarStyles.FilterButton}
           onClick={() => {
             if (storyDisplayedTime === "createdAt") {
               setstoryDisplayedTime("updatedAt");

@@ -1,5 +1,5 @@
 .main {
-  height: 60vh;
+  height: 63vh;
   overflow-y: scroll;
   padding: 16px;
   
@@ -14,7 +14,6 @@
 .form {
   display: flex;
   align-items: center;
-  border: var(--div-border);
   position: relative;
   left: 1vw;
   top: 2vh;
@@ -27,11 +26,15 @@
   left: 80vw;
   font-family: inherit;
   margin: 0 1vh;
+  border: var(--div-border);
   height: 5vh;
+  padding: 0 2vh;
+  
+  border-radius: 1vh;
 }
 
 .button {
-  background-color: var(--background-color);
+  background-color: var(--button-color);
   color: #000;
   cursor: pointer;
   border: var(--div-border);
@@ -45,10 +48,14 @@
 }
 
 .button:hover {
-  background-color: #0c3b6a; /* Slightly darker blue on hover */
+  background-color: var(--button-hover-color); 
+}
+.button:active{
+  background-color: var(--button-active-color);
 }
 
-/* ChatMessage.css */
+
+/* ChatMessage */
 
 .message {
   display: flex;
@@ -64,7 +71,7 @@
 .message img {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 80%;
   margin-right: 10px;
 }
 
@@ -75,13 +82,15 @@
 }
 
 .message p {
-  background-color: #ffffff; /* Google Blue */
+  background-color: #ffffff; 
   color: #000000;
-  border: var(--div-border);
+
   border-radius: 1vh;
-  font-weight: bold;
+  font-weight:800;
+  font-size: 2.6vh;
   padding: 8px 12px;
+  margin: 0;
   border-radius: 10px;
-  max-width: 60%; /* Adjust as needed */
+  max-width: 10vw; 
   word-wrap: break-word;
 }
