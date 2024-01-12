@@ -66,9 +66,8 @@
   text-align: center;
   position: relative;
   align-self: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   margin-right: 1rem;
+
   background-color: var(--accent-color);
   transition: background-color 0.3s ease;
 }

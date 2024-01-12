@@ -84,7 +84,7 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
           </button>
         </div>
       </div>
-      <div className={styles.CardsContainer}>
+      <div className={`${styles.CardsContainer} ${styles[`CardsContainer-${storyStatus}`]}`}>
         {currentStoryTasks.map((task) => (
 
             <TaskSummary task={task} createdAtShown={createdAtShown} key={task.id}/>

@@ -1,49 +1,47 @@
-
-
 /* the filter bar */
 .FilterBar {
-    /* position: sticky; */
-    
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3.5%;
-    background-color: var(--accent-color);
-    
-    display: flex;
-    align-items: center;
-    
-  }
-  
-  .FilterHeaderText {
-    font-size: 14px;
-    color: var(--text-color);
-    margin: 0;
-    text-align: center;
-    font-weight: bold;
-    margin-top: 2px;
-    margin-left: 10px;
-    margin-bottom: 2px;
-  }
-  
-  .FilterButton {
-    padding: 6px;
-    margin: 6px;
-    background-color: var(--button-color);
+  /* position: sticky; */
 
-    font-weight: bold;
-    border-radius: 1vw;
-    cursor: pointer;
-    width: 7vw;
-    
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5%;
+  background-color: var(--accent-color);
+
+  display: flex;
+  align-items: center;
+
+}
+
+.FilterHeaderText {
+  font-size: 14px;
+  color: var(--text-color);
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 2px;
+  margin-left: 10px;
+  margin-bottom: 2px;
+}
+
+.FilterButton {
+  padding: 6px;
+  margin: 6px;
+  background-color: var(--button-color);
+
+  font-weight: bold;
+  border-radius: 1vw;
+  cursor: pointer;
+  width: 7vw;
+
   border: var(--div-border);
-  }
-  
-  .FilterButton:hover {
-    background-color: var(--button-hover-color)
-  }
-  
-  .FilterButton:active,.ActiveFilterButton {
-    background-color:var(--button-active-color)
-  }
-  
+}
+
+.FilterButton:hover {
+  background-color: var(--button-hover-color)
+}
+
+.FilterButton:active,
+.ActiveFilterButton {
+  background-color: var(--button-active-color)
+}

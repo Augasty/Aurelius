@@ -32,10 +32,7 @@
 
 
 .columnHeader {
-  text-decoration: none; /* Remove underline from h2 */
-  /* margin: 0 auto; */
-  background-color: #ffffff; /* Add background color */
-  color: #333; /* Set text color */
+  text-decoration: none; 
   width: fit-content;
 
   border-radius: 4px; /* Smaller border-radius for a cleaner look */

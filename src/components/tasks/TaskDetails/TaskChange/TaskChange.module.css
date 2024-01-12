@@ -1,42 +1,109 @@
-body{
-      
+body {
   background-color: var(--bg-color);
 }
 
-.form {
-    /* Add styles for the form container */
-  }
-  
-  .title {
-    color: var(--secondary-color)
-  }
-  
-  .label {
-    /* Add styles for labels (common styles for all labels) */
-    display: block;
-    margin-bottom: 10px;
-    
-  }
-  
-  .input,
-  .textarea,
-  .select {
-    /* Add styles for text input, textarea, and select elements */
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    
-  }
-  
-  .submitButton {
-    /* Add styles for the submit button */
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  /* Add more styles as needed */
-  
+.title {
+  color: var(--secondary-color);
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.submitButton {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.heading {
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+}
+
+/* Input Field Style */
+.inputField {
+  margin-bottom: 20px;
+}
+
+/* Task Title Input Style */
+.taskTitleInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+}
+
+/* Custom Textarea Style */
+.customTextarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  resize: vertical; /* Allow vertical resizing */
+}
+
+/* Task Content Textarea Style */
+.taskContentTextarea {
+  min-height: 100px; /* Set a minimum height for better UX */
+}
+
+/* Deadline Input Style */
+.deadlineInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+}
+
+/* Label Style */
+.label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+/* Priority Select Style */
+.prioritySelect {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+}
+
+/* Task Status Select Style */
+.taskStatusSelect {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+}
+
+/* Button Style */
+.submit {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.createTaskBtn:hover {
+  background-color: var(--secondary-color);
+  color: var(--accent-color);
+}

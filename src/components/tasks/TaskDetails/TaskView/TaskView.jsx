@@ -8,7 +8,7 @@ const TaskView = ({ currentTask }) => {
     return <>loading</>;
   }
   return (
-    <div className={styles.taskDetails}>
+    <div className={`${styles.taskDetails} ${styles[currentTask.taskStatus]}`}>
       <h2 className={styles.taskDetailsTitle}>{currentTask.title}</h2>
       <p className={styles.taskDetailsText}>
         <strong className={styles.taskDetailsStrong}>Content:</strong>{" "}

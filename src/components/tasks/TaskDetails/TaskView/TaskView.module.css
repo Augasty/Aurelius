@@ -1,27 +1,63 @@
-/* taskDetails.module.css */
-
+/* Task Details Container Style */
 .taskDetails {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
-  }
-  
-  /* Style the headings and paragraphs */
-  .taskDetailsTitle {
-    color: #333;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .taskDetailsText {
-    margin: 8px 0;
-  }
-  
-  /* Style the strong tags for emphasis */
-  .taskDetailsStrong {
-    color: #555;
-  }
-  
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 60vw;
+}
+
+/* Task Details Title Style */
+.taskDetailsTitle { 
+   color: var(--secondary-text-color);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Task Details Text Style */
+.taskDetailsText {
+  color: var(--secondary-text-color);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Task Details Strong Style */
+.taskDetailsStrong {
+  color: var(--secondary-text-color);
+  font-weight: bold;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+/* Back Button Style */
+.taskDetails button {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.taskDetails button:hover {
+  background-color: var(--secondary-color);
+  color: var(--accent-color);
+}
+
+
+
+.Finished {
+  background-color: rgb(151, 250, 151); /* 90% transparent green */
+}
+
+ .Pending{
+  background-color:  #8fcdff
+}
+
+.Active {
+  background-color: #fff477; /* Yellow color for tasks yet to start */
+}
+.Overdue {
+  background-color:  rgb(251, 151, 151)
+}

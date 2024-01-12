@@ -8,7 +8,6 @@
     --secondary-color: #FFFFFF;
     --accent-color: #4285F4;
 
-    --border-color: #8b610d;
     --font-family: "Roboto", sans-serif;
 
     --button-color: #EEF5FF;
@@ -18,6 +17,8 @@
     --div-border: 1.5px solid #000;
     --bg-color: #22334c;
     
+
+    --storyContainer-background-color: #a4a4a4;
 
   }
 
@@ -35,11 +36,11 @@
   
 ::-webkit-scrollbar {
   width: 4px;
-  height: 6px;
+  height: 10px;
   /* Set the width of the scrollbar */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #000000;
+  background-color: var(--storyContainer-background-color);
   border-radius: 4px;
 }

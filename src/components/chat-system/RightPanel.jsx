@@ -9,7 +9,7 @@ const RightPanel = () => {
   return (
     <div className={styles.rightPanel}>
       
-      {user ? <ChatRoom /> : <></>}
+      {user && <ChatRoom />}
     </div>
   );
 };
