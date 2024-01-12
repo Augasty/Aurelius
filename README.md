@@ -1,6 +1,6 @@
-# **_bluey: A Planning and Productivity Tool**
+# **Onyx: A Planning and Productivity Tool**
 
-_bluey is a comprehensive planning and productivity tool designed to streamline collaboration and project management. Whether you're tracking tasks or planning intricate projects, _bluey provides a seamless experience for organizing and executing your work.
+Onyx is a comprehensive planning and productivity tool designed to streamline collaboration and project management. Whether you're tracking tasks or planning intricate projects, Onyx provides a seamless experience for organizing and executing your work.
 
 ## **Current Features:**
 
@@ -12,7 +12,7 @@ _bluey is a comprehensive planning and productivity tool designed to streamline 
    - Navigate effortlessly between multiple boards from the home screen.
 
 3. **Member Collaboration:**
-   - Add members who have registered with _bluey to your active board.
+   - Add members who have registered with Onyx to your active board.
    - Engage in real-time communication with board members through an integrated chat feature.
 
 4. **Task Trackers:**
@@ -48,6 +48,6 @@ _bluey is a comprehensive planning and productivity tool designed to streamline 
    - Share and collaborate with ease by uploading media files directly in the chat.
 
 
-Explore the potential of _bluey, an open-source productivity tool, as it evolves with these exciting upcoming features, ensuring a robust and efficient project management experience.
+Explore the potential of Onyx, an open-source productivity tool, as it evolves with these exciting upcoming features, ensuring a robust and efficient project management experience.
 
 
