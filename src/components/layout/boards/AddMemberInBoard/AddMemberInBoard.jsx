@@ -39,9 +39,6 @@ const AddMemberInBoard = () => {
       if (!userData.currentboard || userData.currentboard.length === 0) {
         // updating that users db
         updateCurrentBoardInFirebase(userMail, currentboard);
-        // await updateDoc(userDocRef, {
-        //   currentboard: [...currentboard],
-        // });
       }
 
       // updating in the boards db
@@ -70,6 +67,8 @@ const AddMemberInBoard = () => {
         <label htmlFor="name" className={styles.label}>
           Add member in {currentboard[1]}
         </label>
+        <br/>
+        <br/>
         <input
           type="text"
           id="name"

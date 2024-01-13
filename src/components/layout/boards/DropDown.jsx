@@ -8,7 +8,8 @@ import { useProjectContexts } from "../../../utils/ProjectContexts";
 import updateCurrentBoardInFirebase from "../../../utils/updateCurrentBoardInFirebase";
 
 const DropDown = () => {
-  const { currentboard,setcurrentboard, setIsRightPanelVisible } = useProjectContexts();
+  const { currentboard, setcurrentboard, setIsRightPanelVisible } =
+    useProjectContexts();
 
   const [user] = useAuthState(auth);
   const redux_boards = useSelector((state) => state.boards);
@@ -44,7 +45,11 @@ const DropDown = () => {
                 value={`${idref},${redux_boards[idref]}`}
                 key={idref}
                 className={styles.dropdownOption}
-              >{`${redux_boards[idref]}`}</option>
+              >
+                {redux_boards[idref].length > 15
+                  ? `${redux_boards[idref].substring(0, 15)}...`
+                  : redux_boards[idref]}
+              </option>
             );
           })}
         </select>

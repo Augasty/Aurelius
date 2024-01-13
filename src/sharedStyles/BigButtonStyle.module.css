@@ -1,0 +1,19 @@
+
+.BigButton {
+    background-color: var(--button-color);
+    font-weight: bold;
+    border-radius: var(--button-radius);
+    padding: 6px 10px;
+    border: var(--big-button-border);
+    cursor: pointer;
+    font-family: var(--font-family);
+    width: 15vw;
+    transition: background-color 0.3s ease;
+  }
+  
+  .BigButton:hover {
+    color:var(--accent-color);
+    background-color: var(--secondary-color);
+    border: var(--big-button-border-hover); 
+  }
+  

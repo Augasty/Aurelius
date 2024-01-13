@@ -3,6 +3,8 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import styles from "./CreateBoard.module.css";
+import btn from "../../../sharedStyles/BigButtonStyle.module.css"
+
 import {
   addDoc,
   collection,
@@ -101,7 +103,7 @@ const Createboard = () => {
         <input
           type="button"
           value="Create Task Tracker"
-          className={`${styles.btn} ${styles.submit}`}
+          className={btn.BigButton}
           onClick={(e) => handleCreate(e, false)}
         />
       </div>
@@ -111,7 +113,7 @@ const Createboard = () => {
         <input
           type="button"
           value="Create Project Planner"
-          className={`${styles.btn} ${styles.submit}`}
+          className={btn.BigButton}
           onClick={(e) => handleCreate(e, true)}
         />
       </div>

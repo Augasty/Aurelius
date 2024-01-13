@@ -102,13 +102,13 @@
   transition: border-color 0.3s ease;
   cursor: pointer;
   text-overflow: ellipsis;
-  color: var(--accent-color);
+  color: #000000;
   font-weight: bold;
 }
 
 .logout:hover {
   border-color: #0d2a8b;
-  color: #200e3a;
+  color: #000000;
 }
 
 /* Add more styles as needed */

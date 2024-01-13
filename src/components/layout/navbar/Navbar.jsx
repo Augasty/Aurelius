@@ -5,10 +5,9 @@ import { signOut } from "firebase/auth";
 import DropDown from "../boards/DropDown";
 import { useState } from "react";
 import topchicken from "../../../../assets/topchicken.jpg";
-import bluey from "../../../../assets/bluey.png";
+import lethe from "../../../../assets/bluey.png";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import { useNavigate } from "react-router-dom";
-
 
 const Navbar = () => {
   const curuser = auth.currentUser;
@@ -18,7 +17,7 @@ const Navbar = () => {
     setcurrentboard,
     isRightPanelVisible,
     setIsRightPanelVisible,
-    isProjectPlanner
+    isProjectPlanner,
   } = useProjectContexts();
 
   // for chicken
@@ -30,12 +29,11 @@ const Navbar = () => {
     signOut(auth);
   };
 
-
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src={bluey} onClick={() => navigate("/")} />
-        <Link to="/">_bluey</Link>
+        <img src={lethe} onClick={() => navigate("/")} />
+        <Link to="/">Lethe</Link>
       </div>
       <div>
         <ul className={styles.navbarList}>
@@ -57,7 +55,10 @@ const Navbar = () => {
                   <div className={styles.liDivItems}>
                     <li className={styles.navbarListItem}>
                       <NavLink to="/add-member">
-                        Add Member in {currentboard[1]}
+                        Add Member in {" "}
+                        {currentboard[1].length > 10
+                          ? `${currentboard[1].substring(0, 8)}...`
+                          : currentboard[1]}
                       </NavLink>
                     </li>
                   </div>
