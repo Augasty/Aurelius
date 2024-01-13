@@ -30,7 +30,7 @@
   height: 5vh;
   padding: 0 2vh;
   
-  border-radius: 1vh;
+  border-radius: var(--border-radius);
 }
 
 .button {
@@ -38,7 +38,7 @@
   color: #000;
   cursor: pointer;
   border: var(--div-border);
-  border-radius: 1vh;
+  border-radius: var(--border-radius);
   font-weight: bold;
 
   margin: 0 1vh;
@@ -71,7 +71,7 @@
 .message img {
   width: 40px;
   height: 40px;
-  border-radius: 80%;
+  border-radius: var(--border-radius);
   margin-right: 10px;
 }
 
@@ -85,12 +85,11 @@
   background-color: #ffffff; 
   color: #000000;
 
-  border-radius: 1vh;
   font-weight:800;
   font-size: 2.6vh;
   padding: 8px 12px;
   margin: 0;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   max-width: 10vw; 
   word-wrap: break-word;
 }

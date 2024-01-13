@@ -58,18 +58,24 @@ function ChatRoom() {
 
   const sendMessage = async (e) => {
     e.preventDefault();
+    const trimmedFormValue = formValue.trim();
+  
+    if (!trimmedFormValue) {
+      return;
+    }
+  
     const { uid, photoURL } = auth.currentUser;
-
+  
     await addDoc(collection(db, "boards", currentboard[0], "chatList"), {
-      chat: formValue,
+      chat: trimmedFormValue,
       createdAt: new Date().toISOString(),
       uid,
       photoURL,
       uniqueId: uuidv4(),
     });
-
+  
     setFormValue("");
-    dummy.current.scrollIntoView({ block: "start", inline: "nearest" })
+    dummy.current.scrollIntoView({ block: "start", inline: "nearest" });
   };
 
 
@@ -100,3 +106,4 @@ function ChatRoom() {
 }
 
 export default ChatRoom;
+

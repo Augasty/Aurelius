@@ -14,18 +14,14 @@ const formatDate = (dateString) => {
   return `${day}-${month}-${year}`;
 };
 
-
-
-
-const getStoryStatus = (completionCount,deadline) => {
-  if (completionCount == 0){
-    return 'Finished'
+const getStoryStatus = (completionCount, deadline) => {
+  if (completionCount == 0) {
+    return "Finished";
   }
-  if (moment(deadline, "YYYY-MM-DD").isBefore(moment(), "day")){
-    return "Overdue"
+  if (moment(deadline, "YYYY-MM-DD").isBefore(moment(), "day")) {
+    return "Overdue";
   }
-  return 'Active'
-
+  return "Active";
 };
 const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
   const displayTime = formatDate(story[storyDisplayedTime]);
@@ -54,20 +50,18 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
     history("/story/task-list");
   };
 
-
-  const storyStatus = getStoryStatus(story.completionCount,story.deadline)
+  const storyStatus = getStoryStatus(story.completionCount, story.deadline);
   return (
-    <div >
-      <div className={`${styles.StoryTopPart} ${styles[storyStatus]}` }>
+    <div>
+      <div className={`${styles.StoryTopPart} ${styles[storyStatus]}`}>
         <p className={styles.StoryName}>
           {story.title.length > 20
             ? `${story.title.substring(0, 16)}...`
             : story.title}
         </p>
-          <div className={styles.StoryDate}>
-            {displayTime == "31-12-9999" ? "N/A" : displayTime}
-          </div>
-
+        <div className={styles.StoryDate}>
+          {displayTime == "31-12-9999" ? "N/A" : displayTime}
+        </div>
 
         <div style={{ display: "flex" }}>
           <button
@@ -84,11 +78,24 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
           </button>
         </div>
       </div>
-      <div className={`${styles.CardsContainer} ${styles[`CardsContainer-${storyStatus}`]}`}>
+      <div
+        className={`${styles.CardsContainer} ${
+          styles[`CardsContainer-${storyStatus}`]
+        }`}
+      >
         {currentStoryTasks.map((task) => (
+          <TaskSummary
+            task={task}
+            createdAtShown={createdAtShown}
+            key={task.id}
+            onClick={
 
-            <TaskSummary task={task} createdAtShown={createdAtShown} key={task.id}/>
-
+              localStorage.setItem(
+              "currentStoryLocalStorage",
+              JSON.stringify([story.id, story.title])
+            )
+            }
+          />
         ))}
       </div>
     </div>

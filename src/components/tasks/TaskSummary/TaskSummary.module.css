@@ -2,10 +2,10 @@
   border: var(--div-border);
     padding: 10px;
     margin: 5px;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     font-family: 'Arial', sans-serif;
     width:110px;
-    height:80px;
+    height:min-content;
     text-align: left;
     color: black;
     
@@ -40,34 +40,14 @@
   }
   
   .taskSummaryDate {
-    margin-top: 5px;
+    margin: 0px;
     font-size: 2.1vh;
     font-weight: 600;
     color: #363636;
-    white-space: nowrap;
+    /* white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; */
   }
   
-  .overdueChip {
-    top: 0;
-    right: 0;
-    background-color: #c62828; /* Red color for the chip */
-    color: #fff; /* White text color for the chip */
-    padding: 3px 4px; 
-    border-radius: 4px; /* Adjust border-radius for a less rounded appearance */
-    font-size: 0.7em; /* Adjust font size as needed */
-    position: relative;
-  }
 
-  .openButton {
-    top: 0;
-    right: 0;
-    background-color: #c62828; /* Red color for the chip */
-    color: #fff; /* White text color for the chip */
-    padding: 1px 2px; /* Adjust padding for height and width */
-    border-radius: 3px; /* Adjust border-radius for a less rounded appearance */
-    font-size: 0.7em; /* Adjust font size as needed */
-    position: relative
-  }
 

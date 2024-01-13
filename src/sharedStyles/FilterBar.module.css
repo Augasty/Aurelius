@@ -30,7 +30,8 @@
   background-color: var(--button-color);
 
   font-weight: bold;
-  border-radius: 1vw;
+  
+  border-radius: var(--button-radius);
   cursor: pointer;
   width: 7vw;
 

@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { auth, db } from "../../../../firebase";
 import { doc, increment, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import styles from "../../createTask/styles.module.css";
+import styles from "../TaskView/TaskView.module.css";
 import { useProjectContexts } from "../../../../utils/ProjectContexts";
+import CloudStoryTriggers from "../../../../utils/CloudStoryTriggers";
+import { isTaskOverDue } from "../../../../utils/isTaskOverdue";
+import { SmartTime } from "../../../../utils/SmartTime";
 
 const TaskChange = ({ currentTask }) => {
   const { currentboard, isProjectPlanner } = useProjectContexts();
-  const currentStory = JSON.parse(
-    localStorage.getItem("currentStoryLocalStorage")
-  );
 
   const currentTaskRef = doc(
     db,
@@ -74,7 +74,7 @@ const TaskChange = ({ currentTask }) => {
         "boards",
         currentboard[0],
         "storyList",
-        currentStory[0]
+        currentTask.referenceStory[0]
       );
       let incrementCount = 0;
       if (
@@ -97,83 +97,119 @@ const TaskChange = ({ currentTask }) => {
     history(-1); //back to the previous screen
   };
 
+  const [seeMore, setseeMore] = useState(true);
+  const isOverDue = isTaskOverDue(currentTask);
+
+  const smartCreatedAt = SmartTime(currentTask.createdAt);
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSubmit} className={`${styles.createTaskForm}`}>
-        <h5 className={styles.heading}>Change {updatedCurrentTask.title}</h5>
-        <label htmlFor="title">Task Title</label>
-        <div className={styles.inputField}>
-          <input
-            type="text"
-            id="title"
-            value={updatedCurrentTask.title}
-            onChange={handleChange}
-            required
-            className={styles.taskTitleInput}
-          />
-        </div>
+      <CloudStoryTriggers />
+      <form
+        onSubmit={handleSubmit}
+        className={`${styles.taskDetails} ${styles[currentTask.taskStatus]} ${
+          isOverDue && styles.Overdue
+        }`}
+      >
+        <h5 className={styles.taskDetailsTitle}>
+          <strong>Change: </strong> {updatedCurrentTask.title}
+        </h5>
+        <input
+          type="text"
+          id="title"
+          value={updatedCurrentTask.title}
+          onChange={handleChange}
+          required
+          className={styles.inputField}
+          placeholder="...enter heading here"
+        />
 
-        <label htmlFor="content">Task Content</label>
-        <div className={styles.inputField}>
-          <textarea
-            id="content"
-            value={updatedCurrentTask.content}
-            onChange={handleChange}
-            required
-            className={`${styles.customTextarea} ${styles.taskContentTextarea}`}
-          />
-        </div>
+        <textarea
+          id="content"
+          value={updatedCurrentTask.content}
+          onChange={handleChange}
+          required
+          className={`${styles.inputField} ${styles.taskContentTextarea}`}
+        />
 
-        <div className={`${styles.inputField}`}>
-          <label htmlFor="deadline">Deadline</label>
-          <input
+        {seeMore && (
+          <>
+            <div className={styles.taskDetailsTop}>
+              <span>
+                <span>Author: </span>
+                {currentTask?.authorDetails}
+              </span>
+              <span>
+                <span>Created at: </span>
+                {smartCreatedAt}
+              </span>
+            </div>
+            <div className={styles.taskDetailsTop}>
+              <span>
+                <span>Assigned to: </span>
+                {currentTask.assignedTo}
+              </span>
+              <span>
+                <span>Deadline: </span>
+                <input
             type="date"
             id="deadline"
-            className={`${styles.deadlineInput}`}
+            className={styles.inputField}
             onChange={handleChange}
             value={updatedCurrentTask.deadline}
-            min={new Date().toISOString().split("T")[0]}
             max="2999-12-31"
           />
-        </div>
+              </span>
+            </div>
 
-        <label htmlFor="priority" className={styles.label}>
-          Priority
-          <select
-            id="priority"
-            value={updatedCurrentTask.priority}
-            onChange={handleChange}
-            className={styles.prioritySelect}
-          >
-            <option value="Low">Low</option>
+            <div className={styles.taskDetailsTop}>
+              <span>
+                <span>Priority: </span>
+
+                <select
+                  id="priority"
+                  className={`${styles.inputField}`}
+                  value={updatedCurrentTask.priority}
+                  onChange={handleChange}
+                  required
+                >
+                <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
-          </select>
-        </label>
+            </select>
+              </span>
+              <span>
+              <span>Status: </span>
+                <select
+                  id="taskStatus"
+                  className={`${styles.inputField}`}
+                  value={updatedCurrentTask.taskStatus}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="Pending">Pending</option>
+                  <option value="Active">Active</option>
+                  <option value="Finished">Finished</option>
+                </select>
+              </span>
+            </div>
+            <br />
+          </>
+        )}
 
-        <div className={`${styles.inputField}`}>
-          <label htmlFor="taskStatus">Task Status</label>
-          <select
-            id="taskStatus"
-            className={`${styles.taskStatusSelect}`}
-            value={updatedCurrentTask.taskStatus}
-            onChange={handleChange}
-            required
-          >
-            <option value="Pending">Pending</option>
-            <option value="Active">Active</option>
-            <option value="Finished">Finished</option>
-          </select>
-        </div>
+        <div className={styles.taskDetailsTop}>
+          <span>
+            <button  type="button"  onClick={() => history("/")}>Back</button>
+          </span>
+          <span>
+            <button type="button" onClick={() => setseeMore(!seeMore)}>
+              {seeMore ? "Collapse" : "Expand"}
+            </button>
+          </span>
 
-        <div className={`${styles.inputField}`}>
-          <button
-            className={`${styles.btn} ${styles.submit} ${styles.createTaskBtn}`}
-            type="submit"
-          >
-            {" "}
-            Submit
-          </button>
+
+          <span>
+            <button  type="submit" >Submit</button>
+          </span>
         </div>
       </form>
     </div>

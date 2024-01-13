@@ -13,12 +13,16 @@
     --button-color: #EEF5FF;
     --button-hover-color:#777777;
     --button-active-color:  #4e4e4e;
+    --button-radius: 2vh;
 
+    
     --div-border: 1.5px solid #000;
     --bg-color: #22334c;
     
 
     --storyContainer-background-color: #a4a4a4;
+
+    --border-radius: 1vh
 
   }
 
@@ -41,6 +45,6 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--storyContainer-background-color);
+  background-color: black;
   border-radius: 4px;
 }
