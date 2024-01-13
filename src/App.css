@@ -4,8 +4,7 @@
 
 
     --background-color: #FBF9F1;
-    --primary-color:#bbcdf5;
-    --secondary-color: #FFFFFF;
+
     --accent-color: #4285F4;
 
     --font-family: "Roboto", sans-serif;
@@ -15,7 +14,9 @@
     --button-active-color:  #4e4e4e;
     --button-radius: 2vh;
 
-    
+    --big-button-border: 5px solid var(--secondary-text-color);
+    --big-button-border-hover: 5px solid var(--accent-color);
+
     --div-border: 1.5px solid #000;
     --bg-color: #22334c;
     

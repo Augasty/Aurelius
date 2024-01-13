@@ -14,6 +14,8 @@ import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import updateCurrentBoardInFirebase from "../../../utils/updateCurrentBoardInFirebase";
+import { setStoriesFromFireBase } from "../../stories/storySlice";
+import { useDispatch } from "react-redux";
 
 // when a board is created, need to create a doc in ‘texts’ collection with the same ID.
 // only show it if authenticated
@@ -23,6 +25,8 @@ const Createboard = () => {
   const [boardName, setboardName] = useState(null);
   const [user] = useAuthState(auth);
   const history = useNavigate();
+  
+  const dispatch = useDispatch();
 
   const handleCreate = async (e, isProjectPlanner) => {
     e.preventDefault();
@@ -35,16 +39,14 @@ const Createboard = () => {
       return;
     }
     try {
-      // add board data in boards db in firebase
       const boardDocRef = await addDoc(collection(db, "boards"), {
         title: boardName,
         memberEmails: [user.email],
-        createdBy: user.email, //passing the creator of the board, who will also act as the admin later
+        createdBy: user.email, 
         createdAt: serverTimestamp(),
         isProjectPlanner: isProjectPlanner,
       });
 
-        // adding dummy data to create subcollections
         const taskListRef = collection(boardDocRef, "taskList");
         await addDoc(taskListRef, { dummy: true });
         const chatListRef = collection(boardDocRef, "chatList");
@@ -57,12 +59,13 @@ const Createboard = () => {
       // add board data & currentboard in corresponding entry in users db in firebase
       updateDoc(doc(db, "users", user.email), {
         [`boards.${boardDocRef.id}`]: boardName,
-        // currentboard: [boardDocRef.id, boardName],
       });
       updateCurrentBoardInFirebase(user.email,[boardDocRef.id, boardName])
-      // set it as the current board
       setcurrentboard([boardDocRef.id, boardName]);
 
+
+      
+      dispatch(setStoriesFromFireBase([]));
       // close the chat if it is open
       if (isRightPanelVisible) {
         toggleRightPanel(false);
@@ -81,7 +84,7 @@ const Createboard = () => {
     <div className={styles.container}>
       <div className={styles.inputField}>
         <label htmlFor="title" className={styles.label}>
-          Create board
+          <strong>Create Board</strong>
         </label>
         <input
           type="text"
@@ -89,6 +92,7 @@ const Createboard = () => {
           onChange={(e) => setboardName(e.target.value)}
           className={styles.input}
           required
+          maxLength={30} 
         />
       </div>
 

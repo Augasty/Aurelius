@@ -8,7 +8,8 @@ import { useProjectContexts } from "../../../utils/ProjectContexts";
 import updateCurrentBoardInFirebase from "../../../utils/updateCurrentBoardInFirebase";
 
 const DropDown = () => {
-  const { currentboard, setIsRightPanelVisible } = useProjectContexts();
+  const { currentboard,setcurrentboard, setIsRightPanelVisible } = useProjectContexts();
+
   const [user] = useAuthState(auth);
   const redux_boards = useSelector((state) => state.boards);
   const history = useNavigate();
@@ -19,7 +20,7 @@ const DropDown = () => {
     const curBoardArr = event.target.value.split(","); //['EUlldFByPHz7RcidE7z2', 'board2']
 
     updateCurrentBoardInFirebase(user.email, curBoardArr);
-
+    setcurrentboard([...curBoardArr]);
     setIsRightPanelVisible(false);
 
     history("/");

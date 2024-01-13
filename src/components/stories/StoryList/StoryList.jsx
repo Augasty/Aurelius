@@ -9,12 +9,18 @@ import TaskContainerStory from "../TaskContainerStory/TaskContainerStory";
 import { separateStories } from "./formatStoryArray";
 
 const StoryList = () => {
-  const { isRightPanelVisible } = useProjectContexts();
+  const { isRightPanelVisible,currentboard } = useProjectContexts();
   const [storyDisplayedTime, setstoryDisplayedTime] = useState("createdAt");
   const [filterName, setfilterName] = useState(null);
 
-  const reduxstories = useSelector((state) => state.stories);
+  const reduxstories = useSelector((state) => state.stories)
+  
+
+  
+
+
   let [filteredStories, setfilteredStories] = useState([]);
+
 
   useEffect(() => {
     console.log(storyDisplayedTime, filterName);
@@ -26,9 +32,14 @@ const StoryList = () => {
     );
     setfilteredStories(filter);
 
-    console.log(filter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storyDisplayedTime, filterName]);
+  }, [storyDisplayedTime, filterName,currentboard]);
+
+
+
+
+  // console.log('manual fetch, required to pull initially when loaded. DON'T REMOVE THIS')
+  filteredStories = reduxstories.filter((obj) => !obj.dummy);
 
   const [createdAtShown, setcreatedAtShown] = useState(false);
 
@@ -91,15 +102,19 @@ const StoryList = () => {
         className={styles.storyList}
         style={{ width: isRightPanelVisible ? "74vw" : "98vw" }}
       >
-        {(filteredStories.length > 0 ? filteredStories : reduxstories).map(
-          (story, index) => (
-            <TaskContainerStory
+        {filteredStories.map(
+          (story, index) => {
+            if (story?.dummy){
+              return
+            }
+
+            return (<TaskContainerStory
               key={index}
               story={story}
               storyDisplayedTime={storyDisplayedTime}
               createdAtShown={createdAtShown}
-            />
-          )
+            />)
+          }
         )}
       </div>
     </div>
