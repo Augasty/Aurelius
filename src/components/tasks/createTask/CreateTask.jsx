@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import styles from "./styles.module.css"; // Update your custom CSS file name
+import styles from "./styles.module.css";
+
+import btn from "../../../sharedStyles/BigButtonStyle.module.css";
 import {
   addDoc,
   collection,
@@ -72,7 +74,6 @@ const CreateTask = () => {
 
       // console.log("task created", task);
 
-
       // updating the completionCount of a story
       if (isProjectPlanner) {
         const currentStoryRef = doc(
@@ -104,7 +105,6 @@ const CreateTask = () => {
             ? ` Task Under The Story: ${currentStory[1]}`
             : " New Task"}
         </h5>
-        <label htmlFor="title">Task Title</label>
         <div className={styles.inputField}>
           <input
             type="text"
@@ -112,21 +112,22 @@ const CreateTask = () => {
             className={styles.taskTitleInput}
             onChange={handleChange}
             required
+            placeholder="Provide task title"
           />
         </div>
-        <label htmlFor="content">Task Content</label>
         <div className={styles.inputField}>
           <textarea
             id="content"
             className={`${styles.customTextarea} ${styles.taskContentTextarea}`}
             onChange={handleChange}
             required
+            placeholder="Task Content"
           ></textarea>
         </div>
 
         <select
           id="assignedTo"
-          className={`${styles.assignedToSelect}`}
+          className={styles.assignedToSelect}
           value={task.assignedTo || ""}
           onChange={handleChange}
           required
@@ -140,51 +141,52 @@ const CreateTask = () => {
         </select>
 
         <div className={`${styles.inputField}`}>
-          <label htmlFor="priority">Priority</label>
           <select
             id="priority"
             className={styles.prioritySelect}
             onChange={handleChange}
             required
+            placeholder="Priority"
           >
-            <option value=""> </option>
+            <option value="">Select priority</option>
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
           </select>
         </div>
 
-        <div className={`${styles.inputContainer}`}>
-          <label htmlFor="deadline">Deadline (optional)</label>
-          <input
-            type="date"
-            id="deadline"
-            className={`${styles.inputField} ${styles.additionalInputStyles}`}
-            onChange={handleChange}
-            min={new Date().toISOString().split("T")[0]}
-            max="2999-12-31"
-          />
+        <div className={styles.taskDetailsTop}>
+          <span className={`${styles.inputContainer}`}>
+            <label htmlFor="deadline">Deadline (optional)</label>
+            <input
+              type="date"
+              id="deadline"
+              className={`${styles.inputField} ${styles.additionalInputStyles}`}
+              onChange={handleChange}
+              min={new Date().toISOString().split("T")[0]}
+              max="2999-12-31"
+            />
+          </span>
+
+          <span className={`${styles.inputField}`}>
+            <label htmlFor="openToAll">Open to all</label>
+            <input
+              type="checkbox"
+              id="openToAll"
+              className={`${styles.checkbox}`}
+              onChange={handleChange}
+            />
+          </span>
         </div>
 
         <div className={`${styles.inputField}`}>
-          <label htmlFor="openToAll">Open to all</label>
-          <input
-            type="checkbox"
-            id="openToAll"
-            className={`${styles.checkbox}`}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className={`${styles.inputField}`}>
-          <label htmlFor="taskStatus">Task Status</label>
           <select
             id="taskStatus"
             className={`${styles.taskStatusSelect}`}
             onChange={handleChange}
             required
           >
-            <option value=""></option>
+            <option value="">Task Status</option>
             <option value="Pending">Pending</option>
             <option value="Active">Active</option>
             <option value="Finished">Finished</option>
@@ -192,10 +194,7 @@ const CreateTask = () => {
         </div>
 
         <div className={`${styles.inputField}`}>
-          <button
-            className={`${styles.btn} ${styles.submit} ${styles.createTaskBtn}`}
-            type="submit"
-          >
+          <button className={btn.BigButton} type="submit">
             Create
           </button>
         </div>

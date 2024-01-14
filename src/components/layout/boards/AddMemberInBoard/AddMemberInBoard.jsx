@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../../../firebase";
 import { useProjectContexts } from "../../../../utils/ProjectContexts";
 import styles from "./styles.module.css";
+import btn from "../../../../sharedStyles/BigButton.module.css"
 import updateCurrentBoardInFirebase from "../../../../utils/updateCurrentBoardInFirebase";
 
 const AddMemberInBoard = () => {
@@ -78,7 +79,7 @@ const AddMemberInBoard = () => {
         />
       </div>
       <div>
-        <button type="submit" className={styles.btn}>
+        <button type="submit" className={btn.BigButton}>
           Add
         </button>
       </div>

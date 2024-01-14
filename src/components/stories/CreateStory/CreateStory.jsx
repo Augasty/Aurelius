@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import styles from "../../tasks/createTask/styles.module.css";
 
+import btn from "../../../sharedStyles/BigButtonStyle.module.css";
+
 const CreateStory = () => {
   const { currentboard } = useProjectContexts();
   const [story, setstory] = useState({
@@ -79,7 +81,7 @@ yesterday.setDate(today.getDate() - 1);
 
         <div className={`${styles.inputContainer}`}>
           <button
-            className={`${styles.btn} ${styles.submit} ${styles.createstoryBtn}`}
+            className={btn.BigButton}
             type="submit"
           >
             Create Story
