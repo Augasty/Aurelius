@@ -2,6 +2,8 @@
 import styles from "./TaskContainerStory.module.css";
 import { useNavigate } from "react-router-dom";
 import TaskSummary from "../../tasks/TaskSummary/TaskSummary";
+
+
 import { useSelector } from "react-redux";
 import moment from "moment";
 
@@ -53,7 +55,8 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
   const storyStatus = getStoryStatus(story.completionCount, story.deadline);
   return (
     <div>
-      <div className={`${styles.StoryTopPart} ${styles[storyStatus]}`}>
+      <div className={`${styles.StoryTopPart} `}>
+      <div className={`${styles.ribbon} ${styles[storyStatus]}`}></div>
         <p className={styles.StoryName}>
           {story.title.length > 20
             ? `${story.title.substring(0, 16)}...`
@@ -79,9 +82,7 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
         </div>
       </div>
       <div
-        className={`${styles.CardsContainer} ${
-          styles[`CardsContainer-${storyStatus}`]
-        }`}
+        className={`${styles.CardsContainer} }`}
       >
         {currentStoryTasks.map((task) => (
           <TaskSummary
@@ -98,7 +99,7 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
           />
         ))}
       </div>
-    </div>
+      </div>
   );
 };
 

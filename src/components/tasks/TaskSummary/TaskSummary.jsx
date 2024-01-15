@@ -18,12 +18,13 @@ const TaskSummary = ({ task, createdAtShown }) => {
           isOverDue && styles.Overdue
         }`}
       >
+      <div className={styles[task.taskStatus]}></div>
         {/* <p className={styles.taskStatus}>{task.taskStatus} </p>
         {isOverDue && <span className={styles.overdueChip}>Overdue</span>} */}
-        <p className={styles.taskSummaryTitle}> {task.title}
-          {/* {task.title.length > 40
-            ? `${task.title.substring(0, 40)}...`
-            : task.title} */}
+        <p className={styles.taskSummaryTitle}> 
+          {task.title.length > 45
+            ? `${task.title.substring(0, 45)}...`
+            : task.title}
         </p>
         <p className={styles.taskSummaryDate}>{formattedDate}</p>
       </div>

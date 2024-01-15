@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import styles from "./DropDown.module.css";
+import styles from "../../../sharedStyles/DropDown.module.css";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import updateCurrentBoardInFirebase from "../../../utils/updateCurrentBoardInFirebase";
 
@@ -38,6 +38,7 @@ const DropDown = () => {
           value={currentboardArr ? currentboardArr : ""}
           onChange={handleSelectChange}
           className={styles.dropdownSelect}
+
         >
           {boardKeys.map((idref) => {
             return (
@@ -46,8 +47,8 @@ const DropDown = () => {
                 key={idref}
                 className={styles.dropdownOption}
               >
-                {redux_boards[idref].length > 15
-                  ? `${redux_boards[idref].substring(0, 15)}...`
+                {redux_boards[idref].length > 20
+                  ? `${redux_boards[idref].substring(0, 20)}...`
                   : redux_boards[idref]}
               </option>
             );

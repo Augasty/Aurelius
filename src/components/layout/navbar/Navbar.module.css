@@ -2,40 +2,50 @@
 
 .navbar {
   position: sticky;
-  background-color: var(--accent-color); /* Keep the accent color consistent */
-  color: var(--text-color);
-  padding-left: 20px;
-  padding-right: 20px;
+  background: var(--navbar-bg-color);
+  padding-left: 15px;
+  padding-right: 15px;
+  height: min-content;
+  margin-top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: bold;
-  border-bottom: var(--div-border); /* Add a border consistent with previous styling */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-family);
+  position: relative;
+  z-index: 4;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  cursor: pointer;
+}
+.navbar img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
-.logo img {
-  margin-right: 10px;
-  width: 40px;
-  height: 40px;
+
+.NavbarIcons img {
+  width: 15px;
+  height: 15px;
+  align-items: center;
 }
 
-.navbar a {
-  color: var(--background-color);
+.navbar a,
+.navbar  div, .navbar p {
+  color: var(--text-color);
   text-decoration: none;
   margin-right: 15px;
-  font-size: 1rem;
+  font-size: var(--navbar-font-size);
   cursor: pointer;
+
 }
 
 .navbarTexts {
   cursor: default;
-  color: var(--background-color);
+  color: var(--text-color);
 }
 
 .navbarList {
@@ -45,30 +55,34 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  height: min-content;
 }
 
-.navbarListItem {
-  margin-right: 15px;
-  color: var(--background-color);
+
+
+.navbarListItem:hover a,.navbarListItem:hover div  {
+  font-weight: bold;
+  color: var(--highlight-color)
 }
+
 
 .navbarListItem:last-child {
   margin-right: 0;
 }
 
-.navbar .profile img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
+
 
 .liDivItems {
   text-align: center;
   position: relative;
   align-self: center;
   margin-right: 1rem;
-
-  background-color: var(--accent-color);
+  color: var(--text-color);
+  text-decoration: none;
+  margin-right: 15px;
+  font-size: var(--navbar-font-size);
+  cursor: pointer;
+  background-color: var(--navbar-bg-color);
   transition: background-color 0.3s ease;
 }
 
@@ -83,32 +97,30 @@
   height: 0.125rem;
   bottom: 0;
   left: 0;
-  background-color: var(--background-color);
+  background-color: var(--highlight-color);
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.5s ease;
 }
 
-.liDivItems:hover::after {
+
+
+/* ... (rest of your styles) */
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 0.125rem;
+  bottom: 0;
+  left: 0;
+  background-color: var(--highlight-color);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.5s ease;
+}
+
+.navbar:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-
-.logout {
-  background-color: var(--background-color);
-  padding: 5px 15px;
-  border: var(--div-border); /* Add a border consistent with previous styling */
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
-  cursor: pointer;
-  text-overflow: ellipsis;
-  color: #000000;
-  font-weight: bold;
-}
-
-.logout:hover {
-  border-color: #0d2a8b;
-  color: #000000;
-}
-
-/* Add more styles as needed */

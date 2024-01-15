@@ -45,20 +45,16 @@ const Navbar = () => {
                     <NavLink
                       to={isProjectPlanner ? "/create-story" : "/create-task"}
                     >
-                      Create A {isProjectPlanner ? "Story" : "Task"}
+                      New {isProjectPlanner ? "Story" : "Task"}
                     </NavLink>
                   )}
                 </li>
               </div>
               {currentboard.length !== 0 && (
                 <>
-                  <div className={styles.liDivItems}>
+                  <div className={`${styles.liDivItems} ${styles.NavbarIcons}`}>
                     <li className={styles.navbarListItem}>
-                      <NavLink to="/add-member">
-                        Add Member in {" "}
-                        {currentboard[1].length > 10
-                          ? `${currentboard[1].substring(0, 8)}...`
-                          : currentboard[1]}
+                      <NavLink to="/add-member"> Add Member
                       </NavLink>
                     </li>
                   </div>
@@ -67,7 +63,7 @@ const Navbar = () => {
                       onClick={() => setIsRightPanelVisible((prev) => !prev)}
                       className={styles.navbarListItem}
                     >
-                      {isRightPanelVisible ? "Close" : "Open"} Chat
+                      <div>{isRightPanelVisible ? "Close" : "Open"} Chat</div>
                     </li>
                   </div>
                 </>
@@ -79,19 +75,18 @@ const Navbar = () => {
               </div>
 
               {curuser.email && currentboard.length !== 0 && (
-                <>
-                  {/* <div className={styles.navbarTexts}>change board</div> */}
+       
+                <div className={styles.liDivItems}>
+                <li className={styles.navbarListItem}>
                   <DropDown />
-                </>
+                </li>
+                </div>
               )}
-              <li className={styles.navbarListItem}>
-                <button
-                  className={styles.logout}
-                  onClick={(e) => handleSignOut(e)}
-                >
-                  Log Out
-                </button>
-              </li>
+              <div className={styles.liDivItems}>
+                <li className={styles.navbarListItem}>
+                  <div onClick={(e) => handleSignOut(e)}>Log Out</div>
+                </li>
+                </div>
             </>
           )}
           <li className={styles.navbarListItem}>

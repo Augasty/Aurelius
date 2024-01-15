@@ -3,13 +3,15 @@
 
   .StoryListContainer{
   background-color: var(--bg-color);
+  display: flex;
+  height: 93vh;
   }
 .storyList {
   align-items: top;
   display: flex;
   position: relative;
   flex: 0 0 auto;
-  min-height: 80vh;
+  height: 92vh;
   top:0%;
   overflow-x:scroll;
   padding-left:  1%;

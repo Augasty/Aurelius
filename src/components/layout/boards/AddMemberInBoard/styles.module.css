@@ -11,35 +11,18 @@
   margin-bottom: 8px;
 }
 
-.createTaskForm input {
+
+.createTaskForm .inputField {
+  border: 1px solid var(--text-color);
+  margin-bottom: 20px;
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
-  border: 1px solid var(--primary-color);
   border-radius: 5px;
   font-family: var(--font-family);
 }
 
-.createTaskForm .inputField {
-  margin-bottom: 20px;
-}
 
 
 
-.createTaskForm button {
-  background-color: var(--button-color);
-  font-weight: bold;
-  border-radius: var(--button-radius);
-  padding: 6px 10px;
-  border: var(--big-button-border);
-  cursor: pointer;
-  font-family: var(--font-family);
-  width: 15vw;
-  transition: background-color 0.3s ease;
-}
 
-.createTaskForm button:hover{
-  color:var(--accent-color);
-  background-color: var(--secondary-color);
-  border: var(--big-button-border-hover); 
-}

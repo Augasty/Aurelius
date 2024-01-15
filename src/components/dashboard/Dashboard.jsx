@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         <SelectedComponent />
       </Suspense>
     </div>

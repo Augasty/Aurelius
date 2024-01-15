@@ -2,27 +2,28 @@
 import TaskSummary from "../TaskSummary/TaskSummary";
 
 import styles from "./TaskList.module.css";
-import filterbarStyles from "../../../sharedStyles/FilterBar.module.css"
+import filterbarStyles from "../../../sharedStyles/FilterBar.module.css";
 
+import dropdownStyles from "../../../sharedStyles/DropDown.module.css";
 import { useSelector } from "react-redux";
 import { separateTasksByPriority } from "./separatedTasks";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import { useEffect, useState } from "react";
 import { auth } from "../../../firebase";
 
-
 const TaskList = () => {
-  const { isRightPanelVisible, isProjectPlanner} = useProjectContexts();
+  const { isRightPanelVisible, isProjectPlanner } = useProjectContexts();
   let reduxTasks = useSelector((state) => state.tasks) || [];
-  const currentStory = JSON.parse(localStorage.getItem("currentStoryLocalStorage"));
+  const currentStory = JSON.parse(
+    localStorage.getItem("currentStoryLocalStorage")
+  );
 
   // console.log(currentStory)
-  if (isProjectPlanner){
+  if (isProjectPlanner) {
     reduxTasks = reduxTasks?.filter(
-      (task) => task.referenceStory[0] === currentStory[0]);
+      (task) => task.referenceStory[0] === currentStory[0]
+    );
   }
-
-
 
   const curuser = auth.currentUser;
 
@@ -69,15 +70,13 @@ const TaskList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterType, filterParameters, createdAtShown]);
 
-  
-    separatedTasks = separateTasksByPriority(
-      reduxTasks,
-      filterType,
-      filterParameters,
-      createdAtShown
-    );
-    // console.log("manual fetch");
-  
+  separatedTasks = separateTasksByPriority(
+    reduxTasks,
+    filterType,
+    filterParameters,
+    createdAtShown
+  );
+  // console.log("manual fetch");
 
   const handleButtonClick = (
     newFilterType,
@@ -98,92 +97,117 @@ const TaskList = () => {
       JSON.stringify(newIsFilteredAndHow)
     );
   };
-
   return (
-    <div className={filterbarStyles.mainContainer}>
-      <div className={filterbarStyles.FilterBar}>
-      <p className={filterbarStyles.FilterHeaderText}>{isProjectPlanner && `Tasks in ${currentStory[1]}`}</p>
-        <p className={filterbarStyles.FilterHeaderText}>Sort By</p>
-        <button
-          className={filterbarStyles.FilterButton}
-          onClick={() =>
-            handleButtonClick(
-              "priority",
-              ["Low", "Medium", "High"],
-              [false, ""]
-            )
-          }
-        >
-          Priority
-        </button>
-        <button
-          className={filterbarStyles.FilterButton}
-          onClick={() =>
-            handleButtonClick(
-              "taskStatus",
-              ["Pending", "Active", "Finished"],
-              [false, ""]
-            )
-          }
-        >
-          Status
-        </button>
+    <div className={styles.mainContainer}>
+      <div className={filterbarStyles.navbar}>
+        <ul className={filterbarStyles.navbarList}>
+        <br/>
+          <p className={filterbarStyles.liDivItems}>Sort By</p>
 
-        <p className={filterbarStyles.FilterHeaderText}>Filter Tasks</p>
-        <button
-          className={filterbarStyles.FilterButton}
-          onClick={() =>
-            handleButtonClick(
-              "assignedTo",
-              [curuser.email],
-              [true, "Assigned To Me"]
-            )
-          }
-        >
-          For Me
-        </button>
+          <li
+            onClick={() =>
+              handleButtonClick(
+                "priority",
+                ["Low", "Medium", "High"],
+                [false, ""]
+              )
+            }
+            className={filterbarStyles.navbarListItem}
+          >
+            Priority
+          </li>
+              
+          <li
+            onClick={() =>
+              handleButtonClick(
+                "taskStatus",
+                ["Pending", "Active", "Finished"],
+                [false, ""]
+              )
+            }
+            className={filterbarStyles.navbarListItem}
+          >
+            Status
+          </li>
 
-        <button
-          className={filterbarStyles.FilterButton}
-          onClick={() =>
-            handleButtonClick(
-              "authorDetails",
-              [curuser.email],
-              [true, "Assigned By Me"]
-            )
-          }
-        >
-          By Me
-        </button>
+          <br/>
+          <br/>
+          <p className={filterbarStyles.liDivItems}>Filter</p>
 
-        <p className={filterbarStyles.FilterHeaderText}>Display By:</p>
-        <button
-          className={filterbarStyles.FilterButton}
-          onClick={() => setcreatedAtShown(!createdAtShown)}
-        >
-          {createdAtShown ? "Updated At" : "Created At"}
-        </button>
 
-        <p className={filterbarStyles.FilterHeaderText}></p>
+
+          <select
+            className={dropdownStyles.dropdownSelect}
+            onChange={(e) =>{
+
+              if (!e.target.value){
+                return
+              }
+              const selectedFilterType = e.target.options[e.target.selectedIndex].dataset.filterType;
+
+              console.log(selectedFilterType,e.target.value)
+
+              handleButtonClick(
+                selectedFilterType,
+                [curuser.email],
+                [true, e.target.value]
+              )
+            }}
+          >
+            <option id="all" value="" className={dropdownStyles.dropdownOption}>
+              All
+            </option>
+            <option
+              data-filter-type="authorDetails"
+              value="Assigned By Me"
+              className={dropdownStyles.dropdownOption}
+            >
+              By Me
+            </option>
+
+            <option
+              data-filter-type="assignedTo"
+              value="Assigned To Me"
+              className={dropdownStyles.dropdownOption}
+            >
+              For Me
+            </option>
+          </select>
+
+
+
+
+
+          <p className={filterbarStyles.liDivItems}>Task Date:</p>
+          <li
+            onClick={() => setcreatedAtShown(!createdAtShown)}
+            className={filterbarStyles.navbarListItem}
+          >
+            {createdAtShown ? "Created" : "Updated"}
+          </li>
+        </ul>
       </div>
 
       <div
         className={`${styles.taskList} ${
           isFilteredAndHow[0] && styles.taskListGrid
         }`}
-        style={{ width: isRightPanelVisible ? "75%" : "98%" }}
+        style={{ width: isRightPanelVisible ? "75%" : "90%" }}
       >
         {separatedTasks.map((taskGroups, idx) => (
           <div className={styles.taskColumn} key={idx}>
             <h2 className={styles.columnHeader}>
               {isFilteredAndHow[0]
                 ? isFilteredAndHow[1]
-                : filterParameters[idx]} 
+                : filterParameters[idx]}
             </h2>
 
             {taskGroups.map((task) => (
-             
-                <TaskSummary task={task} createdAtShown={createdAtShown} key={task.id}/>
+              <TaskSummary
+                task={task}
+                createdAtShown={createdAtShown}
+                key={task.id}
+              />
             ))}
           </div>
         ))}

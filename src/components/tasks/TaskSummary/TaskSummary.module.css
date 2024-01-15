@@ -5,45 +5,40 @@
     border-radius: var(--border-radius);
     font-family: 'Arial', sans-serif;
     width:110px;
-    height:min-content;
+    height:60px;
     text-align: left;
     color: black;
     
   }
   .Finished {
-    background-color: rgb(151, 250, 151); /* 90% transparent green */
+    background-color: var(--finished); /* 90% transparent green */
   }
   
    .Pending{
-    background-color:  #8fcdff
+    background-color: var(--pending)
   }
   
   .Active {
-    background-color: #fff477; /* Yellow color for tasks yet to start */
+    background-color: var(--active); /* Yellow color for tasks yet to start */
   }
   .Overdue {
-    background-color:  rgb(251, 151, 151)
+    background-color: var(--overdue)
   }
-  .taskStatus {
-    font-weight: bold;
-    font-size: 2.2vh;
-    color: #363636;
-    margin-bottom: 4px;
-    display: inline
-  }
+
   
   .taskSummaryTitle {
-    font-size: 2.5vh;
-    font-weight:bold;
+    font-size: 2.3vh;
+    /* font-weight:bold; */
     margin: 0;
+    font-weight: 600;
+    color:var(--secondary-text-color)
  
   }
   
   .taskSummaryDate {
     margin: 0px;
     font-size: 2.1vh;
-    font-weight: 600;
-    color: #363636;
+    color: var(--secondary-text-color)
     /* white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; */

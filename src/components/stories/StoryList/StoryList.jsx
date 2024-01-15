@@ -1,26 +1,23 @@
 /* eslint-disable react/prop-types */
 import styles from "./StoryList.module.css";
 import filterbarStyles from "../../../sharedStyles/FilterBar.module.css";
+import dropdownStyles from "../../../sharedStyles/DropDown.module.css";
+
 import { useSelector } from "react-redux";
-// import { separateStoriesByFilterType } from "./separatedStories";
+
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import { useEffect, useState } from "react";
 import TaskContainerStory from "../TaskContainerStory/TaskContainerStory";
 import { separateStories } from "./formatStoryArray";
 
 const StoryList = () => {
-  const { isRightPanelVisible,currentboard } = useProjectContexts();
+  const { isRightPanelVisible, currentboard } = useProjectContexts();
   const [storyDisplayedTime, setstoryDisplayedTime] = useState("createdAt");
   const [filterName, setfilterName] = useState(null);
 
-  const reduxstories = useSelector((state) => state.stories)
-  
-
-  
-
+  const reduxstories = useSelector((state) => state.stories);
 
   let [filteredStories, setfilteredStories] = useState([]);
-
 
   useEffect(() => {
     console.log(storyDisplayedTime, filterName);
@@ -33,10 +30,7 @@ const StoryList = () => {
     setfilteredStories(filter);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storyDisplayedTime, filterName,currentboard]);
-
-
-
+  }, [storyDisplayedTime, filterName, currentboard]);
 
   // console.log('manual fetch, required to pull initially when loaded. DON'T REMOVE THIS')
   filteredStories = reduxstories.filter((obj) => !obj.dummy);
@@ -45,77 +39,80 @@ const StoryList = () => {
 
   return (
     <div className={styles.StoryListContainer}>
-      <div className={filterbarStyles.FilterBar}>
-        <p className={filterbarStyles.FilterHeaderText}>Task Date:</p>
-        <button
-          className={filterbarStyles.FilterButton}
-          onClick={() => setcreatedAtShown(!createdAtShown)}
-        >
-          {createdAtShown ? "Created At" : "Updated At"}
-        </button>
+      <div className={filterbarStyles.navbar}>
+        <ul className={filterbarStyles.navbarList}>
+          <br />
+          <p className={filterbarStyles.liDivItems}>Task Date:</p>
+          <li
+            onClick={() => setcreatedAtShown(!createdAtShown)}
+            className={filterbarStyles.navbarListItem}
+          >
+            {createdAtShown ? "Created" : "Updated"}
+          </li>
 
-        <p className={filterbarStyles.FilterHeaderText}>Story Date:</p>
-        <button
-          className={filterbarStyles.FilterButton}
-          onClick={() => {
-            if (storyDisplayedTime === "createdAt") {
-              setstoryDisplayedTime("updatedAt");
-            } else if (storyDisplayedTime === "updatedAt") {
-              setstoryDisplayedTime("deadline");
-            } else {
-              setstoryDisplayedTime("createdAt");
+          <br />
+          <p className={filterbarStyles.liDivItems}>Story Date:</p>
+          <li
+            className={filterbarStyles.navbarListItem}
+            onClick={() => {
+              if (storyDisplayedTime === "createdAt") {
+                setstoryDisplayedTime("updatedAt");
+              } else if (storyDisplayedTime === "updatedAt") {
+                setstoryDisplayedTime("deadline");
+              } else {
+                setstoryDisplayedTime("createdAt");
+              }
+            }}
+          >
+            {storyDisplayedTime === "createdAt" && "Created"}
+            {storyDisplayedTime === "updatedAt" && "Updated"}
+            {storyDisplayedTime === "deadline" && "Deadline"}
+          </li>
+
+          <br />
+          <p className={filterbarStyles.liDivItems}>Filter:</p>
+          <select
+            className={dropdownStyles.dropdownSelect}
+            value={filterName}
+            onChange={(e) =>
+              setfilterName(
+                e.target.value === filterName ? null : e.target.value
+              )
             }
-          }}
-        >
-          {storyDisplayedTime}
-        </button>
-
-        <p className={filterbarStyles.FilterHeaderText}>Filter:</p>
-
-        <button
-          className={`${filterbarStyles.FilterButton} ${
-            filterName === "completionCount" &&
-            filterbarStyles.ActiveFilterButton
-          }`}
-          onClick={() =>
-            setfilterName(
-              filterName === "completionCount" ? null : "completionCount"
-            )
-          }
-        >
-          Active
-        </button>
-
-        <button
-          className={`${filterbarStyles.FilterButton} ${
-            filterName === "deadline" && filterbarStyles.ActiveFilterButton
-          }`}
-          onClick={() =>
-            setfilterName(filterName === "deadline" ? null : "deadline")
-          }
-        >
-          Overdue
-        </button>
+          >
+            <option value="" className={dropdownStyles.dropdownOption}>
+              All
+            </option>
+            <option
+              value="completionCount"
+              className={dropdownStyles.dropdownOption}
+            >
+              Active
+            </option>
+            <option value="deadline" className={dropdownStyles.dropdownOption}>
+              Overdue
+            </option>
+          </select>
+        </ul>
       </div>
-
       <div
         className={styles.storyList}
-        style={{ width: isRightPanelVisible ? "74vw" : "98vw" }}
+        style={{ width: isRightPanelVisible ? "66.7vw" : "90.5vw" }}
       >
-        {filteredStories.map(
-          (story, index) => {
-            if (story?.dummy){
-              return
-            }
+        {filteredStories.map((story, index) => {
+          if (story?.dummy) {
+            return;
+          }
 
-            return (<TaskContainerStory
+          return (
+            <TaskContainerStory
               key={index}
               story={story}
               storyDisplayedTime={storyDisplayedTime}
               createdAtShown={createdAtShown}
-            />)
-          }
-        )}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -8,12 +8,14 @@
   width: 150px;
   margin: 0px 5px;
 
+  background: var(--storyContainer-background-color);
   border: var(--div-border);
+  border-bottom: 0;
+  border-radius:  var(--border-radius)  var(--border-radius) 0 0;
 
-  border-bottom: 0px;
 
   padding: 0;
-  height: 15vh;
+  height: 18vh;
 }
 
 .StoryName {
@@ -25,48 +27,46 @@
   padding-bottom: 2px;
   text-align: center;
 
-  color: var(--secondary-text-color);
+  color: var(--story-text-color);
   font-family: var(--font-family);
 }
 
 
 
+.ribbon {
+  width: 100%;
+  height: 3vh;
+  position: relative;
+  background:aqua;
+  border-radius:  var(--border-radius)  var(--border-radius) 0 0;
 
-
-
-.StoryDate {
-  padding: 2px 4px;
-  color: #000;
-  padding-top: 0.5vw;
-  font-size: 2.3vh;
-  font-weight: bold;
 
 }
-
-
-
 .Finished {
-  background-color: rgb(151, 250, 151);
+  background-color: var(--finished)
   /* 90% transparent green */
 }
 
 
 
 .Active {
-  background-color: #fff477;
+  background-color: var(--active)
   /* Yellow color for tasks yet to start */
 }
 
 .Overdue {
-  background-color: rgb(251, 151, 151)
+  background-color: var(--overdue)
 }
+
+
+
 
 
 .StoryButton {
   width: 5.5vw;
   margin: 0.25vw;
   padding: 2px 4px;
-  background-color: var(--background-color);
+  background-color: var(--button-color);
   color: #000;
   border: var(--div-border);
   cursor: pointer;
@@ -80,33 +80,21 @@
   background-color: var(--primary-color);
 }
 
-
 .CardsContainer {
-  justify-content: center;
+  justify-content: flex-start;
   margin: 5px;
   margin-top: 0;
   background: var(--storyContainer-background-color);
   border: var(--div-border);
   border-top: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column; /* Change to column to stack items vertically */
+  align-items: center; /* Center items horizontally */
   overflow-y: scroll;
-  height: 65vh;
+  height: 71.5vh;
   width: 150px;
+  border-radius: 0 0  var(--border-radius)  var(--border-radius);
 }
 
 
-.CardsContainer-Finished {
 
-  background: linear-gradient(to top, var(--storyContainer-background-color) 95%, rgb(151, 250, 151) 100%)
-}
-
-.CardsContainer-Active {
-
-  background: linear-gradient(to top, var(--storyContainer-background-color) 95%, #fff477 100%)
-}
-
-.CardsContainer-Overdue {
-
-  background: linear-gradient(to top, var(--storyContainer-background-color) 95%, rgb(251, 151, 151) 100%)
-}

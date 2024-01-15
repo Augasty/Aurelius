@@ -3,15 +3,13 @@
 
 .mainContainer{ 
   display: flex;
-  
-  background-color: var(--background-color);
+  background-color: var(--bg-color);
+  height: 93vh;
 }
 .taskList {
   justify-content: space-around;
   display: flex;
   position: relative;
-  max-width: 100%;
-
   padding: 1%;
 }
 

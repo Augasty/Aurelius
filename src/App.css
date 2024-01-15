@@ -1,11 +1,14 @@
 :root {
-    --text-color: #ffffff;
-    --secondary-text-color:#000;
+    --text-color: #4d4d4d;
+    --secondary-text-color:#000000;
 
+    --highlight-color: #4285F4;
 
-    --background-color: #FBF9F1;
+    
+    --navbar-bg-color: #ffffff;
+    --navbar-font-size:2.7vh;
 
-    --accent-color: #4285F4;
+    --filterbar-bg: #ffffff;
 
     --font-family: "Roboto", sans-serif;
 
@@ -15,15 +18,25 @@
     --button-radius: 2vh;
 
     --big-button-border: 5px solid var(--secondary-text-color);
-    --big-button-border-hover: 5px solid var(--accent-color);
-
-    --div-border: 1.5px solid #000;
-    --bg-color: #22334c;
+    --big-button-border-hover: 5px solid var(--secondary-text-color);
+    --div-border: 1.5px solid #4d4d4d;
+    --bg-color: #ffffff;
     
 
-    --storyContainer-background-color: #a4a4a4;
+    --storyContainer-background-color: #e7e7e7;
+    --story-text-color: #1d1d1d;
 
-    --border-radius: 1vh
+
+    --border-radius: 1vh;
+
+
+
+
+    /* card and story colors */
+    --finished:#2dfd4c;
+    --pending: #8fcdff;
+    --active : #fff477;
+    --overdue: #ff9595;
 
   }
 
@@ -46,6 +59,6 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: black;
+  background-color: var(--text-color);
   border-radius: 4px;
 }
