@@ -1,27 +1,27 @@
-export const separateStories = (
-  storyArray,
-  storyDisplayedTime,
-  filterName
-) => {
+export const separateStories = (storyArray, storyDisplayedTime, filterName) => {
   let formattedArray = [...storyArray];
+  formattedArray = formattedArray.filter((story) => story?.dummy != true);
 
-  formattedArray.sort(
-    (a, b) => new Date(b[storyDisplayedTime]) - new Date(a[storyDisplayedTime])
-  );
+  if (storyDisplayedTime == 'deadline') {
+    formattedArray.sort((a, b) => new Date(b[storyDisplayedTime]) - new Date(a[storyDisplayedTime]));
+  } else {
+    formattedArray.sort((a, b) => new Date(a[storyDisplayedTime]) - new Date(b[storyDisplayedTime]));
+  }
 
   if (filterName) {
-    if (filterName == "completionCount") {
-      const filter = formattedArray.filter((task) => task.completionCount > 0);
-      console.log('filter working',filter);
-      return filter;
+    if (filterName == 'completionCount') {
+      const filteredStories = formattedArray.filter((story) => story.completionCount > 0);
+      return filteredStories;
     }
 
-    if (filterName === "deadline") {
+    if (filterName === 'deadline') {
       const today = new Date();
-      const filter = formattedArray.filter((task) =>  today > new Date(task.deadline) );
-      console.log('filter working', filter);
-      return filter;
+      const filteredStories = formattedArray.filter(
+        (story) => today > new Date(story.deadline) && story.completionCount > 0
+      );
+      return filteredStories;
     }
   }
+
   return formattedArray;
 };

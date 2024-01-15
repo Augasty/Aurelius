@@ -14,10 +14,8 @@ const ChatMessage = React.memo(({ message }) => {
   return (
     <div className={`${styles.message} ${messageClass && styles.sent}`}>
       <img src={photoURL || topchicken} alt="User" />
-      <div className={styles.messageContent}>
-        {/* {sender && <span className={styles.sender}>{sender}</span>} */}
         <p>{chat}</p>
-      </div>
+      
     </div>
   );
 }, (prevProps, nextProps) => {

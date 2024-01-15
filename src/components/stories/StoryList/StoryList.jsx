@@ -15,25 +15,23 @@ const StoryList = () => {
   const [storyDisplayedTime, setstoryDisplayedTime] = useState("createdAt");
   const [filterName, setfilterName] = useState(null);
 
-  const reduxstories = useSelector((state) => state.stories);
+  const reduxstories = useSelector((state) => state.stories)
 
   let [filteredStories, setfilteredStories] = useState([]);
 
-  useEffect(() => {
-    console.log(storyDisplayedTime, filterName);
+useEffect(() => {
+  console.log(storyDisplayedTime, filterName);
 
-    const filter = separateStories(
-      reduxstories,
-      storyDisplayedTime,
-      filterName
-    );
-    setfilteredStories(filter);
+  const filteredResult = separateStories(reduxstories, storyDisplayedTime, filterName);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storyDisplayedTime, filterName, currentboard]);
+  // console.log(filteredResult);
+  setfilteredStories(filteredResult);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [storyDisplayedTime, filterName, currentboard, reduxstories]);
 
   // console.log('manual fetch, required to pull initially when loaded. DON'T REMOVE THIS')
-  filteredStories = reduxstories.filter((obj) => !obj.dummy);
+  // filteredStories = reduxstories.filter((obj) => !obj.dummy);
 
   const [createdAtShown, setcreatedAtShown] = useState(false);
 
@@ -97,7 +95,7 @@ const StoryList = () => {
       </div>
       <div
         className={styles.storyList}
-        style={{ width: isRightPanelVisible ? "66.7vw" : "90.5vw" }}
+        style={{ width: isRightPanelVisible ? "68.1vw" : "91.8vw" }}
       >
         {filteredStories.map((story, index) => {
           if (story?.dummy) {

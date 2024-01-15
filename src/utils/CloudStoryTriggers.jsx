@@ -23,7 +23,7 @@ const CloudStoryTriggers = () => {
 
 
       const boardDocSnap = await getDoc(doc(db, "boards", currentboard[0]));
-      console.log(boardDocSnap.data().isProjectPlanner)
+
       setisProjectPlanner(boardDocSnap.data().isProjectPlanner)
       
       if (!StorySnapShot.empty) {

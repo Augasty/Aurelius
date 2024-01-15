@@ -33,7 +33,6 @@ function ChatRoom() {
           ...doc.data(),
         }));
         setmessages([...textsData]);
-        console.log(textsData);
       }
     } catch (error) {
       console.warn("error fetching texts:", error);
@@ -93,7 +92,7 @@ function ChatRoom() {
         <input
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
-          placeholder="Message"
+
           className={styles.input}
         />
 

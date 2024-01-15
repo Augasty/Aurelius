@@ -30,7 +30,18 @@
   color: var(--story-text-color);
   font-family: var(--font-family);
 }
+.StoryDate {
+  margin-top: 3px;
+  margin-bottom: 0px;
 
+  font-size: 2vh;
+  padding-top: 0;
+  padding-bottom: 2px;
+  text-align: center;
+
+  color: var(--story-text-color);
+  font-family: var(--font-family);
+}
 
 
 .ribbon {

@@ -61,7 +61,7 @@ yesterday.setDate(today.getDate() - 1);
           <input
             type="text"
             id="title"
-            className={styles.inputField}
+            className={styles.taskTitleInput}
             onChange={handleChange}
             required
           />
@@ -72,21 +72,19 @@ yesterday.setDate(today.getDate() - 1);
           <input
             type="date"
             id="deadline"
-            className={`${styles.inputField} ${styles.additionalInputStyles}`}
+            className={`${styles.inputField} ${styles.taskTitleInput}`}
             onChange={handleChange}
             min={yesterday.toISOString().split("T")[0]}
             max="2999-12-31"
           />
         </div>
 
-        <div className={`${styles.inputContainer}`}>
           <button
             className={btn.BigButton}
             type="submit"
           >
             Create Story
           </button>
-        </div>
       </form>
     </div>
   );

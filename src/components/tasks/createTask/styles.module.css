@@ -3,8 +3,7 @@ body {
   font-family: var(--font-family);    
   background-color: var(--bg-color);
   color: var(--text-color);
-  margin: 0;
-  padding: 0;
+
 }
 
 .container {
@@ -17,6 +16,9 @@ body {
 .createTaskForm {
   display: flex;
   flex-direction: column;
+  padding: 5vh;
+  
+  box-shadow: var(--bottom-shadow);
 }
 
 .heading {
@@ -29,9 +31,6 @@ label {
   margin-top: 10px;
 }
 
-.inputField {
-  margin-bottom: 20px;
-}
 
 /* Input styles */
 .taskTitleInput,
@@ -43,10 +42,11 @@ label {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
-  border: 1px solid var(--accent-color);
+  border: var(--input-box-border);
   border-radius: 5px;
   box-sizing: border-box;
   outline: none;
+  margin-bottom: 20px;
 }
 
 .customTextarea {
@@ -89,15 +89,19 @@ label {
 
 .taskDetailsTop {
   display: flex;
-  justify-content: space-between;
   font-size: 3vh;
+  justify-content: space-between;
 }
 
-.taskDetailsTop span {
-  margin-bottom: 10px;
+.deadLine{
+  
+  margin-left: 5vh;
 }
 
-.taskDetailsTop span span {
-  font-weight: bold;
-  margin-right: 5px;
+
+.openToAll{
+  font-size: 4vh;
+  height: 6vh;
+  padding-top: 5vh;
+  padding-right: 5vh;
 }

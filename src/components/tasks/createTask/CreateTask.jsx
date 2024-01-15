@@ -105,7 +105,7 @@ const CreateTask = () => {
             ? ` Task Under The Story: ${currentStory[1]}`
             : " New Task"}
         </h5>
-        <div className={styles.inputField}>
+
           <input
             type="text"
             id="title"
@@ -114,8 +114,6 @@ const CreateTask = () => {
             required
             placeholder="Provide task title"
           />
-        </div>
-        <div className={styles.inputField}>
           <textarea
             id="content"
             className={`${styles.customTextarea} ${styles.taskContentTextarea}`}
@@ -123,8 +121,9 @@ const CreateTask = () => {
             required
             placeholder="Task Content"
           ></textarea>
-        </div>
+        
 
+        <div className={` `}>
         <select
           id="assignedTo"
           className={styles.assignedToSelect}
@@ -139,8 +138,9 @@ const CreateTask = () => {
             </option>
           ))}
         </select>
+        </div>
 
-        <div className={`${styles.inputField}`}>
+        <div className={` `}>
           <select
             id="priority"
             className={styles.prioritySelect}
@@ -156,20 +156,20 @@ const CreateTask = () => {
         </div>
 
         <div className={styles.taskDetailsTop}>
-          <span className={`${styles.inputContainer}`}>
+          <span className={styles.deadLine}>
             <label htmlFor="deadline">Deadline (optional)</label>
             <input
               type="date"
               id="deadline"
-              className={`${styles.inputField} ${styles.additionalInputStyles}`}
+              className={`  ${styles.taskTitleInput}`}
               onChange={handleChange}
               min={new Date().toISOString().split("T")[0]}
               max="2999-12-31"
             />
           </span>
 
-          <span className={`${styles.inputField}`}>
-            <label htmlFor="openToAll">Open to all</label>
+          <span className={styles.openToAll}>
+            <span >Open to all</span>
             <input
               type="checkbox"
               id="openToAll"
@@ -179,7 +179,7 @@ const CreateTask = () => {
           </span>
         </div>
 
-        <div className={`${styles.inputField}`}>
+        <div className={` `}>
           <select
             id="taskStatus"
             className={`${styles.taskStatusSelect}`}
@@ -193,7 +193,7 @@ const CreateTask = () => {
           </select>
         </div>
 
-        <div className={`${styles.inputField}`}>
+        <div className={` `}>
           <button className={btn.BigButton} type="submit">
             Create
           </button>

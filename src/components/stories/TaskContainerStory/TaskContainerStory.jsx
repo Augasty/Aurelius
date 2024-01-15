@@ -3,7 +3,6 @@ import styles from "./TaskContainerStory.module.css";
 import { useNavigate } from "react-router-dom";
 import TaskSummary from "../../tasks/TaskSummary/TaskSummary";
 
-
 import { useSelector } from "react-redux";
 import moment from "moment";
 
@@ -34,8 +33,6 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
   const currentStoryTasks = reduxTasks.filter(
     (task) => task.referenceStory[0] === story.id
   );
-  // console.log(currentStoryTasks, story);
-
   const CreateTaskWithStory = () => {
     localStorage.setItem(
       "currentStoryLocalStorage",
@@ -56,7 +53,7 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
   return (
     <div>
       <div className={`${styles.StoryTopPart} `}>
-      <div className={`${styles.ribbon} ${styles[storyStatus]}`}></div>
+        <div className={`${styles.ribbon} ${styles[storyStatus]}`}></div>
         <p className={styles.StoryName}>
           {story.title.length > 20
             ? `${story.title.substring(0, 16)}...`
@@ -81,25 +78,20 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
           </button>
         </div>
       </div>
-      <div
-        className={`${styles.CardsContainer} }`}
-      >
+      <div className={`${styles.CardsContainer} }`}>
         {currentStoryTasks.map((task) => (
           <TaskSummary
             task={task}
             createdAtShown={createdAtShown}
             key={task.id}
-            onClick={
-
-              localStorage.setItem(
+            onClick={localStorage.setItem(
               "currentStoryLocalStorage",
               JSON.stringify([story.id, story.title])
-            )
-            }
+            )}
           />
         ))}
       </div>
-      </div>
+    </div>
   );
 };
 

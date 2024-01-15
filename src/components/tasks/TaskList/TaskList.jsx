@@ -70,13 +70,13 @@ const TaskList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterType, filterParameters, createdAtShown]);
 
+  // console.log("manual fetch");
   separatedTasks = separateTasksByPriority(
     reduxTasks,
     filterType,
     filterParameters,
     createdAtShown
   );
-  // console.log("manual fetch");
 
   const handleButtonClick = (
     newFilterType,
@@ -101,61 +101,71 @@ const TaskList = () => {
     <div className={styles.mainContainer}>
       <div className={filterbarStyles.navbar}>
         <ul className={filterbarStyles.navbarList}>
-        <br/>
+          <br />
           <p className={filterbarStyles.liDivItems}>Sort By</p>
 
           <li
-            onClick={() =>
+            onClick={() => {
+              // reset filter
+              const dropdown = document.getElementById("filterDropdown");
+              if (dropdown) {
+                dropdown.value = "";
+              }
+
               handleButtonClick(
                 "priority",
                 ["Low", "Medium", "High"],
                 [false, ""]
-              )
-            }
+              );
+            }}
             className={filterbarStyles.navbarListItem}
           >
             Priority
           </li>
-              
+
           <li
-            onClick={() =>
+            onClick={() => {
+              // reset filter
+              const dropdown = document.getElementById("filterDropdown");
+              if (dropdown) {
+                dropdown.value = "";
+              }
+
               handleButtonClick(
                 "taskStatus",
                 ["Pending", "Active", "Finished"],
                 [false, ""]
-              )
-            }
+              );
+            }}
             className={filterbarStyles.navbarListItem}
           >
             Status
           </li>
 
-          <br/>
-          <br/>
+          <br />
           <p className={filterbarStyles.liDivItems}>Filter</p>
 
-
-
           <select
+            id="filterDropdown"
             className={dropdownStyles.dropdownSelect}
-            onChange={(e) =>{
-
-              if (!e.target.value){
-                return
+            onChange={(e) => {
+              if (!e.target.value) {
+                return;
               }
-              const selectedFilterType = e.target.options[e.target.selectedIndex].dataset.filterType;
+              const selectedFilterType =
+                e.target.options[e.target.selectedIndex].dataset.filterType;
 
-              console.log(selectedFilterType,e.target.value)
+              console.log(selectedFilterType, e.target.value);
 
               handleButtonClick(
                 selectedFilterType,
                 [curuser.email],
                 [true, e.target.value]
-              )
+              );
             }}
           >
             <option id="all" value="" className={dropdownStyles.dropdownOption}>
-              All
+              None
             </option>
             <option
               data-filter-type="authorDetails"
@@ -173,10 +183,7 @@ const TaskList = () => {
               For Me
             </option>
           </select>
-
-
-
-
+          <br />
 
           <p className={filterbarStyles.liDivItems}>Task Date:</p>
           <li
@@ -192,7 +199,7 @@ const TaskList = () => {
         className={`${styles.taskList} ${
           isFilteredAndHow[0] && styles.taskListGrid
         }`}
-        style={{ width: isRightPanelVisible ? "75%" : "90%" }}
+        style={{ width: isRightPanelVisible ? "68.1vw" : "91.8vw" }}
       >
         {separatedTasks.map((taskGroups, idx) => (
           <div className={styles.taskColumn} key={idx}>

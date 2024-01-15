@@ -91,7 +91,7 @@ const Navbar = () => {
           )}
           <li className={styles.navbarListItem}>
             <NavLink
-              to="/"
+
               className={`${styles.profile} ${styles.toggle}`}
               onClick={() => setToggleChicken(!toggleChicken)}
             >

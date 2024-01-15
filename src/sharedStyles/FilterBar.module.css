@@ -4,6 +4,7 @@
   position: sticky;
   background: var(--navbar-bg-color);
 
+  border: var(--div-border);
   margin-top: 0;
   display: flex;
   justify-content: space-between;
@@ -11,8 +12,7 @@
   position: relative;
   top: 0vh;
   width: min-content;
-  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   height: 92.8vh;
 }
 
@@ -37,7 +37,7 @@
   font-size: var(--navbar-font-size);
   cursor: pointer;
   
-  font-size: 2vh;
+  font-size: 2.5vh;
 
 }
 
@@ -53,7 +53,7 @@
   text-align: center;
   position: relative;
   align-self: center;
-  color: var(--secondary-text-color);
+  color: var(--text-color);
   transition: color 0.3s ease;
   user-select: none; /* Disable text selection */
   
@@ -62,8 +62,8 @@
 }
 
 .navbarListItem:hover {
-  font-weight: bold;
-  color: var(--secondary-text-color)
+  font-weight: bold;  
+  color: var(--highlight-color)
 }
 
 

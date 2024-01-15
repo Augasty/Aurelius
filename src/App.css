@@ -1,57 +1,63 @@
 :root {
-    --text-color: #4d4d4d;
-    --secondary-text-color:#000000;
+  --text-color: #4d4d4d;
+  --secondary-text-color: #000000;
+  --alt-text-color: #FFFFFF;
 
-    --highlight-color: #4285F4;
-
-    
-    --navbar-bg-color: #ffffff;
-    --navbar-font-size:2.7vh;
-
-    --filterbar-bg: #ffffff;
-
-    --font-family: "Roboto", sans-serif;
-
-    --button-color: #EEF5FF;
-    --button-hover-color:#777777;
-    --button-active-color:  #4e4e4e;
-    --button-radius: 2vh;
-
-    --big-button-border: 5px solid var(--secondary-text-color);
-    --big-button-border-hover: 5px solid var(--secondary-text-color);
-    --div-border: 1.5px solid #4d4d4d;
-    --bg-color: #ffffff;
-    
-
-    --storyContainer-background-color: #e7e7e7;
-    --story-text-color: #1d1d1d;
+  --highlight-color: #4285F4;
 
 
-    --border-radius: 1vh;
+  --navbar-bg-color: #ffffff;
+  --navbar-font-size: 2.7vh;
+
+  --filterbar-bg: #ffffff;
+
+  --font-family: "Roboto", sans-serif;
+
+  --button-color: #EEF5FF;
+  --button-hover-color: #92b7f4;
+  --button-active-color: var(--highlight-color);
+  --button-radius: 2vh;
+
+  --big-button-border: 1px solid var(--secondary-text-color);
+  --big-button-border-hover: 1px solid var(--highlight-color);
+  --div-border: 0px solid #000000;
+  --bg-color: #ffffff;
+
+  --input-box-border: 1px solid #000000;
+
+  --storyContainer-background-color: #e7e7e7;
+  --story-text-color: #1d1d1d;
 
 
+  --border-radius: 1vh;
+
+  --bottom-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 
 
-    /* card and story colors */
-    --finished:#2dfd4c;
-    --pending: #8fcdff;
-    --active : #fff477;
-    --overdue: #ff9595;
-
-  }
+  /* card and story colors */
+  --finished: #2dfd4c;
+  --pending: #8fcdff;
+  --active: #fff477;
+  --overdue: #ff9595;
 
 
-  /* to remove the margins and stuff on top of the navbar */
-  body {
-    margin: 0;
-    font-family: var(--font-family);
-    
+  --sent: var(--highlight-color);
+  --received: #1baa30;
+
+}
+
+
+/* to remove the margins and stuff on top of the navbar */
+body {
+  margin: 0;
+  font-family: var(--font-family);
+
   background-color: var(--bg-color);
-  }
+}
 
 
 /* scrollbar global styles */
-  
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 10px;
