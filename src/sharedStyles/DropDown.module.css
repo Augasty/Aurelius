@@ -1,0 +1,27 @@
+.dropdownContainer{
+  display: flex;
+}
+
+
+
+  .dropdownSelect {
+    text-align: center;
+
+    border: 0;
+    color: var(--text-color); 
+    font-family: var(--font-family);
+    font-size: var(--navbar-font-size);
+    width: min-content;
+    user-select: none;
+  }
+
+  
+  .dropdownOption {
+  color: var(--secondary-text-color);
+  padding: 8px 10px; /* Adjusted padding for a more comfortable feel */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 0 !important; /* Make the edges sharp */
+  -webkit-appearance: none;   
+}
+  
