@@ -1,45 +1,37 @@
+
 /* eslint-disable react/prop-types */
 import styles from "./StoryList.module.css";
 import filterbarStyles from "../../../sharedStyles/FilterBar.module.css";
+
 import { useSelector } from "react-redux";
-// import { separateStoriesByFilterType } from "./separatedStories";
+
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import { useEffect, useState } from "react";
 import TaskContainerStory from "../TaskContainerStory/TaskContainerStory";
 import { separateStories } from "./formatStoryArray";
 
 const StoryList = () => {
-  const { isRightPanelVisible,currentboard } = useProjectContexts();
+  const { isRightPanelVisible, currentboard } = useProjectContexts();
   const [storyDisplayedTime, setstoryDisplayedTime] = useState("createdAt");
   const [filterName, setfilterName] = useState(null);
 
   const reduxstories = useSelector((state) => state.stories)
-  
-
-  
-
 
   let [filteredStories, setfilteredStories] = useState([]);
 
+useEffect(() => {
+  console.log(storyDisplayedTime, filterName);
 
-  useEffect(() => {
-    console.log(storyDisplayedTime, filterName);
+  const filteredResult = separateStories(reduxstories, storyDisplayedTime, filterName);
 
-    const filter = separateStories(
-      reduxstories,
-      storyDisplayedTime,
-      filterName
-    );
-    setfilteredStories(filter);
+  // console.log(filteredResult);
+  setfilteredStories(filteredResult);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storyDisplayedTime, filterName,currentboard]);
-
-
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [storyDisplayedTime, filterName, currentboard, reduxstories]);
 
   // console.log('manual fetch, required to pull initially when loaded. DON'T REMOVE THIS')
-  filteredStories = reduxstories.filter((obj) => !obj.dummy);
+  // filteredStories = reduxstories.filter((obj) => !obj.dummy);
 
   const [createdAtShown, setcreatedAtShown] = useState(false);
 
@@ -51,7 +43,7 @@ const StoryList = () => {
           className={filterbarStyles.FilterButton}
           onClick={() => setcreatedAtShown(!createdAtShown)}
         >
-          {createdAtShown ? "Created At" : "Updated At"}
+          {createdAtShown ? "Created" : "Updated"}
         </button>
 
         <p className={filterbarStyles.FilterHeaderText}>Story Date:</p>
@@ -97,25 +89,24 @@ const StoryList = () => {
           Overdue
         </button>
       </div>
-
       <div
         className={styles.storyList}
-        style={{ width: isRightPanelVisible ? "74vw" : "98vw" }}
+        style={{ width: isRightPanelVisible ? "74.3vw" : "97.8vw" }}
       >
-        {filteredStories.map(
-          (story, index) => {
-            if (story?.dummy){
-              return
-            }
+        {filteredStories.map((story, index) => {
+          if (story?.dummy) {
+            return;
+          }
 
-            return (<TaskContainerStory
+          return (
+            <TaskContainerStory
               key={index}
               story={story}
               storyDisplayedTime={storyDisplayedTime}
               createdAtShown={createdAtShown}
-            />)
-          }
-        )}
+            />
+          );
+        })}
       </div>
     </div>
   );

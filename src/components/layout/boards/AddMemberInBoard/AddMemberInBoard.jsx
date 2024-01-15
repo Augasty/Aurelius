@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../../../firebase";
 import { useProjectContexts } from "../../../../utils/ProjectContexts";
 import styles from "./styles.module.css";
-import btn from "../../../../sharedStyles/BigButton.module.css"
+import btn from "../../../../sharedStyles/BigButtonStyle.module.css"
 import updateCurrentBoardInFirebase from "../../../../utils/updateCurrentBoardInFirebase";
 
 const AddMemberInBoard = () => {

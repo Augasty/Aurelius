@@ -91,22 +91,7 @@
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
-  height: 65vh;
+  height: 63vh;
   width: 150px;
 }
 
-
-.CardsContainer-Finished {
-
-  background: linear-gradient(to top, var(--storyContainer-background-color) 95%, rgb(151, 250, 151) 100%)
-}
-
-.CardsContainer-Active {
-
-  background: linear-gradient(to top, var(--storyContainer-background-color) 95%, #fff477 100%)
-}
-
-.CardsContainer-Overdue {
-
-  background: linear-gradient(to top, var(--storyContainer-background-color) 95%, rgb(251, 151, 151) 100%)
-}

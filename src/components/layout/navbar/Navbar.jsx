@@ -1,24 +1,19 @@
-import { Link, NavLink } from "react-router-dom";
-import styles from "./Navbar.module.css"; // Import your CSS file
-import { auth } from "../../../firebase";
-import { signOut } from "firebase/auth";
-import DropDown from "../boards/DropDown";
-import { useState } from "react";
-import topchicken from "../../../../assets/topchicken.jpg";
-import lethe from "../../../../assets/bluey.png";
-import { useProjectContexts } from "../../../utils/ProjectContexts";
-import { useNavigate } from "react-router-dom";
+import { Link, NavLink } from 'react-router-dom';
+import styles from './Navbar.module.css'; // Import your CSS file
+import { auth } from '../../../firebase';
+import { signOut } from 'firebase/auth';
+import DropDown from '../boards/DropDown';
+import { useState } from 'react';
+import topchicken from '../../../../assets/topchicken.jpg';
+import lethe from '../../../../assets/bluey.png';
+import { useProjectContexts } from '../../../utils/ProjectContexts';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const curuser = auth.currentUser;
   const navigate = useNavigate();
-  const {
-    currentboard,
-    setcurrentboard,
-    isRightPanelVisible,
-    setIsRightPanelVisible,
-    isProjectPlanner,
-  } = useProjectContexts();
+  const { currentboard, setcurrentboard, isRightPanelVisible, setIsRightPanelVisible, isProjectPlanner } =
+    useProjectContexts();
 
   // for chicken
   const [toggleChicken, setToggleChicken] = useState(true);
@@ -32,7 +27,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src={lethe} onClick={() => navigate("/")} />
+        <img src={lethe} onClick={() => navigate('/')} />
         <Link to="/">Lethe</Link>
       </div>
       <div>
@@ -42,10 +37,8 @@ const Navbar = () => {
               <div className={styles.liDivItems}>
                 <li className={styles.navbarListItem}>
                   {currentboard.length !== 0 && (
-                    <NavLink
-                      to={isProjectPlanner ? "/create-story" : "/create-task"}
-                    >
-                      Create A {isProjectPlanner ? "Story" : "Task"}
+                    <NavLink to={isProjectPlanner ? '/create-story' : '/create-task'}>
+                      Create A {isProjectPlanner ? 'Story' : 'Task'}
                     </NavLink>
                   )}
                 </li>
@@ -55,19 +48,14 @@ const Navbar = () => {
                   <div className={styles.liDivItems}>
                     <li className={styles.navbarListItem}>
                       <NavLink to="/add-member">
-                        Add Member in {" "}
-                        {currentboard[1].length > 10
-                          ? `${currentboard[1].substring(0, 8)}...`
-                          : currentboard[1]}
+                        Add Member in{' '}
+                        {currentboard[1].length > 10 ? `${currentboard[1].substring(0, 8)}...` : currentboard[1]}
                       </NavLink>
                     </li>
                   </div>
                   <div className={styles.liDivItems}>
-                    <li
-                      onClick={() => setIsRightPanelVisible((prev) => !prev)}
-                      className={styles.navbarListItem}
-                    >
-                      {isRightPanelVisible ? "Close" : "Open"} Chat
+                    <li onClick={() => setIsRightPanelVisible((prev) => !prev)} className={styles.navbarListItem}>
+                      {isRightPanelVisible ? 'Close' : 'Open'} Chat
                     </li>
                   </div>
                 </>
@@ -85,10 +73,7 @@ const Navbar = () => {
                 </>
               )}
               <li className={styles.navbarListItem}>
-                <button
-                  className={styles.logout}
-                  onClick={(e) => handleSignOut(e)}
-                >
+                <button className={styles.logout} onClick={(e) => handleSignOut(e)}>
                   Log Out
                 </button>
               </li>
@@ -100,10 +85,7 @@ const Navbar = () => {
               className={`${styles.profile} ${styles.toggle}`}
               onClick={() => setToggleChicken(!toggleChicken)}
             >
-              <img
-                src={toggleChicken ? curuser?.photoURL : topchicken}
-                alt="user"
-              />
+              <img src={toggleChicken ? curuser?.photoURL : topchicken} alt="user" />
             </NavLink>
           </li>
         </ul>

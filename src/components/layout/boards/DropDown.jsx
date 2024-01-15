@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import styles from "./DropDown.module.css";
 import { useProjectContexts } from "../../../utils/ProjectContexts";
 import updateCurrentBoardInFirebase from "../../../utils/updateCurrentBoardInFirebase";
-
+import { setStoriesFromFireBase } from '../../stories/storySlice';
+import { setTasksFromFireBase } from '../../tasks/taskSlice';
 const DropDown = () => {
   const { currentboard, setcurrentboard, setIsRightPanelVisible } =
     useProjectContexts();
@@ -15,10 +16,17 @@ const DropDown = () => {
   const redux_boards = useSelector((state) => state.boards);
   const history = useNavigate();
 
+  const dispatch = useDispatch();
   // Handler function to update the selected value
   const handleSelectChange = (event) => {
     event.preventDefault();
     const curBoardArr = event.target.value.split(","); //['EUlldFByPHz7RcidE7z2', 'board2']
+
+
+    // setting the story and task blank.. the data will get fetched by firestore
+    // ... preventing the old board data from showing for a moment
+    dispatch(setStoriesFromFireBase([]));
+    dispatch(setTasksFromFireBase([]));
 
     updateCurrentBoardInFirebase(user.email, curBoardArr);
     setcurrentboard([...curBoardArr]);
