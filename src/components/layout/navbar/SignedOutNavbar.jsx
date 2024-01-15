@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { signInWithGoogle } from "../../../utils/singInWithGoogle";
 import topchicken from "../../../../assets/topchicken.jpg"
 
-import lethe from "../../../../assets/bluey.png";
+import Aurelius from "../../../../assets/bluey.png";
 import styles from "./Navbar.module.css"; // Import your CSS file
 
 const SignedOutNavbar = () => {
@@ -19,8 +19,8 @@ const SignedOutNavbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src={lethe} />
-        <Link to="/">Lethe</Link>
+        <img src={Aurelius} />
+        <Link to="/">Aurelius</Link>
       </div>
       <div>
         <ul className={styles.navbarList}>
