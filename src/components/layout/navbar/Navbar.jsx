@@ -5,7 +5,7 @@ import { signOut } from 'firebase/auth';
 import DropDown from '../boards/DropDown';
 import { useState } from 'react';
 import topchicken from '../../../../assets/topchicken.jpg';
-import lethe from '../../../../assets/bluey.png';
+import Aurelius from '../../../../assets/bluey.png';
 import { useProjectContexts } from '../../../utils/ProjectContexts';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,8 +27,8 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <img src={lethe} onClick={() => navigate('/')} />
-        <Link to="/">Lethe</Link>
+        <img src={Aurelius} onClick={() => navigate('/')} />
+        <Link to="/">Aurelius</Link>
       </div>
       <div>
         <ul className={styles.navbarList}>
