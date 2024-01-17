@@ -1,34 +1,27 @@
 /* eslint-disable react/prop-types */
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  onSnapshot,
-} from "firebase/firestore";
-import { useEffect, useMemo } from "react";
-import { db } from "../firebase";
-import { useDispatch } from "react-redux";
-import { setTasksFromFireBase } from "../components/tasks/taskSlice";
+import { collection, doc, getDoc, getDocs, onSnapshot } from 'firebase/firestore';
+import { useEffect, useMemo } from 'react';
+import { db } from '../firebase';
+import { useDispatch } from 'react-redux';
+import { setTasksFromFireBase } from '../components/tasks/taskSlice';
 
-import styles from "./styles.module.css";
-import { useProjectContexts } from "./ProjectContexts";
+import styles from './styles.module.css';
+import { useProjectContexts } from './ProjectContexts';
 const CloudTaskTriggers = () => {
   const dispatch = useDispatch();
 
   const { currentboard, setisProjectPlanner } = useProjectContexts();
 
-  const fetchData = useMemo(
+  const fetchTasks = useMemo(
     () => async () => {
+      // console.log('fetchTasks triggered')
       if (!currentboard || currentboard.length === 0) {
         return;
       }
       try {
-        const ProjectsSnapShot = await getDocs(
-          collection(db, "boards", currentboard[0], "taskList")
-        );
+        const ProjectsSnapShot = await getDocs(collection(db, 'boards', currentboard[0], 'taskList'));
 
-        const boardDocSnap = await getDoc(doc(db, "boards", currentboard[0]));
+        const boardDocSnap = await getDoc(doc(db, 'boards', currentboard[0]));
         console.log(boardDocSnap.data().isProjectPlanner);
         setisProjectPlanner(boardDocSnap.data().isProjectPlanner);
 
@@ -40,19 +33,17 @@ const CloudTaskTriggers = () => {
             };
           });
 
-          const filteredProjectsData = projectsData?.filter(
-            (obj) => !obj.dummy
-          );
+          const filteredProjectsData = projectsData?.filter((obj) => !obj.dummy);
           // console.log(filteredProjectsData);
 
           try {
             dispatch(setTasksFromFireBase([...filteredProjectsData]));
           } catch (e) {
-            console.warn("error uploading tasks in redux", e);
+            console.warn('error uploading tasks in redux', e);
           }
         }
       } catch (error) {
-        console.error("Error fetching tasks from Firebase:", error);
+        console.error('Error fetching tasks from Firebase:', error);
       }
     },
     [currentboard, dispatch, setisProjectPlanner]
@@ -60,9 +51,9 @@ const CloudTaskTriggers = () => {
 
   useEffect(() => {
     const currentboardId = currentboard[0];
-    const tasksRef = collection(db, "boards", currentboardId, "taskList");
+    const tasksRef = collection(db, 'boards', currentboardId, 'taskList');
     const unsub = onSnapshot(tasksRef, () => {
-      fetchData();
+      fetchTasks();
     });
 
     return () => unsub();

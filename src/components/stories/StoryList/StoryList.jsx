@@ -20,18 +20,12 @@ const StoryList = () => {
   let [filteredStories, setfilteredStories] = useState([]);
 
 useEffect(() => {
-  console.log(storyDisplayedTime, filterName);
-
   const filteredResult = separateStories(reduxstories, storyDisplayedTime, filterName);
-
-  // console.log(filteredResult);
   setfilteredStories(filteredResult);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [storyDisplayedTime, filterName, currentboard, reduxstories]);
 
-  // console.log('manual fetch, required to pull initially when loaded. DON'T REMOVE THIS')
-  // filteredStories = reduxstories.filter((obj) => !obj.dummy);
 
   const [createdAtShown, setcreatedAtShown] = useState(false);
 
@@ -71,7 +65,7 @@ useEffect(() => {
           <p className={filterbarStyles.liDivItems}>Filter:</p>
           <select
             className={dropdownStyles.dropdownSelect}
-            value={filterName}
+            value={filterName||''}
             onChange={(e) =>
               setfilterName(
                 e.target.value === filterName ? null : e.target.value

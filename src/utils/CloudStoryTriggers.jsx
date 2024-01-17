@@ -14,7 +14,8 @@ const CloudStoryTriggers = () => {
   const curuser = auth.currentUser;
   const { currentboard,isProjectPlanner ,setisProjectPlanner } = useProjectContexts();
 
-  const fetchData = useMemo(() => async () => {
+  const fetchStories = useMemo(() => async () => {
+    // console.log('fetchStories triggered')
     if (!currentboard|| currentboard.length === 0) {
       return;
     }
@@ -51,7 +52,7 @@ const CloudStoryTriggers = () => {
     const currentboardId = currentboard[0];
     const storysRef = collection(db, "boards", currentboardId, "storyList");
     const unsub = onSnapshot(storysRef, () => {
-      fetchData();
+      fetchStories();
     });
 
     return () => unsub();

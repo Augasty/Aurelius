@@ -17,7 +17,7 @@ import { setTasksFromFireBase } from '../../tasks/taskSlice';
 // when a board is created, need to create a doc in ‘texts’ collection with the same ID.
 // only show it if authenticated
 const Createboard = () => {
-  const { setcurrentboard, toggleRightPanel, isRightPanelVisible } = useProjectContexts();
+  const { toggleRightPanel, isRightPanelVisible } = useProjectContexts();
   const [boardName, setboardName] = useState(null);
   const [user] = useAuthState(auth);
   const history = useNavigate();
@@ -57,11 +57,12 @@ const Createboard = () => {
         [`boards.${boardDocRef.id}`]: boardName,
       });
       updateCurrentBoardInFirebase(user.email, [boardDocRef.id, boardName]);
-      setcurrentboard([boardDocRef.id, boardName]);
 
       // setting the story and task blank... preventing the old board data from showing for a moment
       dispatch(setStoriesFromFireBase([]));
       dispatch(setTasksFromFireBase([]));
+
+
       // close the chat if it is open
       if (isRightPanelVisible) {
         toggleRightPanel(false);
