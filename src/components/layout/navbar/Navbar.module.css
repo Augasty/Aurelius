@@ -105,7 +105,7 @@
 
 
 
-/* ... (rest of your styles) */
+/* highlight */
 
 .navbar::after {
   content: '';
@@ -116,11 +116,10 @@
   left: 0;
   background-color: var(--highlight-color);
   transform: scaleX(0);
-  transform-origin: bottom right;
+  transform-origin: bottom;
   transition: transform 0.5s ease;
 }
 
 .navbar:hover::after {
   transform: scaleX(1);
-  transform-origin: bottom left;
 }

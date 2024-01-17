@@ -91,3 +91,22 @@
 
 
 
+
+
+/* highlight */
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 0.125rem;
+  right: 0;
+  background-color: var(--highlight-color);
+  transform: scaleY(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+
+.navbar:hover::after {
+  transform: scaleY(1);
+}
