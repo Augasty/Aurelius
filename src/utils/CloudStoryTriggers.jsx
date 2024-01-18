@@ -15,7 +15,7 @@ const CloudStoryTriggers = () => {
   const { currentboard,isProjectPlanner ,setisProjectPlanner } = useProjectContexts();
 
   const fetchStories = useMemo(() => async () => {
-    // console.log('fetchStories triggered')
+    console.log('fetchStories triggered')
     if (!currentboard|| currentboard.length === 0) {
       return;
     }

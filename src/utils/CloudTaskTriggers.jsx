@@ -14,7 +14,7 @@ const CloudTaskTriggers = () => {
 
   const fetchTasks = useMemo(
     () => async () => {
-      // console.log('fetchTasks triggered')
+      console.log('fetchTasks triggered')
       if (!currentboard || currentboard.length === 0) {
         return;
       }
