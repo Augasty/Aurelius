@@ -70,7 +70,7 @@ function ChatRoom() {
     });
 
     setFormValue("");
-    dummy.current.scrollIntoView({ behavior: "smooth" });
+    dummy.current.scrollIntoView({ block: "end", inline: "nearest" , behavior: "auto"});
   };
 
   const dummy = useRef();
