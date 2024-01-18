@@ -1,5 +1,7 @@
 # **Aurelius: A Planning and Productivity Tool**
-## **For system architecture and data flow description refer to the wiki of this repo.**
+## [**For system architecture and data flow description refer to the wiki of this repo.**](https://github.com/Augasty/Aurelius/wiki)
+
+
 Aurelius is a comprehensive planning and productivity tool designed to streamline collaboration and project management. Whether you're tracking tasks or planning intricate projects, Aurelius provides a seamless experience for organizing and executing your work.
 
 ## **Current Features:**
