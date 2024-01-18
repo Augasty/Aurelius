@@ -7,11 +7,11 @@ const ProjectContexts = createContext();
 export const ProjectContextsProvider = ({ children }) => {
   const [currentboard, setcurrentboard] = useState([]);
   const [isProjectPlanner,setisProjectPlanner] = useState(null) 
-  const [isRightPanelVisible, setIsRightPanelVisible] = useState(false);
+  const [isChatPanelVisible, setIsChatPanelVisible] = useState(false);
 
 
   return (
-    <ProjectContexts.Provider value={{ currentboard, setcurrentboard,isRightPanelVisible,setIsRightPanelVisible,isProjectPlanner,setisProjectPlanner }}>
+    <ProjectContexts.Provider value={{ currentboard, setcurrentboard,isChatPanelVisible,setIsChatPanelVisible,isProjectPlanner,setisProjectPlanner }}>
       {children}
     </ProjectContexts.Provider>
   );

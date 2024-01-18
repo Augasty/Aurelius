@@ -1,0 +1,39 @@
+
+
+.message {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+
+}
+
+.sent {
+  flex-direction: row-reverse;
+}
+
+.sent p {
+  background-color: var(--sent) !important;
+
+}
+
+.message img {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius);
+  margin: 0vh 0vh;
+}
+
+
+.message p {
+  background-color: var(--received);
+  color: var(--alt-text-color);
+
+  font-size: 2.6vh;
+  padding: 8px 12px;
+  margin: 0vh 2vh;
+  border-radius: var(--border-radius);
+  max-width: 10vw;
+  word-wrap: break-word;
+
+  box-shadow: var(--bottom-shadow);
+}

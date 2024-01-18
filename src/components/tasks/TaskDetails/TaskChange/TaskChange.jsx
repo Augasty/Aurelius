@@ -29,7 +29,7 @@ const TaskChange = ({ currentTask }) => {
   const updateLockedTill = async () => {
     await updateDoc(currentTaskRef, {
       ...updatedCurrentTask,
-      lockedTill: new Date(new Date().getTime() + 22000).toISOString(),
+      lockedTill: new Date(new Date().getTime() + 30000).toISOString(),
       lockedBy: curuser?.email,
     });
   };

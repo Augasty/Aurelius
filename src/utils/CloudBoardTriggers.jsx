@@ -13,7 +13,7 @@ const CloudBoardTriggers = () => {
   const dispatch = useDispatch();
 
   async function fetchBoard() {
-    console.log('fetchboard called')
+    // console.log('fetchboard called')
     try {
       const userRef = doc(db, 'users', curuser?.email);
       const userSnapshot = await getDoc(userRef);

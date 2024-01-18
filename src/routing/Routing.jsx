@@ -11,7 +11,7 @@ import {
   Navbar,
   SignedOutNavbar,
   TaskDetails,
-  RightPanel,
+  ChatPanel,
   CreateStory,
 } from "./LazyLoad";
 
@@ -40,7 +40,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
 
 const Routing = () => {
   const [user] = useAuthState(auth);
-  const { currentboard, isRightPanelVisible, isProjectPlanner } =
+  const { currentboard, isChatPanelVisible, isProjectPlanner } =
     useProjectContexts();
 
   return (
@@ -54,7 +54,7 @@ const Routing = () => {
             {currentboard.length !== 0 && <CloudTaskTriggers />}
             <CloudBoardTriggers />
             <Navbar />
-            {isRightPanelVisible && <RightPanel />}
+            {isChatPanelVisible && <ChatPanel />}
           </>
         ) : (
           <SignedOutNavbar />

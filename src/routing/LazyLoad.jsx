@@ -8,7 +8,7 @@ const CreateBoard = lazy(() => import('../components/layout/boards/CreateBoard')
 const Navbar = lazy(() => import('../components/layout/navbar/Navbar'));
 const Dashboard = lazy(() => import('../components/dashboard/Dashboard'));
 const TaskDetails = lazy(() => import('../components/tasks/TaskDetails/TaskDetails'));
-const RightPanel = lazy(()=>import('../components/chat-system/RightPanel'))
+const ChatPanel = lazy(()=>import('../components/chat-system/ChatPanel'))
 
 const LazyCreateTask = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
@@ -57,9 +57,9 @@ const LazyTaskDetails = (props) => (
   </Suspense>
 );
 
-const LazyRightPanel = (props) => (
+const LazyChatPanel = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
-    < RightPanel{...props} />
+    < ChatPanel{...props} />
   </Suspense>
 );
 export {
@@ -71,5 +71,5 @@ export {
   LazyNavbar as Navbar,
   LazyDashboard as Dashboard,
   LazyTaskDetails as TaskDetails,
-  LazyRightPanel as RightPanel
+  LazyChatPanel as ChatPanel
 };

@@ -15,8 +15,8 @@ const Navbar = () => {
   const {
     currentboard,
     setcurrentboard,
-    isRightPanelVisible,
-    setIsRightPanelVisible,
+    isChatPanelVisible,
+    setIsChatPanelVisible,
     isProjectPlanner,
   } = useProjectContexts();
 
@@ -60,10 +60,10 @@ const Navbar = () => {
                   </div>
                   <div className={styles.liDivItems}>
                     <li
-                      onClick={() => setIsRightPanelVisible((prev) => !prev)}
+                      onClick={() => setIsChatPanelVisible((prev) => !prev)}
                       className={styles.navbarListItem}
                     >
-                      <div>{isRightPanelVisible ? "Close" : "Open"} Chat</div>
+                      <div>{isChatPanelVisible ? "Close" : "Open"} Chat</div>
                     </li>
                   </div>
                 </>

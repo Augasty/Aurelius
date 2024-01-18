@@ -14,7 +14,7 @@ const CloudTaskTriggers = () => {
 
   const fetchTasks = useMemo(
     () => async () => {
-      console.log('fetchTasks triggered')
+      // console.log('fetchTasks triggered')
       if (!currentboard || currentboard.length === 0) {
         return;
       }
@@ -22,7 +22,7 @@ const CloudTaskTriggers = () => {
         const ProjectsSnapShot = await getDocs(collection(db, 'boards', currentboard[0], 'taskList'));
 
         const boardDocSnap = await getDoc(doc(db, 'boards', currentboard[0]));
-        console.log(boardDocSnap.data().isProjectPlanner);
+        // console.log(boardDocSnap.data().isProjectPlanner);
         setisProjectPlanner(boardDocSnap.data().isProjectPlanner);
 
         if (!ProjectsSnapShot.empty) {

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import ChatMessage from "./ChatMessage";
-import styles from "./styles.module.css";
+import ChatMessage from "./ChatMessage/ChatMessage";
+import styles from "./ChatPanel.module.css";
 import { v4 as uuidv4 } from "uuid";
 import {
   collection,
@@ -10,10 +10,10 @@ import {
   onSnapshot,
   query,
 } from "firebase/firestore";
-import { auth, db } from "../../../firebase";
-import { useProjectContexts } from "../../../utils/ProjectContexts";
+import { auth, db } from "../../firebase";
+import { useProjectContexts } from "../../utils/ProjectContexts";
 
-function ChatRoom() {
+function ChatPanel() {
   const { currentboard } = useProjectContexts();
 
   const [formValue, setFormValue] = useState("");
@@ -74,14 +74,14 @@ function ChatRoom() {
     });
   
     setFormValue("");
-    dummy.current.scrollIntoView({ block: "start", inline: "nearest" });
+    dummy.current.scrollIntoView({ block: "end", inline: "nearest" , behavior: "auto"});
   };
 
 
   return (
-    <>
-      <main className={styles.main}>
-        <div className={styles.messageContainer}>
+    <div className={styles.ChatPanel}>
+      <main className={styles.OuterMessageContainer}>
+        <div className={styles.InnerMessageContainer}>
           {messages &&
             messages.toReversed().map((msg) => <ChatMessage key={msg.uniqueId} message={msg} />)}
         </div>
@@ -100,9 +100,9 @@ function ChatRoom() {
           Send
         </button>
       </form>
-    </>
+    </div>
   );
 }
 
-export default ChatRoom;
+export default ChatPanel;
 
