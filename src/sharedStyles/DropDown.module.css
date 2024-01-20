@@ -9,6 +9,7 @@
 
     border: 0;
     color: var(--text-color); 
+    background: var(--navbar-bg-color);
     font-family: var(--font-family);
     font-size: var(--navbar-font-size);
     width: min-content;

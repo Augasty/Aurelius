@@ -77,13 +77,10 @@
   position: relative;
   align-self: center;
   margin-right: 1rem;
-  color: var(--text-color);
   text-decoration: none;
   margin-right: 15px;
   font-size: var(--navbar-font-size);
   cursor: pointer;
-  background-color: var(--navbar-bg-color);
-  transition: background-color 0.3s ease;
   
   align-items: center;
 }

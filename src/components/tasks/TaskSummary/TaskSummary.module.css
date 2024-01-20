@@ -31,14 +31,14 @@
     /* font-weight:bold; */
     margin: 0;
     font-weight: 600;
-    color:var(--secondary-text-color)
+    color:var(--card-text)
  
   }
   
   .taskSummaryDate {
     margin: 0px;
     font-size: 2.1vh;
-    color: var(--secondary-text-color)
+    color: var(--card-text)
     /* white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; */

@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../../../firebase";
 
 const TaskList = () => {
-  const { isRightPanelVisible, isProjectPlanner } = useProjectContexts();
+  const { isChatPanelVisible, isProjectPlanner } = useProjectContexts();
   let reduxTasks = useSelector((state) => state.tasks) || [];
   const currentStory = JSON.parse(
     localStorage.getItem("currentStoryLocalStorage")
@@ -199,7 +199,7 @@ const TaskList = () => {
         className={`${styles.taskList} ${
           isFilteredAndHow[0] && styles.taskListGrid
         }`}
-        style={{ width: isRightPanelVisible ? "68.1vw" : "91.8vw" }}
+        style={{ width: isChatPanelVisible ? "68.1vw" : "91.8vw" }}
       >
         {separatedTasks.map((taskGroups, idx) => (
           <div className={styles.taskColumn} key={idx}>

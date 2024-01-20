@@ -1,14 +1,14 @@
 /* Base styles */
 body {
   font-family: var(--font-family);    
-  background-color: var(--bg-color);
-  color: var(--text-color);
-
+  
+  
 }
 
 .container {
   max-width: 600px;
   margin: 0 auto;
+  background-color: var(--bg-color);
   padding: 20px;
 }
 
@@ -22,7 +22,7 @@ body {
 }
 
 .heading {
-  color: var(--accent-color);
+  color: var(--secondary-text-color);
   margin-bottom: 20px;
   font-size: 1.5em;
 }

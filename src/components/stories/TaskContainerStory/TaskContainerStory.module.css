@@ -48,21 +48,18 @@
   width: 100%;
   height: 3vh;
   position: relative;
-  background:aqua;
   border-radius:  var(--border-radius)  var(--border-radius) 0 0;
 
 
 }
 .Finished {
   background-color: var(--finished)
-  /* 90% transparent green */
 }
 
 
 
 .Active {
   background-color: var(--active)
-  /* Yellow color for tasks yet to start */
 }
 
 .Overdue {
@@ -78,7 +75,7 @@
   margin: 0.25vw;
   padding: 2px 4px;
   background-color: var(--button-color);
-  color: #000;
+  color: var(--button-text);
   border: var(--div-border);
   cursor: pointer;
   font-family: var(--font-family);
