@@ -81,10 +81,6 @@
   margin-right: 15px;
   font-size: var(--navbar-font-size);
   cursor: pointer;
-
-  background-color: var(--navbar-bg-color);
-  transition: background-color 0.3s ease;
-
 }
 
 .liDivItems:last-child {
