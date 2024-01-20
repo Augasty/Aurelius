@@ -45,7 +45,7 @@ const Routing = () => {
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <div data-theme={isDarkMode?'dark':''}  style={{background:"var(--bg-color)",height:"min-content"}}>
+      <div data-theme={isDarkMode?'dark':''}  style={{background:"var(--bg-color)",height:"100vh"}}>
         {user ? (
           <>
             {currentboard.length !== 0 && isProjectPlanner && (
