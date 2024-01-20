@@ -40,12 +40,12 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
 
 const Routing = () => {
   const [user] = useAuthState(auth);
-  const { currentboard, isChatPanelVisible, isProjectPlanner } =
+  const { currentboard, isChatPanelVisible, isProjectPlanner,isDarkMode } =
     useProjectContexts();
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <>
+      <div data-theme={isDarkMode?'dark':''}>
         {user ? (
           <>
             {currentboard.length !== 0 && isProjectPlanner && (
@@ -93,7 +93,7 @@ const Routing = () => {
             element={currentboard.length !== 0 ? <AddMemberInBoard /> : <></>}
           />
         </Routes>
-      </>
+      </div>
     </ErrorBoundary>
   );
 };

@@ -1,18 +1,20 @@
-
-import Routing from "./routing/Routing"
-import './App.css'
-import { ProjectContextsProvider } from "./utils/ProjectContexts"
+import Routing from './routing/Routing';
+import './App.css';
 
 function App() {
 
-  return (
-    <>
-     <ProjectContextsProvider>
+  // useEffect(() => {
+  //   console.log(isDarkMode);
+  //   const body = document.body;
+  //   if (isDarkMode) {
+  //     body.classList.add('dark-mode');
+  //   } else {
+  //     body.classList.remove('dark-mode');
+  //   }
+  // }, [isDarkMode]);
 
-    <Routing/>
-     </ProjectContextsProvider>
-    </>
-  )
+
+  return <Routing />;
 }
 
-export default App
+export default App;

@@ -1,0 +1,41 @@
+/* ToggleSwitch.module.css */
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 20px; /* Reduced height */
+  background-color: #ddd;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2196f3;
+  transition: 0.4s;
+  border-radius: 15px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 14px; /* Adjusted height */
+  width: 20px; /* Adjusted width */
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 1000px
+}
+
+.active .slider:before {
+  transform: translateX(22px); /* Adjusted translation */
+}
