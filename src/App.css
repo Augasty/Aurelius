@@ -68,3 +68,59 @@ body {
   background-color: var(--text-color);
   border-radius: 4px;
 }
+
+
+
+
+/* Dark Mode Styling */
+[data-theme='dark'] {
+  --text-color: #ffffff;
+  --secondary-text-color: #cccccc;
+  --alt-text-color: #000000;
+
+  --highlight-color: #4285F4;
+
+  --navbar-bg-color: #1a202c;
+  --navbar-font-size: 2.7vh;
+
+  --filterbar-bg: #1a202c;
+
+  --button-color: #2a2a2a;
+  --button-hover-color: #363636;
+  --button-active-color: var(--highlight-color);
+
+  --big-button-border: 1px solid var(--secondary-text-color);
+  --big-button-border-hover: 1px solid var(--highlight-color);
+  --div-border: 0px solid #000000;
+  --bg-color: #1a202c;
+
+  --input-box-border: 1px solid #ffffff;
+
+  --storyContainer-background-color: #333333;
+  --story-text-color: #e7e7e7;
+
+  --border-radius: 1vh;
+
+  --bottom-shadow: 0px 0px 10px rgba(255, 255, 255, 0.4);
+
+  /* card and story colors */
+  --finished: #2dfd4c;
+  --pending: #8fcdff;
+  --active: #fff477;
+  --overdue: #ff9595;
+
+  --sent: var(--highlight-color);
+  --received: #1baa30;
+}
+
+.dark-mode body {
+  background-color: var(--bg-color);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-text-color);
+}
+
+.dark-mode h1, .dark-mode p {
+  color: var(--text-color);
+}

@@ -84,6 +84,8 @@
   cursor: pointer;
   background-color: var(--navbar-bg-color);
   transition: background-color 0.3s ease;
+  
+  align-items: center;
 }
 
 .liDivItems:last-child {
