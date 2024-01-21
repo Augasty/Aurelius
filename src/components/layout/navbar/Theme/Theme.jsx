@@ -1,12 +1,11 @@
 
 import { useProjectContexts } from '../../../../utils/ProjectContexts';
-import styles from './ToggleSwitch.module.css';
+import styles from './Theme.module.css';
 
 const ToggleSwitch = () => {
   const {isDarkMode, setIsDarkMode} = useProjectContexts();
   const handleToggle = () => {
     setIsDarkMode(!isDarkMode);
-    // Add your theme change logic here
   };
 
   return (

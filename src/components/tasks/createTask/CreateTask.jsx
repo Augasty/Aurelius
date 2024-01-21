@@ -169,7 +169,7 @@ const CreateTask = () => {
           </span>
 
           <span className={styles.openToAll}>
-            <span >Open to all</span>
+            <label htmlFor="Open to all">Open to all</label>
             <input
               type="checkbox"
               id="openToAll"

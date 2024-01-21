@@ -1,0 +1,36 @@
+
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 20px; 
+  margin: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  border-radius: 15px;
+  background-color: var(--theme-toggle-bg);
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 12px;
+  width: 20px; 
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--theme-toggle);
+  transition: 0.4s;
+  border-radius: 1000px;
+}
+
+.active .slider:before {
+  transform: translateX(22px);
+}

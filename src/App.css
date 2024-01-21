@@ -48,11 +48,10 @@
 
 
 
+  /* theme toggle color */
+  --theme-toggle:#ffffff;
+  --theme-toggle-bg:#333333;
 }
-
-
-
-
 
 
 /* Dark Mode Styling */
@@ -63,9 +62,8 @@
 
   --highlight-color: #ffffff;
 
-  --navbar-bg-color: #1a1a1a;
-
-  --filterbar-bg: #1a1a1a;
+  --navbar-bg-color: #333333;
+  --filterbar-bg: #333333;
 
 
 
@@ -82,8 +80,10 @@
 
   --bottom-shadow: 0px 0px 10px rgba(47, 47, 47, 0.4);
 
+  /* theme toggle color */
 
-
+  --theme-toggle:#333333;
+  --theme-toggle-bg:#ffffff;
 }
 
 

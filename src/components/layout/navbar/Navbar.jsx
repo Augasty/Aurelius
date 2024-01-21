@@ -84,19 +84,11 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-<<<<<<< HEAD
           <div className={styles.liDivItems}>
             <li onClick={() => setIsChatPanelVisible((prev) => !prev)} className={styles.navbarListItem}>
               <Theme />
             </li>
           </div>
-=======
-          {/* <div className={styles.liDivItems}>
-            <li onClick={() => setIsChatPanelVisible((prev) => !prev)} className={styles.navbarListItem}>
-              <Theme />
-            </li>
-          </div> */}
->>>>>>> dev
         </ul>
       </div>
     </nav>
