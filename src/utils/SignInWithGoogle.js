@@ -7,7 +7,7 @@ import {
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase"; // Import your Firebase setup
 
-export const signInWithGoogle = async () => {
+export const SignInWithGoogle = async () => {
   try {
     // for automation, to let automation tools bypass login
     if (window.location.href == 'http://localhost:3000/') {
