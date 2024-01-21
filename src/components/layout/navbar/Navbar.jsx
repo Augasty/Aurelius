@@ -64,6 +64,13 @@ const Navbar = () => {
                 </li>
               </div>
 
+              <div className={styles.liDivItems}>
+                <li className={styles.navbarListItem}>
+                  <div>Join Requests</div>
+                </li>
+              </div>
+
+              
               {curuser.email && currentboard.length !== 0 && (
                 <div className={styles.liDivItems}>
                   <li className={styles.navbarListItem}>

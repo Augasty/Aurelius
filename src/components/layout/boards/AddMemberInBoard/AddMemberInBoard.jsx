@@ -26,7 +26,6 @@ const AddMemberInBoard = () => {
     const userSnap = await getDoc(userRef);
 
     if (userSnap.exists() && currentboard) {
-      // console.log("we can add it, and are adding it", currentboard);
 
       const userDocRef = doc(db, "users", userMail);
       const userDocSnap = await getDoc(userDocRef);

@@ -1,9 +1,9 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { signInWithGoogle } from "../../../utils/singInWithGoogle";
 import topchicken from "../../../../assets/topchicken.jpg"
 
 import Aurelius from "../../../../assets/bluey.png";
 import styles from "./Navbar.module.css"; // Import your CSS file
+import { SignInWithGoogle } from "../../../utils/SignInWithGoogle";
 
 const SignedOutNavbar = () => {
 
@@ -11,7 +11,7 @@ const SignedOutNavbar = () => {
   // going to homepage when logging in
   const history = useNavigate();
   const handleSignIn = () =>{
-    signInWithGoogle()
+    SignInWithGoogle()
     // console.log('signing in')
     history('/')// console.log('to the home')
 
