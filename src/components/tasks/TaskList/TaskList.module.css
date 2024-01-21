@@ -39,7 +39,7 @@
 .columnHeader {
   text-decoration: none; /* Remove underline from h2 */
   margin: auto;
-  color: var(--secondary-color); /* Set text color */
+  color: var(--secondary-text-color); /* Set text color */
   width: fit-content;
   font-size: 2.5vh; /* Increase font size for a more heading-like appearance */
   font-weight: bold; /* Make the text bold for emphasis */

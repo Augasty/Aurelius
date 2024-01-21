@@ -8,7 +8,7 @@ export const ProjectContextsProvider = ({ children }) => {
   const [currentboard, setcurrentboard] = useState([]);
   const [isProjectPlanner,setisProjectPlanner] = useState(null) 
   const [isChatPanelVisible, setIsChatPanelVisible] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(0);
 
   return (
     <ProjectContexts.Provider value={{ currentboard, setcurrentboard,isChatPanelVisible,setIsChatPanelVisible,isProjectPlanner,setisProjectPlanner, isDarkMode, setIsDarkMode }}>
