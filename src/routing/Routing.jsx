@@ -11,6 +11,7 @@ import {
   TaskList,
   Navbar,
   SignedOutNavbar,
+  Notification,
   TaskDetails,
   ChatPanel,
   CreateStory,
@@ -21,6 +22,7 @@ import CloudBoardTriggers from '../utils/CloudBoardTriggers';
 import { useProjectContexts } from '../utils/ProjectContexts';
 import { useEffect } from 'react';
 import CloudStoryTriggers from '../utils/CloudStoryTriggers';
+import CloudNotificationTriggers from '../utils/CloudNotificationTriggers';
 
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
@@ -50,27 +52,33 @@ const Routing = () => {
           <>
             {currentboard.length !== 0 && isProjectPlanner && <CloudStoryTriggers />}
             {currentboard.length !== 0 && <CloudTaskTriggers />}
+            {currentboard.length !== 0 && <CloudNotificationTriggers />}
             <CloudBoardTriggers />
             <Navbar />
-            {isChatPanelVisible && <ChatPanel />}
+            {currentboard.length !== 0 && isChatPanelVisible && <ChatPanel />}
           </>
         ) : (
           <SignedOutNavbar />
         )}
+        {user ? (
         <Routes>
+
           <Route path="/" element={currentboard.length !== 0 ? <Dashboard /> : <></>} />
 
-          {user ? <Route path="/task/:id" element={<TaskDetails />} /> : <>Login</>}
+          <Route path="/task/:id" element={<TaskDetails />} />
 
-          {user && isProjectPlanner && <Route path="story/task-list" element={<TaskList />} />}
+          {isProjectPlanner && <Route path="story/task-list" element={<TaskList />} />}
           <Route
             path={isProjectPlanner ? '/story/create-task' : '/create-task'}
-            element={user && currentboard.length !== 0 ? <CreateTask /> : <></>}
+            element={ currentboard.length !== 0 ? <CreateTask /> : <></>}
           />
-          <Route path="/create-story" element={user && currentboard.length !== 0 ? <CreateStory /> : <></>} />
-          <Route path="/create-board" element={user ? <CreateBoard /> : <></>} />
+          <Route path="/create-story" element={currentboard.length !== 0 ? <CreateStory /> : <></>} />
+          <Route path="/create-board" element={ <CreateBoard />} />
+          <Route path="/notification" element={ <Notification />} />
           <Route path="/add-member" element={currentboard.length !== 0 ? <AddMemberInBoard /> : <></>} />
         </Routes>
+
+        ):<></>}
       </div>
     </ErrorBoundary>
   );

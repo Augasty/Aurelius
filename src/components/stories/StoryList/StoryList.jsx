@@ -82,7 +82,7 @@ useEffect(() => {
               Active
             </option>
             <option value="deadline" className={dropdownStyles.dropdownOption}>
-              Overdue
+              Overd..
             </option>
           </select>
         </ul>

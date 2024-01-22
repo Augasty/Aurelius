@@ -66,7 +66,7 @@ const Navbar = () => {
 
               <div className={styles.liDivItems}>
                 <li className={styles.navbarListItem}>
-                  <NavLink to="/notifications">Notifications</NavLink>
+                  <NavLink to="/notification">Notifications</NavLink>
                 </li>
               </div>
 
@@ -91,7 +91,7 @@ const Navbar = () => {
           </li>
 
           <div className={styles.liDivItems}>
-            <li onClick={() => setIsChatPanelVisible((prev) => !prev)} className={styles.navbarListItem}>
+            <li className={styles.navbarListItem}>
               <Theme />
             </li>
           </div>
