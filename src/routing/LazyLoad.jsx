@@ -1,14 +1,16 @@
 import { lazy, Suspense } from 'react';
-const  CreateStory = lazy(()=>import('../components/stories/CreateStory/CreateStory')) 
+import Dashboard from '../components/dashboard/Dashboard';
+import TaskList from '../components/tasks/TaskList/TaskList';
+const CreateStory = lazy(() => import('../components/stories/CreateStory/CreateStory'));
 
 const CreateTask = lazy(() => import('../components/tasks/createTask/CreateTask'));
-const AddMemberInBoard = lazy(() => import('../components/layout/boards/AddMemberInBoard/AddMemberInBoard'));
-const SignedOutNavbar = lazy(() => import('../components/layout/navbar/SignedOutNavbar'));
-const CreateBoard = lazy(() => import('../components/layout/boards/CreateBoard'));
-const Navbar = lazy(() => import('../components/layout/navbar/Navbar'));
-const Dashboard = lazy(() => import('../components/dashboard/Dashboard'));
+const AddMemberInBoard = lazy(() => import('../components/boards/AddMemberInBoard/AddMemberInBoard'));
+const SignedOutNavbar = lazy(() => import('../components/navbar/SignedOutNavbar'));
+const CreateBoard = lazy(() => import('../components/boards/CreateBoard'));
+const Navbar = lazy(() => import('../components/navbar/Navbar'));
+
 const TaskDetails = lazy(() => import('../components/tasks/TaskDetails/TaskDetails'));
-const ChatPanel = lazy(()=>import('../components/chat-system/ChatPanel'))
+const ChatPanel = lazy(() => import('../components/chat-system/ChatPanel'));
 
 const LazyCreateTask = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
@@ -51,6 +53,11 @@ const LazyDashboard = (props) => (
   </Suspense>
 );
 
+const LazyTaskList = (props) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <TaskList {...props} />
+  </Suspense>
+);
 const LazyTaskDetails = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
     <TaskDetails {...props} />
@@ -59,7 +66,7 @@ const LazyTaskDetails = (props) => (
 
 const LazyChatPanel = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
-    < ChatPanel{...props} />
+    <ChatPanel {...props} />
   </Suspense>
 );
 export {
@@ -70,6 +77,7 @@ export {
   LazyCreateBoard as CreateBoard,
   LazyNavbar as Navbar,
   LazyDashboard as Dashboard,
+  LazyTaskList as TaskList,
   LazyTaskDetails as TaskDetails,
-  LazyChatPanel as ChatPanel
+  LazyChatPanel as ChatPanel,
 };

@@ -4,8 +4,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { auth, db } from "../firebase"; // Import your Firebase setup
+import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase"; 
 
 export const SignInWithGoogle = async () => {
   try {
@@ -34,6 +34,7 @@ export const SignInWithGoogle = async () => {
     const userEmail = result.user.email;
 
     const userRef = doc(db, "users", userEmail);
+
     const userSnapshot = await getDoc(userRef);
 
     if (!userSnapshot.exists()) {
@@ -44,6 +45,10 @@ export const SignInWithGoogle = async () => {
         currentboard: [],
       };
       await setDoc(doc(db, "users", userEmail), userData);
+
+      const notificationListRef = collection(userRef, 'notificationList');
+      await addDoc(notificationListRef, { dummy: true });
+
     }
   } catch (error) {
     console.log(error);

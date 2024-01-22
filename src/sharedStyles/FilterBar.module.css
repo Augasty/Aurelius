@@ -1,8 +1,6 @@
-/* navbar.module.css */
-
-.navbar {
+.filterbar {
   position: sticky;
-  background: var(--navbar-bg-color);
+  background: var(--filterbar-bg-color);
 
   border: var(--div-border);
   margin-top: 0;
@@ -18,8 +16,7 @@
 
 
 
-.navbarList {
-  list-style: none;
+.filterbarList {
   margin: 0;
   padding: 0;
   display: grid;
@@ -30,26 +27,10 @@
 }
 
 
-.navbar a,
-.navbar  div, .navbar p {
-  color: var(--text-color);
-  text-decoration: none;
-  font-size: var(--navbar-font-size);
-  cursor: pointer;
-  
-  font-size: 2.5vh;
-
-}
-
-.navbarTexts {
-  cursor: default;
-  color: var(--text-color);
-  user-select: none;
-  
-}
 
 
-.navbarListItem {
+
+.filterbarListItem {
   text-align: center;
   position: relative;
   align-self: center;
@@ -57,17 +38,17 @@
   transition: color 0.3s ease;
   user-select: none; /* Disable text selection */
   
-  font-size: 2.5vh;
+  font-size: var(--filterbar-options-font-size);
 
 }
 
-.navbarListItem:hover {
+.filterbarListItem:hover {
   font-weight: bold;  
   color: var(--highlight-color)
 }
 
 
-.navbarListItem:last-child {
+.filterbarListItem:last-child {
   margin-right: 0;
 }
 
@@ -78,9 +59,10 @@
   position: relative;
   align-self: center;
   margin-right: 1rem;
-  text-decoration: none;
   margin:1vh 0;
-  font-size: var(--navbar-font-size);
+  color: var(--secondary-text-color);
+
+  font-size: var(--filterbar-title-font-size);
   cursor: pointer;
   transition: background-color 0.3s ease;
   user-select: none;
@@ -93,7 +75,7 @@
 
 /* highlight */
 
-.navbar::after {
+.filterbar::after {
   content: '';
   position: absolute;
   height: 100%;
@@ -105,6 +87,6 @@
   transition: transform 0.5s ease;
 }
 
-.navbar:hover::after {
+.filterbar:hover::after {
   transform: scaleY(1);
 }

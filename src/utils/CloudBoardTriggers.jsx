@@ -3,7 +3,7 @@ import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { useEffect } from 'react';
 import { auth, db } from '../firebase';
 import { useDispatch } from 'react-redux';
-import { setboardsFromFireBase } from '../components/layout/boards/boardSlice';
+import { setboardsFromFireBase } from '../components/boards/boardSlice';
 import styles from './styles.module.css';
 import { useProjectContexts } from './ProjectContexts';
 
