@@ -1,0 +1,29 @@
+/* CreateBoard.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.inputField {
+  margin-bottom: 20px;
+}
+
+.label {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-family: var(--font-family);
+
+  border: var(--input-box-border);
+}
