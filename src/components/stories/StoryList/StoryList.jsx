@@ -31,13 +31,13 @@ useEffect(() => {
 
   return (
     <div className={styles.StoryListContainer}>
-      <div className={filterbarStyles.navbar}>
-        <ul className={filterbarStyles.navbarList}>
+      <div className={filterbarStyles.filterbar}>
+        <ul className={filterbarStyles.filterbarList}>
           <br />
           <p className={filterbarStyles.liDivItems}>Task Date:</p>
           <li
             onClick={() => setcreatedAtShown(!createdAtShown)}
-            className={filterbarStyles.navbarListItem}
+            className={filterbarStyles.filterbarListItem}
           >
             {createdAtShown ? "Created" : "Updated"}
           </li>
@@ -45,7 +45,7 @@ useEffect(() => {
           <br />
           <p className={filterbarStyles.liDivItems}>Story Date:</p>
           <li
-            className={filterbarStyles.navbarListItem}
+            className={filterbarStyles.filterbarListItem}
             onClick={() => {
               if (storyDisplayedTime === "createdAt") {
                 setstoryDisplayedTime("updatedAt");

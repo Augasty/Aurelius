@@ -9,7 +9,7 @@
 
     border: 0;
     color: var(--text-color); 
-    background: var(--navbar-bg-color);
+    background: inherit;
     font-family: var(--font-family);
     font-size: var(--navbar-font-size);
     width: min-content;
@@ -21,8 +21,8 @@
   color: var(--secondary-text-color);
   padding: 8px 10px; /* Adjusted padding for a more comfortable feel */
   cursor: pointer;
+  background: var(--navbar-bg-color);
   transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 0 !important; /* Make the edges sharp */
-  -webkit-appearance: none;   
+  border-radius: 0 !important; /* Make the edges sharp */ 
 }
   
