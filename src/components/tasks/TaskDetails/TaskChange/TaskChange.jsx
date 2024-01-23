@@ -1,24 +1,18 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
-import { auth, db } from "../../../../firebase";
-import { doc, increment, updateDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
-import styles from "../TaskView/TaskView.module.css";
-import { useProjectContexts } from "../../../../utils/ProjectContexts";
-import CloudStoryTriggers from "../../../../utils/CloudStoryTriggers";
-import { isTaskOverDue } from "../../../../utils/isTaskOverdue";
-import { SmartTime } from "../../../../utils/SmartTime";
+import { useEffect, useState } from 'react';
+import { auth, db } from '../../../../firebase';
+import { addDoc, collection, doc, increment, updateDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import styles from '../TaskView/TaskView.module.css';
+import { useProjectContexts } from '../../../../utils/ProjectContexts';
+import CloudStoryTriggers from '../../../../utils/CloudStoryTriggers';
+import { isTaskOverDue } from '../../../../utils/isTaskOverdue';
+import { SmartTime } from '../../../../utils/SmartTime';
 
 const TaskChange = ({ currentTask }) => {
   const { currentboard, isProjectPlanner } = useProjectContexts();
 
-  const currentTaskRef = doc(
-    db,
-    "boards",
-    currentboard[0],
-    "taskList",
-    currentTask?.id
-  );
+  const currentTaskRef = doc(db, 'boards', currentboard[0], 'taskList', currentTask?.id);
   const curuser = auth.currentUser;
 
   const [updatedCurrentTask, setupdatedCurrentTask] = useState({
@@ -43,7 +37,7 @@ const TaskChange = ({ currentTask }) => {
 
         return () => clearInterval(intervalId); // Clean up interval on component unmount
       } catch (error) {
-        console.warn("error in taskchange", error);
+        console.warn('error in taskchange', error);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -60,6 +54,7 @@ const TaskChange = ({ currentTask }) => {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(updatedCurrentTask);
     await updateDoc(currentTaskRef, {
       ...updatedCurrentTask,
       updatedAt: new Date().toISOString(),
@@ -69,23 +64,11 @@ const TaskChange = ({ currentTask }) => {
 
     // updating the completionCount of a story
     if (isProjectPlanner) {
-      const currentStoryRef = doc(
-        db,
-        "boards",
-        currentboard[0],
-        "storyList",
-        currentTask.referenceStory[0]
-      );
+      const currentStoryRef = doc(db, 'boards', currentboard[0], 'storyList', currentTask.referenceStory[0]);
       let incrementCount = 0;
-      if (
-        updatedCurrentTask.taskStatus == "Finished" &&
-        currentTask.taskStatus !== updatedCurrentTask.taskStatus
-      ) {
+      if (updatedCurrentTask.taskStatus == 'Finished' && currentTask.taskStatus !== updatedCurrentTask.taskStatus) {
         incrementCount--;
-      } else if (
-        currentTask.taskStatus == "Finished" &&
-        currentTask.taskStatus !== updatedCurrentTask.taskStatus
-      ) {
+      } else if (currentTask.taskStatus == 'Finished' && currentTask.taskStatus !== updatedCurrentTask.taskStatus) {
         incrementCount++;
       }
       await updateDoc(currentStoryRef, {
@@ -93,6 +76,27 @@ const TaskChange = ({ currentTask }) => {
         completionCount: increment(incrementCount),
       });
     }
+
+    // sending the notification to the assignee
+    let notificationReceiver;
+    if (updatedCurrentTask.assignedTo === curuser.email) {
+      notificationReceiver = updatedCurrentTask.authorDetails;
+    } else if (updatedCurrentTask.authorDetails === curuser.email) {
+      notificationReceiver = updatedCurrentTask.assignedTo;
+    }
+    console.log(updatedCurrentTask.status);
+    await addDoc(collection(db, 'users', notificationReceiver, 'notificationList'), {
+      type: 'task-updated',
+      details: {
+        title: updatedCurrentTask.title,
+        priority: updatedCurrentTask.priority,
+        taskStatus: updatedCurrentTask.taskStatus,
+        boardId: currentboard[0],
+        boardName: currentboard[1],
+      },
+      sender: curuser.email,
+      time: new Date().toISOString(),
+    });
 
     history(-1); //back to the previous screen
   };
@@ -106,23 +110,11 @@ const TaskChange = ({ currentTask }) => {
       <CloudStoryTriggers />
       <form
         onSubmit={handleSubmit}
-        className={`${styles.taskDetails} ${styles[currentTask.taskStatus]} ${
-          isOverDue && styles.Overdue
-        }`}
+        className={`${styles.taskDetails} ${styles[currentTask.taskStatus]} ${isOverDue && styles.Overdue}`}
       >
-        <h5 className={styles.taskDetailsTitle}>
+        <h2 className={styles.taskDetailsTitle}>
           <strong>Change: </strong> {updatedCurrentTask.title}
-        </h5>
-        <input
-          type="text"
-          id="title"
-          value={updatedCurrentTask.title}
-          onChange={handleChange}
-          required
-          className={styles.inputField}
-          placeholder="...enter heading here"
-        />
-
+        </h2>
         <textarea
           id="content"
           value={updatedCurrentTask.content}
@@ -151,13 +143,13 @@ const TaskChange = ({ currentTask }) => {
               <span>
                 <span>Deadline: </span>
                 <input
-            type="date"
-            id="deadline"
-            className={styles.inputField}
-            onChange={handleChange}
-            value={updatedCurrentTask.deadline}
-            max="2999-12-31"
-          />
+                  type="date"
+                  id="deadline"
+                  className={styles.inputField}
+                  onChange={handleChange}
+                  value={updatedCurrentTask.deadline}
+                  max="2999-12-31"
+                />
               </span>
             </div>
 
@@ -172,13 +164,13 @@ const TaskChange = ({ currentTask }) => {
                   onChange={handleChange}
                   required
                 >
-                <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-            </select>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
               </span>
               <span>
-              <span>Status: </span>
+                <span>Status: </span>
                 <select
                   id="taskStatus"
                   className={`${styles.inputField}`}
@@ -198,17 +190,18 @@ const TaskChange = ({ currentTask }) => {
 
         <div className={styles.taskDetailsTop}>
           <span>
-            <button  type="button"  onClick={() => history("/")}>Back</button>
+            <button type="button" onClick={() => history('/')}>
+              Back
+            </button>
           </span>
           <span>
             <button type="button" onClick={() => setseeMore(!seeMore)}>
-              {seeMore ? "Collapse" : "Expand"}
+              {seeMore ? 'Collapse' : 'Expand'}
             </button>
           </span>
 
-
           <span>
-            <button  type="submit" >Submit</button>
+            <button type="submit">Submit</button>
           </span>
         </div>
       </form>

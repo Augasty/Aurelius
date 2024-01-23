@@ -1,29 +1,29 @@
+import { useSelector } from "react-redux";
+import TaskNotification from "./types/TaskNotification";
+import JoinReqest from "./types/JoinReqest";
 
-// import updateCurrentBoardInFirebase from "../../utils/updateCurrentBoardInFirebase";
-      // const userDocRef = doc(db, "users", userMail);
-      // const userDocSnap = await getDoc(userDocRef);
-      // const userData = userDocSnap.data();
-
-      // updating in the target users boardlist
-      // await updateDoc(userDocRef, {
-      //   [`boards.${currentboard[0]}`]: currentboard[1],
-      // });
-
-      //  if currentboard is an not an empty array
-      // if (userData.currentboard.length === 0) {
-      //   // updating that users db
-      //   updateCurrentBoardInFirebase(userMail, currentboard);
-      // }
-
-      // updating in the boards collection
-      // await updateDoc(boardDocRef, {
-      //   memberEmails: [...boardCurrdata.memberEmails, userMail],
-      // });
 const Notification = () => {
     // fetch notifications from notificationSlice
-    // if you accept the 
+    let reduxNotificationList = useSelector((state) => state.notifications)
+
+
+    console.log(reduxNotificationList)
+    // if you accept the
+    
+    if (reduxNotificationList.length == 0){
+      return (
+        <div>No Notifications</div>
+      )
+    }
   return (
-    <div>Notifications</div>
+    <div>
+      {reduxNotificationList.slice()
+      .sort((a, b) => new Date(a.time) - new Date(b.time)).map((notification) => {
+        if (notification.type == "join-req") return <JoinReqest notification={notification} key={notification.id}/>
+
+        if (notification.type == "task-assigned" || notification.type == "task-updated") return <TaskNotification notification={notification} key={notification.id}/>
+      })}
+    </div>
   )
 }
 
