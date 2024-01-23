@@ -6,48 +6,54 @@ Aurelius is a comprehensive planning and productivity tool designed to streamlin
 
 ## **Current Features:**
 
-1. **User Authentication:**
-   - Securely sign in/out using your Google account for a seamless and trusted experience.
+1. **Authentication:** - Sign in/out securely using Google.
 
 2. **Board Management:**
-   - Create boards, each designated as either a **Task Tracker** or a **Project Planner**.
-   - Navigate effortlessly between multiple boards from the home screen.
+   - Create boards as Task Trackers or Project Planners.
+   - Easily switch between boards.
 
 3. **Member Collaboration:**
-   - Add members who have registered with Aurelius to your active board.
-   - Engage in real-time communication with board members through an integrated chat feature.
+   - Send requests to registered Aurelius members to join your board.
+   - Chat in real-time with board members.
 
 4. **Task Trackers:**
-   - Create tasks and assign them to any group member.
-   - Set task attributes such as priority, current status, deadline, and edit permissions.
-   - Control task visibility - choose whether tasks are open to all or restricted to the assignee and assigner.
-   - Sort and filter tasks based on various parameters for effective task management.
-   - Color-coded tasks to signify their current status.
+   - Create and assign tasks.
+   - Set attributes like priority, status, and deadline.
+   - Control task visibility.
+   - Sort and filter tasks.
+   - Color-coded tasks for status.
 
 5. **Project Planners:**
-   - Create stories and organize tasks within each story.
-   - Utilize all Task Tracker features within each story.
-   - Visualize task lists under each story, with automatic status updates based on task statuses.
+   - Create stories and organize tasks.
+   - Utilize Task Tracker features in stories.
+   - Visualize tasks with automatic status updates.
+  
+6. **Notifications:**
+   - Receive notifications when someone invites you to join a board, assigns you a task, or updates a task you're involved with.
+   - Choose to accept or reject board invitations.
+  
 
-## **Upcoming Features:**
 
-1. **Notification System:**
-   - Stay informed with a comprehensive notification system for important updates.
+## **Planned Features:**
 
-2. **Comment Section:**
-   - Enhance collaboration with a dedicated comment section for each task.
+1. **Notifications:**  [Implemented]
+   - Receive important updates.  
+
+2. **Comments:**
+   - Collaborate with task-specific comments.
 
 3. **Task Chaining:**
-   - Establish task dependencies by referencing one task in another.
+   - Link tasks together.
 
-4. **Task Parentage Management:**
-   - Effortlessly change the parent story of a task using drag and drop functionality.
+4. **Parentage Management:**
+   - Change task parent story with drag and drop.
 
-5. **Note-Taker Companion:**
-   - Seamlessly integrate a note-taking companion for additional convenience.
+5. **Note-Taker:**
+   - Integrate a note-taking companion.
 
-6. **Media File Uploads:**
-   - Share and collaborate with ease by uploading media files directly in the chat.
+6. **Media Uploads:**
+   - Share media files in the chat.
+
 
 
 Explore the potential of Aurelius.
