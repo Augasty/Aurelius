@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../../../firebase';
+import { auth } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import styles from '../../../sharedStyles/DropDown.module.css';
-import { useProjectContexts } from '../../../utils/ProjectContexts';
-import updateCurrentBoardInFirebase from '../../../utils/updateCurrentBoardInFirebase';
-import { setStoriesFromFireBase } from '../../stories/storySlice';
-import { setTasksFromFireBase } from '../../tasks/taskSlice';
+import styles from '../../sharedStyles/DropDown.module.css';
+import { useProjectContexts } from '../../utils/ProjectContexts';
+import updateCurrentBoardInFirebase from '../../utils/updateCurrentBoardInFirebase';
+import { setStoriesFromFireBase } from '../stories/storySlice';
+import { setTasksFromFireBase } from '../tasks/taskSlice';
 
 const DropDown = () => {
   const { currentboard, setcurrentboard, setIsChatPanelVisible } = useProjectContexts();

@@ -1,9 +1,9 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import topchicken from "../../../../assets/topchicken.jpg"
+import topchicken from "../../../assets/topchicken.jpg"
 
-import Aurelius from "../../../../assets/bluey.png";
+import Aurelius from "../../../assets/bluey.png";
 import styles from "./Navbar.module.css"; // Import your CSS file
-import { SignInWithGoogle } from "../../../utils/SignInWithGoogle";
+import { SignInWithGoogle } from "../../utils/SignInWithGoogle";
 
 const SignedOutNavbar = () => {
 

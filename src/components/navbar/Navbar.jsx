@@ -1,12 +1,12 @@
 import { Link, NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css'; // Import your CSS file
-import { auth } from '../../../firebase';
+import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
-import DropDown from '../boards/DropDown';
+import DropDown from './DropDown';
 import { useState } from 'react';
-import topchicken from '../../../../assets/topchicken.jpg';
-import Aurelius from '../../../../assets/bluey.png';
-import { useProjectContexts } from '../../../utils/ProjectContexts';
+import topchicken from '../../../assets/topchicken.jpg';
+import Aurelius from '../../../assets/bluey.png';
+import { useProjectContexts } from '../../utils/ProjectContexts';
 import { useNavigate } from 'react-router-dom';
 import Theme from './Theme/Theme';
 
@@ -66,11 +66,10 @@ const Navbar = () => {
 
               <div className={styles.liDivItems}>
                 <li className={styles.navbarListItem}>
-                  <div>Join Requests</div>
+                  <NavLink to="/notifications">Notifications</NavLink>
                 </li>
               </div>
 
-              
               {curuser.email && currentboard.length !== 0 && (
                 <div className={styles.liDivItems}>
                   <li className={styles.navbarListItem}>

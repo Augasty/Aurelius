@@ -3,16 +3,16 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import styles from './CreateBoard.module.css';
-import btn from '../../../sharedStyles/BigButtonStyle.module.css';
+import btn from '../../sharedStyles/BigButtonStyle.module.css';
 
 import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
-import { auth, db } from '../../../firebase';
+import { auth, db } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useProjectContexts } from '../../../utils/ProjectContexts';
-import updateCurrentBoardInFirebase from '../../../utils/updateCurrentBoardInFirebase';
-import { setStoriesFromFireBase } from '../../stories/storySlice';
+import { useProjectContexts } from '../../utils/ProjectContexts';
+import updateCurrentBoardInFirebase from '../../utils/updateCurrentBoardInFirebase';
+import { setStoriesFromFireBase } from '../stories/storySlice';
 import { useDispatch } from 'react-redux';
-import { setTasksFromFireBase } from '../../tasks/taskSlice';
+import { setTasksFromFireBase } from '../tasks/taskSlice';
 
 // when a board is created, need to create a doc in ‘texts’ collection with the same ID.
 // only show it if authenticated

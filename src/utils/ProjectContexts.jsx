@@ -6,7 +6,7 @@ const ProjectContexts = createContext();
 // eslint-disable-next-line react/prop-types
 export const ProjectContextsProvider = ({ children }) => {
   const [currentboard, setcurrentboard] = useState([]);
-  const [isProjectPlanner,setisProjectPlanner] = useState(null) 
+  const [isProjectPlanner,setisProjectPlanner] = useState(true) 
   const [isChatPanelVisible, setIsChatPanelVisible] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(0);
 

@@ -2,11 +2,11 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../../../../firebase";
-import { useProjectContexts } from "../../../../utils/ProjectContexts";
+import { db } from "../../../firebase";
+import { useProjectContexts } from "../../../utils/ProjectContexts";
 import styles from "./styles.module.css";
-import btn from "../../../../sharedStyles/BigButtonStyle.module.css"
-import updateCurrentBoardInFirebase from "../../../../utils/updateCurrentBoardInFirebase";
+import btn from "../../../sharedStyles/BigButtonStyle.module.css"
+import updateCurrentBoardInFirebase from "../../../utils/updateCurrentBoardInFirebase";
 
 const AddMemberInBoard = () => {
   const { currentboard } = useProjectContexts();
