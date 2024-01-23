@@ -6,29 +6,30 @@ Aurelius is a comprehensive planning and productivity tool designed to streamlin
 
 ## **Current Features:**
 
-1. **Authentication:** - Sign in/out securely using Google.
+1. **Authentication:**
+   - Sign in/out securely using Google.
 
-2. **Board Management:**
+3. **Board Management:**
    - Create boards as Task Trackers or Project Planners.
    - Easily switch between boards.
 
-3. **Member Collaboration:**
+4. **Member Collaboration:**
    - Send requests to registered Aurelius members to join your board.
    - Chat in real-time with board members.
 
-4. **Task Trackers:**
+5. **Task Trackers:**
    - Create and assign tasks.
    - Set attributes like priority, status, and deadline.
    - Control task visibility.
    - Sort and filter tasks.
    - Color-coded tasks for status.
 
-5. **Project Planners:**
+6. **Project Planners:**
    - Create stories and organize tasks.
    - Utilize Task Tracker features in stories.
    - Visualize tasks with automatic status updates.
   
-6. **Notifications:**
+7. **Notifications:**
    - Receive notifications when someone invites you to join a board, assigns you a task, or updates a task you're involved with.
    - Choose to accept or reject board invitations.
   
