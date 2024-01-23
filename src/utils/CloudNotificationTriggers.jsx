@@ -31,7 +31,7 @@ const CloudNotificationTriggers = () => {
           const filteredNotificationData = notificationData?.filter(
             (obj) => !obj.dummy
           );
-            // console.log(filteredNotificationData);
+          // console.log(filteredNotificationData);
 
           try {
             dispatch(

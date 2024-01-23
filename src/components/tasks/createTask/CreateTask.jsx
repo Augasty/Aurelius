@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
-import styles from "./styles.module.css";
+import { useEffect, useState } from 'react';
+import styles from './styles.module.css';
 
-import btn from "../../../sharedStyles/BigButtonStyle.module.css";
+import btn from '../../../sharedStyles/BigButtonStyle.module.css';
 import {
   addDoc,
   collection,
@@ -10,16 +10,14 @@ import {
   getDoc,
   increment,
   updateDoc,
-} from "firebase/firestore";
-import { auth, db } from "../../../firebase";
-import { useNavigate } from "react-router-dom";
-import { useProjectContexts } from "../../../utils/ProjectContexts";
+} from 'firebase/firestore';
+import { auth, db } from '../../../firebase';
+import { useNavigate } from 'react-router-dom';
+import { useProjectContexts } from '../../../utils/ProjectContexts';
 
 const CreateTask = () => {
   const { currentboard, isProjectPlanner } = useProjectContexts();
-  const currentStory = JSON.parse(
-    localStorage.getItem("currentStoryLocalStorage")
-  );
+  const currentStory = JSON.parse(localStorage.getItem('currentStoryLocalStorage'));
   const initialTaskObject = isProjectPlanner
     ? { openToAll: false, referenceStory: currentStory }
     : { openToAll: false };
@@ -33,7 +31,7 @@ const CreateTask = () => {
   useEffect(() => {
     try {
       const fetchUsersFromcurrentboard = async () => {
-        const boardDocRef = doc(db, "boards", currentboard[0]);
+        const boardDocRef = doc(db, 'boards', currentboard[0]);
         const boardDocSnap = await getDoc(boardDocRef);
 
         const boardCurrdata = boardDocSnap.data();
@@ -43,27 +41,22 @@ const CreateTask = () => {
 
       fetchUsersFromcurrentboard();
     } catch (e) {
-      console.warn(
-        "error in fetching existing members while creating a task",
-        e
-      );
+      console.warn('error in fetching existing members while creating a task', e);
     }
   }, [currentboard]);
 
   const handleChange = (e) => {
     setTask({
-      // Updated variable name
-      ...task, // Updated variable name
+      ...task,
       [e.target.id]: e.target.value,
-      [e.target.id]:
-        e.target.type === "checkbox" ? e.target.checked : e.target.value,
+      [e.target.id]: e.target.type === 'checkbox' ? e.target.checked : e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "boards", currentboard[0], "taskList"), {
+      await addDoc(collection(db, 'boards', currentboard[0], 'taskList'), {
         ...task,
         authorDetails: curuser.email,
         createdAt: new Date().toISOString(),
@@ -78,22 +71,38 @@ const CreateTask = () => {
       if (isProjectPlanner) {
         const currentStoryRef = doc(
           db,
-          "boards",
+          'boards',
           currentboard[0],
-          "storyList",
+          'storyList',
           currentStory[0]
         );
-        let incrementCount = task.taskStatus !== "Finished" ? 1 : 0;
+        let incrementCount = task.taskStatus !== 'Finished' ? 1 : 0;
         await updateDoc(currentStoryRef, {
           updatedAt: new Date().toISOString(),
           completionCount: increment(incrementCount),
+        });
+      }
+
+      // sending the notification to the assignee
+      if (task.assignedTo !== curuser.email) {
+        
+        await addDoc(collection(
+          db,
+          'users',
+          task.assignedTo,
+          'notificationList'
+        ), {
+          type: 'task-assigned',
+          details: { title:task.title, priority:task.priority, taskStatus:task.taskStatus, boardId: currentboard[0], boardName:currentboard[1] },
+          sender: curuser.email,
+          time: new Date().toISOString(),
         });
       }
     } catch (e) {
       console.error(e);
     }
 
-    history("/");
+    history('/');
   };
 
   return (
@@ -101,43 +110,40 @@ const CreateTask = () => {
       <form className={styles.createTaskForm} onSubmit={handleSubmit}>
         <h5 className={styles.heading}>
           Create A
-          {isProjectPlanner
-            ? ` Task Under The Story: ${currentStory[1]}`
-            : " New Task"}
+          {isProjectPlanner ? ` Task Under The Story: ${currentStory[1]}` : ' New Task'}
         </h5>
 
-          <input
-            type="text"
-            id="title"
-            className={styles.taskTitleInput}
-            onChange={handleChange}
-            required
-            placeholder="Provide task title"
-          />
-          <textarea
-            id="content"
-            className={`${styles.customTextarea} ${styles.taskContentTextarea}`}
-            onChange={handleChange}
-            required
-            placeholder="Task Content"
-          ></textarea>
-        
-
-        <div className={` `}>
-        <select
-          id="assignedTo"
-          className={styles.assignedToSelect}
-          value={task.assignedTo || ""}
+        <input
+          type="text"
+          id="title"
+          className={styles.taskTitleInput}
           onChange={handleChange}
           required
-        >
-          <option value="">Select person to assign</option>
-          {currentboardMails.map((mail) => (
-            <option value={mail} key={mail}>
-              {mail}
-            </option>
-          ))}
-        </select>
+          placeholder="Provide task title"
+        />
+        <textarea
+          id="content"
+          className={`${styles.customTextarea} ${styles.taskContentTextarea}`}
+          onChange={handleChange}
+          required
+          placeholder="Task Content"
+        ></textarea>
+
+        <div className={` `}>
+          <select
+            id="assignedTo"
+            className={styles.assignedToSelect}
+            value={task.assignedTo || ''}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select person to assign</option>
+            {currentboardMails.map((mail) => (
+              <option value={mail} key={mail}>
+                {mail}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className={` `}>
@@ -163,7 +169,7 @@ const CreateTask = () => {
               id="deadline"
               className={`  ${styles.taskTitleInput}`}
               onChange={handleChange}
-              min={new Date().toISOString().split("T")[0]}
+              min={new Date().toISOString().split('T')[0]}
               max="2999-12-31"
             />
           </span>
