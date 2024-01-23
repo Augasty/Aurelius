@@ -2,8 +2,9 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import topchicken from "../../../assets/topchicken.jpg"
 
 import Aurelius from "../../../assets/bluey.png";
-import styles from "./Navbar.module.css"; // Import your CSS file
+import styles from "./Navbar.module.css"; 
 import { SignInWithGoogle } from "../../utils/SignInWithGoogle";
+import Theme from './Theme/Theme';
 
 const SignedOutNavbar = () => {
 
@@ -32,6 +33,11 @@ const SignedOutNavbar = () => {
               <img src={topchicken} alt="User" />
             </NavLink>
           </li>
+          <div className={styles.liDivItems}>
+            <li className={styles.navbarListItem}>
+              <Theme />
+            </li>
+          </div>
         </ul>
       </div>
     </nav>

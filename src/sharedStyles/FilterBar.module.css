@@ -12,6 +12,7 @@
   width: min-content;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   height: 92.8vh;
+  user-select: none;
 }
 
 

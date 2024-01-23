@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import Dashboard from '../components/dashboard/Dashboard';
+import Notification from '../components/notification/Notification';
 import TaskList from '../components/tasks/TaskList/TaskList';
 const CreateStory = lazy(() => import('../components/stories/CreateStory/CreateStory'));
 
@@ -53,6 +54,12 @@ const LazyDashboard = (props) => (
   </Suspense>
 );
 
+
+const LazyNotification = (props) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Notification{...props} />
+  </Suspense>
+);
 const LazyTaskList = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
     <TaskList {...props} />
@@ -77,6 +84,7 @@ export {
   LazyCreateBoard as CreateBoard,
   LazyNavbar as Navbar,
   LazyDashboard as Dashboard,
+  LazyNotification as Notification,
   LazyTaskList as TaskList,
   LazyTaskDetails as TaskDetails,
   LazyChatPanel as ChatPanel,
