@@ -17,7 +17,7 @@ import { setTasksFromFireBase } from '../tasks/taskSlice';
 // when a board is created, need to create a doc in ‘texts’ collection with the same ID.
 // only show it if authenticated
 const Createboard = () => {
-  const { toggleRightPanel, isRightPanelVisible } = useProjectContexts();
+  const { setIsNotificationPanelVisible, setIsChatPanelVisible } = useProjectContexts();
   const [boardName, setboardName] = useState(null);
   const [user] = useAuthState(auth);
   const history = useNavigate();
@@ -63,10 +63,9 @@ const Createboard = () => {
       dispatch(setTasksFromFireBase([]));
 
 
-      // close the chat if it is open
-      if (isRightPanelVisible) {
-        toggleRightPanel(false);
-      }
+      // close the chat and notification 
+      setIsNotificationPanelVisible(false)
+      setIsChatPanelVisible(false)
     } catch (e) {
       console.error('error while creating a board', e);
     }

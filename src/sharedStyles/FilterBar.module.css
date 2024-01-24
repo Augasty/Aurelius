@@ -1,6 +1,6 @@
 .filterbar {
   position: sticky;
-  background: var(--filterbar-bg-color);
+  background: var(--filterbar-bg);
 
   border: var(--div-border);
   margin-top: 0;
@@ -10,7 +10,7 @@
   position: relative;
   top: 0vh;
   width: min-content;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--bottom-shadow);
   height: 92.8vh;
   user-select: none;
 }
@@ -75,19 +75,3 @@
 
 
 /* highlight */
-
-.filterbar::after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 0.125rem;
-  right: 0;
-  background-color: var(--highlight-color);
-  transform: scaleY(0);
-  transform-origin: right;
-  transition: transform 0.5s ease;
-}
-
-.filterbar:hover::after {
-  transform: scaleY(1);
-}

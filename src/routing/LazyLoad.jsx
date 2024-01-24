@@ -6,7 +6,7 @@ const CreateStory = lazy(() => import('../components/stories/CreateStory/CreateS
 
 const CreateTask = lazy(() => import('../components/tasks/createTask/CreateTask'));
 const AddMemberInBoard = lazy(() => import('../components/boards/AddMemberInBoard/AddMemberInBoard'));
-const SignedOutNavbar = lazy(() => import('../components/navbar/SignedOutNavbar'));
+const SignedOutHomePage = lazy(() => import('../components/SignedOutHomePage/SignedOutHomePage'));
 const CreateBoard = lazy(() => import('../components/boards/CreateBoard'));
 const Navbar = lazy(() => import('../components/navbar/Navbar'));
 
@@ -30,9 +30,9 @@ const LazyAddMemberInBoard = (props) => (
   </Suspense>
 );
 
-const LazySignedOutNavbar = (props) => (
+const LazySignedOutHomePage = (props) => (
   <Suspense fallback={<div>Loading...</div>}>
-    <SignedOutNavbar {...props} />
+    <SignedOutHomePage {...props} />
   </Suspense>
 );
 
@@ -80,7 +80,7 @@ export {
   LazyCreateStory as CreateStory,
   LazyCreateTask as CreateTask,
   LazyAddMemberInBoard as AddMemberInBoard,
-  LazySignedOutNavbar as SignedOutNavbar,
+  LazySignedOutHomePage as SignedOutHomePage,
   LazyCreateBoard as CreateBoard,
   LazyNavbar as Navbar,
   LazyDashboard as Dashboard,

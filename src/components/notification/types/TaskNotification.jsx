@@ -3,6 +3,10 @@
 import { deleteDoc, doc } from 'firebase/firestore';
 import { SmartTime } from '../../../utils/SmartTime';
 import { auth, db } from '../../../firebase';
+import styles from './NotificationCard.module.css';
+
+import button from '../../../sharedStyles/SmallButtonStyle.module.css';
+import { isTaskOverDue } from '../../../utils/isTaskOverdue';
 
 const TaskNotification = ({ notification }) => {
   const curuser = auth.currentUser;
@@ -21,17 +25,19 @@ const TaskNotification = ({ notification }) => {
     deleteDoc(notificationDocRef);
   };
 
+  const isOverDue = isTaskOverDue(notification.details);
   return (
-    <div>
-      <p>
-        {notification.sender} has {actionText} the task <strong>{notification.details.title}</strong> from{' '}
-        {notification.details.boardName}, currently {notification.details.taskStatus} with a{' '}
-        {notification.details.priority} priority.
-      </p>
-
-      <p>Time: {smartTime}</p>
-      <button onClick={() => RemoveNotification()}>Ok</button>
-      <hr />
+    <div className={`${styles.notificationCard}  ${styles[notification.details.taskStatus]} ${isOverDue && styles.Overdue}`}>
+<p className={styles.notificationTitle}>
+  {notification.sender} {actionText} <strong>{notification.details.title}</strong> in the board{' '}
+  <strong>{notification.details.boardName}</strong>, now with <strong>{notification.details.priority}</strong> priority.
+</p>
+      <div className={styles.NotificationTimeAndButton} >
+        <span className={styles.notificationDate}>{smartTime}</span>
+        <button className={button.SmallButton} onClick={() => RemoveNotification()}>
+          Ok
+        </button>
+      </div>
     </div>
   );
 };

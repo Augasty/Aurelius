@@ -1,0 +1,16 @@
+.Container{
+    position: fixed;
+    top: 8vh;
+    left: 76.3vw;
+    
+    height: 91vh;
+    width: 23vw;
+    background-color: var(--ribbon-bg-color);
+    /* google blue*/
+  
+    border: var(--div-border);
+    border-radius: var(--border-radius);
+    
+    box-shadow: var(--bottom-shadow);
+    z-index: 2;
+}

@@ -91,7 +91,7 @@ const TaskChange = ({ currentTask }) => {
         title: updatedCurrentTask.title,
         priority: updatedCurrentTask.priority,
         taskStatus: updatedCurrentTask.taskStatus,
-        boardId: currentboard[0],
+        deadline:updatedCurrentTask.deadline, 
         boardName: currentboard[1],
       },
       sender: curuser.email,

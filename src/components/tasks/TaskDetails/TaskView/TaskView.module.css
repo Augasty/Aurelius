@@ -17,23 +17,23 @@
   justify-content: center;
 }
 
-.Finished {
-  background-color: rgb(151, 250, 151);
-
-}
-
 .Pending {
-  background-color: #8fcdff
+  background-color: var(--pending)
 }
+
+.Finished {
+  background-color: var(--finished)
+}
+
+
 
 .Active {
-  background-color: #fff477;
+  background-color: var(--active)
 }
 
 .Overdue {
-  background-color: rgb(251, 151, 151)
+  background-color: var(--overdue)
 }
-
 /* Task Details Title Style */
 .taskDetailsTitle {
   color: var(--card-text);

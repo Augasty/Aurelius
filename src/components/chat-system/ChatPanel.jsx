@@ -9,16 +9,12 @@ import { useProjectContexts } from '../../utils/ProjectContexts';
 function ChatPanel() {
   const { currentboard } = useProjectContexts();
 
-
   const [formValue, setFormValue] = useState('');
   const [messages, setmessages] = useState(null);
-
 
   async function fetchTexts(textsRef) {
     try {
       const textsSnapshot = await getDocs(query(textsRef, orderBy('createdAt', 'desc')));
-      // console.log("queries texts", textsSnapshot.size);
-
       if (!textsSnapshot.empty) {
         const textsData = textsSnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -65,7 +61,6 @@ function ChatPanel() {
     setFormValue('');
     dummy.current.scrollIntoView({ block: 'end', inline: 'nearest', behavior: 'auto' });
   };
-
 
   return (
     <div className={styles.ChatPanel}>

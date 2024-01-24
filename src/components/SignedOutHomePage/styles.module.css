@@ -1,0 +1,62 @@
+/* Add these styles to your existing stylesheet or create a new one */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-size: cover; 
+    user-select: none;
+    font-family: var(--font-family);
+  }
+
+
+  
+
+  
+  .content {
+    position: relative;
+    z-index: 1;
+    width: 50%; /* Adjust the width as needed */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo img {
+    width: 50px; /* Adjust the size as needed */
+    margin-right: 10px;
+  }
+  
+  .Aurelius {
+    margin-top: 15px;
+    margin-right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+  
+  .LoginButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--highlight-color); 
+    color: var(--alt-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--font-family);
+  }
+  
+  .LoginButton:hover {
+    background-color: #023c94; /* Darker shade on hover */
+  }
+  

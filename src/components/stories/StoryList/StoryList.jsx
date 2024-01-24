@@ -11,7 +11,7 @@ import TaskContainerStory from "../TaskContainerStory/TaskContainerStory";
 import { separateStories } from "./formatStoryArray";
 
 const StoryList = () => {
-  const { isChatPanelVisible, currentboard } = useProjectContexts();
+  const { isChatPanelVisible,isNotificationPanelVisible, currentboard } = useProjectContexts();
   const [storyDisplayedTime, setstoryDisplayedTime] = useState("createdAt");
   const [filterName, setfilterName] = useState(null);
 
@@ -89,7 +89,7 @@ useEffect(() => {
       </div>
       <div
         className={styles.storyList}
-        style={{ width: isChatPanelVisible ? "68.1vw" : "91.8vw" }}
+        style={{ width: (isChatPanelVisible || isNotificationPanelVisible) ? "68.1vw" : "91.8vw" }}
       >
         {filteredStories.map((story, index) => {
           if (story?.dummy) {

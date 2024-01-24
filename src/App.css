@@ -3,7 +3,7 @@
   --secondary-text-color: #000000;
   --alt-text-color: #FFFFFF;
 
-  --highlight-color: #4285F4;
+  --highlight-color: #3a85ff;
 
 
   --navbar-bg-color: #ffffff;
@@ -12,9 +12,9 @@
   --filterbar-bg: #ffffff;
   --filterbar-options-font-size:2.5vh;
   --filterbar-title-font-size:2.2vh;
+  --sidepanel-font-size:2.6vh;
 
-
-  --font-family: "Roboto", sans-serif;
+  --font-family:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   --button-color: #EEF5FF;
   --button-text:  #000000;
@@ -27,6 +27,8 @@
 
   --input-box-border: 0.2px solid #000000;
   --div-border: 0px solid #000000;
+
+
   --bg-color: #ffffff;
 
 
@@ -39,17 +41,19 @@
   --bottom-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 
 
+  --card-text: #000000;
   /* card and story colors */
   --finished: #2dfd4c;
-  --pending: #8fcdff;
-  --active: #fff477;
+  --pending: #fff477;
+  --active:#8fcdff; 
   --overdue: #ff9595;
-  --card-text: #000000;
 
   --sent: #4285F4;
   --received: #4285F4;
 
-
+  /* notification colors */
+  --notification-color: #f8b9e5;
+  --notification-box-border: 0.2px solid #000000;
 
   /* theme toggle color */
   --theme-toggle:#ffffff;
@@ -65,23 +69,25 @@
 
   --highlight-color: #ffffff;
 
-  --navbar-bg-color: #333333;
-  --filterbar-bg: #333333;
+  --navbar-bg-color: #1a1a1a;
+  --filterbar-bg: #1a1a1a;
 
 
 
-  --big-button-border: 1px solid var(--secondary-text-color);
-  --big-button-border-hover: 1px solid var(--highlight-color);
+
   --div-border: 0px solid #000000;
   --bg-color: #1a1a1a;
 
-  --input-box-border: 1px solid #000000;
-
+  --notification-box-border: 0.2px solid #717171;
+  
   --storyContainer-background-color: #333333;
   --story-text-color: #e7e7e7;
 
 
-  --bottom-shadow: 0px 0px 10px rgba(47, 47, 47, 0.4);
+  --bottom-shadow: 0px 0px 10px rgba(233, 233, 233, 0.4);
+
+
+
 
   /* theme toggle color */
 
