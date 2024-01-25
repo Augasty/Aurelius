@@ -2,22 +2,21 @@
   --text-color: #4d4d4d;
   --secondary-text-color: #000000;
   --alt-text-color: #FFFFFF;
-
   --highlight-color: #3a85ff;
-
+  --reddot-bg: red;
 
   --navbar-bg-color: #ffffff;
   --navbar-font-size: 2.7vh;
 
   --filterbar-bg: #ffffff;
-  --filterbar-options-font-size:2.5vh;
-  --filterbar-title-font-size:2.2vh;
-  --sidepanel-font-size:2.6vh;
+  --filterbar-options-font-size: 2.5vh;
+  --filterbar-title-font-size: 2.2vh;
+  --sidepanel-font-size: 2.6vh;
 
-  --font-family:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   --button-color: #EEF5FF;
-  --button-text:  #000000;
+  --button-text: #000000;
   --button-hover-color: #92b7f4;
   --button-active-color: var(--highlight-color);
   --button-radius: 2vh;
@@ -45,19 +44,25 @@
   /* card and story colors */
   --finished: #2dfd4c;
   --pending: #fff477;
-  --active:#8fcdff; 
+  --active: #8fcdff;
   --overdue: #ff9595;
 
   --sent: #4285F4;
   --received: #4285F4;
 
+  /* font-size */
+  --card-title: 2.4vh;
+  --card-title-weight:600;
+  --card-date:2.2vh;
+
+  --notification-text: rgb(255, 255, 255);
   /* notification colors */
-  --notification-color: #f8b9e5;
+  --notification-color: rgb(46, 46, 46);
   --notification-box-border: 0.2px solid #000000;
 
   /* theme toggle color */
-  --theme-toggle:#ffffff;
-  --theme-toggle-bg:#333333;
+  --theme-toggle: #ffffff;
+  --theme-toggle-bg: #333333;
 }
 
 
@@ -66,7 +71,8 @@
   --text-color: #ffffff;
   --secondary-text-color: #ffffff;
   --alt-text-color: #000000;
-
+  --reddot-bg: white;
+  
   --highlight-color: #ffffff;
 
   --navbar-bg-color: #1a1a1a;
@@ -79,7 +85,7 @@
   --bg-color: #1a1a1a;
 
   --notification-box-border: 0.2px solid #717171;
-  
+
   --storyContainer-background-color: #333333;
   --story-text-color: #e7e7e7;
 
@@ -91,8 +97,8 @@
 
   /* theme toggle color */
 
-  --theme-toggle:#333333;
-  --theme-toggle-bg:#ffffff;
+  --theme-toggle: #333333;
+  --theme-toggle-bg: #ffffff;
 }
 
 
@@ -100,7 +106,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-
+  background-color: var(--bg-color);
 }
 
 

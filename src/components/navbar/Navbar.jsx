@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
-import styles from './Navbar.module.css'; // Import your CSS file
+import styles from './Navbar.module.css'; 
+import RedDot from "../../sharedStyles/RedDot.module.css"
 import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
 import DropDown from './DropDown';
@@ -13,7 +14,7 @@ import Theme from './Theme/Theme';
 const Navbar = () => {
   const curuser = auth.currentUser;
   const navigate = useNavigate();
-  const { currentboard, setcurrentboard, isChatPanelVisible, setIsNotificationPanelVisible, setIsChatPanelVisible, isProjectPlanner } =
+  const {notificationCount, currentboard, setcurrentboard, isChatPanelVisible, setIsNotificationPanelVisible, setIsChatPanelVisible, isProjectPlanner } =
     useProjectContexts();
 
   // for chicken
@@ -69,8 +70,7 @@ const Navbar = () => {
                 <li  onClick={() =>{
                   setIsChatPanelVisible(false)
                   setIsNotificationPanelVisible((prev) => !prev)
-                  
-                } }  className={styles.navbarListItem}>
+                } } className={`${styles.navbarListItem} ${notificationCount && RedDot.RedDot}`} data-count={notificationCount < 10 ? notificationCount : '＋'}>
                   <div>Notifications</div>
                 </li>
               </div>

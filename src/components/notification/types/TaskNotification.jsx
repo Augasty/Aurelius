@@ -27,12 +27,16 @@ const TaskNotification = ({ notification }) => {
 
   const isOverDue = isTaskOverDue(notification.details);
   return (
-    <div className={`${styles.notificationCard}  ${styles[notification.details.taskStatus]} ${isOverDue && styles.Overdue}`}>
-<p className={styles.notificationTitle}>
-  {notification.sender} {actionText} <strong>{notification.details.title}</strong> in the board{' '}
-  <strong>{notification.details.boardName}</strong>, now with <strong>{notification.details.priority}</strong> priority.
-</p>
-      <div className={styles.NotificationTimeAndButton} >
+    <div
+      className={`${styles.notificationCard}  ${styles[notification.details.taskStatus]} ${
+        isOverDue && styles.Overdue
+      }`}
+    >
+      <p className={styles.notificationTitle}>
+        {notification.sender} {actionText} the task <strong>{notification.details.title}</strong> in the board{' '}
+        <strong>{notification.details.boardName}</strong>.
+      </p>
+      <div className={styles.NotificationTimeAndButton}>
         <span className={styles.notificationDate}>{smartTime}</span>
         <button className={button.SmallButton} onClick={() => RemoveNotification()}>
           Ok

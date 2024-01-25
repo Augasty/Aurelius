@@ -41,21 +41,21 @@ const JoinReqest = ({ notification }) => {
 
   };
   return (
-    <div className={styles.notificationCard}>
+    <div className={`${styles.notificationCard} ${styles.JoinReq}`}>
       <p className={styles.notificationTitle}>
         {notification.sender} wants you to join{' '}
         <strong className={styles.boardName}>{notification.details.boardName}</strong>{' '}
       </p>
       <div className={styles.NotificationTimeAndButton}>
         <span className={styles.notificationDate}>{smartTime}</span>
-        <span>
+        
           <button className={button.SmallButton} onClick={HandleAcceptInvitation}>
             Accept
           </button>
           <button className={button.SmallButton} onClick={HandleRejectInvitation}>
             Reject
           </button>
-        </span>
+        
       </div>
     </div>
   );

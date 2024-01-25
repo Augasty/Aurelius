@@ -12,8 +12,8 @@ const CreateTask = () => {
   const { currentboard, isProjectPlanner } = useProjectContexts();
   const currentStory = JSON.parse(localStorage.getItem('currentStoryLocalStorage'));
   const initialTaskObject = isProjectPlanner
-    ? { openToAll: false, referenceStory: currentStory }
-    : { openToAll: false };
+    ? { openToAll: false, referenceStory: currentStory, deadline: "9999-12-31" }
+    : { openToAll: false, deadline: "9999-12-31", };
   const [task, setTask] = useState({ ...initialTaskObject });
 
   const [currentboardMails, setcurrentboardMails] = useState([]);
@@ -76,7 +76,6 @@ const CreateTask = () => {
           type: 'task-assigned',
           details: {
             title: task.title,
-            priority: task.priority,
             taskStatus: task.taskStatus,
             deadline: task.deadline,
             boardName: currentboard[1],

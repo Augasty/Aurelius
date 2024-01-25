@@ -53,7 +53,7 @@ const Routing = () => {
           <>
             {currentboard.length !== 0 && isProjectPlanner && <CloudStoryTriggers />}
             {currentboard.length !== 0 && <CloudTaskTriggers />}
-            {currentboard.length !== 0 && <CloudNotificationTriggers />}
+            <CloudNotificationTriggers />
             <CloudBoardTriggers />
           </>)}
             
@@ -78,8 +78,8 @@ const Routing = () => {
               <Route path="/add-member" element={currentboard.length !== 0 ? <AddMemberInBoard /> : <></>} />
             </Routes>
             </div>
-            {currentboard.length !== 0 && isChatPanelVisible && <ChatPanel />}
             {isNotificationPanelVisible && <Notification />}
+            {currentboard.length !== 0 && isChatPanelVisible && <ChatPanel />}
           </>
         ) : (
           <SignedOutHomePage />
