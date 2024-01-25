@@ -10,7 +10,7 @@ import {
   Dashboard,
   TaskList,
   Navbar,
-  SignedOutNavbar,
+  SignedOutHomePage,
   Notification,
   TaskDetails,
   ChatPanel,
@@ -23,7 +23,6 @@ import { useProjectContexts } from '../utils/ProjectContexts';
 import { useEffect } from 'react';
 import CloudStoryTriggers from '../utils/CloudStoryTriggers';
 import CloudNotificationTriggers from '../utils/CloudNotificationTriggers';
-
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   // useEffect to trigger resetErrorBoundary once when the component mounts
@@ -43,42 +42,48 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
 
 const Routing = () => {
   const [user] = useAuthState(auth);
-  const { currentboard, isChatPanelVisible, isProjectPlanner, isDarkMode } = useProjectContexts();
+  const { currentboard,isNotificationPanelVisible, isChatPanelVisible, isProjectPlanner, isDarkMode } = useProjectContexts();
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <div data-theme={isDarkMode ? 'dark' : ''} style={{ background: 'var(--bg-color)', height: '100vh' }}>
-        {user ? (
+        
+
+      {user && (
           <>
             {currentboard.length !== 0 && isProjectPlanner && <CloudStoryTriggers />}
             {currentboard.length !== 0 && <CloudTaskTriggers />}
-            {currentboard.length !== 0 && <CloudNotificationTriggers />}
+            <CloudNotificationTriggers />
             <CloudBoardTriggers />
-            <Navbar />
+          </>)}
+            
+            {user && <Navbar />}
+            {user ? (
+            <>
+            <div>
+
+            <Routes>
+              <Route path="/" element={currentboard.length !== 0 ? <Dashboard /> : <></>} />
+
+              <Route path="/task/:id" element={<TaskDetails />} />
+
+              {isProjectPlanner && <Route path="story/task-list" element={<TaskList />} />}
+              <Route
+                path={isProjectPlanner ? '/story/create-task' : '/create-task'}
+                element={currentboard.length !== 0 ? <CreateTask /> : <></>}
+              />
+              <Route path="/create-story" element={currentboard.length !== 0 ? <CreateStory /> : <></>} />
+              <Route path="/create-board" element={<CreateBoard />} />
+              <Route path="/notification" element={<Notification />} />
+              <Route path="/add-member" element={currentboard.length !== 0 ? <AddMemberInBoard /> : <></>} />
+            </Routes>
+            </div>
+            {isNotificationPanelVisible && <Notification />}
             {currentboard.length !== 0 && isChatPanelVisible && <ChatPanel />}
           </>
         ) : (
-          <SignedOutNavbar />
+          <SignedOutHomePage />
         )}
-        {user ? (
-        <Routes>
-
-          <Route path="/" element={currentboard.length !== 0 ? <Dashboard /> : <></>} />
-
-          <Route path="/task/:id" element={<TaskDetails />} />
-
-          {isProjectPlanner && <Route path="story/task-list" element={<TaskList />} />}
-          <Route
-            path={isProjectPlanner ? '/story/create-task' : '/create-task'}
-            element={ currentboard.length !== 0 ? <CreateTask /> : <></>}
-          />
-          <Route path="/create-story" element={currentboard.length !== 0 ? <CreateStory /> : <></>} />
-          <Route path="/create-board" element={ <CreateBoard />} />
-          <Route path="/notification" element={ <Notification />} />
-          <Route path="/add-member" element={currentboard.length !== 0 ? <AddMemberInBoard /> : <></>} />
-        </Routes>
-
-        ):<></>}
       </div>
     </ErrorBoundary>
   );

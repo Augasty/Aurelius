@@ -1,11 +1,12 @@
 import { Link, NavLink } from 'react-router-dom';
-import styles from './Navbar.module.css'; // Import your CSS file
+import styles from './Navbar.module.css'; 
+import RedDot from "../../sharedStyles/RedDot.module.css"
 import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
 import DropDown from './DropDown';
 import { useState } from 'react';
 import topchicken from '../../../assets/topchicken.jpg';
-import Aurelius from '../../../assets/bluey.png';
+import Aurelius from '../../../assets/Aurelius.png';
 import { useProjectContexts } from '../../utils/ProjectContexts';
 import { useNavigate } from 'react-router-dom';
 import Theme from './Theme/Theme';
@@ -13,7 +14,7 @@ import Theme from './Theme/Theme';
 const Navbar = () => {
   const curuser = auth.currentUser;
   const navigate = useNavigate();
-  const { currentboard, setcurrentboard, isChatPanelVisible, setIsChatPanelVisible, isProjectPlanner } =
+  const {notificationCount, currentboard, setcurrentboard, isChatPanelVisible, setIsNotificationPanelVisible, setIsChatPanelVisible, isProjectPlanner } =
     useProjectContexts();
 
   // for chicken
@@ -52,21 +53,31 @@ const Navbar = () => {
                     </li>
                   </div>
                   <div className={styles.liDivItems}>
-                    <li onClick={() => setIsChatPanelVisible((prev) => !prev)} className={styles.navbarListItem}>
+                    <li onClick={() => {
+
+
+                    setIsChatPanelVisible((prev) => !prev)
+                    setIsNotificationPanelVisible(false)
+                    }
+                    
+                    } className={styles.navbarListItem}>
                       <div>{isChatPanelVisible ? 'Close' : 'Open'} Chat</div>
                     </li>
                   </div>
                 </>
               )}
               <div className={styles.liDivItems}>
-                <li className={styles.navbarListItem}>
-                  <NavLink to="/create-board">New Board</NavLink>
+                <li  onClick={() =>{
+                  setIsChatPanelVisible(false)
+                  setIsNotificationPanelVisible((prev) => !prev)
+                } } className={`${styles.navbarListItem} ${notificationCount && RedDot.RedDot}`} data-count={notificationCount < 10 ? notificationCount : '＋'}>
+                  <div>Notifications</div>
                 </li>
               </div>
 
               <div className={styles.liDivItems}>
                 <li className={styles.navbarListItem}>
-                  <NavLink to="/notification">Notifications</NavLink>
+                <NavLink to="/create-board">New Board</NavLink>
                 </li>
               </div>
 

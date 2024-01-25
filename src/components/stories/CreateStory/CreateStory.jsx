@@ -13,6 +13,7 @@ const CreateStory = () => {
     deadline: "9999-12-31",
   });
 
+  
   const curuser = auth.currentUser;
   const history = useNavigate();
 

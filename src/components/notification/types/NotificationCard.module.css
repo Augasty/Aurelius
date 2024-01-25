@@ -1,0 +1,56 @@
+/* NotificationCardStyles.module.css */
+
+.notificationCard {
+    padding: 1vh 2vh;
+    margin: 2vh 1vh;
+    
+    user-select: none;
+    border: var(--notification-box-border);
+    height: 12vh;
+    text-align: left;
+    background-color: var(--notification-color);
+    color: var(--card-text);
+    font-family:var(--font-family);
+    border-radius: var(--border-radius);
+  }
+  .Finished {
+    background-color: var(--finished); /* 90% transparent green */
+  }
+  
+   .Pending{
+    background-color: var(--pending)
+  }
+  
+  .Active {
+    background-color: var(--active); /* Yellow color for tasks yet to start */
+  }
+  .Overdue {
+    background-color: var(--overdue);
+
+  }
+
+  .JoinReq{
+    color:var(--notification-text);
+  }
+
+  .notificationTitle {
+    font-size:  var(--card-title);
+    font-weight: var(--card-title-weight);
+    padding: 2px 0px;
+    margin: 0;
+    
+
+  }
+  
+  .notificationDate {
+    font-size: var(--card-date);
+    font-weight: var(--card-title-weight);
+    align-self: center;
+  }
+
+  .NotificationTimeAndButton{
+     display:flex;
+     justify-content: space-between;
+
+  }
+

@@ -4,6 +4,9 @@ import { deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { SmartTime } from '../../../utils/SmartTime';
 import updateCurrentBoardInFirebase from '../../../utils/updateCurrentBoardInFirebase';
 import { auth, db } from '../../../firebase';
+import styles from './NotificationCard.module.css';
+
+import button from '../../../sharedStyles/SmallButtonStyle.module.css';
 
 const JoinReqest = ({ notification }) => {
   const curuser = auth.currentUser;
@@ -34,16 +37,26 @@ const JoinReqest = ({ notification }) => {
 
     // delete this document from notificationsList
     HandleRejectInvitation();
+
+
   };
   return (
-    <div>
-      <p>
-        {notification.sender} wants you to join <strong>{notification.details.boardName}</strong>{' '}
+    <div className={`${styles.notificationCard} ${styles.JoinReq}`}>
+      <p className={styles.notificationTitle}>
+        {notification.sender} wants you to join{' '}
+        <strong className={styles.boardName}>{notification.details.boardName}</strong>{' '}
       </p>
-      <p>Time: {smartTime}</p>
-      <button onClick={() => HandleAcceptInvitation()}>Accept</button>
-      <button onClick={() => HandleRejectInvitation()}>Reject</button>
-      <hr />
+      <div className={styles.NotificationTimeAndButton}>
+        <span className={styles.notificationDate}>{smartTime}</span>
+        
+          <button className={button.SmallButton} onClick={HandleAcceptInvitation}>
+            Accept
+          </button>
+          <button className={button.SmallButton} onClick={HandleRejectInvitation}>
+            Reject
+          </button>
+        
+      </div>
     </div>
   );
 };

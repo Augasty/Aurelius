@@ -3,14 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
 import btn from '../../../sharedStyles/BigButtonStyle.module.css';
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  increment,
-  updateDoc,
-} from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, increment, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useProjectContexts } from '../../../utils/ProjectContexts';
@@ -19,8 +12,8 @@ const CreateTask = () => {
   const { currentboard, isProjectPlanner } = useProjectContexts();
   const currentStory = JSON.parse(localStorage.getItem('currentStoryLocalStorage'));
   const initialTaskObject = isProjectPlanner
-    ? { openToAll: false, referenceStory: currentStory }
-    : { openToAll: false };
+    ? { openToAll: false, referenceStory: currentStory, deadline: "9999-12-31" }
+    : { openToAll: false, deadline: "9999-12-31", };
   const [task, setTask] = useState({ ...initialTaskObject });
 
   const [currentboardMails, setcurrentboardMails] = useState([]);
@@ -69,13 +62,7 @@ const CreateTask = () => {
 
       // updating the completionCount of a story
       if (isProjectPlanner) {
-        const currentStoryRef = doc(
-          db,
-          'boards',
-          currentboard[0],
-          'storyList',
-          currentStory[0]
-        );
+        const currentStoryRef = doc(db, 'boards', currentboard[0], 'storyList', currentStory[0]);
         let incrementCount = task.taskStatus !== 'Finished' ? 1 : 0;
         await updateDoc(currentStoryRef, {
           updatedAt: new Date().toISOString(),
@@ -85,15 +72,14 @@ const CreateTask = () => {
 
       // sending the notification to the assignee
       if (task.assignedTo !== curuser.email) {
-        
-        await addDoc(collection(
-          db,
-          'users',
-          task.assignedTo,
-          'notificationList'
-        ), {
+        await addDoc(collection(db, 'users', task.assignedTo, 'notificationList'), {
           type: 'task-assigned',
-          details: { title:task.title, priority:task.priority, taskStatus:task.taskStatus, boardId: currentboard[0], boardName:currentboard[1] },
+          details: {
+            title: task.title,
+            taskStatus: task.taskStatus,
+            deadline: task.deadline,
+            boardName: currentboard[1],
+          },
           sender: curuser.email,
           time: new Date().toISOString(),
         });
@@ -109,8 +95,7 @@ const CreateTask = () => {
     <div className={styles.container}>
       <form className={styles.createTaskForm} onSubmit={handleSubmit}>
         <h5 className={styles.heading}>
-          Create A
-          {isProjectPlanner ? ` Task Under The Story: ${currentStory[1]}` : ' New Task'}
+          Create A{isProjectPlanner ? ` Task Under The Story: ${currentStory[1]}` : ' New Task'}
         </h5>
 
         <input
@@ -162,7 +147,7 @@ const CreateTask = () => {
         </div>
 
         <div className={styles.taskDetailsTop}>
-          <span className={styles.deadLine}>
+          <span className={styles.Deadline}>
             <label htmlFor="deadline">Deadline (optional)</label>
             <input
               type="date"
@@ -176,22 +161,12 @@ const CreateTask = () => {
 
           <span className={styles.openToAll}>
             <label htmlFor="Open to all">Open to all</label>
-            <input
-              type="checkbox"
-              id="openToAll"
-              className={`${styles.checkbox}`}
-              onChange={handleChange}
-            />
+            <input type="checkbox" id="openToAll" className={`${styles.checkbox}`} onChange={handleChange} />
           </span>
         </div>
 
         <div className={` `}>
-          <select
-            id="taskStatus"
-            className={`${styles.taskStatusSelect}`}
-            onChange={handleChange}
-            required
-          >
+          <select id="taskStatus" className={`${styles.taskStatusSelect}`} onChange={handleChange} required>
             <option value="">Task Status</option>
             <option value="Pending">Pending</option>
             <option value="Active">Active</option>

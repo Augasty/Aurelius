@@ -13,7 +13,9 @@
   border-bottom: 0;
   border-radius:  var(--border-radius)  var(--border-radius) 0 0;
 
-
+  display: grid;
+  place-items: center;
+  
   padding: 0;
   height: 18vh;
 }
@@ -68,25 +70,12 @@
 
 
 
-
-
-.StoryButton {
-  width: 5.5vw;
-  margin: 0.25vw;
-  padding: 2px 4px;
-  background-color: var(--button-color);
-  color: var(--button-text);
-  border: var(--div-border);
-  cursor: pointer;
-  font-family: var(--font-family);
-  font-size: 2.25vh;
-  font-weight: bold;
-  border-radius: var(--button-radius);
+.ButtonContainer{
+display: flex;
+width: min-content;
 }
 
-.storyButton:hover {
-  background-color: var(--primary-color);
-}
+
 
 .CardsContainer {
   justify-content: flex-start;

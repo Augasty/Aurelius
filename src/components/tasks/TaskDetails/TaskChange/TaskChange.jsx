@@ -78,25 +78,35 @@ const TaskChange = ({ currentTask }) => {
     }
 
     // sending the notification to the assignee
-    let notificationReceiver;
-    if (updatedCurrentTask.assignedTo === curuser.email) {
-      notificationReceiver = updatedCurrentTask.authorDetails;
-    } else if (updatedCurrentTask.authorDetails === curuser.email) {
-      notificationReceiver = updatedCurrentTask.assignedTo;
+    const SendNotification = async()=>{
+      let notificationReceiver;
+      if (updatedCurrentTask.assignedTo === curuser.email) {
+        notificationReceiver = updatedCurrentTask.authorDetails;
+      } else if (updatedCurrentTask.authorDetails === curuser.email) {
+        notificationReceiver = updatedCurrentTask.assignedTo;
+      }
+      
+      try{
+        await addDoc(collection(db, 'users', notificationReceiver, 'notificationList'), {
+          type: 'task-updated',
+          details: {
+            title: updatedCurrentTask.title,
+            taskStatus: updatedCurrentTask.taskStatus,
+            deadline:updatedCurrentTask.deadline, 
+            boardName: currentboard[1],
+          },
+          sender: curuser.email,
+          time: new Date().toISOString(),
+        });
+      }catch(e){
+        console.log(updatedCurrentTask.deadline, currentTask.deadline)
+        console.warn('error while sending notification',e)
+      }
     }
-    console.log(updatedCurrentTask.status);
-    await addDoc(collection(db, 'users', notificationReceiver, 'notificationList'), {
-      type: 'task-updated',
-      details: {
-        title: updatedCurrentTask.title,
-        priority: updatedCurrentTask.priority,
-        taskStatus: updatedCurrentTask.taskStatus,
-        boardId: currentboard[0],
-        boardName: currentboard[1],
-      },
-      sender: curuser.email,
-      time: new Date().toISOString(),
-    });
+
+    if(updatedCurrentTask.assignedTo != updatedCurrentTask.authorDetails){
+      SendNotification()
+    }
 
     history(-1); //back to the previous screen
   };
@@ -148,7 +158,7 @@ const TaskChange = ({ currentTask }) => {
                   className={styles.inputField}
                   onChange={handleChange}
                   value={updatedCurrentTask.deadline}
-                  max="2999-12-31"
+                  max="9999-12-31"
                 />
               </span>
             </div>

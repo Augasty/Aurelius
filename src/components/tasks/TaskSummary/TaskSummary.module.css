@@ -27,17 +27,16 @@
 
   
   .taskSummaryTitle {
-    font-size: 2.3vh;
-    /* font-weight:bold; */
+    font-size: var(--card-title);
+    font-weight: var(--card-title-weight);
     margin: 0;
-    font-weight: 600;
     color:var(--card-text)
  
   }
   
   .taskSummaryDate {
     margin: 0px;
-    font-size: 2.1vh;
+    font-size: var(--card-date);
     color: var(--card-text)
     /* white-space: nowrap;
     overflow: hidden;

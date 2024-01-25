@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import styles from "./TaskContainerStory.module.css";
+import button from "../../../sharedStyles/SmallButtonStyle.module.css"
 import { useNavigate } from "react-router-dom";
 import TaskSummary from "../../tasks/TaskSummary/TaskSummary";
 
@@ -63,16 +64,16 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
           {displayTime == "31-12-9999" ? "N/A" : displayTime}
         </div>
 
-        <div style={{ display: "flex" }}>
+        <div className={styles.ButtonContainer}>
           <button
-            className={styles.StoryButton}
+            className={button.SmallButton}
             onClick={() => CreateTaskWithStory()}
           >
             Add Task
           </button>
           <button
             onClick={() => GotoTaskListForThisStory()}
-            className={styles.StoryButton}
+            className={button.SmallButton}
           >
             Expand
           </button>
