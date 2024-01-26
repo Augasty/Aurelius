@@ -5,8 +5,7 @@
   
   height: 91vh;
   width: 23vw;
-  background-color: var(--ribbon-bg-color);
-  /* google blue*/
+  background-color: var(--bg-color);
 
   border: var(--div-border);
   border-radius: var(--border-radius);

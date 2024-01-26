@@ -96,7 +96,7 @@ const Navbar = () => {
             </>
           )}
           <li className={styles.navbarListItem}>
-            <NavLink className={`${styles.profile} ${styles.toggle}`} onClick={() => setToggleChicken(!toggleChicken)}>
+            <NavLink onClick={() => setToggleChicken(!toggleChicken)}>
               <img src={toggleChicken && curuser?.photoURL ? curuser?.photoURL : topchicken} alt="user" />
             </NavLink>
           </li>

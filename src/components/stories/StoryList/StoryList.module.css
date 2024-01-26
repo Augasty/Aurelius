@@ -2,7 +2,6 @@
   /* storyList.module.css */
 
   .StoryListContainer{
-  background-color: var(--bg-color);
   display: flex;
   height: 93vh;
   }

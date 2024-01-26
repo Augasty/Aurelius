@@ -3,7 +3,6 @@
 
 .mainContainer{ 
   display: flex;
-  background-color: var(--bg-color);
   height: 93vh;
 }
 .taskList {

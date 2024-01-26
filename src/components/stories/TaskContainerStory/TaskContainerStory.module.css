@@ -1,3 +1,8 @@
+.StoryContainer{
+
+  margin: 0px 5px;
+}
+
 .StoryTopPart {
   color: var(--text-color);
   font-size: 1em;
@@ -6,7 +11,6 @@
   text-align: center;
   align-self: center;
   width: 150px;
-  margin: 0px 5px;
 
   background: var(--storyContainer-background-color);
   border: var(--div-border);
@@ -47,7 +51,8 @@
 
 
 .ribbon {
-  width: 100%;
+  width: 150px;
+  margin: 0;
   height: 3vh;
   position: relative;
   border-radius:  var(--border-radius)  var(--border-radius) 0 0;
@@ -79,8 +84,7 @@ width: min-content;
 
 .CardsContainer {
   justify-content: flex-start;
-  margin: 5px;
-  margin-top: 0;
+
   background: var(--storyContainer-background-color);
   border: var(--div-border);
   border-top: 0;

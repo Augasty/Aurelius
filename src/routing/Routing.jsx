@@ -16,7 +16,7 @@ import {
   ChatPanel,
   CreateStory,
 } from './LazyLoad';
-
+import styles from "./Routing.module.css"
 import CloudTaskTriggers from '../utils/CloudTaskTriggers';
 import CloudBoardTriggers from '../utils/CloudBoardTriggers';
 import { useProjectContexts } from '../utils/ProjectContexts';
@@ -46,7 +46,7 @@ const Routing = () => {
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <div data-theme={isDarkMode ? 'dark' : ''} style={{ background: 'var(--bg-color)', height: '100vh' }}>
+      <div data-theme={isDarkMode ? 'dark' : ''} className={styles.Container}>
         
 
       {user && (
