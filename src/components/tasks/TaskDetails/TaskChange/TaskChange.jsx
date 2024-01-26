@@ -5,7 +5,7 @@ import { addDoc, collection, doc, increment, updateDoc } from 'firebase/firestor
 import { useNavigate } from 'react-router-dom';
 import styles from '../TaskView/TaskView.module.css';
 import { useProjectContexts } from '../../../../utils/ProjectContexts';
-import CloudStoryTriggers from '../../../../utils/CloudStoryTriggers';
+
 import { isTaskOverDue } from '../../../../utils/isTaskOverdue';
 import { SmartTime } from '../../../../utils/SmartTime';
 
@@ -117,7 +117,6 @@ const TaskChange = ({ currentTask }) => {
   const smartCreatedAt = SmartTime(currentTask.createdAt);
   return (
     <div className={styles.container}>
-      <CloudStoryTriggers />
       <form
         onSubmit={handleSubmit}
         className={`${styles.taskDetails} ${styles[currentTask.taskStatus]} ${isOverDue && styles.Overdue}`}

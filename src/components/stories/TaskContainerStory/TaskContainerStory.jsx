@@ -1,23 +1,23 @@
 /* eslint-disable react/prop-types */
+import { useMemo } from "react";
 import styles from "./TaskContainerStory.module.css";
-import button from "../../../sharedStyles/SmallButtonStyle.module.css"
+import button from "../../../sharedStyles/SmallButtonStyle.module.css";
 import { useNavigate } from "react-router-dom";
 import TaskSummary from "../../tasks/TaskSummary/TaskSummary";
-
 import { useSelector } from "react-redux";
 import moment from "moment";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-based
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
   const year = date.getFullYear();
 
   return `${day}-${month}-${year}`;
 };
 
 const getStoryStatus = (completionCount, deadline) => {
-  if (completionCount == 0) {
+  if (completionCount === 0) {
     return "Finished";
   }
   if (moment(deadline, "YYYY-MM-DD").isBefore(moment(), "day")) {
@@ -25,15 +25,16 @@ const getStoryStatus = (completionCount, deadline) => {
   }
   return "Active";
 };
+
 const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
   const displayTime = formatDate(story[storyDisplayedTime]);
-
   const history = useNavigate();
-
   const reduxTasks = useSelector((state) => state.tasks);
-  const currentStoryTasks = reduxTasks.filter(
-    (task) => task.referenceStory[0] === story.id
-  );
+
+  const currentStoryTasks = useMemo(() => {
+    return reduxTasks.filter((task) => task.referenceStory[0] === story.id);
+  }, [reduxTasks, story.id]);
+
   const CreateTaskWithStory = () => {
     localStorage.setItem(
       "currentStoryLocalStorage",
@@ -51,8 +52,9 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
   };
 
   const storyStatus = getStoryStatus(story.completionCount, story.deadline);
+
   return (
-    <div>
+    <div className={styles.StoryContainer}>
       <div className={`${styles.StoryTopPart} `}>
         <div className={`${styles.ribbon} ${styles[storyStatus]}`}></div>
         <p className={styles.StoryName}>
@@ -61,7 +63,7 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
             : story.title}
         </p>
         <div className={styles.StoryDate}>
-          {displayTime == "31-12-9999" ? "N/A" : displayTime}
+          {displayTime === "31-12-9999" ? "N/A" : displayTime}
         </div>
 
         <div className={styles.ButtonContainer}>
@@ -85,10 +87,12 @@ const TaskContainerStory = ({ story, storyDisplayedTime, createdAtShown }) => {
             task={task}
             createdAtShown={createdAtShown}
             key={task.id}
-            onClick={localStorage.setItem(
-              "currentStoryLocalStorage",
-              JSON.stringify([story.id, story.title])
-            )}
+            onClick={() =>
+              localStorage.setItem(
+                "currentStoryLocalStorage",
+                JSON.stringify([story.id, story.title])
+              )
+            }
           />
         ))}
       </div>
