@@ -10,7 +10,7 @@ import { setStoriesFromFireBase } from '../stories/storySlice';
 import { setTasksFromFireBase } from '../tasks/taskSlice';
 
 const DropDown = () => {
-  const { currentboard, setcurrentboard, setIsChatPanelVisible } = useProjectContexts();
+  const { currentboard, setcurrentboard, setisProjectPlanner, setIsChatPanelVisible } = useProjectContexts();
 
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
@@ -30,6 +30,8 @@ const DropDown = () => {
     updateCurrentBoardInFirebase(user.email, curBoardArr);
     setcurrentboard([...curBoardArr]);
     setIsChatPanelVisible(false);
+    setisProjectPlanner(-1)
+    
 
     history('/');
   };
@@ -38,7 +40,6 @@ const DropDown = () => {
 
   const currentboardArr = `${currentboard[0]},${currentboard[1]}`;
   return (
-    <>
       <div className={styles.dropdownContainer}>
         <select
           id="dropdown"
@@ -55,7 +56,7 @@ const DropDown = () => {
           })}
         </select>
       </div>
-    </>
+
   );
 };
 

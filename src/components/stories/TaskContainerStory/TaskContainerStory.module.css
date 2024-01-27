@@ -1,16 +1,17 @@
 .StoryContainer{
 
-  margin: 0px 5px;
+  margin: 0vh 1.2vh;
+  padding: 0;
+  width: 27vh;
 }
 
 .StoryTopPart {
   color: var(--text-color);
-  font-size: 1em;
   position: relative;
   font-weight: bold;
   text-align: center;
   align-self: center;
-  width: 150px;
+  width: 27vh;
 
   background: var(--storyContainer-background-color);
   border: var(--div-border);
@@ -25,24 +26,21 @@
 }
 
 .StoryName {
-  margin-top: 3px;
-  margin-bottom: 0px;
+  margin: 0vh;
 
   font-size: 3vh;
   padding-top: 0;
-  padding-bottom: 2px;
+  padding-bottom: 0.5vh;
   text-align: center;
 
   color: var(--story-text-color);
   font-family: var(--font-family);
 }
 .StoryDate {
-  margin-top: 3px;
-  margin-bottom: 0px;
+  margin: 0vh;
 
   font-size: 2vh;
   padding-top: 0;
-  padding-bottom: 2px;
   text-align: center;
 
   color: var(--story-text-color);
@@ -51,9 +49,9 @@
 
 
 .ribbon {
-  width: 150px;
+  width: 27vh;
   margin: 0;
-  height: 3vh;
+  height: 2.5vh;
   position: relative;
   border-radius:  var(--border-radius)  var(--border-radius) 0 0;
 
@@ -93,7 +91,7 @@ width: min-content;
   align-items: center; /* Center items horizontally */
   overflow-y: scroll;
   height: 71.5vh;
-  width: 150px;
+  width: 27vh;
   border-radius: 0 0  var(--border-radius)  var(--border-radius);
 }
 

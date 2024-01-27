@@ -1,47 +1,47 @@
 .taskSummary {
   border: var(--div-border);
-    padding: 10px;
-    margin: 5px;
-    border-radius: var(--border-radius);
-    font-family: 'Arial', sans-serif;
-    width:110px;
-    height:60px;
-    text-align: left;
-    color: black;
-    
-  }
-  .Finished {
-    background-color: var(--finished); /* 90% transparent green */
-  }
-  
-   .Pending{
-    background-color: var(--pending)
-  }
-  
-  .Active {
-    background-color: var(--active); /* Yellow color for tasks yet to start */
-  }
-  .Overdue {
-    background-color: var(--overdue)
-  }
+  padding: 2vh;
+  margin: 0.7vh;
+  border-radius: var(--border-radius);
+  font-family: 'Arial', sans-serif;
+  width:8vw;
+  height: 10vh;
+  text-align: left;
+  color: black;
 
-  
-  .taskSummaryTitle {
-    font-size: var(--card-title);
-    font-weight: var(--card-title-weight);
-    margin: 0;
-    color:var(--card-text)
- 
-  }
-  
-  .taskSummaryDate {
-    margin: 0px;
-    font-size: var(--card-date);
-    color: var(--card-text)
+}
+
+.Finished {
+  background-color: var(--finished);
+}
+
+.Pending {
+  background-color: var(--pending)
+}
+
+.Active {
+  background-color: var(--active);
+}
+
+.Overdue {
+  background-color: var(--overdue)
+}
+
+
+.taskSummaryTitle {
+  font-size: var(--card-title);
+  font-weight: var(--card-title-weight);
+  margin: 0;
+  color: var(--card-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskSummaryDate {
+  margin: 0vh;
+  font-size: var(--card-date);
+  color: var(--card-text)
     /* white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; */
-  }
-  
-
-
+}

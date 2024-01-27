@@ -10,6 +10,7 @@ import { auth } from '../../../firebase';
 const TaskDetails = () => {
 
   const curTaskId = useParams();
+  console.log(curTaskId)
   const reduxTasks = useSelector((state) => state.tasks);
   const [currentTask, setcurrentTask] = useState({})
 
@@ -26,7 +27,7 @@ const TaskDetails = () => {
       const changePossibleLogic = (( foundCurrentObj?.assignedTo == curuser.email || foundCurrentObj?.authorDetails == curuser.email  || foundCurrentObj?.openToAll ) && (  foundCurrentObj.lockedTill < new Date().toISOString() || foundCurrentObj?.lockedBy == curuser.email))
       setchangePossible(changePossibleLogic)
       
-      console.log(changePossibleLogic)
+      // console.log(changePossibleLogic)
     }
 
   }, [changePossible, curTaskId, currentTask, curuser?.email, reduxTasks])

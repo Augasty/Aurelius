@@ -10,7 +10,7 @@ const ToggleSwitch = () => {
 
   return (
     <label className={`${styles.toggleSwitch} ${isDarkMode ? styles.active : ''}`}>
-      <input type="checkbox" onChange={handleToggle} />
+      <input type="checkbox" onChange={handleToggle} style={{display:'none'}}/>
       <span className={styles.slider}></span>
     </label>
   );

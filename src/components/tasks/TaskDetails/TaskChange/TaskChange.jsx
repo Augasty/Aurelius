@@ -7,17 +7,17 @@ import styles from '../TaskView/TaskView.module.css';
 import { useProjectContexts } from '../../../../utils/ProjectContexts';
 
 import { isTaskOverDue } from '../../../../utils/isTaskOverdue';
-import { SmartTime } from '../../../../utils/SmartTime';
+import { formatDate, SmartTime } from '../../../../utils/SmartTime';
 
 const TaskChange = ({ currentTask }) => {
   const { currentboard, isProjectPlanner } = useProjectContexts();
 
   const currentTaskRef = doc(db, 'boards', currentboard[0], 'taskList', currentTask?.id);
   const curuser = auth.currentUser;
-
   const [updatedCurrentTask, setupdatedCurrentTask] = useState({
     ...currentTask,
   });
+  const deadlinedate = formatDate(updatedCurrentTask.deadline);
   const history = useNavigate();
 
   const updateLockedTill = async () => {
@@ -156,8 +156,8 @@ const TaskChange = ({ currentTask }) => {
                   id="deadline"
                   className={styles.inputField}
                   onChange={handleChange}
-                  value={updatedCurrentTask.deadline}
-                  max="9999-12-31"
+                  value={deadlinedate != "31-12-9999" && updatedCurrentTask.deadline}
+                  max="2999-12-31"
                 />
               </span>
             </div>
@@ -198,11 +198,6 @@ const TaskChange = ({ currentTask }) => {
         )}
 
         <div className={styles.taskDetailsTop}>
-          <span>
-            <button type="button" onClick={() => history('/')}>
-              Back
-            </button>
-          </span>
           <span>
             <button type="button" onClick={() => setseeMore(!seeMore)}>
               {seeMore ? 'Collapse' : 'Expand'}

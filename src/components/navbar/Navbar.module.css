@@ -3,9 +3,9 @@
 .navbar {
   position: sticky;
   background: var(--navbar-bg-color);
-  padding-left: 15px;
-  padding-right: 15px;
-  height: min-content;
+  padding:0vh 2vh;
+
+  height: 7vh;
   margin-top: 0;
   display: flex;
   justify-content: space-between;
@@ -23,23 +23,16 @@
   font-weight: bold;
 }
 .navbar img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-
-
-.NavbarIcons img {
-  width: 15px;
-  height: 15px;
-  align-items: center;
+  width: 6.5vh;
+  height: 6.5vh;
+  border-radius: 100%;
 }
 
 .navbar a,
 .navbar  div, .navbar p {
   color: var(--text-color);
   text-decoration: none;
-  margin-right: 15px;
+  margin-right: 2vh;
   font-size: var(--navbar-font-size);
   cursor: pointer;
 
@@ -78,9 +71,8 @@
   text-align: center;
   position: relative;
   align-self: center;
-  margin-right: 1rem;
   text-decoration: none;
-  margin-right: 15px;
+  margin-right: 2vh;
   font-size: var(--navbar-font-size);
   
   align-items: center;

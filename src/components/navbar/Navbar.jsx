@@ -30,7 +30,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.logo}>
         <img src={Aurelius} onClick={() => navigate('/')} />
-        <Link to="/">Aurelius</Link>
+        <Link to="/">{" "}Aurelius</Link>
       </div>
       <div>
         <ul className={styles.navbarList}>
@@ -95,11 +95,10 @@ const Navbar = () => {
               </div>
             </>
           )}
-          <li className={styles.navbarListItem}>
             <NavLink onClick={() => setToggleChicken(!toggleChicken)}>
               <img src={toggleChicken && curuser?.photoURL ? curuser?.photoURL : topchicken} alt="user" />
             </NavLink>
-          </li>
+
 
           <div className={styles.liDivItems}>
             <li className={styles.navbarListItem}>

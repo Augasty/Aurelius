@@ -1,20 +1,18 @@
 /* eslint-disable react/prop-types */
 
-import { useNavigate } from 'react-router-dom';
 import styles from './TaskView.module.css';
 import { isTaskOverDue } from '../../../../utils/isTaskOverdue';
-import { SmartTime } from '../../../../utils/SmartTime';
+import { SmartTime, formatDate } from '../../../../utils/SmartTime';
 import { useState } from 'react';
 const TaskView = ({ currentTask }) => {
   const [seeMore, setseeMore] = useState(false);
 
-  const history = useNavigate();
   if (!currentTask) {
     return <>loading</>;
   }
 
   const isOverDue = isTaskOverDue(currentTask);
-
+  const deadlinedate = formatDate(currentTask.deadline);
   const smartCreatedAt = SmartTime(currentTask.createdAt);
   return (
     <div className={styles.container}>
@@ -41,7 +39,7 @@ const TaskView = ({ currentTask }) => {
               </span>
               <span>
                 <span>Deadline: </span>
-                {currentTask.deadline}
+                {deadlinedate === "31-12-9999" ? "N/A" : currentTask.deadline}
               </span>
             </div>
 
@@ -64,9 +62,7 @@ const TaskView = ({ currentTask }) => {
             <button onClick={() => setseeMore(!seeMore)}>{seeMore ? 'Collapse' : 'Expand'}</button>
           </span>
 
-          <span>
-            <button onClick={() => history(-1)}>Back</button>
-          </span>
+
         </div>
       </div>
     </div>

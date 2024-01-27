@@ -39,7 +39,7 @@ const CloudNotificationTriggers = () => {
   useEffect(() => {
     const notificationRef = collection(db, 'users', curuser.email, 'notificationList');
     const unsub = onSnapshot(notificationRef, () => {
-      console.log('trig noti');
+      // console.log('trig noti');
       fetchNotifications();
     });
 

@@ -23,6 +23,7 @@ import { useProjectContexts } from '../utils/ProjectContexts';
 import { useEffect } from 'react';
 import CloudStoryTriggers from '../utils/CloudStoryTriggers';
 import CloudNotificationTriggers from '../utils/CloudNotificationTriggers';
+import BackButton from '../components/BackButton/BackButton';
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   // useEffect to trigger resetErrorBoundary once when the component mounts
@@ -55,6 +56,7 @@ const Routing = () => {
             {currentboard.length !== 0 && <CloudTaskTriggers />}
             <CloudNotificationTriggers />
             <CloudBoardTriggers />
+            
           </>)}
             
             {user && <Navbar />}
@@ -80,6 +82,7 @@ const Routing = () => {
             </div>
             {isNotificationPanelVisible && <Notification />}
             {currentboard.length !== 0 && isChatPanelVisible && <ChatPanel />}
+            <BackButton/>
           </>
         ) : (
           <SignedOutHomePage />

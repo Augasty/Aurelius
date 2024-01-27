@@ -6,15 +6,9 @@ import { useNavigate } from "react-router-dom";
 import TaskSummary from "../../tasks/TaskSummary/TaskSummary";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { formatDate } from "../../../utils/SmartTime";
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const day = date.getDate().toString().padStart(2, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const year = date.getFullYear();
 
-  return `${day}-${month}-${year}`;
-};
 
 const getStoryStatus = (completionCount, deadline) => {
   if (completionCount === 0) {

@@ -1,7 +1,9 @@
 import {
   GoogleAuthProvider,
+  browserSessionPersistence,
+  setPersistence,
   // createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  // signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
 import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
@@ -10,24 +12,25 @@ import { auth, db } from "../firebase";
 export const SignInWithGoogle = async () => {
   try {
     // for automation, to let automation tools bypass login
-    if (window.location.href == 'http://localhost:3000/') {
+    // if (window.location.href == 'http://localhost:3000/') {
 
-      const email = "augastytest@gmail.com";
-      const password = "Dijkstra@123";
-      try {
-        await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
+    //   const email = "augastytest@gmail.com";
+    //   const password = "Dijkstra@123";
+    //   try {
+    //     await signInWithEmailAndPassword(
+    //       auth,
+    //       email,
+    //       password
+    //     );
 
 
-      } catch (error) {
-        console.error('error in login',error.message);
-      }
-      return; 
-    }
+    //   } catch (error) {
+    //     console.error('error in login',error.message);
+    //   }
+    //   return; 
+    // }
     const provider = new GoogleAuthProvider();
+    await setPersistence(auth, browserSessionPersistence);
     const result = await signInWithPopup(auth, provider);
 
     // Check if the user's email exists in the 'database1' collection
