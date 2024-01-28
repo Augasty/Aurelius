@@ -42,7 +42,7 @@
     margin-right: 10px;
     font-size: 24px;
     font-weight: bold;
-    color: var(--text-color);
+    color: rgb(69, 69, 69);
   }
   
   .LoginButton {
