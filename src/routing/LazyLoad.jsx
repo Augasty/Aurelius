@@ -1,15 +1,14 @@
 import { lazy, Suspense } from 'react';
-import Dashboard from '../components/dashboard/Dashboard';
-import Notification from '../components/notification/Notification';
-import TaskList from '../components/tasks/TaskList/TaskList';
-const CreateStory = lazy(() => import('../components/stories/CreateStory/CreateStory'));
 
+const Dashboard = lazy(() => import('../components/dashboard/Dashboard'));
+const Notification = lazy(() => import('../components/notification/Notification'));
+const TaskList = lazy(() => import('../components/tasks/TaskList/TaskList'));
+const CreateStory = lazy(() => import('../components/stories/CreateStory/CreateStory'));
 const CreateTask = lazy(() => import('../components/tasks/createTask/CreateTask'));
 const AddMemberInBoard = lazy(() => import('../components/boards/AddMemberInBoard/AddMemberInBoard'));
 const SignedOutHomePage = lazy(() => import('../components/SignedOutHomePage/SignedOutHomePage'));
 const CreateBoard = lazy(() => import('../components/boards/CreateBoard'));
 const Navbar = lazy(() => import('../components/navbar/Navbar'));
-
 const TaskDetails = lazy(() => import('../components/tasks/TaskDetails/TaskDetails'));
 const ChatPanel = lazy(() => import('../components/chat-system/ChatPanel'));
 
