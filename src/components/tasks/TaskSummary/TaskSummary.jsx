@@ -20,8 +20,8 @@ const TaskSummary = ({ task, createdAtShown }) => {
       >
       <div className={styles[task.taskStatus]}></div>
         <p className={styles.taskSummaryTitle}> 
-          {task.title.length > 45
-            ? `${task.title.substring(0, 45)}...`
+          {task.title.length > 40
+            ? `${task.title.substring(0, 40)}...`
             : task.title}
         </p>
         <p className={styles.taskSummaryDate}>{formattedDate}</p>
