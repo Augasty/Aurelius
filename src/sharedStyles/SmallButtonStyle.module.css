@@ -10,6 +10,7 @@
     font-size: 2vh;
     font-weight: bold;
     border-radius: var(--button-radius);
+    user-select: none;
   }
   
   .SmallButton:hover {

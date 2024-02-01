@@ -3,11 +3,14 @@
   padding: 2vh;
   margin: 0.7vh;
   border-radius: var(--border-radius);
-  font-family: 'Arial', sans-serif;
-  width:8vw;
-  height: 10vh;
+  font-family: var(--font-family);
+  width:8.2vw;
+  height: max-content;
+  min-height: 8vh;
   text-align: left;
   color: black;
+  user-select: none;
+  display: grid
 
 }
 
@@ -31,17 +34,14 @@
 .taskSummaryTitle {
   font-size: var(--card-title);
   font-weight: var(--card-title-weight);
+  font-family: var(--font-family);
   margin: 0;
   color: var(--card-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-bottom: 1vh;
 }
 
 .taskSummaryDate {
   margin: 0vh;
   font-size: var(--card-date);
   color: var(--card-text)
-    /* white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; */
 }
