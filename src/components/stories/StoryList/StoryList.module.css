@@ -1,9 +1,7 @@
-
-  /* storyList.module.css */
-
-  .StoryListContainer{
+.StoryListContainer{
   display: flex;
   height: 93vh;
+  user-select: none;
   }
 .storyList {
   align-items: top;

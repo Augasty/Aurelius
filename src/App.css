@@ -51,9 +51,9 @@
   --received: #4285F4;
 
   /* font-size */
-  --card-title: 2.4vh;
+  --card-title: 2.2vh;
   --card-title-weight:600;
-  --card-date:2.2vh;
+  --card-date:1.9vh;
 
   --notification-text: rgb(255, 255, 255);
   /* notification colors */
