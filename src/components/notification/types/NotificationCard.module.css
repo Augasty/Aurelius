@@ -6,7 +6,7 @@
     
     user-select: none;
     border: var(--notification-box-border);
-    height: 12vh;
+    height: clamp(12vh,12vh,min-content);
     text-align: left;
     background-color: var(--notification-color);
     color: var(--card-text);
