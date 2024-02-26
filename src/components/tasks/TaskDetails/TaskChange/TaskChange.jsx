@@ -8,6 +8,7 @@ import { useProjectContexts } from '../../../../utils/ProjectContexts';
 
 import { isTaskOverDue } from '../../../../utils/isTaskOverdue';
 import { formatDate, SmartTime } from '../../../../utils/SmartTime';
+import BackButton from '../../../BackButton/BackButton';
 
 const TaskChange = ({ currentTask }) => {
   const { currentboard, isProjectPlanner } = useProjectContexts();
@@ -78,34 +79,34 @@ const TaskChange = ({ currentTask }) => {
     }
 
     // sending the notification to the assignee
-    const SendNotification = async()=>{
+    const SendNotification = async () => {
       let notificationReceiver;
       if (updatedCurrentTask.assignedTo === curuser.email) {
         notificationReceiver = updatedCurrentTask.authorDetails;
       } else if (updatedCurrentTask.authorDetails === curuser.email) {
         notificationReceiver = updatedCurrentTask.assignedTo;
       }
-      
-      try{
+
+      try {
         await addDoc(collection(db, 'users', notificationReceiver, 'notificationList'), {
           type: 'task-updated',
           details: {
             title: updatedCurrentTask.title,
             taskStatus: updatedCurrentTask.taskStatus,
-            deadline:updatedCurrentTask.deadline, 
+            deadline: updatedCurrentTask.deadline,
             boardName: currentboard[1],
           },
           sender: curuser.email,
           time: new Date().toISOString(),
         });
-      }catch(e){
-        console.log(updatedCurrentTask.deadline, currentTask.deadline)
-        console.warn('error while sending notification',e)
+      } catch (e) {
+        console.log(updatedCurrentTask.deadline, currentTask.deadline);
+        console.warn('error while sending notification', e);
       }
-    }
+    };
 
-    if(updatedCurrentTask.assignedTo != updatedCurrentTask.authorDetails){
-      SendNotification()
+    if (updatedCurrentTask.assignedTo != updatedCurrentTask.authorDetails) {
+      SendNotification();
     }
 
     history(-1); //back to the previous screen
@@ -156,7 +157,7 @@ const TaskChange = ({ currentTask }) => {
                   id="deadline"
                   className={styles.inputField}
                   onChange={handleChange}
-                  value={deadlinedate != "31-12-9999" && updatedCurrentTask.deadline}
+                  value={deadlinedate != '31-12-9999' && updatedCurrentTask.deadline}
                   max="2999-12-31"
                 />
               </span>
@@ -203,7 +204,9 @@ const TaskChange = ({ currentTask }) => {
               {seeMore ? 'Collapse' : 'Expand'}
             </button>
           </span>
-
+          <span>
+            <BackButton />
+          </span>
           <span>
             <button type="submit">Submit</button>
           </span>

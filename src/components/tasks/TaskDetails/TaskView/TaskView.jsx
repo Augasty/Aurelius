@@ -4,6 +4,7 @@ import styles from './TaskView.module.css';
 import { isTaskOverDue } from '../../../../utils/isTaskOverdue';
 import { SmartTime, formatDate } from '../../../../utils/SmartTime';
 import { useState } from 'react';
+import BackButton from '../../../BackButton/BackButton';
 const TaskView = ({ currentTask }) => {
   const [seeMore, setseeMore] = useState(false);
 
@@ -61,7 +62,9 @@ const TaskView = ({ currentTask }) => {
           <span>
             <button onClick={() => setseeMore(!seeMore)}>{seeMore ? 'Collapse' : 'Expand'}</button>
           </span>
-
+          <span>
+            <BackButton/>
+          </span>
 
         </div>
       </div>

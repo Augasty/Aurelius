@@ -174,7 +174,10 @@ const CreateTask = () => {
           </select>
         </div>
 
-        <div className={` `}>
+        <div className={styles.taskDetailsTop}>
+          <button className={btn.BigButton} onClick={() => history(-1)}>
+            Back
+          </button>
           <button className={btn.BigButton} type="submit">
             Create
           </button>
