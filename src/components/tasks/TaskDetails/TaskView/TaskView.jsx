@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 
+import btn from '../../../../sharedStyles/MultipleButtonStyle.module.css';
 import styles from './TaskView.module.css';
 import { isTaskOverDue } from '../../../../utils/isTaskOverdue';
 import { SmartTime, formatDate } from '../../../../utils/SmartTime';
@@ -58,7 +59,7 @@ const TaskView = ({ currentTask }) => {
           </>
         )}
 
-        <div className={styles.taskDetailsTop}>
+        <div className={btn.MultipleButtonStyle}>
           <span>
             <button onClick={() => setseeMore(!seeMore)}>{seeMore ? 'Collapse' : 'Expand'}</button>
           </span>

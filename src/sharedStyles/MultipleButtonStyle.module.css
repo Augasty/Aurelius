@@ -1,0 +1,38 @@
+
+.MultipleButtonStyle {
+    display: flex;
+    justify-content: space-between;
+    color: var(--card-text);
+    font-size: 2.5vh;
+  }
+  
+  .MultipleButtonStyle span {
+    margin-bottom: 10px;
+    color: var(--card-text);
+  }
+  
+  
+  /* Button Style */
+  .MultipleButtonStyle button {
+    padding: 6px;
+    margin: 6px;
+    background-color: var(--button-color);
+    color: var(--button-text);
+    font-weight: bold;
+    border-radius: 1vh;
+    cursor: pointer;
+    width: 7vw;
+  
+    border: var(--div-border);
+  }
+  
+  .MultipleButtonStyle button:hover {
+  
+    background-color: var(--button-hover-color)
+  }
+  
+  .MultipleButtonStyle button:active {
+    background-color: var(--button-active-color)
+  }
+  
+  

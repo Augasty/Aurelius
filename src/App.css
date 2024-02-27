@@ -1,7 +1,7 @@
 :root {
   --text-color: #4d4d4d;
   --secondary-text-color: #000000;
-  --alt-text-color: #FFFFFF;
+  --chat-text-color: #FFFFFF;
   --highlight-color: #3a85ff;
   --reddot-bg: red;
 
@@ -70,7 +70,6 @@
 [data-theme='dark'] {
   --text-color: #ffffff;
   --secondary-text-color: #ffffff;
-  --alt-text-color: #000000;
   --reddot-bg: white;
   
 

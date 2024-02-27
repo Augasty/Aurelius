@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../../firebase';
 import { useProjectContexts } from '../../../utils/ProjectContexts';
 import styles from './styles.module.css';
-import btn from '../../../sharedStyles/BigButtonStyle.module.css';
+import btn from '../../../sharedStyles/MultipleButtonStyle.module.css';
+import BackButton from '../../BackButton/BackButton';
 
 const AddMemberInBoard = () => {
   const { currentboard } = useProjectContexts();
@@ -35,13 +36,7 @@ const AddMemberInBoard = () => {
         window.alert(`This guy/girl is already in ${currentboard[1]}`);
         return;
       } else {
-        const userNotificationRef = doc(
-          db,
-          'users',
-          userMail,
-          'notificationList',
-          currentboard[0]
-        );
+        const userNotificationRef = doc(db, 'users', userMail, 'notificationList', currentboard[0]);
         const userNotificationSnapShot = await getDoc(userNotificationRef);
 
         if (userNotificationSnapShot.exists()) {
@@ -50,7 +45,7 @@ const AddMemberInBoard = () => {
         }
         await setDoc(userNotificationRef, {
           type: 'join-req',
-          details: {boardId:currentboard[0],boardName:currentboard[1]},
+          details: { boardId: currentboard[0], boardName: currentboard[1] },
           sender: curuser.email,
           time: new Date().toISOString(),
         });
@@ -77,10 +72,13 @@ const AddMemberInBoard = () => {
           onChange={(e) => setuserMail(e.target.value)}
         />
       </div>
-      <div>
-        <button type="submit" className={btn.BigButton}>
-          Add
-        </button>
+      <div className={btn.MultipleButtonStyle}>
+        <span>
+          <button type="submit">Add</button>
+        </span>
+        <span>
+          <BackButton />
+        </span>
       </div>
     </form>
   );

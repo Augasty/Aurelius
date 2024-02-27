@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../TaskView/TaskView.module.css';
 import { useProjectContexts } from '../../../../utils/ProjectContexts';
 
+import btn from '../../../../sharedStyles/MultipleButtonStyle.module.css';
 import { isTaskOverDue } from '../../../../utils/isTaskOverdue';
 import { formatDate, SmartTime } from '../../../../utils/SmartTime';
 import BackButton from '../../../BackButton/BackButton';
@@ -198,7 +199,7 @@ const TaskChange = ({ currentTask }) => {
           </>
         )}
 
-        <div className={styles.taskDetailsTop}>
+        <div className={btn.MultipleButtonStyle}>
           <span>
             <button type="button" onClick={() => setseeMore(!seeMore)}>
               {seeMore ? 'Collapse' : 'Expand'}

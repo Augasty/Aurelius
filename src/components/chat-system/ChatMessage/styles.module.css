@@ -26,7 +26,7 @@
 
 .message p {
   background-color: var(--received);
-  color: var(--alt-text-color);
+  color: var(--chat-text-color);
 
   font-size: var(--sidepanel-font-size);
   padding: 4px 8px;
@@ -35,5 +35,4 @@
   max-width: 10vw;
   word-wrap: break-word;
   font-family: var(--font-family);
-  box-shadow: var(--bottom-shadow);
 }
